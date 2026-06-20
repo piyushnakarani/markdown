@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "MarkdownTools - বিনামূল্যে অনলাইন মার্কডাউন কনভার্টার",
-    "description": "আপনার ব্রাউজারে মার্কডাউনকে PDF, HTML এবং TXT-এ তাৎক্ষণিকভাবে রূপান্তর করুন।",
-    "keywords": "মার্কডাউন কনভার্টার, মার্কডাউন থেকে pdf, মার্কডাউন এডিটর"
+    "title": "PDFWritter — Free Markdown Convertor with Diagram",
+    "description": "Convert Markdown to PDF, HTML, and TXT with Mermaid diagram support. Free Markdown convertor with live preview at pdfwritter.com.",
+    "keywords": "markdown convertor with diagram, markdown converter with diagram, markdown to pdf, mermaid diagram, pdfwritter"
   },
   "nav": {
     "home": "হোম",
@@ -20,7 +20,7 @@
     "language": "ভাষা"
   },
   "hero": {
-    "badge": "বিনামূল্যে ও ওপেন সোর্স",
+    "badge": "Markdown Convertor with Diagram",
     "title": "আপনার মার্কডাউন রূপান্তর করুন",
     "titleHighlight": "যেকোনো কিছুতে",
     "subtitle": "ব্রাউজারে মার্কডাউনকে PDF, HTML এবং TXT-এ তাৎক্ষণিকভাবে রূপান্তর করুন।",
@@ -42,7 +42,7 @@
     "tryNow": "এখনই ব্যবহার করুন →"
   },
   "features": {
-    "sectionTitle": "ডেভেলপাররা কেন MarkdownTools পছন্দ করেন",
+    "sectionTitle": "ডেভেলপাররা কেন PDFWritter পছন্দ করেন",
     "sectionSubtitle": "গতি এবং গোপনীয়তার জন্য তৈরি",
     "clientSide": "১০০% ক্লায়েন্ট-সাইড",
     "clientSideDesc": "সমস্ত প্রসেসিং আপনার ব্রাউজারে হয়।",
@@ -135,7 +135,7 @@
     "shareArticle": "নিবন্ধ শেয়ার করুন"
   },
   "about": {
-    "title": "MarkdownTools সম্পর্কে",
+    "title": "PDFWritter সম্পর্কে",
     "subtitle": "বিনামূল্যে দ্রুত মার্কডাউন টুলস",
     "missionTitle": "আমাদের মিশন",
     "missionText": "ডেভেলপার টুলস বিনামূল্যে এবং গোপনীয় হওয়া উচিত।",
@@ -143,7 +143,7 @@
     "privacyTitle": "গোপনীয়তা প্রতিশ্রুতি",
     "privacyText": "আপনার কন্টেন্ট কখনো ব্রাউজার ছাড়ে না।",
     "openSourceTitle": "ওপেন সোর্স",
-    "openSourceText": "MarkdownTools চিরকালের জন্য বিনামূল্যে।"
+    "openSourceText": "PDFWritter চিরকালের জন্য বিনামূল্যে।"
   },
   "contact": {
     "title": "যোগাযোগ করুন",
@@ -158,7 +158,7 @@
   },
   "help": {
     "title": "সাহায্য ও ডকুমেন্টেশন",
-    "subtitle": "MarkdownTools সম্পর্কে সব কিছু",
+    "subtitle": "PDFWritter সম্পর্কে সব কিছু",
     "gettingStarted": "শুরু করুন",
     "faq": "সচরাচর জিজ্ঞাসা",
     "syntaxRef": "মার্কডাউন সিনট্যাক্স রেফারেন্স",
@@ -167,7 +167,7 @@
   "freeConverter": {
     "title": "বিনামূল্যে মার্কডাউন কনভার্টার",
     "subtitle": "যেকোনো ফরম্যাটে বিনামূল্যে রূপান্তর",
-    "whyTitle": "কেন MarkdownTools?",
+    "whyTitle": "কেন PDFWritter?",
     "comparisonTitle": "ফরম্যাট তুলনা"
   },
   "footer": {
@@ -181,7 +181,7 @@
     "madeWith": "ডেভেলপারদের জন্য ❤️ দিয়ে তৈরি"
   },
   "faq": {
-    "q1": "MarkdownTools কি সত্যিই বিনামূল্যে?",
+    "q1": "PDFWritter কি সত্যিই বিনামূল্যে?",
     "a1": "হ্যাঁ, সম্পূর্ণ বিনামূল্যে।",
     "q2": "ফাইল কি সার্ভারে পাঠানো হয়?",
     "a2": "না। সব কিছু ব্রাউজারে হয়।",
@@ -190,7 +190,9 @@
     "q4": "মোবাইলে কাজ করে?",
     "a4": "অবশ্যই! সম্পূর্ণ রেস্পন্সিভ।",
     "q5": "কোন ফরম্যাটে রপ্তানি করা যায়?",
-    "a5": "PDF, HTML এবং TXT।"
+    "a5": "PDF, HTML এবং TXT।",
+    "q6": "Does PDFWritter support Mermaid diagrams?",
+    "a6": "Yes — PDFWritter is a Markdown convertor with diagram support. Add mermaid code blocks for flowcharts, sequence diagrams, Gantt charts, and pie charts. Diagrams render in live preview and export cleanly to PDF and HTML."
   },
   "common": {
     "loading": "লোড হচ্ছে...",

@@ -1,14 +1,17 @@
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { HelpCircle, BookOpen, Keyboard, FileText } from 'lucide-react';
+import { buildPageMetadata } from '@/lib/site';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  return {
-    title: 'Help & Documentation | MarkdownTools',
-    description: 'Learn how to use MarkdownTools. Documentation, FAQ, Markdown syntax reference, and keyboard shortcuts.',
-    alternates: { canonical: `/${locale}/help` },
-  };
+  return buildPageMetadata({
+    title: 'Help & Documentation',
+    description:
+      'Learn how to use PDFWritter — the Markdown convertor with diagram support. FAQ, syntax reference, Mermaid diagrams, and shortcuts.',
+    path: `/${locale}/help`,
+    locale,
+  });
 }
 
 export default async function HelpPage({ params }: { params: Promise<{ locale: string }> }) {

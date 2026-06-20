@@ -3,14 +3,24 @@ import { setRequestLocale } from 'next-intl/server';
 import { Sparkles } from 'lucide-react';
 import ConverterTool from '@/components/ConverterTool';
 import PageHero from '@/components/PageHero';
+import { buildPageMetadata } from '@/lib/site';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  return {
-    title: `Markdown to HTML - Free Online Converter | MarkdownTools`,
-    description: 'Convert Markdown to clean, semantic HTML instantly in your browser. Free and private.',
-    alternates: { canonical: `/${locale}/markdown-to-html` },
-  };
+  return buildPageMetadata({
+    title: 'Markdown to HTML — Free Convertor with Diagram Support',
+    description:
+      'Convert Markdown to clean HTML with rendered Mermaid diagrams. Free Markdown convertor with diagram support at pdfwritter.com.',
+    path: `/${locale}/markdown-to-html`,
+    locale,
+    keywords: [
+      'markdown to html',
+      'markdown convertor with diagram',
+      'mermaid to html',
+      'markdown html converter',
+      'pdfwritter',
+    ],
+  });
 }
 
 export default async function MarkdownToHtmlPage({ params }: { params: Promise<{ locale: string }> }) {

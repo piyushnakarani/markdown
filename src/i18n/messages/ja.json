@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "MarkdownTools - 無料オンラインMarkdownコンバーター",
-    "description": "ブラウザでMarkdownをPDF、HTML、TXTに即座に変換。",
-    "keywords": "markdownコンバーター, markdown pdf変換, markdownエディター"
+    "title": "PDFWritter — Free Markdown Convertor with Diagram",
+    "description": "Convert Markdown to PDF, HTML, and TXT with Mermaid diagram support. Free Markdown convertor with live preview at pdfwritter.com.",
+    "keywords": "markdown convertor with diagram, markdown converter with diagram, markdown to pdf, mermaid diagram, pdfwritter"
   },
   "nav": {
     "home": "ホーム",
@@ -20,7 +20,7 @@
     "language": "言語"
   },
   "hero": {
-    "badge": "無料＆オープンソース",
+    "badge": "Markdown Convertor with Diagram",
     "title": "Markdownを変換",
     "titleHighlight": "あらゆる形式に",
     "subtitle": "ブラウザでMarkdownをPDF、HTML、TXTに即座に変換。アップロード不要、サーバー不要。",
@@ -42,7 +42,7 @@
     "tryNow": "今すぐ試す →"
   },
   "features": {
-    "sectionTitle": "開発者がMarkdownToolsを愛する理由",
+    "sectionTitle": "開発者がPDFWritterを愛する理由",
     "sectionSubtitle": "速度とプライバシーのために構築",
     "clientSide": "100%クライアントサイド",
     "clientSideDesc": "すべての処理はブラウザで行われます。",
@@ -135,7 +135,7 @@
     "shareArticle": "記事をシェア"
   },
   "about": {
-    "title": "MarkdownToolsについて",
+    "title": "PDFWritterについて",
     "subtitle": "無料で高速なMarkdownツール",
     "missionTitle": "ミッション",
     "missionText": "開発ツールは無料でプライバシーを尊重すべきです。",
@@ -143,7 +143,7 @@
     "privacyTitle": "プライバシーの約束",
     "privacyText": "コンテンツはブラウザから出ません。",
     "openSourceTitle": "オープンソース",
-    "openSourceText": "MarkdownToolsは永久に無料です。"
+    "openSourceText": "PDFWritterは永久に無料です。"
   },
   "contact": {
     "title": "お問い合わせ",
@@ -158,7 +158,7 @@
   },
   "help": {
     "title": "ヘルプ＆ドキュメント",
-    "subtitle": "MarkdownToolsの使い方",
+    "subtitle": "PDFWritterの使い方",
     "gettingStarted": "はじめに",
     "faq": "よくある質問",
     "syntaxRef": "Markdown構文リファレンス",
@@ -167,7 +167,7 @@
   "freeConverter": {
     "title": "無料Markdownコンバーター",
     "subtitle": "あらゆるフォーマットに無料で変換",
-    "whyTitle": "なぜMarkdownTools？",
+    "whyTitle": "なぜPDFWritter？",
     "comparisonTitle": "フォーマット比較"
   },
   "footer": {
@@ -190,7 +190,9 @@
     "q4": "モバイルで使えますか？",
     "a4": "もちろん！完全レスポンシブです。",
     "q5": "エクスポートフォーマットは？",
-    "a5": "PDF、HTML、TXT。"
+    "a5": "PDF、HTML、TXT。",
+    "q6": "Does PDFWritter support Mermaid diagrams?",
+    "a6": "Yes — PDFWritter is a Markdown convertor with diagram support. Add mermaid code blocks for flowcharts, sequence diagrams, Gantt charts, and pie charts. Diagrams render in live preview and export cleanly to PDF and HTML."
   },
   "common": {
     "loading": "読み込み中...",

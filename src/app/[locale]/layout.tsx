@@ -8,6 +8,14 @@ import { isRtl, Locale, locales } from '@/i18n/locales';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import {
+  SITE_NAME,
+  SITE_TAGLINE,
+  SITE_URL,
+  buildPageMetadata,
+  buildOrganizationJsonLd,
+  buildWebApplicationJsonLd,
+} from '@/lib/site';
 import '../globals.css';
 
 export function generateStaticParams() {
@@ -20,6 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const meta = (messages as Record<string, Record<string, string>>).metadata;
 
   return {
+    metadataBase: new URL(SITE_URL),
     title: meta?.title || 'MarkdownTools',
     description: meta?.description || 'Free online Markdown converter and editor',
     keywords: meta?.keywords,
@@ -76,28 +85,13 @@ export default async function LocaleLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'WebApplication',
-              name: 'MarkdownTools',
-              description: 'Free online Markdown converter and editor. Convert Markdown to PDF, HTML, and TXT.',
-              url: 'https://markdowntools.com',
-              applicationCategory: 'DeveloperApplication',
-              operatingSystem: 'All',
-              offers: {
-                '@type': 'Offer',
-                price: '0',
-                priceCurrency: 'USD',
-              },
-              featureList: [
-                'Markdown to PDF conversion',
-                'Markdown to HTML conversion',
-                'Markdown to TXT conversion',
-                'Online Markdown editor',
-                'Live preview',
-                'Syntax highlighting',
-              ],
-            }),
+            __html: JSON.stringify(buildWebApplicationJsonLd(locale)),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(buildOrganizationJsonLd()),
           }}
         />
       </head>

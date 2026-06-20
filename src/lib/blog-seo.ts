@@ -1,15 +1,22 @@
 import type { Metadata } from 'next';
 import type { BlogPost } from '@/content/blog';
+import {
+  DEFAULT_KEYWORDS,
+  SITE_EMAIL,
+  SITE_NAME,
+  SITE_URL,
+  absoluteUrl,
+  buildPageMetadata,
+} from '@/lib/site';
 
-export const SITE_URL = 'https://markdowntools.com';
-export const SITE_NAME = 'MarkdownTools';
+export { SITE_NAME, SITE_URL };
 
 export function getPostUrl(locale: string, slug: string): string {
-  return `${SITE_URL}/${locale}/blog/${slug}`;
+  return absoluteUrl(`/${locale}/blog/${slug}`);
 }
 
 export function getBlogIndexUrl(locale: string): string {
-  return `${SITE_URL}/${locale}/blog`;
+  return absoluteUrl(`/${locale}/blog`);
 }
 
 /** Remove duplicate H1 when the page header already renders the title. */
@@ -18,65 +25,45 @@ export function stripLeadingH1(markdown: string): string {
 }
 
 export function buildPostMetadata(post: BlogPost, locale: string): Metadata {
-  const url = getPostUrl(locale, post.slug);
-  const title = post.metaTitle;
-  const description = post.metaDescription;
+  const path = `/${locale}/blog/${post.slug}`;
+  const base = buildPageMetadata({
+    title: post.metaTitle,
+    description: post.metaDescription,
+    path,
+    locale,
+    keywords: post.keywords,
+    type: 'article',
+  });
 
   return {
-    title,
-    description,
-    keywords: post.keywords,
-    authors: [{ name: SITE_NAME, url: SITE_URL }],
-    alternates: { canonical: `/${locale}/blog/${post.slug}` },
+    ...base,
     openGraph: {
-      title,
-      description,
+      ...base.openGraph,
       type: 'article',
-      url,
-      siteName: SITE_NAME,
       publishedTime: post.date,
       modifiedTime: post.dateModified,
       section: post.category,
       tags: post.keywords,
     },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-    },
   };
 }
 
 export function buildBlogIndexMetadata(locale: string): Metadata {
-  const title = 'Markdown Blog — Tutorials, Guides & Developer Tips | MarkdownTools';
-  const description =
-    'Free Markdown tutorials and guides: convert MD to PDF, learn syntax, pick editors, and improve developer documentation workflows.';
-  const url = getBlogIndexUrl(locale);
-
-  return {
-    title,
-    description,
+  const path = `/${locale}/blog`;
+  return buildPageMetadata({
+    title: 'Markdown Blog — Tutorials, Guides & Diagram Tips',
+    description:
+      'Free Markdown tutorials and guides: convert MD with diagrams to PDF, learn Mermaid syntax, pick editors, and improve developer documentation workflows.',
+    path,
+    locale,
     keywords: [
+      ...DEFAULT_KEYWORDS,
       'markdown blog',
       'markdown tutorial',
-      'markdown guide',
-      'markdown to pdf',
+      'mermaid diagram guide',
       'developer documentation',
     ],
-    alternates: { canonical: `/${locale}/blog` },
-    openGraph: {
-      title,
-      description,
-      type: 'website',
-      url,
-      siteName: SITE_NAME,
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-    },
-  };
+  });
 }
 
 export function buildArticleJsonLd(post: BlogPost, locale: string) {
@@ -97,6 +84,7 @@ export function buildArticleJsonLd(post: BlogPost, locale: string) {
       '@type': 'Organization',
       name: SITE_NAME,
       url: SITE_URL,
+      email: SITE_EMAIL,
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
     url,
@@ -116,7 +104,7 @@ export function buildBreadcrumbJsonLd(post: BlogPost, locale: string) {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: `${SITE_URL}/${locale}`,
+        item: absoluteUrl(`/${locale}`),
       },
       {
         '@type': 'ListItem',
@@ -139,7 +127,7 @@ export function buildBlogIndexJsonLd(posts: BlogPost[], locale: string) {
     '@context': 'https://schema.org',
     '@type': 'Blog',
     name: `${SITE_NAME} Developer Blog`,
-    description: 'Markdown tutorials, conversion guides, and productivity tips for developers.',
+    description: 'Markdown tutorials, diagram conversion guides, and productivity tips for developers.',
     url: getBlogIndexUrl(locale),
     publisher: {
       '@type': 'Organization',
@@ -162,7 +150,7 @@ export function buildHomeBlogJsonLd(posts: BlogPost[], locale: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'Latest MarkdownTools blog articles',
+    name: `Latest ${SITE_NAME} blog articles`,
     itemListElement: posts.map((post, index) => ({
       '@type': 'ListItem',
       position: index + 1,

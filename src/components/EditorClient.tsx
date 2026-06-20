@@ -45,6 +45,9 @@ import {
   Eye,
   PenLine,
   FileUp,
+  FileText,
+  FileCode,
+  FileType,
 } from 'lucide-react';
 
 const EMBEDDED_DEFAULT_MARKDOWN = `# Premium Markdown
@@ -229,7 +232,7 @@ export default function EditorClient({
     },
     {
       id: 'export-pdf',
-      icon: Download,
+      icon: FileText,
       label: t('exportPdf'),
       shortLabel: 'PDF',
       onClick: handleExportPdf,
@@ -239,7 +242,7 @@ export default function EditorClient({
     },
     {
       id: 'export-html',
-      icon: Download,
+      icon: FileCode,
       label: t('exportHtml'),
       shortLabel: 'HTML',
       onClick: handleExportHtml,
@@ -249,7 +252,7 @@ export default function EditorClient({
     },
     {
       id: 'export-txt',
-      icon: Download,
+      icon: FileType,
       label: t('exportTxt'),
       shortLabel: 'TXT',
       onClick: handleExportTxt,

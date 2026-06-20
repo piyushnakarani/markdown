@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "MarkdownTools - Kostenloser Online Markdown Konverter",
-    "description": "Konvertieren Sie Markdown sofort in PDF, HTML und TXT in Ihrem Browser.",
-    "keywords": "markdown konverter, markdown zu pdf, markdown editor"
+    "title": "PDFWritter — Free Markdown Convertor with Diagram",
+    "description": "Convert Markdown to PDF, HTML, and TXT with Mermaid diagram support. Free Markdown convertor with live preview at pdfwritter.com.",
+    "keywords": "markdown convertor with diagram, markdown converter with diagram, markdown to pdf, mermaid diagram, pdfwritter"
   },
   "nav": {
     "home": "Startseite",
@@ -20,7 +20,7 @@
     "language": "Sprache"
   },
   "hero": {
-    "badge": "Kostenlos & Open Source",
+    "badge": "Markdown Convertor with Diagram",
     "title": "Transformieren Sie Ihr Markdown",
     "titleHighlight": "In Alles",
     "subtitle": "Konvertieren Sie Markdown sofort in PDF, HTML und TXT. Kein Upload, kein Server, keine Anmeldung.",
@@ -42,7 +42,7 @@
     "tryNow": "Jetzt Testen →"
   },
   "features": {
-    "sectionTitle": "Warum Entwickler MarkdownTools Lieben",
+    "sectionTitle": "Warum Entwickler PDFWritter Lieben",
     "sectionSubtitle": "Entwickelt für Geschwindigkeit, Datenschutz und Einfachheit",
     "clientSide": "100% Client-seitig",
     "clientSideDesc": "Alle Verarbeitung geschieht in Ihrem Browser.",
@@ -135,7 +135,7 @@
     "shareArticle": "Artikel teilen"
   },
   "about": {
-    "title": "Über MarkdownTools",
+    "title": "Über PDFWritter",
     "subtitle": "Kostenlose, schnelle und private Markdown-Werkzeuge",
     "missionTitle": "Unsere Mission",
     "missionText": "Entwicklerwerkzeuge sollten kostenlos und privat sein.",
@@ -143,7 +143,7 @@
     "privacyTitle": "Datenschutzversprechen",
     "privacyText": "Ihre Inhalte verlassen nie Ihren Browser.",
     "openSourceTitle": "Open Source",
-    "openSourceText": "MarkdownTools ist open source und für immer kostenlos."
+    "openSourceText": "PDFWritter ist open source und für immer kostenlos."
   },
   "contact": {
     "title": "Kontakt",
@@ -158,7 +158,7 @@
   },
   "help": {
     "title": "Hilfe & Dokumentation",
-    "subtitle": "Alles über MarkdownTools",
+    "subtitle": "Alles über PDFWritter",
     "gettingStarted": "Erste Schritte",
     "faq": "Häufige Fragen",
     "syntaxRef": "Markdown Syntax-Referenz",
@@ -167,7 +167,7 @@
   "freeConverter": {
     "title": "Kostenloser Markdown Konverter",
     "subtitle": "Markdown in jedes Format konvertieren — kostenlos",
-    "whyTitle": "Warum MarkdownTools?",
+    "whyTitle": "Warum PDFWritter?",
     "comparisonTitle": "Formatvergleich"
   },
   "footer": {
@@ -181,16 +181,18 @@
     "madeWith": "Mit ❤️ für Entwickler gemacht"
   },
   "faq": {
-    "q1": "Ist MarkdownTools wirklich kostenlos?",
+    "q1": "Ist PDFWritter wirklich kostenlos?",
     "a1": "Ja, komplett kostenlos ohne Limits.",
     "q2": "Werden Dateien an einen Server gesendet?",
     "a2": "Nein. Alles geschieht lokal in Ihrem Browser.",
     "q3": "Welche Markdown-Syntax wird unterstützt?",
     "a3": "GitHub Flavored Markdown wird unterstützt.",
     "q4": "Funktioniert es auf dem Handy?",
-    "a4": "Ja! MarkdownTools ist vollständig responsiv.",
+    "a4": "Ja! PDFWritter ist vollständig responsiv.",
     "q5": "In welche Formate kann ich exportieren?",
-    "a5": "PDF, HTML und Klartext (TXT)."
+    "a5": "PDF, HTML und Klartext (TXT).",
+    "q6": "Does PDFWritter support Mermaid diagrams?",
+    "a6": "Yes — PDFWritter is a Markdown convertor with diagram support. Add mermaid code blocks for flowcharts, sequence diagrams, Gantt charts, and pie charts. Diagrams render in live preview and export cleanly to PDF and HTML."
   },
   "common": {
     "loading": "Laden...",

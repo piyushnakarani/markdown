@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "MarkdownTools - 무료 온라인 마크다운 변환기",
-    "description": "브라우저에서 마크다운을 PDF, HTML, TXT로 즉시 변환하세요.",
-    "keywords": "마크다운 변환기, 마크다운 pdf, 마크다운 에디터"
+    "title": "PDFWritter — Free Markdown Convertor with Diagram",
+    "description": "Convert Markdown to PDF, HTML, and TXT with Mermaid diagram support. Free Markdown convertor with live preview at pdfwritter.com.",
+    "keywords": "markdown convertor with diagram, markdown converter with diagram, markdown to pdf, mermaid diagram, pdfwritter"
   },
   "nav": {
     "home": "홈",
@@ -20,7 +20,7 @@
     "language": "언어"
   },
   "hero": {
-    "badge": "무료 & 오픈소스",
+    "badge": "Markdown Convertor with Diagram",
     "title": "마크다운을 변환하세요",
     "titleHighlight": "어떤 형식으로든",
     "subtitle": "브라우저에서 마크다운을 PDF, HTML, TXT로 즉시 변환. 업로드 불필요, 서버 불필요.",
@@ -42,7 +42,7 @@
     "tryNow": "지금 사용 →"
   },
   "features": {
-    "sectionTitle": "개발자들이 MarkdownTools를 사랑하는 이유",
+    "sectionTitle": "개발자들이 PDFWritter를 사랑하는 이유",
     "sectionSubtitle": "속도와 프라이버시를 위해 설계",
     "clientSide": "100% 클라이언트사이드",
     "clientSideDesc": "모든 처리가 브라우저에서 이루어집니다.",
@@ -135,7 +135,7 @@
     "shareArticle": "글 공유"
   },
   "about": {
-    "title": "MarkdownTools 소개",
+    "title": "PDFWritter 소개",
     "subtitle": "무료 고속 마크다운 도구",
     "missionTitle": "미션",
     "missionText": "개발 도구는 무료이고 프라이버시를 존중해야 합니다.",
@@ -143,7 +143,7 @@
     "privacyTitle": "프라이버시 약속",
     "privacyText": "콘텐츠는 브라우저를 떠나지 않습니다.",
     "openSourceTitle": "오픈소스",
-    "openSourceText": "MarkdownTools는 영원히 무료입니다."
+    "openSourceText": "PDFWritter는 영원히 무료입니다."
   },
   "contact": {
     "title": "문의하기",
@@ -158,7 +158,7 @@
   },
   "help": {
     "title": "도움말 & 문서",
-    "subtitle": "MarkdownTools에 대한 모든 것",
+    "subtitle": "PDFWritter에 대한 모든 것",
     "gettingStarted": "시작하기",
     "faq": "자주 묻는 질문",
     "syntaxRef": "마크다운 문법 참조",
@@ -167,7 +167,7 @@
   "freeConverter": {
     "title": "무료 마크다운 변환기",
     "subtitle": "모든 형식으로 무료 변환",
-    "whyTitle": "왜 MarkdownTools인가?",
+    "whyTitle": "왜 PDFWritter인가?",
     "comparisonTitle": "형식 비교"
   },
   "footer": {
@@ -190,7 +190,9 @@
     "q4": "모바일에서 사용 가능한가요?",
     "a4": "물론입니다! 완전 반응형입니다.",
     "q5": "내보내기 형식은?",
-    "a5": "PDF, HTML, TXT."
+    "a5": "PDF, HTML, TXT.",
+    "q6": "Does PDFWritter support Mermaid diagrams?",
+    "a6": "Yes — PDFWritter is a Markdown convertor with diagram support. Add mermaid code blocks for flowcharts, sequence diagrams, Gantt charts, and pie charts. Diagrams render in live preview and export cleanly to PDF and HTML."
   },
   "common": {
     "loading": "로딩 중...",

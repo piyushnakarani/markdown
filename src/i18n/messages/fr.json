@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "MarkdownTools - Convertisseur Markdown Gratuit en Ligne",
-    "description": "Convertissez Markdown en PDF, HTML et TXT instantanément dans votre navigateur. Éditeur Markdown gratuit avec aperçu en direct.",
-    "keywords": "convertisseur markdown, markdown en pdf, markdown en html, éditeur markdown"
+    "title": "PDFWritter — Free Markdown Convertor with Diagram",
+    "description": "Convert Markdown to PDF, HTML, and TXT with Mermaid diagram support. Free Markdown convertor with live preview at pdfwritter.com.",
+    "keywords": "markdown convertor with diagram, markdown converter with diagram, markdown to pdf, mermaid diagram, pdfwritter"
   },
   "nav": {
     "home": "Accueil",
@@ -20,7 +20,7 @@
     "language": "Langue"
   },
   "hero": {
-    "badge": "Gratuit et Open Source",
+    "badge": "Markdown Convertor with Diagram",
     "title": "Transformez Votre Markdown",
     "titleHighlight": "En N'importe Quoi",
     "subtitle": "Convertissez Markdown en PDF, HTML et TXT instantanément dans votre navigateur. Aucun téléversement, aucun serveur.",
@@ -42,7 +42,7 @@
     "tryNow": "Essayer →"
   },
   "features": {
-    "sectionTitle": "Pourquoi les Développeurs Adorent MarkdownTools",
+    "sectionTitle": "Pourquoi les Développeurs Adorent PDFWritter",
     "sectionSubtitle": "Conçu pour la vitesse, la confidentialité et la simplicité",
     "clientSide": "100% Côté Client",
     "clientSideDesc": "Tout le traitement se fait dans votre navigateur.",
@@ -135,7 +135,7 @@
     "shareArticle": "Partager cet article"
   },
   "about": {
-    "title": "À Propos de MarkdownTools",
+    "title": "À Propos de PDFWritter",
     "subtitle": "Outils Markdown gratuits, rapides et privés",
     "missionTitle": "Notre Mission",
     "missionText": "Nous croyons que les outils de développement doivent être gratuits et respecter votre vie privée.",
@@ -143,7 +143,7 @@
     "privacyTitle": "Promesse de Confidentialité",
     "privacyText": "Votre contenu ne quitte jamais votre navigateur.",
     "openSourceTitle": "Open Source",
-    "openSourceText": "MarkdownTools est open source et gratuit pour toujours."
+    "openSourceText": "PDFWritter est open source et gratuit pour toujours."
   },
   "contact": {
     "title": "Contactez-Nous",
@@ -158,7 +158,7 @@
   },
   "help": {
     "title": "Aide et Documentation",
-    "subtitle": "Tout sur l'utilisation de MarkdownTools",
+    "subtitle": "Tout sur l'utilisation de PDFWritter",
     "gettingStarted": "Démarrage",
     "faq": "Questions Fréquentes",
     "syntaxRef": "Référence Syntaxe Markdown",
@@ -167,7 +167,7 @@
   "freeConverter": {
     "title": "Convertisseur Markdown Gratuit",
     "subtitle": "Convertissez Markdown en tout format — gratuit et dans votre navigateur",
-    "whyTitle": "Pourquoi Choisir MarkdownTools ?",
+    "whyTitle": "Pourquoi Choisir PDFWritter ?",
     "comparisonTitle": "Comparaison des Formats"
   },
   "footer": {
@@ -181,16 +181,18 @@
     "madeWith": "Fait avec ❤️ pour les développeurs"
   },
   "faq": {
-    "q1": "MarkdownTools est-il vraiment gratuit ?",
+    "q1": "PDFWritter est-il vraiment gratuit ?",
     "a1": "Oui, entièrement gratuit sans limites.",
     "q2": "Mes fichiers sont-ils envoyés à un serveur ?",
     "a2": "Non. Tout se passe dans votre navigateur.",
     "q3": "Quelle syntaxe Markdown est supportée ?",
     "a3": "Nous supportons GitHub Flavored Markdown.",
     "q4": "Puis-je l'utiliser sur mobile ?",
-    "a4": "Bien sûr ! MarkdownTools est totalement responsive.",
+    "a4": "Bien sûr ! PDFWritter est totalement responsive.",
     "q5": "Quels formats d'export ?",
-    "a5": "PDF, HTML et texte brut (TXT)."
+    "a5": "PDF, HTML et texte brut (TXT).",
+    "q6": "Does PDFWritter support Mermaid diagrams?",
+    "a6": "Yes — PDFWritter is a Markdown convertor with diagram support. Add mermaid code blocks for flowcharts, sequence diagrams, Gantt charts, and pie charts. Diagrams render in live preview and export cleanly to PDF and HTML."
   },
   "common": {
     "loading": "Chargement...",

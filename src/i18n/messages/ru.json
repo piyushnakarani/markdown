@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "MarkdownTools - Бесплатный Онлайн Конвертер Markdown",
-    "description": "Конвертируйте Markdown в PDF, HTML и TXT мгновенно в вашем браузере.",
-    "keywords": "конвертер markdown, markdown в pdf, редактор markdown"
+    "title": "PDFWritter — Free Markdown Convertor with Diagram",
+    "description": "Convert Markdown to PDF, HTML, and TXT with Mermaid diagram support. Free Markdown convertor with live preview at pdfwritter.com.",
+    "keywords": "markdown convertor with diagram, markdown converter with diagram, markdown to pdf, mermaid diagram, pdfwritter"
   },
   "nav": {
     "home": "Главная",
@@ -20,7 +20,7 @@
     "language": "Язык"
   },
   "hero": {
-    "badge": "Бесплатно и Открыто",
+    "badge": "Markdown Convertor with Diagram",
     "title": "Преобразуйте Ваш Markdown",
     "titleHighlight": "Во Что Угодно",
     "subtitle": "Конвертируйте Markdown в PDF, HTML и TXT мгновенно в браузере. Без загрузок, без серверов.",
@@ -42,7 +42,7 @@
     "tryNow": "Попробовать →"
   },
   "features": {
-    "sectionTitle": "Почему Разработчики Выбирают MarkdownTools",
+    "sectionTitle": "Почему Разработчики Выбирают PDFWritter",
     "sectionSubtitle": "Создан для скорости и конфиденциальности",
     "clientSide": "100% На Стороне Клиента",
     "clientSideDesc": "Вся обработка происходит в вашем браузере.",
@@ -135,7 +135,7 @@
     "shareArticle": "Поделиться статьёй"
   },
   "about": {
-    "title": "О MarkdownTools",
+    "title": "О PDFWritter",
     "subtitle": "Бесплатные быстрые инструменты Markdown",
     "missionTitle": "Наша Миссия",
     "missionText": "Инструменты разработчика должны быть бесплатными и безопасными.",
@@ -143,7 +143,7 @@
     "privacyTitle": "Обещание Конфиденциальности",
     "privacyText": "Ваш контент никогда не покидает браузер.",
     "openSourceTitle": "Открытый Исходный Код",
-    "openSourceText": "MarkdownTools бесплатен навсегда."
+    "openSourceText": "PDFWritter бесплатен навсегда."
   },
   "contact": {
     "title": "Свяжитесь С Нами",
@@ -158,7 +158,7 @@
   },
   "help": {
     "title": "Помощь и Документация",
-    "subtitle": "Всё о MarkdownTools",
+    "subtitle": "Всё о PDFWritter",
     "gettingStarted": "Начало Работы",
     "faq": "Частые Вопросы",
     "syntaxRef": "Справка по Синтаксису",
@@ -167,7 +167,7 @@
   "freeConverter": {
     "title": "Бесплатный Конвертер Markdown",
     "subtitle": "Конвертируйте в любой формат бесплатно",
-    "whyTitle": "Почему MarkdownTools?",
+    "whyTitle": "Почему PDFWritter?",
     "comparisonTitle": "Сравнение Форматов"
   },
   "footer": {
@@ -181,7 +181,7 @@
     "madeWith": "Сделано с ❤️ для разработчиков"
   },
   "faq": {
-    "q1": "MarkdownTools действительно бесплатен?",
+    "q1": "PDFWritter действительно бесплатен?",
     "a1": "Да, полностью бесплатен.",
     "q2": "Файлы отправляются на сервер?",
     "a2": "Нет. Всё обрабатывается в браузере.",
@@ -190,7 +190,9 @@
     "q4": "Работает на мобильном?",
     "a4": "Конечно! Полностью адаптивный.",
     "q5": "В какие форматы можно экспортировать?",
-    "a5": "PDF, HTML и TXT."
+    "a5": "PDF, HTML и TXT.",
+    "q6": "Does PDFWritter support Mermaid diagrams?",
+    "a6": "Yes — PDFWritter is a Markdown convertor with diagram support. Add mermaid code blocks for flowcharts, sequence diagrams, Gantt charts, and pie charts. Diagrams render in live preview and export cleanly to PDF and HTML."
   },
   "common": {
     "loading": "Загрузка...",
