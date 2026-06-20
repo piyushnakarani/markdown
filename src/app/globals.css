@@ -1901,7 +1901,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 0.875rem;
-  min-width: 220px;
+  min-width: 280px;
   max-width: 90vw;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
@@ -1923,6 +1923,71 @@ body {
   font-size: 0.9375rem;
   font-weight: 600;
   color: var(--text-primary);
+}
+
+.export-overlay-hint {
+  margin: 0;
+  max-width: 280px;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+.export-overlay-progress {
+  width: 100%;
+}
+
+.export-overlay-progress-track {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--bg-tertiary);
+  overflow: hidden;
+}
+
+.export-overlay-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #6366f1, #3b82f6);
+  transition: width 0.45s ease;
+}
+
+.export-overlay-steps {
+  list-style: none;
+  margin: 0.25rem 0 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  text-align: left;
+}
+
+.export-overlay-step {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.8125rem;
+  color: var(--text-tertiary);
+  transition: color 0.2s ease;
+}
+
+.export-overlay-step--active {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.export-overlay-step--done {
+  color: var(--text-secondary);
+}
+
+.export-overlay-step-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.125rem;
+  height: 1.125rem;
+  flex-shrink: 0;
+  color: #6366f1;
 }
 
 @keyframes spin {

@@ -9,6 +9,12 @@ import {
   buildTxtDocument,
   downloadFile,
   readFileAsText,
+  getExportOverlayProps,
+  getHtmlExportStages,
+  getPdfExportStages,
+  getTxtExportStages,
+  markdownHasMermaid,
+  type ExportProgressStage,
 } from '@/lib/converters';
 import MarkdownPreview from '@/components/MarkdownPreview';
 import ExportOverlay from '@/components/ExportOverlay';
@@ -70,6 +76,8 @@ export default function EditorClient({
   const [activeTab, setActiveTab] = useState<'editor' | 'preview'>('editor');
   const [copied, setCopied] = useState(false);
   const [exporting, setExporting] = useState<'pdf' | 'html' | 'txt' | null>(null);
+  const [exportStage, setExportStage] = useState<ExportProgressStage>('preparing');
+  const [exportStages, setExportStages] = useState<ExportProgressStage[]>([]);
   const [isDragging, setIsDragging] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -138,32 +146,53 @@ export default function EditorClient({
     }
   };
 
+  const beginExport = (format: 'pdf' | 'html' | 'txt') => {
+    const hasMermaid = markdownHasMermaid(markdown);
+    const stages =
+      format === 'pdf'
+        ? getPdfExportStages(hasMermaid)
+        : format === 'html'
+          ? getHtmlExportStages(hasMermaid)
+          : getTxtExportStages();
+    setExportStages(stages);
+    setExportStage(stages[0]);
+    setExporting(format);
+    return (stage: ExportProgressStage) => setExportStage(stage);
+  };
+
+  const endExport = () => {
+    setExporting(null);
+    setExportStages([]);
+  };
+
   const handleExportPdf = async () => {
-    setExporting('pdf');
+    const onProgress = beginExport('pdf');
     try {
-      await convertMarkdownToPdf(markdown, 'document.pdf');
+      await convertMarkdownToPdf(markdown, 'document.pdf', onProgress);
     } finally {
-      setExporting(null);
+      endExport();
     }
   };
 
   const handleExportHtml = async () => {
-    setExporting('html');
+    const onProgress = beginExport('html');
     try {
-      const fullHtml = await buildHtmlDocument(markdown, 'document');
+      const fullHtml = await buildHtmlDocument(markdown, 'document', onProgress);
+      onProgress('finalizing');
       downloadFile(fullHtml, 'document.html', 'text/html');
     } finally {
-      setExporting(null);
+      endExport();
     }
   };
 
   const handleExportTxt = async () => {
-    setExporting('txt');
+    const onProgress = beginExport('txt');
     try {
-      const txt = await buildTxtDocument(markdown, 'document.txt');
+      const txt = await buildTxtDocument(markdown, 'document.txt', onProgress);
+      onProgress('finalizing');
       downloadFile(txt, 'document.txt', 'text/plain');
     } finally {
-      setExporting(null);
+      endExport();
     }
   };
 
@@ -183,14 +212,9 @@ export default function EditorClient({
     return 'hidden md:flex';
   };
 
-  const exportMessage =
-    exporting === 'pdf'
-      ? t('exportingPdf')
-      : exporting === 'html'
-        ? t('exportingHtml')
-        : exporting === 'txt'
-          ? t('exportingTxt')
-          : '';
+  const exportOverlayProps = exporting
+    ? getExportOverlayProps(t, exportStages, exportStage)
+    : null;
 
   const toolbarActions: EditorToolbarAction[] = [
     {
@@ -254,7 +278,7 @@ export default function EditorClient({
 
   return (
     <div className={shellClass}>
-      {exporting && <ExportOverlay message={exportMessage} />}
+      {exportOverlayProps && <ExportOverlay {...exportOverlayProps} />}
       <EditorToolbarBar className={`relative z-20${isHero ? ' editor-toolbar--hero' : ''}`}>
         <EditorToolbarStart>
           <div className={isHero ? 'editor-toolbar-format-wrap hidden sm:flex' : undefined}>

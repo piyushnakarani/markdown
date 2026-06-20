@@ -10,6 +10,12 @@ import {
   buildTxtDocument,
   downloadFile,
   readFileAsText,
+  getExportOverlayProps,
+  getHtmlExportStages,
+  getPdfExportStages,
+  getTxtExportStages,
+  markdownHasMermaid,
+  type ExportProgressStage,
 } from '@/lib/converters';
 import MarkdownPreview from '@/components/MarkdownPreview';
 import ExportOverlay from '@/components/ExportOverlay';
@@ -71,6 +77,8 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
   const [markdown, setMarkdown] = useState(DEFAULT_MD);
   const [fileName, setFileName] = useState('');
   const [exporting, setExporting] = useState<'pdf' | 'html' | 'txt' | null>(null);
+  const [exportStage, setExportStage] = useState<ExportProgressStage>('preparing');
+  const [exportStages, setExportStages] = useState<ExportProgressStage[]>([]);
   const [copied, setCopied] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [toast, setToast] = useState('');
@@ -116,16 +124,28 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
 
   const handleExport = async () => {
     if (!markdown.trim()) return;
+    const hasMermaid = markdownHasMermaid(markdown);
+    const stages =
+      type === 'pdf'
+        ? getPdfExportStages(hasMermaid)
+        : type === 'html'
+          ? getHtmlExportStages(hasMermaid)
+          : getTxtExportStages();
+    setExportStages(stages);
+    setExportStage(stages[0]);
     setExporting(type);
+    const onProgress = (stage: ExportProgressStage) => setExportStage(stage);
     try {
       const name = baseName();
       if (type === 'pdf') {
-        await convertMarkdownToPdf(markdown, `${name}.pdf`);
+        await convertMarkdownToPdf(markdown, `${name}.pdf`, onProgress);
       } else if (type === 'html') {
-        const fullHtml = await buildHtmlDocument(markdown, name);
+        const fullHtml = await buildHtmlDocument(markdown, name, onProgress);
+        onProgress('finalizing');
         downloadFile(fullHtml, `${name}.html`, 'text/html');
       } else {
-        const txt = await buildTxtDocument(markdown, `${name}.txt`);
+        const txt = await buildTxtDocument(markdown, `${name}.txt`, onProgress);
+        onProgress('finalizing');
         downloadFile(txt, `${name}.txt`, 'text/plain');
       }
       showToast(t('successMessage'));
@@ -133,17 +153,13 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
       showToast(t('errorMessage'));
     } finally {
       setExporting(null);
+      setExportStages([]);
     }
   };
 
-  const exportMessage =
-    exporting === 'pdf'
-      ? te('exportingPdf')
-      : exporting === 'html'
-        ? te('exportingHtml')
-        : exporting === 'txt'
-          ? te('exportingTxt')
-          : '';
+  const exportOverlayProps = exporting
+    ? getExportOverlayProps(te, exportStages, exportStage)
+    : null;
 
   const handleCopy = async () => {
     const content = type === 'html' ? html : plainText;
@@ -198,7 +214,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
 
   return (
     <div className="editor-shell relative">
-      {exporting && <ExportOverlay message={exportMessage} />}
+      {exportOverlayProps && <ExportOverlay {...exportOverlayProps} />}
       {toast && (
         <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-primary)] text-sm font-medium shadow-lg animate-fade-in">
           <Check className="w-4 h-4 text-emerald-500" />

@@ -50,7 +50,13 @@ app.use(helmet({
 
 app.use(cors({
   origin(origin, callback) {
-    if (!origin || allowedOrigins.includes('*') || allowedOrigins.includes(origin)) {
+    const isLocal = origin && (
+      origin.startsWith('http://localhost:') ||
+      origin.startsWith('http://127.0.0.1:') ||
+      origin === 'http://localhost' ||
+      origin === 'http://127.0.0.1'
+    );
+    if (!origin || allowedOrigins.includes('*') || allowedOrigins.includes(origin) || isLocal) {
       callback(null, true);
       return;
     }

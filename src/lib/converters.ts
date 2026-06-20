@@ -1,10 +1,22 @@
 import { convertMarkdownToHtml } from './markdown';
+import type { ExportProgressCallback } from './export-progress';
+import { markdownHasMermaid } from './export-progress';
 import {
   MERMAID_EXPORT_STYLES,
   rasterizeMermaidDiagramsForPdf,
   renderMermaidDiagrams,
   renderMermaidDiagramsForPdf,
 } from './mermaid-render';
+
+export type { ExportProgressCallback, ExportProgressStage } from './export-progress';
+export {
+  getExportOverlayProps,
+  getHtmlExportStages,
+  getPdfExportStages,
+  getTxtExportStages,
+  markdownHasMermaid,
+  stageIndex,
+} from './export-progress';
 
 export { convertMarkdownToHtml } from './markdown';
 
@@ -285,7 +297,7 @@ async function convertWithBackend(payload: BackendConversionPayload): Promise<Bl
 /** Render markdown to HTML with Mermaid diagrams as SVG (browser only). */
 export async function buildRenderedHtmlBody(
   markdown: string,
-  options?: { forPdf?: boolean },
+  options?: { forPdf?: boolean; onProgress?: ExportProgressCallback },
 ): Promise<string> {
   const html = convertMarkdownToHtml(markdown);
   if (typeof document === 'undefined') return html;
@@ -294,6 +306,9 @@ export async function buildRenderedHtmlBody(
   container.innerHTML = html;
 
   try {
+    if (markdownHasMermaid(markdown)) {
+      options?.onProgress?.('buildingDiagrams');
+    }
     if (options?.forPdf) {
       await renderMermaidDiagramsForPdf(container);
     } else {
@@ -306,8 +321,32 @@ export async function buildRenderedHtmlBody(
   }
 }
 
-export async function buildHtmlDocument(markdown: string, title: string): Promise<string> {
-  const body = await buildRenderedHtmlBody(markdown);
+/** HTML body with diagrams rasterized for backend PDF export. */
+async function buildPdfReadyHtmlBody(
+  markdown: string,
+  onProgress?: ExportProgressCallback,
+): Promise<string> {
+  const body = await buildRenderedHtmlBody(markdown, { forPdf: true, onProgress });
+
+  const container = offscreenDomContainer(PDF_WIDTH_PX);
+  container.innerHTML = body;
+
+  try {
+    await rasterizeMermaidDiagramsForPdf(container, PDF_CONTENT_WIDTH, PDF_MAX_DIAGRAM_HEIGHT);
+    await waitForPaint(250);
+    return container.innerHTML;
+  } finally {
+    document.body.removeChild(container);
+  }
+}
+
+export async function buildHtmlDocument(
+  markdown: string,
+  title: string,
+  onProgress?: ExportProgressCallback,
+): Promise<string> {
+  const body = await buildRenderedHtmlBody(markdown, { onProgress });
+  onProgress?.('generatingHtml');
   return `<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><style>${DOCUMENT_STYLES}</style></head><body>${body}</body></html>`;
 }
 
@@ -330,19 +369,40 @@ export function convertMarkdownToTxt(markdown: string): string {
     .trim();
 }
 
-export async function buildTxtDocument(markdown: string, filename: string = 'document.txt'): Promise<string> {
+export async function buildTxtDocument(
+  markdown: string,
+  filename: string = 'document.txt',
+  onProgress?: ExportProgressCallback,
+): Promise<string> {
   void filename;
+  onProgress?.('preparingDownload');
   return convertMarkdownToTxt(markdown);
 }
 
-export async function convertMarkdownToPdf(markdown: string, filename: string = 'document.pdf'): Promise<void> {
+export async function convertMarkdownToPdf(
+  markdown: string,
+  filename: string = 'document.pdf',
+  onProgress?: ExportProgressCallback,
+): Promise<void> {
+  onProgress?.('preparing');
+
   try {
     if (getConversionApiUrl()) {
-      const pdf = await convertWithBackend({
-        format: 'pdf',
-        markdown,
-        filename,
-      });
+      const hasMermaid = markdownHasMermaid(markdown);
+      const payload = hasMermaid
+        ? {
+            format: 'pdf' as const,
+            html: await buildPdfReadyHtmlBody(markdown, onProgress),
+            filename,
+          }
+        : {
+            format: 'pdf' as const,
+            markdown,
+            filename,
+          };
+      onProgress?.('generatingPdf');
+      const pdf = await convertWithBackend(payload);
+      onProgress?.('finalizing');
       downloadBlob(pdf, filename);
       return;
     }
@@ -354,6 +414,10 @@ export async function convertMarkdownToPdf(markdown: string, filename: string = 
   const { iframe, content } = mountPdfIframe(html);
 
   try {
+    if (markdownHasMermaid(markdown)) {
+      onProgress?.('buildingDiagrams');
+    }
+    onProgress?.('generatingPdf');
     await renderMermaidDiagramsForPdf(content);
     await waitForPaint(400);
     await rasterizeMermaidDiagramsForPdf(content, PDF_CONTENT_WIDTH, PDF_MAX_DIAGRAM_HEIGHT);
@@ -390,6 +454,7 @@ export async function convertMarkdownToPdf(markdown: string, filename: string = 
       },
     };
 
+    onProgress?.('finalizing');
     await html2pdf()
       .set(pdfOptions as never)
       .from(content)

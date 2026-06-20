@@ -106,30 +106,32 @@ function svgToPngDataUrl(svg: SVGSVGElement, width: number, height: number): Pro
   }
 
   const xml = new XMLSerializer().serializeToString(clone);
-  const url = URL.createObjectURL(new Blob([xml], { type: 'image/svg+xml;charset=utf-8' }));
+  const url = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(xml)}`;
 
   return new Promise((resolve, reject) => {
     const img = doc.createElement('img');
+    img.crossOrigin = 'anonymous';
     img.onload = () => {
-      const canvas = doc.createElement('canvas');
-      const dpr = 2;
-      canvas.width = Math.ceil(width * dpr);
-      canvas.height = Math.ceil(height * dpr);
-      const ctx = canvas.getContext('2d');
-      if (!ctx) {
-        URL.revokeObjectURL(url);
-        reject(new Error('Canvas unavailable'));
-        return;
+      try {
+        const canvas = doc.createElement('canvas');
+        const dpr = 2;
+        canvas.width = Math.ceil(width * dpr);
+        canvas.height = Math.ceil(height * dpr);
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+          reject(new Error('Canvas unavailable'));
+          return;
+        }
+        ctx.scale(dpr, dpr);
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, width, height);
+        ctx.drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL('image/png'));
+      } catch (error) {
+        reject(error);
       }
-      ctx.scale(dpr, dpr);
-      ctx.fillStyle = '#ffffff';
-      ctx.fillRect(0, 0, width, height);
-      ctx.drawImage(img, 0, 0, width, height);
-      URL.revokeObjectURL(url);
-      resolve(canvas.toDataURL('image/png'));
     };
     img.onerror = () => {
-      URL.revokeObjectURL(url);
       reject(new Error('SVG rasterize failed'));
     };
     img.src = url;
