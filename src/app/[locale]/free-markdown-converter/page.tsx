@@ -1,0 +1,91 @@
+import { useTranslations } from 'next-intl';
+import { setRequestLocale } from 'next-intl/server';
+import { Link } from '@/i18n/navigation';
+import { FileText, Code2, FileType, PenLine, ArrowRight, Check, Sparkles } from 'lucide-react';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  return {
+    title: 'Free Markdown Converter Online - PDF, HTML, TXT | MarkdownTools',
+    description: 'Convert Markdown to PDF, HTML, and TXT for free. No sign-up, no limits. 100% browser-based conversion.',
+    alternates: { canonical: `/${locale}/free-markdown-converter` },
+  };
+}
+
+export default async function FreeConverterPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  return <FreeConverterContent />;
+}
+
+function FreeConverterContent() {
+  const t = useTranslations();
+
+  const converters = [
+    { href: '/markdown-to-pdf', icon: FileText, color: '#ef4444', title: 'Markdown → PDF', desc: 'Professional PDF documents from Markdown' },
+    { href: '/markdown-to-html', icon: Code2, color: '#f59e0b', title: 'Markdown → HTML', desc: 'Clean semantic HTML for the web' },
+    { href: '/markdown-to-txt', icon: FileType, color: '#10b981', title: 'Markdown → TXT', desc: 'Plain text without any formatting' },
+    { href: '/editor', icon: PenLine, color: '#6366f1', title: 'Online Editor', desc: 'Write and preview Markdown live' },
+  ];
+
+  const benefits = [
+    '100% free, no limits',
+    'No account required',
+    'Client-side processing',
+    'Your files stay private',
+    '12 languages supported',
+    'Works on all devices',
+    'No ads or tracking',
+    'Export to multiple formats',
+  ];
+
+  return (
+    <>
+      <section className="relative overflow-hidden py-16 sm:py-24">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#6366f1]/5 via-transparent to-[#ec4899]/5" />
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[#6366f1]/10 to-[#8b5cf6]/5 mb-6">
+            <Sparkles className="w-8 h-8 text-[#6366f1]" />
+          </div>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">{t('freeConverter.title')}</h1>
+          <p className="text-[var(--text-secondary)] text-lg max-w-xl mx-auto">{t('freeConverter.subtitle')}</p>
+        </div>
+      </section>
+
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 space-y-16">
+        {/* Converter Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {converters.map((c) => (
+            <Link key={c.href} href={c.href} className="group card-glass flex items-start gap-4">
+              <div className="w-14 h-14 shrink-0 rounded-2xl flex items-center justify-center" style={{ background: `${c.color}15` }}>
+                <c.icon className="w-7 h-7" style={{ color: c.color }} />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold mb-1 group-hover:text-[#6366f1] transition-colors">{c.title}</h3>
+                <p className="text-sm text-[var(--text-secondary)]">{c.desc}</p>
+                <span className="inline-flex items-center gap-1 text-sm font-medium text-[#6366f1] mt-2">
+                  {t('tools.tryNow')} <ArrowRight className="w-4 h-4" />
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* Benefits */}
+        <div className="card-glass p-8 sm:p-12">
+          <h2 className="text-2xl font-bold mb-8 text-center">{t('freeConverter.whyTitle')}</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {benefits.map((b, i) => (
+              <div key={i} className="flex items-center gap-3">
+                <div className="w-6 h-6 rounded-full bg-[#10b981]/10 flex items-center justify-center shrink-0">
+                  <Check className="w-3.5 h-3.5 text-[#10b981]" />
+                </div>
+                <span className="text-sm text-[var(--text-secondary)]">{b}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

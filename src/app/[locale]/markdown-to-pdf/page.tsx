@@ -1,0 +1,50 @@
+import { useTranslations } from 'next-intl';
+import { setRequestLocale } from 'next-intl/server';
+import { Sparkles } from 'lucide-react';
+import ConverterTool from '@/components/ConverterTool';
+import PageHero from '@/components/PageHero';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  return {
+    title: `Markdown to PDF - Free Online Converter | MarkdownTools`,
+    description: 'Convert Markdown to PDF instantly in your browser. Free, fast, and private. No sign-up required.',
+    alternates: { canonical: `/${locale}/markdown-to-pdf` },
+  };
+}
+
+export default async function MarkdownToPdfPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  return <MarkdownToPdfContent />;
+}
+
+function MarkdownToPdfContent() {
+  const t = useTranslations();
+
+  return (
+    <>
+      <PageHero
+        badge="Instant Browser Compiler"
+        badgeIcon={Sparkles}
+        title={
+          <>
+            Convert Markdown to{' '}
+            <span className="bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
+              PDF
+            </span>
+          </>
+        }
+        subtitle={t('tools.pdfDescription')}
+        accentColor="#f87171"
+        glowColor="rgba(239,68,68,0.08)"
+      />
+      <ConverterTool type="pdf" />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Markdown to PDF Converter',
+        description: 'Convert Markdown to PDF online for free', applicationCategory: 'UtilityApplication',
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }
+      })}} />
+    </>
+  );
+}
