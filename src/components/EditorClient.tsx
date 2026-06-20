@@ -5,8 +5,8 @@ import { useTranslations } from 'next-intl';
 import {
   convertMarkdownToHtml,
   convertMarkdownToPdf,
-  convertMarkdownToTxt,
   buildHtmlDocument,
+  buildTxtDocument,
   downloadFile,
   readFileAsText,
 } from '@/lib/converters';
@@ -160,7 +160,7 @@ export default function EditorClient({
   const handleExportTxt = async () => {
     setExporting('txt');
     try {
-      const txt = convertMarkdownToTxt(markdown);
+      const txt = await buildTxtDocument(markdown, 'document.txt');
       downloadFile(txt, 'document.txt', 'text/plain');
     } finally {
       setExporting(null);

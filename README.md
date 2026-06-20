@@ -16,6 +16,33 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Conversion Backend
+
+Markdown exports can use the separate Chromium renderer in `pdf-render-api` for backend PDF generation.
+
+Start the conversion API:
+
+```bash
+cd pdf-render-api
+npm install
+npm run dev
+```
+
+Create `.env.local` in the project root:
+
+```bash
+NEXT_PUBLIC_CONVERSION_API_URL=http://localhost:8080/convert
+```
+
+Restart the Next.js dev server after changing `.env.local`.
+
+Current export strategy:
+- PDF uses backend Chromium rendering when `NEXT_PUBLIC_CONVERSION_API_URL` is set.
+- HTML and TXT export locally in-browser (faster and no backend dependency).
+- If the PDF API is unavailable, PDF falls back to browser conversion.
+
+The PDF API pre-warms Chromium on startup so the first export is faster. Typical local timings after warm-up: ~2s for text-only docs, ~4–5s for docs with multiple Mermaid charts.
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.

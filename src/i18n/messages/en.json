@@ -44,10 +44,10 @@
   "features": {
     "sectionTitle": "Why Developers Love MarkdownTools",
     "sectionSubtitle": "Built for speed, privacy, and simplicity",
-    "clientSide": "100% Client-Side",
-    "clientSideDesc": "All processing happens in your browser. Your files never leave your device.",
+    "clientSide": "Private by Default",
+    "clientSideDesc": "Exports can run in your browser or use your configured render server for long documents.",
     "fast": "Lightning Fast",
-    "fastDesc": "Instant conversions with zero waiting. No server round-trips needed.",
+    "fastDesc": "Instant local conversions with optional backend rendering for long documents.",
     "free": "Completely Free",
     "freeDesc": "No limits, no subscriptions, no hidden costs. Free forever.",
     "multilingual": "Multilingual",
@@ -55,7 +55,7 @@
     "responsive": "Works Everywhere",
     "responsiveDesc": "Perfectly optimized for phones, tablets, laptops, and desktops.",
     "secure": "Privacy First",
-    "secureDesc": "Zero data collection. We never see, store, or transmit your content."
+    "secureDesc": "Zero tracking. Content is sent only to the render server you configure."
   },
   "howItWorks": {
     "sectionTitle": "How It Works",
@@ -134,7 +134,7 @@
     "missionText": "We believe developer tools should be free, fast, and respect your privacy. MarkdownTools was built to give every developer access to powerful Markdown conversion without compromising on quality or security.",
     "featuresTitle": "What We Offer",
     "privacyTitle": "Privacy Promise",
-    "privacyText": "Your content never leaves your browser. We don't collect, store, or analyze any of your data. Zero tracking, zero cookies, zero compromises.",
+    "privacyText": "Conversions can run in your browser or on your configured render server. The app does not collect or store your content.",
     "openSourceTitle": "Open Source",
     "openSourceText": "MarkdownTools is open source and free forever. We believe in the power of the developer community."
   },
@@ -177,7 +177,7 @@
     "q1": "Is MarkdownTools really free?",
     "a1": "Yes, completely free with no limits. No subscriptions, no premium tiers.",
     "q2": "Are my files sent to a server?",
-    "a2": "No. All processing happens locally in your browser. Your files never leave your device.",
+    "a2": "Exports can run locally in your browser or send Markdown to your configured render server so long documents can be generated faster.",
     "q3": "What Markdown syntax is supported?",
     "a3": "We support GitHub Flavored Markdown (GFM) including tables, task lists, and code blocks.",
     "q4": "Can I use this on mobile?",
@@ -201,13 +201,13 @@
   },
   "trust": {
     "sectionTitle": "Built for Trust",
-    "sectionSubtitle": "Your data never leaves your browser",
+    "sectionSubtitle": "Private local exports with optional backend rendering",
     "fast": "Fast Conversion",
     "fastDesc": "Sub-millisecond client-side engine",
     "secure": "Secure Processing",
-    "secureDesc": "100% browser-based, no servers",
-    "noUpload": "No Upload Needed",
-    "noUploadDesc": "Files never leave your device",
+    "secureDesc": "No tracking or app-side storage",
+    "noUpload": "Local When Possible",
+    "noUploadDesc": "Use browser conversion locally or your configured render server",
     "privacy": "Privacy First",
     "privacyDesc": "Zero tracking, zero cookies"
   },

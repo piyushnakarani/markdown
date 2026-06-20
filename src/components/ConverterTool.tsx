@@ -7,6 +7,7 @@ import {
   convertMarkdownToPdf,
   convertMarkdownToTxt,
   buildHtmlDocument,
+  buildTxtDocument,
   downloadFile,
   readFileAsText,
 } from '@/lib/converters';
@@ -124,7 +125,8 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
         const fullHtml = await buildHtmlDocument(markdown, name);
         downloadFile(fullHtml, `${name}.html`, 'text/html');
       } else {
-        downloadFile(plainText, `${name}.txt`, 'text/plain');
+        const txt = await buildTxtDocument(markdown, `${name}.txt`);
+        downloadFile(txt, `${name}.txt`, 'text/plain');
       }
       showToast(t('successMessage'));
     } catch {
