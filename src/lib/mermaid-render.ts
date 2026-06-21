@@ -40,7 +40,8 @@ async function initMermaidForPdf() {
       securityLevel: 'loose',
       fontFamily: 'system-ui, -apple-system, sans-serif',
       flowchart: { useMaxWidth: true, htmlLabels: true },
-      sequence: { useMaxWidth: true },
+      sequence: { useMaxWidth: true, wrap: true },
+      gantt: { useMaxWidth: true },
     });
     mermaidPdfReady = true;
   }
@@ -105,30 +106,32 @@ function svgToPngDataUrl(svg: SVGSVGElement, width: number, height: number): Pro
   }
 
   const xml = new XMLSerializer().serializeToString(clone);
-  const url = URL.createObjectURL(new Blob([xml], { type: 'image/svg+xml;charset=utf-8' }));
+  const url = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(xml)}`;
 
   return new Promise((resolve, reject) => {
     const img = doc.createElement('img');
+    img.crossOrigin = 'anonymous';
     img.onload = () => {
-      const canvas = doc.createElement('canvas');
-      const dpr = 2;
-      canvas.width = Math.ceil(width * dpr);
-      canvas.height = Math.ceil(height * dpr);
-      const ctx = canvas.getContext('2d');
-      if (!ctx) {
-        URL.revokeObjectURL(url);
-        reject(new Error('Canvas unavailable'));
-        return;
+      try {
+        const canvas = doc.createElement('canvas');
+        const dpr = 2;
+        canvas.width = Math.ceil(width * dpr);
+        canvas.height = Math.ceil(height * dpr);
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+          reject(new Error('Canvas unavailable'));
+          return;
+        }
+        ctx.scale(dpr, dpr);
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, width, height);
+        ctx.drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL('image/png'));
+      } catch (error) {
+        reject(error);
       }
-      ctx.scale(dpr, dpr);
-      ctx.fillStyle = '#ffffff';
-      ctx.fillRect(0, 0, width, height);
-      ctx.drawImage(img, 0, 0, width, height);
-      URL.revokeObjectURL(url);
-      resolve(canvas.toDataURL('image/png'));
     };
     img.onerror = () => {
-      URL.revokeObjectURL(url);
       reject(new Error('SVG rasterize failed'));
     };
     img.src = url;
@@ -181,7 +184,7 @@ export async function rasterizeMermaidDiagramsForPdf(
     const svg = el.querySelector('svg');
     if (!svg) continue;
 
-    el.classList.add('pdf-avoid-break', 'pdf-diagram-block');
+    el.classList.add('pdf-diagram-block');
 
     const { width: natW, height: natH } = readSvgSize(svg);
     if (!natW || !natH) continue;
@@ -198,7 +201,7 @@ export async function rasterizeMermaidDiagramsForPdf(
       const img = doc.createElement('img');
       img.src = dataUrl;
       img.alt = 'Diagram';
-      img.className = 'pdf-diagram-img pdf-avoid-break';
+      img.className = 'pdf-diagram-img';
       img.width = outW;
       img.height = outH;
       img.style.cssText = [
@@ -224,24 +227,24 @@ export async function rasterizeMermaidDiagramsForPdf(
 }
 
 export const MERMAID_EXPORT_STYLES = `
-  .mermaid, .mermaid-rendered, .pdf-diagram-block {
+  .mermaid, .mermaid-rendered, .pdf-diagram-block, .pdf-diagram-rasterized {
     margin: 16px 0;
     text-align: center;
     overflow: visible;
-    page-break-inside: avoid;
-    break-inside: avoid;
+    page-break-inside: auto;
+    break-inside: auto;
   }
   .mermaid svg, .mermaid-rendered svg {
     max-width: 100%;
+    width: 100%;
     height: auto;
+    overflow: visible;
     display: block;
     margin: 0 auto;
   }
   .pdf-diagram-img {
-    page-break-inside: avoid;
-    break-inside: avoid;
     object-fit: contain;
   }
   .mermaid-error { background: #fef2f2; color: #991b1b; padding: 12px; border-radius: 8px; font-size: 12px; overflow-x: auto; white-space: pre-wrap; }
-  .pdf-avoid-break { page-break-inside: avoid; break-inside: avoid; }
+  .pdf-avoid-break { page-break-inside: avoid; break-inside: avoid-page; }
 `;

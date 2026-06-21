@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev:frontend": "next dev",
+    "dev:backend": "npm run dev --prefix pdf-render-api",
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
@@ -13,7 +15,7 @@
     "geist": "^1.7.2",
     "highlight.js": "^11.11.1",
     "html2pdf.js": "^0.14.0",
-    "lucide-react": "^1.18.0",
+    "lucide-react": "^1.21.0",
     "marked": "^18.0.5",
     "mermaid": "^11.15.0",
     "next": "^15.3.3",
@@ -22,12 +24,14 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.5",
     "@tailwindcss/postcss": "^4",
     "@types/file-saver": "^2.0.7",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
+    "concurrently": "^8.2.2",
     "eslint": "^9",
     "eslint-config-next": "^15.3.3",
     "tailwindcss": "^4",

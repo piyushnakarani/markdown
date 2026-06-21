@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/navigation';
 import { useTheme } from './ThemeProvider';
 import LanguageSwitcher from './LanguageSwitcher';
+import SiteLogo from './SiteLogo';
 import {
   Sun,
   Moon,
@@ -15,7 +16,6 @@ import {
   FileType,
   PenLine,
   ChevronDown,
-  Sparkles,
   ArrowRight,
 } from 'lucide-react';
 
@@ -90,16 +90,7 @@ export default function Header() {
         >
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 group" aria-label="MarkdownTools Home">
-              <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-[#3b82f6] via-[#8b5cf6] to-[#ec4899] flex items-center justify-center shadow-lg group-hover:shadow-[#3b82f6]/40 transition-all duration-300 group-hover:scale-105">
-                <Sparkles className="w-5 h-5 text-white" />
-                <div className="absolute inset-0 rounded-xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </div>
-              <span className="text-lg sm:text-xl font-bold tracking-tight">
-                <span className="gradient-text font-extrabold">Markdown</span>
-                <span className="text-[var(--text-primary)] font-light">Tools</span>
-              </span>
-            </Link>
+            <SiteLogo variant="header" />
 
             {/* Desktop Nav */}
             <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
@@ -129,6 +120,7 @@ export default function Header() {
                         <Link
                           key={tool.href}
                           href={tool.href}
+                          onClick={() => setToolsOpen(false)}
                           className="flex items-center gap-3.5 px-4 py-3 rounded-xl transition-all hover:bg-white/[0.04] group"
                         >
                           <div
@@ -202,7 +194,11 @@ export default function Header() {
             aria-label="Mobile navigation"
           >
             <div className="space-y-1">
-              <Link href="/" className="flex items-center gap-3 px-4 py-3.5 rounded-xl text-[var(--text-primary)] font-semibold hover:bg-white/[0.04] transition-all">
+              <Link
+                href="/"
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center gap-3 px-4 py-3.5 rounded-xl text-[var(--text-primary)] font-semibold hover:bg-white/[0.04] transition-all"
+              >
                 {t('home')}
               </Link>
 
@@ -214,6 +210,7 @@ export default function Header() {
                   <Link
                     key={tool.href}
                     href={tool.href}
+                    onClick={() => setMobileOpen(false)}
                     className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/[0.04] transition-all"
                   >
                     <div
@@ -235,6 +232,7 @@ export default function Header() {
                   <Link
                     key={href}
                     href={href}
+                    onClick={() => setMobileOpen(false)}
                     className="flex items-center gap-3 px-4 py-3.5 rounded-xl text-[var(--text-primary)] font-medium hover:bg-white/[0.04] transition-all"
                   >
                     {t(key)}
@@ -246,6 +244,7 @@ export default function Header() {
             <div className="mt-8">
               <Link
                 href="/editor"
+                onClick={() => setMobileOpen(false)}
                 className="flex items-center justify-center gap-2.5 w-full py-3.5 text-sm font-semibold text-white rounded-xl bg-gradient-to-r from-[#3b82f6] to-[#8b5cf6] hover:shadow-xl transition-all"
               >
                 <PenLine className="w-4 h-4" />

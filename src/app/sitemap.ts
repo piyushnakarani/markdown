@@ -1,8 +1,9 @@
 import { MetadataRoute } from 'next';
 import { locales } from '@/i18n/locales';
 import { blogPosts } from '@/content/blog';
+import { SITE_URL } from '@/lib/site';
 
-const BASE_URL = 'https://markdowntools.com';
+const BASE_URL = SITE_URL;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = [

@@ -3,14 +3,16 @@ import { setRequestLocale } from 'next-intl/server';
 import { Sparkles } from 'lucide-react';
 import ConverterTool from '@/components/ConverterTool';
 import PageHero from '@/components/PageHero';
+import { buildPageMetadata } from '@/lib/site';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  return {
+  return buildPageMetadata({
     title: `Markdown to PDF - Free Online Converter | MarkdownTools`,
     description: 'Convert Markdown to PDF instantly in your browser. Free, fast, and private. No sign-up required.',
-    alternates: { canonical: `/${locale}/markdown-to-pdf` },
-  };
+    path: `/${locale}/markdown-to-pdf`,
+    locale,
+  });
 }
 
 export default async function MarkdownToPdfPage({ params }: { params: Promise<{ locale: string }> }) {

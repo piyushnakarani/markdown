@@ -51,7 +51,7 @@ export default function ContactContent() {
         </form>
 
         <p className="text-center text-sm text-[var(--text-tertiary)] mt-6">
-          {t('emailDirect')} <a href="mailto:hello@markdowntools.com" className="text-[#6366f1] hover:underline">hello@markdowntools.com</a>
+          {t('emailDirect')} <a href="mailto:hello@pdfwritter.com" className="text-[#6366f1] hover:underline">hello@pdfwritter.com</a>
         </p>
       </section>
     </>

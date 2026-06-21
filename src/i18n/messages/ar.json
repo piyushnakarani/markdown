@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "MarkdownTools - محول ماركداون مجاني على الإنترنت",
-    "description": "حول ماركداون إلى PDF و HTML و TXT فورياً في متصفحك.",
-    "keywords": "محول ماركداون, ماركداون إلى pdf, محرر ماركداون"
+    "title": "PDFWritter — Free Markdown Convertor with Diagram",
+    "description": "Convert Markdown to PDF, HTML, and TXT with Mermaid diagram support. Free Markdown convertor with live preview at pdfwritter.com.",
+    "keywords": "markdown convertor with diagram, markdown converter with diagram, markdown to pdf, mermaid diagram, pdfwritter"
   },
   "nav": {
     "home": "الرئيسية",
@@ -20,7 +20,7 @@
     "language": "اللغة"
   },
   "hero": {
-    "badge": "مجاني ومفتوح المصدر",
+    "badge": "Markdown Convertor with Diagram",
     "title": "حوّل ماركداون الخاص بك",
     "titleHighlight": "إلى أي شيء",
     "subtitle": "حول ماركداون إلى PDF و HTML و TXT فورياً في متصفحك. بدون رفع، بدون خوادم.",
@@ -42,7 +42,7 @@
     "tryNow": "جرب الآن ←"
   },
   "features": {
-    "sectionTitle": "لماذا يحب المطورون MarkdownTools",
+    "sectionTitle": "لماذا يحب المطورون PDFWritter",
     "sectionSubtitle": "مصمم للسرعة والخصوصية",
     "clientSide": "100% من جانب العميل",
     "clientSideDesc": "كل المعالجة تتم في متصفحك.",
@@ -85,6 +85,13 @@
     "exportingPdf": "Generating PDF…",
     "exportingHtml": "Generating HTML…",
     "exportingTxt": "Preparing download…",
+    "exportPreparing": "Preparing your document…",
+    "exportBuildingDiagrams": "Building diagrams…",
+    "exportGeneratingPdf": "Generating PDF…",
+    "exportGeneratingHtml": "Building HTML file…",
+    "exportPreparingDownload": "Preparing download…",
+    "exportFinalizing": "Almost done…",
+    "exportHint": "Documents with diagrams may take a few seconds. Your file will download automatically.",
     "copied": "تم النسخ!",
     "downloadReady": "التنزيل جاهز!",
     "boldTooltip": "عريض",
@@ -128,7 +135,7 @@
     "shareArticle": "شارك هذا المقال"
   },
   "about": {
-    "title": "حول MarkdownTools",
+    "title": "حول PDFWritter",
     "subtitle": "أدوات ماركداون مجانية وسريعة",
     "missionTitle": "مهمتنا",
     "missionText": "نؤمن بأن أدوات المطورين يجب أن تكون مجانية وتحترم خصوصيتك.",
@@ -136,7 +143,7 @@
     "privacyTitle": "وعد الخصوصية",
     "privacyText": "محتواك لا يغادر متصفحك أبداً.",
     "openSourceTitle": "مفتوح المصدر",
-    "openSourceText": "MarkdownTools مفتوح المصدر ومجاني للأبد."
+    "openSourceText": "PDFWritter مفتوح المصدر ومجاني للأبد."
   },
   "contact": {
     "title": "تواصل معنا",
@@ -151,7 +158,7 @@
   },
   "help": {
     "title": "المساعدة والتوثيق",
-    "subtitle": "كل ما تحتاج معرفته عن MarkdownTools",
+    "subtitle": "كل ما تحتاج معرفته عن PDFWritter",
     "gettingStarted": "البدء",
     "faq": "الأسئلة الشائعة",
     "syntaxRef": "مرجع صيغة ماركداون",
@@ -160,7 +167,7 @@
   "freeConverter": {
     "title": "محول ماركداون مجاني",
     "subtitle": "حول ماركداون لأي صيغة — مجاناً",
-    "whyTitle": "لماذا MarkdownTools؟",
+    "whyTitle": "لماذا PDFWritter؟",
     "comparisonTitle": "مقارنة الصيغ"
   },
   "footer": {
@@ -174,7 +181,7 @@
     "madeWith": "صنع بـ ❤️ للمطورين"
   },
   "faq": {
-    "q1": "هل MarkdownTools مجاني فعلاً؟",
+    "q1": "هل PDFWritter مجاني فعلاً؟",
     "a1": "نعم، مجاني بالكامل.",
     "q2": "هل تُرسل الملفات لخادم؟",
     "a2": "لا. كل شيء يتم في متصفحك.",
@@ -183,7 +190,9 @@
     "q4": "هل يعمل على الجوال؟",
     "a4": "بالتأكيد! متجاوب بالكامل.",
     "q5": "ما صيغ التصدير؟",
-    "a5": "PDF و HTML و TXT."
+    "a5": "PDF و HTML و TXT.",
+    "q6": "Does PDFWritter support Mermaid diagrams?",
+    "a6": "Yes — PDFWritter is a Markdown convertor with diagram support. Add mermaid code blocks for flowcharts, sequence diagrams, Gantt charts, and pie charts. Diagrams render in live preview and export cleanly to PDF and HTML."
   },
   "common": {
     "loading": "جاري التحميل...",

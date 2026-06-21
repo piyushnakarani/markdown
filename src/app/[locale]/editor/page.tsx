@@ -3,14 +3,24 @@ import { setRequestLocale } from 'next-intl/server';
 import { PenLine } from 'lucide-react';
 import EditorClient from '@/components/EditorClient';
 import PageHero from '@/components/PageHero';
+import { buildPageMetadata } from '@/lib/site';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  return {
-    title: 'Online Markdown Editor - Free Live Preview | MarkdownTools',
-    description: 'Write Markdown with live preview, syntax highlighting, and instant export to PDF, HTML, or TXT. Free online editor, no sign-up required.',
-    alternates: { canonical: `/${locale}/editor` },
-  };
+  return buildPageMetadata({
+    title: 'Online Markdown Editor — Live Preview & Diagram Support',
+    description:
+      'Write Markdown with live preview, Mermaid diagram rendering, syntax highlighting, and export to PDF, HTML, or TXT. Free at pdfwritter.com.',
+    path: `/${locale}/editor`,
+    locale,
+    keywords: [
+      'markdown editor',
+      'markdown convertor with diagram',
+      'mermaid markdown editor',
+      'live preview markdown',
+      'pdfwritter',
+    ],
+  });
 }
 
 export default async function EditorPage({ params }: { params: Promise<{ locale: string }> }) {

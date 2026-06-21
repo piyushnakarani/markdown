@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "MarkdownTools - Free Online Markdown Converter & Editor",
-    "description": "Convert Markdown to PDF, HTML, and TXT instantly in your browser. Free online Markdown editor with live preview, syntax highlighting, and no sign-up required.",
-    "keywords": "markdown converter, markdown to pdf, markdown to html, markdown editor, free markdown tools"
+    "title": "PDFWritter — Free Markdown Convertor with Diagram",
+    "description": "Convert Markdown to PDF, HTML, and TXT with built-in Mermaid diagram support. Free online Markdown convertor with live preview at pdfwritter.com — export flowcharts, sequence diagrams, and docs instantly.",
+    "keywords": "markdown convertor with diagram, markdown converter with diagram, markdown to pdf, mermaid diagram markdown, markdown editor, pdfwritter, markdown to pdf with diagrams"
   },
   "nav": {
     "home": "Home",
@@ -20,10 +20,10 @@
     "language": "Language"
   },
   "hero": {
-    "badge": "Free & Open Source",
+    "badge": "Markdown Convertor with Diagram",
     "title": "Transform Your Markdown",
     "titleHighlight": "Into Anything",
-    "subtitle": "Write, preview, and export Markdown in your browser — free, private, no sign-up.",
+    "subtitle": "Convert Markdown to PDF, HTML & TXT with Mermaid diagram support. Free, private, no sign-up — only at pdfwritter.com.",
     "cta": "Start Converting",
     "ctaSecondary": "Try the Editor",
     "trustedBy": "Trusted by developers worldwide"
@@ -32,22 +32,22 @@
     "sectionTitle": "Powerful Conversion Tools",
     "sectionSubtitle": "Everything you need to work with Markdown, all in your browser",
     "pdfTitle": "Markdown to PDF",
-    "pdfDescription": "Convert your Markdown documents into beautifully formatted PDF files with one click. Perfect for reports, documentation, and sharing.",
+    "pdfDescription": "Convert Markdown documents into beautifully formatted PDF files with Mermaid diagram support. Perfect for reports, documentation, and sharing.",
     "htmlTitle": "Markdown to HTML",
     "htmlDescription": "Transform Markdown into clean, semantic HTML ready for your website, blog, or email newsletter.",
     "txtTitle": "Markdown to TXT",
     "txtDescription": "Strip all formatting and export clean plain text. Perfect for emails, notes, or any plain-text context.",
     "editorTitle": "Online Editor",
-    "editorDescription": "A powerful Markdown editor with live preview, syntax highlighting, and instant export to any format.",
+    "editorDescription": "A powerful Markdown editor with live preview, Mermaid diagram rendering, syntax highlighting, and instant export to any format.",
     "tryNow": "Try Now →"
   },
   "features": {
-    "sectionTitle": "Why Developers Love MarkdownTools",
+    "sectionTitle": "Why Developers Love PDFWritter",
     "sectionSubtitle": "Built for speed, privacy, and simplicity",
-    "clientSide": "100% Client-Side",
-    "clientSideDesc": "All processing happens in your browser. Your files never leave your device.",
+    "clientSide": "Private by Default",
+    "clientSideDesc": "Exports can run in your browser or use your configured render server for long documents.",
     "fast": "Lightning Fast",
-    "fastDesc": "Instant conversions with zero waiting. No server round-trips needed.",
+    "fastDesc": "Instant local conversions with optional backend rendering for long documents.",
     "free": "Completely Free",
     "freeDesc": "No limits, no subscriptions, no hidden costs. Free forever.",
     "multilingual": "Multilingual",
@@ -55,7 +55,7 @@
     "responsive": "Works Everywhere",
     "responsiveDesc": "Perfectly optimized for phones, tablets, laptops, and desktops.",
     "secure": "Privacy First",
-    "secureDesc": "Zero data collection. We never see, store, or transmit your content."
+    "secureDesc": "Zero tracking. Content is sent only to the render server you configure."
   },
   "howItWorks": {
     "sectionTitle": "How It Works",
@@ -85,6 +85,13 @@
     "exportingPdf": "Generating PDF…",
     "exportingHtml": "Generating HTML…",
     "exportingTxt": "Preparing download…",
+    "exportPreparing": "Preparing your document…",
+    "exportBuildingDiagrams": "Building diagrams…",
+    "exportGeneratingPdf": "Generating PDF…",
+    "exportGeneratingHtml": "Building HTML file…",
+    "exportPreparingDownload": "Preparing download…",
+    "exportFinalizing": "Almost done…",
+    "exportHint": "Documents with diagrams may take a few seconds. Your file will download automatically.",
     "copied": "Copied!",
     "downloadReady": "Download ready!",
     "boldTooltip": "Bold",
@@ -128,15 +135,15 @@
     "shareArticle": "Share this article"
   },
   "about": {
-    "title": "About MarkdownTools",
-    "subtitle": "Free, fast, and private Markdown tools for developers",
+    "title": "About PDFWritter",
+    "subtitle": "Free Markdown convertor with diagram support for developers",
     "missionTitle": "Our Mission",
-    "missionText": "We believe developer tools should be free, fast, and respect your privacy. MarkdownTools was built to give every developer access to powerful Markdown conversion without compromising on quality or security.",
+    "missionText": "We believe developer tools should be free, fast, and respect your privacy. PDFWritter was built to give every developer a Markdown convertor with diagram support — export Mermaid flowcharts and docs to PDF without compromising quality or security.",
     "featuresTitle": "What We Offer",
     "privacyTitle": "Privacy Promise",
-    "privacyText": "Your content never leaves your browser. We don't collect, store, or analyze any of your data. Zero tracking, zero cookies, zero compromises.",
+    "privacyText": "Conversions can run in your browser or on your configured render server. The app does not collect or store your content.",
     "openSourceTitle": "Open Source",
-    "openSourceText": "MarkdownTools is open source and free forever. We believe in the power of the developer community."
+    "openSourceText": "PDFWritter is open source and free forever. We believe in the power of the developer community."
   },
   "contact": {
     "title": "Get in Touch",
@@ -151,7 +158,7 @@
   },
   "help": {
     "title": "Help & Documentation",
-    "subtitle": "Everything you need to know about using MarkdownTools",
+    "subtitle": "Everything you need to know about using PDFWritter",
     "gettingStarted": "Getting Started",
     "faq": "Frequently Asked Questions",
     "syntaxRef": "Markdown Syntax Reference",
@@ -160,11 +167,11 @@
   "freeConverter": {
     "title": "Free Markdown Converter Online",
     "subtitle": "Convert Markdown to any format — free, fast, and right in your browser",
-    "whyTitle": "Why Choose MarkdownTools?",
+    "whyTitle": "Why Choose PDFWritter?",
     "comparisonTitle": "Format Comparison"
   },
   "footer": {
-    "description": "Free, fast, and private Markdown tools for developers. Convert, edit, and export Markdown right in your browser.",
+    "description": "Free Markdown convertor with diagram support. Convert, edit, and export Markdown with Mermaid charts at pdfwritter.com.",
     "tools": "Tools",
     "resources": "Resources",
     "legal": "Legal",
@@ -174,16 +181,18 @@
     "madeWith": "Made with ❤️ for developers"
   },
   "faq": {
-    "q1": "Is MarkdownTools really free?",
+    "q1": "Is PDFWritter really free?",
     "a1": "Yes, completely free with no limits. No subscriptions, no premium tiers.",
     "q2": "Are my files sent to a server?",
-    "a2": "No. All processing happens locally in your browser. Your files never leave your device.",
+    "a2": "Exports can run locally in your browser or send Markdown to your configured render server so long documents can be generated faster.",
     "q3": "What Markdown syntax is supported?",
     "a3": "We support GitHub Flavored Markdown (GFM) including tables, task lists, and code blocks.",
     "q4": "Can I use this on mobile?",
-    "a4": "Absolutely! MarkdownTools is fully responsive and works great on phones and tablets.",
+    "a4": "Absolutely! PDFWritter is fully responsive and works great on phones and tablets.",
     "q5": "What file formats can I export to?",
-    "a5": "You can export to PDF, HTML, and plain text (TXT) formats."
+    "a5": "You can export to PDF, HTML, and plain text (TXT) formats.",
+    "q6": "Does PDFWritter support Mermaid diagrams?",
+    "a6": "Yes — PDFWritter is a Markdown convertor with diagram support. Add ```mermaid code blocks for flowcharts, sequence diagrams, Gantt charts, and pie charts. Diagrams render in live preview and export cleanly to PDF and HTML."
   },
   "common": {
     "loading": "Loading...",
@@ -201,20 +210,20 @@
   },
   "trust": {
     "sectionTitle": "Built for Trust",
-    "sectionSubtitle": "Your data never leaves your browser",
+    "sectionSubtitle": "Private local exports with optional backend rendering",
     "fast": "Fast Conversion",
     "fastDesc": "Sub-millisecond client-side engine",
     "secure": "Secure Processing",
-    "secureDesc": "100% browser-based, no servers",
-    "noUpload": "No Upload Needed",
-    "noUploadDesc": "Files never leave your device",
+    "secureDesc": "No tracking or app-side storage",
+    "noUpload": "Local When Possible",
+    "noUploadDesc": "Use browser conversion locally or your configured render server",
     "privacy": "Privacy First",
     "privacyDesc": "Zero tracking, zero cookies"
   },
   "editorShowcase": {
     "badge": "Professional Editor",
     "title": "Write & Preview in Real-Time",
-    "subtitle": "Monaco-style editor with live preview, syntax highlighting, and one-click export to any format.",
+    "subtitle": "Monaco-style editor with live preview, Mermaid diagram rendering, and one-click export to PDF, HTML, or TXT.",
     "cta": "Open Full Editor"
   },
   "home": {
@@ -227,6 +236,6 @@
     "faqSubtitle": "Got questions? We've got answers.",
     "ctaBadge": "Start Converting Now",
     "ctaTitle": "Elevate Your Markdown Workflow Today",
-    "ctaSubtitle": "Experience instant conversions, complete data privacy, and a gorgeous writing environment. Free forever, offline-ready."
+    "ctaSubtitle": "The Markdown convertor with diagram support — export Mermaid charts to PDF and HTML free at pdfwritter.com."
   }
 }

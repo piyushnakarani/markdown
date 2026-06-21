@@ -2,14 +2,24 @@ import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { FileText, Code2, FileType, PenLine, ArrowRight, Check, Sparkles } from 'lucide-react';
+import { buildPageMetadata } from '@/lib/site';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  return {
-    title: 'Free Markdown Converter Online - PDF, HTML, TXT | MarkdownTools',
-    description: 'Convert Markdown to PDF, HTML, and TXT for free. No sign-up, no limits. 100% browser-based conversion.',
-    alternates: { canonical: `/${locale}/free-markdown-converter` },
-  };
+  return buildPageMetadata({
+    title: 'Free Markdown Convertor with Diagram — PDF, HTML, TXT',
+    description:
+      'Free Markdown convertor with diagram support. Convert MD with Mermaid charts to PDF, HTML, and TXT — no sign-up at pdfwritter.com.',
+    path: `/${locale}/free-markdown-converter`,
+    locale,
+    keywords: [
+      'free markdown converter',
+      'markdown convertor with diagram',
+      'markdown to pdf free',
+      'mermaid markdown converter',
+      'pdfwritter',
+    ],
+  });
 }
 
 export default async function FreeConverterPage({ params }: { params: Promise<{ locale: string }> }) {

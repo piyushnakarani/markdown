@@ -5,7 +5,6 @@ import EditorClient from '@/components/EditorClient';
 import FAQAccordion from '@/components/FAQAccordion';
 import TrustSection from '@/components/TrustSection';
 import HowItWorksSection from '@/components/HowItWorksSection';
-import BlogInsightsSection from '@/components/BlogInsightsSection';
 import SectionHeading from '@/components/SectionHeading';
 import ScrollReveal from '@/components/ScrollReveal';
 import {
@@ -94,6 +93,7 @@ function HomeContent() {
     { q: t('faq.q3'), a: t('faq.a3') },
     { q: t('faq.q4'), a: t('faq.a4') },
     { q: t('faq.q5'), a: t('faq.a5') },
+    { q: t('faq.q6'), a: t('faq.a6') },
   ];
 
   return (
@@ -203,9 +203,6 @@ function HomeContent() {
 
       {/* ===== HOW IT WORKS ===== */}
       <HowItWorksSection />
-
-      {/* ===== BLOG + SEO ===== */}
-      <BlogInsightsSection />
 
       {/* ===== FAQ ===== */}
       <section className="section-py relative">

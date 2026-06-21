@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "MarkdownTools - मुफ्त ऑनलाइन मार्कडाउन कनवर्टर",
-    "description": "अपने ब्राउज़र में मार्कडाउन को PDF, HTML और TXT में तुरंत बदलें।",
-    "keywords": "मार्कडाउन कनवर्टर, मार्कडाउन से pdf, मार्कडाउन एडिटर"
+    "title": "PDFWritter — Free Markdown Convertor with Diagram",
+    "description": "Convert Markdown to PDF, HTML, and TXT with Mermaid diagram support. Free Markdown convertor with live preview at pdfwritter.com.",
+    "keywords": "markdown convertor with diagram, markdown converter with diagram, markdown to pdf, mermaid diagram, pdfwritter"
   },
   "nav": {
     "home": "होम",
@@ -20,7 +20,7 @@
     "language": "भाषा"
   },
   "hero": {
-    "badge": "मुफ्त और ओपन सोर्स",
+    "badge": "Markdown Convertor with Diagram",
     "title": "अपने मार्कडाउन को बदलें",
     "titleHighlight": "किसी भी चीज़ में",
     "subtitle": "ब्राउज़र में मार्कडाउन को PDF, HTML और TXT में तुरंत बदलें। कोई अपलोड नहीं, कोई सर्वर नहीं।",
@@ -42,7 +42,7 @@
     "tryNow": "अभी आज़माएं →"
   },
   "features": {
-    "sectionTitle": "डेवलपर्स MarkdownTools को क्यों पसंद करते हैं",
+    "sectionTitle": "डेवलपर्स PDFWritter को क्यों पसंद करते हैं",
     "sectionSubtitle": "गति और गोपनीयता के लिए बनाया गया",
     "clientSide": "100% क्लाइंट-साइड",
     "clientSideDesc": "सारी प्रोसेसिंग आपके ब्राउज़र में होती है।",
@@ -85,6 +85,13 @@
     "exportingPdf": "Generating PDF…",
     "exportingHtml": "Generating HTML…",
     "exportingTxt": "Preparing download…",
+    "exportPreparing": "Preparing your document…",
+    "exportBuildingDiagrams": "Building diagrams…",
+    "exportGeneratingPdf": "Generating PDF…",
+    "exportGeneratingHtml": "Building HTML file…",
+    "exportPreparingDownload": "Preparing download…",
+    "exportFinalizing": "Almost done…",
+    "exportHint": "Documents with diagrams may take a few seconds. Your file will download automatically.",
     "copied": "कॉपी हो गया!",
     "downloadReady": "डाउनलोड तैयार!",
     "boldTooltip": "बोल्ड",
@@ -128,7 +135,7 @@
     "shareArticle": "यह लेख शेयर करें"
   },
   "about": {
-    "title": "MarkdownTools के बारे में",
+    "title": "PDFWritter के बारे में",
     "subtitle": "मुफ्त और तेज़ मार्कडाउन टूल्स",
     "missionTitle": "हमारा मिशन",
     "missionText": "डेवलपर टूल्स मुफ्त और निजी होने चाहिए।",
@@ -136,7 +143,7 @@
     "privacyTitle": "गोपनीयता वादा",
     "privacyText": "आपकी सामग्री कभी ब्राउज़र नहीं छोड़ती।",
     "openSourceTitle": "ओपन सोर्स",
-    "openSourceText": "MarkdownTools हमेशा के लिए मुफ्त है।"
+    "openSourceText": "PDFWritter हमेशा के लिए मुफ्त है।"
   },
   "contact": {
     "title": "संपर्क करें",
@@ -151,7 +158,7 @@
   },
   "help": {
     "title": "सहायता और दस्तावेज़ीकरण",
-    "subtitle": "MarkdownTools के बारे में सब कुछ",
+    "subtitle": "PDFWritter के बारे में सब कुछ",
     "gettingStarted": "शुरुआत",
     "faq": "अक्सर पूछे जाने वाले प्रश्न",
     "syntaxRef": "मार्कडाउन सिंटैक्स",
@@ -160,7 +167,7 @@
   "freeConverter": {
     "title": "मुफ्त मार्कडाउन कनवर्टर",
     "subtitle": "किसी भी फॉर्मेट में मुफ्त कनवर्ट करें",
-    "whyTitle": "MarkdownTools क्यों?",
+    "whyTitle": "PDFWritter क्यों?",
     "comparisonTitle": "फॉर्मेट तुलना"
   },
   "footer": {
@@ -174,7 +181,7 @@
     "madeWith": "डेवलपर्स के लिए ❤️ से बनाया"
   },
   "faq": {
-    "q1": "क्या MarkdownTools सच में मुफ्त है?",
+    "q1": "क्या PDFWritter सच में मुफ्त है?",
     "a1": "हाँ, पूरी तरह मुफ्त।",
     "q2": "क्या फ़ाइलें सर्वर पर भेजी जाती हैं?",
     "a2": "नहीं। सब कुछ ब्राउज़र में होता है।",
@@ -183,7 +190,9 @@
     "q4": "क्या मोबाइल पर काम करता है?",
     "a4": "बिल्कुल! पूरी तरह रेस्पॉन्सिव।",
     "q5": "कौन से फॉर्मेट में निर्यात कर सकते हैं?",
-    "a5": "PDF, HTML और TXT।"
+    "a5": "PDF, HTML और TXT।",
+    "q6": "Does PDFWritter support Mermaid diagrams?",
+    "a6": "Yes — PDFWritter is a Markdown convertor with diagram support. Add mermaid code blocks for flowcharts, sequence diagrams, Gantt charts, and pie charts. Diagrams render in live preview and export cleanly to PDF and HTML."
   },
   "common": {
     "loading": "लोड हो रहा है...",
