@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import type { BlogPost } from '@/content/blog';
+import { getMessages, setRequestLocale } from 'next-intl/server';
 import {
   DEFAULT_KEYWORDS,
   SITE_EMAIL,
@@ -25,6 +26,7 @@ export function stripLeadingH1(markdown: string): string {
 }
 
 export function buildPostMetadata(post: BlogPost, locale: string): Metadata {
+  setRequestLocale(locale);
   const path = `/${locale}/blog/${post.slug}`;
   const base = buildPageMetadata({
     title: post.metaTitle,
@@ -48,21 +50,55 @@ export function buildPostMetadata(post: BlogPost, locale: string): Metadata {
   };
 }
 
-export function buildBlogIndexMetadata(locale: string): Metadata {
+export async function buildBlogIndexMetadata(locale: string): Promise<Metadata> {
+  setRequestLocale(locale);
   const path = `/${locale}/blog`;
+  let title = 'Markdown Blog — Tutorials, Guides & Diagram Tips';
+  let description = 'Free Markdown tutorials and guides: convert MD with diagrams to PDF, learn Mermaid syntax, pick editors, and improve developer documentation workflows.';
+  let keywords = [
+    ...DEFAULT_KEYWORDS,
+    'markdown blog',
+    'markdown tutorial',
+    'mermaid diagram guide',
+    'developer documentation',
+  ];
+
+  try {
+    const messages = await getMessages();
+    
+    const getNestedValue = (obj: any, keyPath: string): string => {
+      return keyPath.split('.').reduce((prev, curr) => prev?.[curr], obj) as string || '';
+    };
+
+    const transTitle = getNestedValue(messages, 'blog.title');
+    const transSubtitle = getNestedValue(messages, 'blog.subtitle');
+    if (transTitle) {
+      title = `${transTitle} — Tutorials & Guides`;
+    }
+    if (transSubtitle) {
+      description = `${transSubtitle} — Learn Mermaid syntax, Markdown formatting, and PDF export workflows.`;
+    }
+
+    const transKeywords = getNestedValue(messages, 'metadata.keywords');
+    if (transKeywords) {
+      keywords = [
+        ...transKeywords.split(',').map((k) => k.trim()),
+        'markdown blog',
+        'markdown tutorial',
+        'mermaid diagram guide',
+        'developer documentation',
+      ];
+    }
+  } catch (error) {
+    console.error('Failed to load localized blog index metadata:', error);
+  }
+
   return buildPageMetadata({
-    title: 'Markdown Blog — Tutorials, Guides & Diagram Tips',
-    description:
-      'Free Markdown tutorials and guides: convert MD with diagrams to PDF, learn Mermaid syntax, pick editors, and improve developer documentation workflows.',
+    title,
+    description,
     path,
     locale,
-    keywords: [
-      ...DEFAULT_KEYWORDS,
-      'markdown blog',
-      'markdown tutorial',
-      'mermaid diagram guide',
-      'developer documentation',
-    ],
+    keywords,
   });
 }
 

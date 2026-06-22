@@ -3,17 +3,16 @@ import { setRequestLocale } from 'next-intl/server';
 import { Sparkles } from 'lucide-react';
 import ConverterTool from '@/components/ConverterTool';
 import PageHero from '@/components/PageHero';
-import { buildPageMetadata } from '@/lib/site';
+import { buildLocalizedPageMetadata } from '@/lib/site';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  return buildPageMetadata({
-    title: 'Markdown to TXT — Free Plain Text Convertor',
-    description:
-      'Convert Markdown to plain text instantly. Strip formatting and export clean TXT from your Markdown documents at pdfwritter.com.',
-    path: `/${locale}/markdown-to-txt`,
+  return buildLocalizedPageMetadata({
     locale,
-    keywords: ['markdown to txt', 'markdown to plain text', 'md to txt', 'pdfwritter'],
+    path: `/${locale}/markdown-to-txt`,
+    titleKey: 'tools.txtTitle',
+    descriptionKey: 'tools.txtDescription',
+    titleSuffix: ' — Free Online Converter',
   });
 }
 
@@ -29,7 +28,7 @@ function MarkdownToTxtContent() {
   return (
     <>
       <PageHero
-        badge="Plain Text Stripper"
+        badge={t('tools.txtBadge')}
         badgeIcon={Sparkles}
         title={
           <>

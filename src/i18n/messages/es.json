@@ -39,7 +39,7 @@
     "txtDescription": "Elimina todo el formato y exporta texto plano limpio.",
     "editorTitle": "Editor en Línea",
     "editorDescription": "Un potente editor de Markdown con vista previa en vivo y exportación instantánea.",
-    "tryNow": "Probar Ahora →"
+    "tryNow": "Probar Ahora"
   },
   "features": {
     "sectionTitle": "Por Qué los Desarrolladores Aman PDFWritter",
@@ -51,7 +51,7 @@
     "free": "Completamente Gratis",
     "freeDesc": "Sin límites, sin suscripciones, sin costos ocultos. Gratis para siempre.",
     "multilingual": "Multilingüe",
-    "multilingualDesc": "Disponible en 12 idiomas con soporte RTL completo.",
+    "multilingualDesc": "Disponible en 11 idiomas con soporte RTL completo.",
     "responsive": "Funciona en Todos Lados",
     "responsiveDesc": "Optimizado para teléfonos, tabletas, portátiles y escritorios.",
     "secure": "Privacidad Primero",
@@ -129,7 +129,7 @@
     "subtitle": "Consejos, tutoriales y guías sobre Markdown",
     "readMore": "Leer Más →",
     "readTime": "min de lectura",
-    "backToBlog": "← Volver al Blog",
+    "backToBlog": "Volver al Blog",
     "relatedPosts": "Artículos Relacionados",
     "tableOfContents": "Tabla de Contenidos",
     "shareArticle": "Compartir este artículo"

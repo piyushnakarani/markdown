@@ -70,7 +70,7 @@ export default function HowItWorksSection() {
       <div className="relative page-container">
         <ScrollReveal>
           <SectionHeading
-            badge="Simple Workflow"
+            badge={t('badge')}
             title={t('sectionTitle')}
             subtitle={t('sectionSubtitle')}
           />

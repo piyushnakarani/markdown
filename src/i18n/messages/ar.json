@@ -39,7 +39,7 @@
     "txtDescription": "أزل كل التنسيق وصدّر نص عادي.",
     "editorTitle": "محرر أونلاين",
     "editorDescription": "محرر ماركداون مع معاينة مباشرة وتصدير فوري.",
-    "tryNow": "جرب الآن ←"
+    "tryNow": "جرب الآن"
   },
   "features": {
     "sectionTitle": "لماذا يحب المطورون PDFWritter",
@@ -51,7 +51,7 @@
     "free": "مجاني بالكامل",
     "freeDesc": "بدون حدود، بدون اشتراكات.",
     "multilingual": "متعدد اللغات",
-    "multilingualDesc": "متوفر بـ 12 لغة مع دعم RTL كامل.",
+    "multilingualDesc": "متوفر بـ 11 لغة مع دعم RTL كامل.",
     "responsive": "يعمل في كل مكان",
     "responsiveDesc": "محسن لجميع الأجهزة.",
     "secure": "الخصوصية أولاً",
@@ -129,7 +129,7 @@
     "subtitle": "نصائح ودروس عن ماركداون",
     "readMore": "اقرأ المزيد ←",
     "readTime": "دقائق قراءة",
-    "backToBlog": "→ العودة للمدونة",
+    "backToBlog": "العودة للمدونة",
     "relatedPosts": "مقالات ذات صلة",
     "tableOfContents": "جدول المحتويات",
     "shareArticle": "شارك هذا المقال"

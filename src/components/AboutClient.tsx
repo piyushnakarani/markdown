@@ -226,7 +226,7 @@ Markdown Source -> Parser -> Print Document`,
               Developer-First Conversion Philosophy
             </h2>
             <p className="text-[var(--text-secondary)] text-sm sm:text-base leading-relaxed max-w-3xl mx-auto">
-              Our tools are constructed with one core goal: to provide zero-friction, accessible, and absolute client-side privacy. MarkdownTools supports full GitHub Flavored Markdown (GFM) specs, handles complex Mermaid.js code blocks directly, and exports clean compiled files instantly—all without needing servers, user accounts, or paywalls.
+              Our tools are constructed with one core goal: to provide zero-friction, accessible, and absolute client-side privacy. PDFWritter supports full GitHub Flavored Markdown (GFM) specs, handles complex Mermaid.js code blocks directly, and exports clean compiled files instantly—all without needing servers, user accounts, or paywalls.
             </p>
           </div>
         </div>
@@ -239,7 +239,7 @@ Markdown Source -> Parser -> Print Document`,
               Instant Multi-Format Compilation
             </h2>
             <p className="text-xs sm:text-sm text-[var(--text-secondary)] mt-2">
-              Select a stage below to simulate how the MarkdownTools pipeline processes code and handles formatting inputs.
+              Select a stage below to simulate how the PDFWritter pipeline processes code and handles formatting inputs.
             </p>
           </div>
 
@@ -534,7 +534,7 @@ Markdown Source -> Parser -> Print Document`,
               Design & Operations Values
             </h2>
             <p className="text-xs sm:text-sm text-[var(--text-secondary)] mt-2">
-              The fundamental engineering guidelines behind MarkdownTools.
+              The fundamental engineering guidelines behind PDFWritter.
             </p>
           </div>
 
@@ -554,42 +554,7 @@ Markdown Source -> Parser -> Print Document`,
           </div>
         </section>
 
-        {/* Platform Technical Specifications */}
-        <section className="card-glass p-8 sm:p-10 rounded-3xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/20 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-72 h-72 bg-[#06b6d4]/5 blur-3xl rounded-full pointer-events-none" />
-          
-          <div className="relative z-10 flex flex-col md:flex-row items-center md:justify-between gap-6 border-b border-[var(--border-color)] pb-6 mb-8 text-center md:text-left">
-            <div>
-              <h3 className="text-lg font-bold text-[var(--text-primary)] flex items-center gap-2 justify-center md:justify-start">
-                <Terminal className="w-4 h-4 text-cyan-400 animate-pulse" />
-                Technical Stack Specifications
-              </h3>
-              <p className="text-xs text-[var(--text-secondary)] mt-0.5">Under-the-hood specs driving the MarkdownTools suite.</p>
-            </div>
-            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-400 bg-cyan-950/40 border border-cyan-800/40 px-3 py-1 rounded-full">
-              Stable Build v1.4.0
-            </span>
-          </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center sm:text-left relative z-10">
-            <div>
-              <span className="text-[10px] font-bold text-[var(--text-tertiary)] uppercase tracking-wider block">Framework</span>
-              <span className="text-sm font-semibold text-[var(--text-secondary)] mt-1 block">Next.js 15 (React 19)</span>
-            </div>
-            <div>
-              <span className="text-[10px] font-bold text-[var(--text-tertiary)] uppercase tracking-wider block">Rendering Engine</span>
-              <span className="text-sm font-semibold text-[var(--text-secondary)] mt-1 block">Playwright Chromium API</span>
-            </div>
-            <div>
-              <span className="text-[10px] font-bold text-[var(--text-tertiary)] uppercase tracking-wider block">Wasm Modules</span>
-              <span className="text-sm font-semibold text-[var(--text-secondary)] mt-1 block">Mermaid SVG parser</span>
-            </div>
-            <div>
-              <span className="text-[10px] font-bold text-[var(--text-tertiary)] uppercase tracking-wider block">Styling Core</span>
-              <span className="text-sm font-semibold text-[var(--text-secondary)] mt-1 block">TailwindCSS v4 Config</span>
-            </div>
-          </div>
-        </section>
 
         {/* CTA Panel */}
         <div className="text-center pt-4 relative z-10">

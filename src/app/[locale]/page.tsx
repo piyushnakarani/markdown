@@ -104,7 +104,7 @@ function HomeContent() {
         <div className="home-hero-glow" aria-hidden />
         <div className="absolute inset-0 mesh-grid opacity-25 pointer-events-none" aria-hidden />
 
-        <div className="relative page-container">
+        <div className="relative max-w-7xl mx-auto">
           <header className="home-hero-copy">
             <h1 className="home-hero-title">
               {t('hero.title')}{' '}

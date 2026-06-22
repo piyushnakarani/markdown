@@ -39,7 +39,7 @@
     "txtDescription": "सभी फॉर्मेटिंग हटाएं और सादा टेक्स्ट निर्यात करें।",
     "editorTitle": "ऑनलाइन एडिटर",
     "editorDescription": "लाइव प्रीव्यू के साथ मार्कडाउन एडिटर।",
-    "tryNow": "अभी आज़माएं →"
+    "tryNow": "अभी आज़माएं"
   },
   "features": {
     "sectionTitle": "डेवलपर्स PDFWritter को क्यों पसंद करते हैं",
@@ -129,7 +129,7 @@
     "subtitle": "मार्कडाउन पर टिप्स और ट्यूटोरियल",
     "readMore": "और पढ़ें →",
     "readTime": "मिनट पढ़ने का समय",
-    "backToBlog": "← ब्लॉग पर वापस",
+    "backToBlog": "ब्लॉग पर वापस",
     "relatedPosts": "संबंधित लेख",
     "tableOfContents": "विषय-सूची",
     "shareArticle": "यह लेख शेयर करें"

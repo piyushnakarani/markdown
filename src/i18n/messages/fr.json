@@ -39,7 +39,7 @@
     "txtDescription": "Supprimez tout le formatage et exportez du texte brut.",
     "editorTitle": "Éditeur en Ligne",
     "editorDescription": "Un éditeur Markdown avec aperçu en direct et exportation instantanée.",
-    "tryNow": "Essayer →"
+    "tryNow": "Essayer"
   },
   "features": {
     "sectionTitle": "Pourquoi les Développeurs Adorent PDFWritter",
@@ -51,7 +51,7 @@
     "free": "Entièrement Gratuit",
     "freeDesc": "Sans limites, sans abonnements, sans frais cachés.",
     "multilingual": "Multilingue",
-    "multilingualDesc": "Disponible en 12 langues avec support RTL complet.",
+    "multilingualDesc": "Disponible en 11 langues avec support RTL complet.",
     "responsive": "Fonctionne Partout",
     "responsiveDesc": "Optimisé pour téléphones, tablettes et ordinateurs.",
     "secure": "Confidentialité d'Abord",
@@ -129,7 +129,7 @@
     "subtitle": "Conseils et tutoriels sur Markdown",
     "readMore": "Lire la Suite →",
     "readTime": "min de lecture",
-    "backToBlog": "← Retour au Blog",
+    "backToBlog": "Retour au Blog",
     "relatedPosts": "Articles Connexes",
     "tableOfContents": "Table des Matières",
     "shareArticle": "Partager cet article"

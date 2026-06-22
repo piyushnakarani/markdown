@@ -3,23 +3,16 @@ import { setRequestLocale } from 'next-intl/server';
 import { Sparkles } from 'lucide-react';
 import ConverterTool from '@/components/ConverterTool';
 import PageHero from '@/components/PageHero';
-import { buildPageMetadata } from '@/lib/site';
+import { buildLocalizedPageMetadata } from '@/lib/site';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  return buildPageMetadata({
-    title: 'Markdown to HTML — Free Convertor with Diagram Support',
-    description:
-      'Convert Markdown to clean HTML with rendered Mermaid diagrams. Free Markdown convertor with diagram support at pdfwritter.com.',
-    path: `/${locale}/markdown-to-html`,
+  return buildLocalizedPageMetadata({
     locale,
-    keywords: [
-      'markdown to html',
-      'markdown convertor with diagram',
-      'mermaid to html',
-      'markdown html converter',
-      'pdfwritter',
-    ],
+    path: `/${locale}/markdown-to-html`,
+    titleKey: 'tools.htmlTitle',
+    descriptionKey: 'tools.htmlDescription',
+    titleSuffix: ' — Free Online Converter',
   });
 }
 
@@ -35,7 +28,7 @@ function MarkdownToHtmlContent() {
   return (
     <>
       <PageHero
-        badge="Semantic Engine Compiler"
+        badge={t('tools.htmlBadge')}
         badgeIcon={Sparkles}
         title={
           <>

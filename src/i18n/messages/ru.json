@@ -39,7 +39,7 @@
     "txtDescription": "Уберите форматирование и экспортируйте текст.",
     "editorTitle": "Онлайн Редактор",
     "editorDescription": "Редактор Markdown с предварительным просмотром.",
-    "tryNow": "Попробовать →"
+    "tryNow": "Попробовать"
   },
   "features": {
     "sectionTitle": "Почему Разработчики Выбирают PDFWritter",
@@ -51,7 +51,7 @@
     "free": "Полностью Бесплатно",
     "freeDesc": "Без ограничений, без подписок.",
     "multilingual": "Многоязычный",
-    "multilingualDesc": "Доступен на 12 языках с поддержкой RTL.",
+    "multilingualDesc": "Доступен на 11 языках с поддержкой RTL.",
     "responsive": "Работает Везде",
     "responsiveDesc": "Оптимизирован для всех устройств.",
     "secure": "Конфиденциальность Прежде Всего",
@@ -129,7 +129,7 @@
     "subtitle": "Советы и руководства по Markdown",
     "readMore": "Читать Далее →",
     "readTime": "мин чтения",
-    "backToBlog": "← Назад в Блог",
+    "backToBlog": "Назад в Блог",
     "relatedPosts": "Похожие Статьи",
     "tableOfContents": "Содержание",
     "shareArticle": "Поделиться статьёй"

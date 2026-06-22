@@ -54,10 +54,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
   };
 
-  if (!mounted) {
-    return <div className="w-full min-h-screen flex flex-col" style={{ visibility: 'hidden' }}>{children}</div>;
-  }
-
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}

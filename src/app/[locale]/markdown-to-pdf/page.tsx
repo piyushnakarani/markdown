@@ -3,15 +3,26 @@ import { setRequestLocale } from 'next-intl/server';
 import { Sparkles } from 'lucide-react';
 import ConverterTool from '@/components/ConverterTool';
 import PageHero from '@/components/PageHero';
-import { buildPageMetadata } from '@/lib/site';
+import { buildLocalizedPageMetadata } from '@/lib/site';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  return buildPageMetadata({
-    title: `Markdown to PDF - Free Online Converter | MarkdownTools`,
-    description: 'Convert Markdown to PDF instantly in your browser. Free, fast, and private. No sign-up required.',
-    path: `/${locale}/markdown-to-pdf`,
+  return buildLocalizedPageMetadata({
     locale,
+    path: `/${locale}/markdown-to-pdf`,
+    titleKey: 'tools.pdfTitle',
+    descriptionKey: 'tools.pdfDescription',
+    titleSuffix: ' — Free Online Converter',
+    keywords: [
+      'markdown to pdf',
+      'md to pdf',
+      '.md to pdf',
+      'markdown pdf',
+      'md to pdf with mermaid',
+      'convert markdown to pdf',
+      'markdown diagram to pdf',
+      'pdfwritter',
+    ],
   });
 }
 
@@ -27,7 +38,7 @@ function MarkdownToPdfContent() {
   return (
     <>
       <PageHero
-        badge="Instant Browser Compiler"
+        badge={t('tools.pdfBadge')}
         badgeIcon={Sparkles}
         title={
           <>

@@ -2,23 +2,16 @@ import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { FileText, Code2, FileType, PenLine, ArrowRight, Check, Sparkles } from 'lucide-react';
-import { buildPageMetadata } from '@/lib/site';
+import { buildLocalizedPageMetadata } from '@/lib/site';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  return buildPageMetadata({
-    title: 'Free Markdown Convertor with Diagram — PDF, HTML, TXT',
-    description:
-      'Free Markdown convertor with diagram support. Convert MD with Mermaid charts to PDF, HTML, and TXT — no sign-up at pdfwritter.com.',
-    path: `/${locale}/free-markdown-converter`,
+  return buildLocalizedPageMetadata({
     locale,
-    keywords: [
-      'free markdown converter',
-      'markdown convertor with diagram',
-      'markdown to pdf free',
-      'mermaid markdown converter',
-      'pdfwritter',
-    ],
+    path: `/${locale}/free-markdown-converter`,
+    titleKey: 'freeConverter.title',
+    descriptionKey: 'freeConverter.subtitle',
+    titleSuffix: ' — PDF, HTML, TXT',
   });
 }
 
@@ -32,21 +25,21 @@ function FreeConverterContent() {
   const t = useTranslations();
 
   const converters = [
-    { href: '/markdown-to-pdf', icon: FileText, color: '#ef4444', title: 'Markdown → PDF', desc: 'Professional PDF documents from Markdown' },
-    { href: '/markdown-to-html', icon: Code2, color: '#f59e0b', title: 'Markdown → HTML', desc: 'Clean semantic HTML for the web' },
-    { href: '/markdown-to-txt', icon: FileType, color: '#10b981', title: 'Markdown → TXT', desc: 'Plain text without any formatting' },
-    { href: '/editor', icon: PenLine, color: '#6366f1', title: 'Online Editor', desc: 'Write and preview Markdown live' },
+    { href: '/markdown-to-pdf', icon: FileText, color: '#ef4444', title: t('tools.pdfTitle'), desc: t('tools.pdfDescription') },
+    { href: '/markdown-to-html', icon: Code2, color: '#f59e0b', title: t('tools.htmlTitle'), desc: t('tools.htmlDescription') },
+    { href: '/markdown-to-txt', icon: FileType, color: '#10b981', title: t('tools.txtTitle'), desc: t('tools.txtDescription') },
+    { href: '/editor', icon: PenLine, color: '#6366f1', title: t('tools.editorTitle'), desc: t('tools.editorDescription') },
   ];
 
   const benefits = [
-    '100% free, no limits',
-    'No account required',
-    'Client-side processing',
-    'Your files stay private',
-    '12 languages supported',
-    'Works on all devices',
-    'No ads or tracking',
-    'Export to multiple formats',
+    t('freeConverter.benefit1'),
+    t('freeConverter.benefit2'),
+    t('freeConverter.benefit3'),
+    t('freeConverter.benefit4'),
+    t('freeConverter.benefit5'),
+    t('freeConverter.benefit6'),
+    t('freeConverter.benefit7'),
+    t('freeConverter.benefit8'),
   ];
 
   return (

@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "dev:frontend": "next dev",
-    "dev:backend": "npm run dev --prefix pdf-render-api",
-    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "dev": "npm run dev:frontend",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"

@@ -39,7 +39,7 @@
     "txtDescription": "সমস্ত ফরম্যাটিং সরান এবং সাদা টেক্সট রপ্তানি করুন।",
     "editorTitle": "অনলাইন এডিটর",
     "editorDescription": "লাইভ প্রিভিউ সহ মার্কডাউন এডিটর।",
-    "tryNow": "এখনই ব্যবহার করুন →"
+    "tryNow": "এখনই ব্যবহার করুন"
   },
   "features": {
     "sectionTitle": "ডেভেলপাররা কেন PDFWritter পছন্দ করেন",
@@ -51,7 +51,7 @@
     "free": "সম্পূর্ণ বিনামূল্যে",
     "freeDesc": "কোনো সীমা নেই, কোনো সাবস্ক্রিপশন নেই।",
     "multilingual": "বহুভাষিক",
-    "multilingualDesc": "RTL সমর্থন সহ ১২টি ভাষায় উপলব্ধ।",
+    "multilingualDesc": "RTL সমর্থন সহ ১১টি ভাষায় উপলব্ধ।",
     "responsive": "সবখানে কাজ করে",
     "responsiveDesc": "সব ডিভাইসের জন্য অপ্টিমাইজড।",
     "secure": "গোপনীয়তা প্রথম",
@@ -129,7 +129,7 @@
     "subtitle": "মার্কডাউন টিপস এবং টিউটোরিয়াল",
     "readMore": "আরও পড়ুন →",
     "readTime": "মিনিট পড়ার সময়",
-    "backToBlog": "← ব্লগে ফিরে যান",
+    "backToBlog": "ব্লগে ফিরে যান",
     "relatedPosts": "সম্পর্কিত পোস্ট",
     "tableOfContents": "সূচিপত্র",
     "shareArticle": "নিবন্ধ শেয়ার করুন"

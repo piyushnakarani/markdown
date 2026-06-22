@@ -60,7 +60,7 @@
   --accent-muted: rgba(59, 130, 246, 0.12);
 
   /* Shared editor panel height (homepage, /editor, converters) */
-  --editor-workspace-height: clamp(420px, 52dvh, 540px);
+  --editor-workspace-height: clamp(620px, 78dvh, 880px);
 }
 
 [data-theme="light"] {
@@ -1509,8 +1509,8 @@ body::before {
   overflow: hidden;
   box-shadow: var(--shadow-card-hover);
   height: var(--editor-workspace-height);
-  min-height: 420px;
-  max-height: 540px;
+  min-height: 620px;
+  max-height: 880px;
 }
 
 @media (min-width: 768px) {
@@ -1534,8 +1534,8 @@ body::before {
 
 .editor-workspace--card {
   height: var(--editor-workspace-height);
-  min-height: 420px;
-  max-height: 540px;
+  min-height: 620px;
+  max-height: 880px;
   border-radius: 0 0 1rem 1rem;
   border-top: none;
   box-shadow: var(--shadow-card);

@@ -15,28 +15,32 @@ export default function MarkdownPreview({ html, className = '' }: MarkdownPrevie
     const el = ref.current;
     if (!el) return;
 
+    // Render HTML text changes instantly
     el.innerHTML = html;
-    renderMermaidDiagrams(el).catch(() => {
-      /* keep raw mermaid source visible on failure */
-    });
-  }, [html]);
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    // Debounce heavy Mermaid rendering to keep editor typing fluid
+    const timer = setTimeout(() => {
+      renderMermaidDiagrams(el).catch(() => {
+        /* keep raw mermaid source visible on failure */
+      });
+    }, 250);
 
-    const rerender = () => {
+    // Re-render on theme toggle to match theme styling
+    const handleThemeChange = () => {
       el.innerHTML = html;
       renderMermaidDiagrams(el).catch(() => {});
     };
 
-    const observer = new MutationObserver(rerender);
+    const observer = new MutationObserver(handleThemeChange);
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ['data-theme'],
     });
 
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
   }, [html]);
 
   return <div ref={ref} className={className} />;

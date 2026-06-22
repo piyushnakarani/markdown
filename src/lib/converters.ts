@@ -122,6 +122,39 @@ const PDF_STYLES = `
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     line-height: 1.65;
   }
+  @media print {
+    @page {
+      size: A4 portrait;
+      margin: 15mm;
+    }
+    body, html {
+      background: #ffffff !important;
+      color: #1e293b !important;
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .pdf-capture-iframe {
+      width: 100% !important;
+      height: 100% !important;
+    }
+    .pdf-document {
+      width: 100% !important;
+      max-width: 100% !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    pre, blockquote, table, img, .mermaid, .mermaid-rendered, .pdf-diagram-block {
+      page-break-inside: avoid !important;
+      break-inside: avoid-page !important;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      page-break-after: avoid !important;
+      break-after: avoid !important;
+    }
+  }
 `;
 
 /** Off-screen DOM host for HTML string extraction (not canvas capture). */
@@ -262,6 +295,8 @@ function downloadBlob(blob: Blob, filename: string): void {
   URL.revokeObjectURL(url);
 }
 
+// Backend code commented out - PDF generation is fully client-side using native window.print()
+/*
 function getConversionApiUrl(): string | undefined {
   return process.env.NEXT_PUBLIC_CONVERSION_API_URL || process.env.NEXT_PUBLIC_PDF_API_URL;
 }
@@ -293,6 +328,7 @@ async function convertWithBackend(payload: BackendConversionPayload): Promise<Bl
 
   return response.blob();
 }
+*/
 
 /** Render markdown to HTML with Mermaid diagrams as SVG (browser only). */
 export async function buildRenderedHtmlBody(
@@ -322,6 +358,8 @@ export async function buildRenderedHtmlBody(
 }
 
 /** HTML body with diagrams rasterized for backend PDF export. */
+// buildPdfReadyHtmlBody commented out - backend PDF conversion is no longer used
+/*
 async function buildPdfReadyHtmlBody(
   markdown: string,
   onProgress?: ExportProgressCallback,
@@ -339,6 +377,7 @@ async function buildPdfReadyHtmlBody(
     document.body.removeChild(container);
   }
 }
+*/
 
 export async function buildHtmlDocument(
   markdown: string,
@@ -386,81 +425,40 @@ export async function convertMarkdownToPdf(
 ): Promise<void> {
   onProgress?.('preparing');
 
-  try {
-    if (getConversionApiUrl()) {
-      const hasMermaid = markdownHasMermaid(markdown);
-      const payload = hasMermaid
-        ? {
-            format: 'pdf' as const,
-            html: await buildPdfReadyHtmlBody(markdown, onProgress),
-            filename,
-          }
-        : {
-            format: 'pdf' as const,
-            markdown,
-            filename,
-          };
-      onProgress?.('generatingPdf');
-      const pdf = await convertWithBackend(payload);
-      onProgress?.('finalizing');
-      downloadBlob(pdf, filename);
-      return;
-    }
-  } catch (error) {
-    console.warn('PDF API unavailable, falling back to browser PDF export.', error);
-  }
-
   const html = convertMarkdownToHtml(markdown);
   const { iframe, content } = mountPdfIframe(html);
+
+  // Set document title for PDF print dialog filename
+  const title = filename.replace(/\.[^/.]+$/, '');
+  const doc = iframe.contentDocument;
+  if (doc) {
+    doc.title = title;
+  }
 
   try {
     if (markdownHasMermaid(markdown)) {
       onProgress?.('buildingDiagrams');
+      await renderMermaidDiagramsForPdf(content);
+      await waitForPaint(300);
     }
+    
     onProgress?.('generatingPdf');
-    await renderMermaidDiagramsForPdf(content);
-    await waitForPaint(400);
-    await rasterizeMermaidDiagramsForPdf(content, PDF_CONTENT_WIDTH, PDF_MAX_DIAGRAM_HEIGHT);
-    await waitForPaint(250);
-    prepareBlockquotesForPdf(content);
-    applySmartPageBreaks(content);
-
-    const contentHeight = content.scrollHeight;
-    const scale = computeCanvasScale(contentHeight);
-
-    const { default: html2pdf } = await import('html2pdf.js');
-
-    const pdfOptions = {
-      margin: [10, 10, 12, 10],
-      filename,
-      image: { type: 'jpeg', quality: 0.95 },
-      html2canvas: {
-        scale,
-        useCORS: true,
-        allowTaint: true,
-        letterRendering: true,
-        scrollY: 0,
-        scrollX: 0,
-        width: PDF_WIDTH_PX,
-        windowWidth: PDF_WIDTH_PX,
-        backgroundColor: '#ffffff',
-        logging: false,
-        onclone: (clonedDoc: Document) => forceVisibleInClone(clonedDoc),
-      },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait', compress: true },
-      pagebreak: {
-        mode: ['css', 'legacy'],
-        avoid: ['.pdf-avoid-break', 'tr'],
-      },
-    };
+    await waitForPaint(150);
 
     onProgress?.('finalizing');
-    await html2pdf()
-      .set(pdfOptions as never)
-      .from(content)
-      .save();
+    await waitForPaint(100);
+
+    if (iframe.contentWindow) {
+      iframe.contentWindow.focus();
+      iframe.contentWindow.print();
+    }
   } finally {
-    document.body.removeChild(iframe);
+    // Keep iframe attached briefly to ensure print setup can read it in background
+    setTimeout(() => {
+      if (document.body.contains(iframe)) {
+        document.body.removeChild(iframe);
+      }
+    }, 2000);
   }
 }
 

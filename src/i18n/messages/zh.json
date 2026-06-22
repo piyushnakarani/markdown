@@ -39,7 +39,7 @@
     "txtDescription": "去除所有格式，导出纯文本。",
     "editorTitle": "在线编辑器",
     "editorDescription": "带有实时预览的Markdown编辑器。",
-    "tryNow": "立即尝试 →"
+    "tryNow": "立即尝试"
   },
   "features": {
     "sectionTitle": "开发者为何喜爱PDFWritter",
@@ -51,7 +51,7 @@
     "free": "完全免费",
     "freeDesc": "无限制，无订阅。",
     "multilingual": "多语言",
-    "multilingualDesc": "支持12种语言，包括RTL。",
+    "multilingualDesc": "支持11种语言，包括RTL。",
     "responsive": "随处可用",
     "responsiveDesc": "针对所有设备优化。",
     "secure": "隐私优先",
@@ -129,7 +129,7 @@
     "subtitle": "Markdown技巧和教程",
     "readMore": "阅读更多 →",
     "readTime": "分钟阅读",
-    "backToBlog": "← 返回博客",
+    "backToBlog": "返回博客",
     "relatedPosts": "相关文章",
     "tableOfContents": "目录",
     "shareArticle": "分享文章"

@@ -39,7 +39,7 @@
     "txtDescription": "모든 서식 제거 후 텍스트 내보내기.",
     "editorTitle": "온라인 에디터",
     "editorDescription": "실시간 미리보기가 있는 마크다운 에디터.",
-    "tryNow": "지금 사용 →"
+    "tryNow": "지금 사용"
   },
   "features": {
     "sectionTitle": "개발자들이 PDFWritter를 사랑하는 이유",
@@ -51,7 +51,7 @@
     "free": "완전 무료",
     "freeDesc": "제한 없음, 구독 없음.",
     "multilingual": "다국어",
-    "multilingualDesc": "RTL 지원 포함 12개 언어.",
+    "multilingualDesc": "RTL 지원 포함 11개 언어.",
     "responsive": "어디서나 작동",
     "responsiveDesc": "모든 기기에 최적화.",
     "secure": "프라이버시 우선",
@@ -129,7 +129,7 @@
     "subtitle": "마크다운 팁과 튜토리얼",
     "readMore": "더 읽기 →",
     "readTime": "분 소요",
-    "backToBlog": "← 블로그로 돌아가기",
+    "backToBlog": "블로그로 돌아가기",
     "relatedPosts": "관련 글",
     "tableOfContents": "목차",
     "shareArticle": "글 공유"

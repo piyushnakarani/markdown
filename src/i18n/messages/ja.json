@@ -39,7 +39,7 @@
     "txtDescription": "フォーマットを削除してプレーンテキストをエクスポート。",
     "editorTitle": "オンラインエディター",
     "editorDescription": "ライブプレビュー付きMarkdownエディター。",
-    "tryNow": "今すぐ試す →"
+    "tryNow": "今すぐ試す"
   },
   "features": {
     "sectionTitle": "開発者がPDFWritterを愛する理由",
@@ -51,7 +51,7 @@
     "free": "完全無料",
     "freeDesc": "制限なし、サブスクリプションなし。",
     "multilingual": "多言語",
-    "multilingualDesc": "RTLサポート含む12言語対応。",
+    "multilingualDesc": "RTLサポート含む11言語対応。",
     "responsive": "どこでも動作",
     "responsiveDesc": "すべてのデバイスに最適化。",
     "secure": "プライバシーファースト",
@@ -129,7 +129,7 @@
     "subtitle": "Markdownのヒントとチュートリアル",
     "readMore": "続きを読む →",
     "readTime": "分で読める",
-    "backToBlog": "← ブログに戻る",
+    "backToBlog": "ブログに戻る",
     "relatedPosts": "関連記事",
     "tableOfContents": "目次",
     "shareArticle": "記事をシェア"

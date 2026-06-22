@@ -17,6 +17,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/contact',
     '/help',
     '/free-markdown-converter',
+    '/privacy',
+    '/terms',
   ];
 
   const entries: MetadataRoute.Sitemap = [];

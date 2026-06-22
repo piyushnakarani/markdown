@@ -39,7 +39,7 @@
     "txtDescription": "Entfernen Sie Formatierung und exportieren Sie reinen Text.",
     "editorTitle": "Online Editor",
     "editorDescription": "Ein leistungsstarker Markdown-Editor mit Live-Vorschau.",
-    "tryNow": "Jetzt Testen →"
+    "tryNow": "Jetzt Testen"
   },
   "features": {
     "sectionTitle": "Warum Entwickler PDFWritter Lieben",
@@ -51,7 +51,7 @@
     "free": "Komplett Kostenlos",
     "freeDesc": "Keine Limits, keine Abonnements, keine versteckten Kosten.",
     "multilingual": "Mehrsprachig",
-    "multilingualDesc": "Verfügbar in 12 Sprachen mit RTL-Unterstützung.",
+    "multilingualDesc": "Verfügbar in 11 Sprachen mit RTL-Unterstützung.",
     "responsive": "Funktioniert Überall",
     "responsiveDesc": "Optimiert für alle Geräte.",
     "secure": "Datenschutz Zuerst",
@@ -129,7 +129,7 @@
     "subtitle": "Tipps und Tutorials zu Markdown",
     "readMore": "Weiterlesen →",
     "readTime": "Min. Lesezeit",
-    "backToBlog": "← Zurück zum Blog",
+    "backToBlog": "Zurück zum Blog",
     "relatedPosts": "Verwandte Artikel",
     "tableOfContents": "Inhaltsverzeichnis",
     "shareArticle": "Artikel teilen"

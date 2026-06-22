@@ -8,6 +8,7 @@ import { isRtl, Locale, locales } from '@/i18n/locales';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import TransitionLoader from '@/components/TransitionLoader';
 import {
   SITE_NAME,
   SITE_TAGLINE,
@@ -24,7 +25,8 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const messages = await getMessages({ locale });
+  setRequestLocale(locale);
+  const messages = await getMessages();
   const meta = (messages as Record<string, Record<string, string>>).metadata;
 
   return {
@@ -33,10 +35,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: meta?.description || 'Free online Markdown converter and editor',
     keywords: meta?.keywords,
     alternates: {
-      canonical: `/${locale}`,
-      languages: Object.fromEntries(
-        locales.map((l) => [l, `/${l}`])
-      ),
+      canonical: `${SITE_URL}/${locale}`,
+      languages: {
+        ...Object.fromEntries(
+          locales.map((l) => [l, `${SITE_URL}/${l}`])
+        ),
+        'x-default': `${SITE_URL}/en`,
+      },
     },
     openGraph: {
       title: meta?.title,
@@ -73,13 +78,21 @@ export default async function LocaleLayout({
       className={`${GeistSans.variable} ${GeistMono.variable}`}
     >
       <head>
-        {/* Hreflang tags */}
-        {locales.map((l) => (
-          <link key={l} rel="alternate" hrefLang={l} href={`/${l}`} />
-        ))}
-        <link rel="alternate" hrefLang="x-default" href="/en" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#0B0D12" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var saved = localStorage.getItem('markdowntools-theme');
+                  var theme = saved === 'light' ? 'light' : 'dark';
+                  document.documentElement.setAttribute('data-theme', theme);
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
 
         {/* Schema markup */}
         <script
@@ -101,6 +114,7 @@ export default async function LocaleLayout({
       >
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
+            <TransitionLoader />
             <a href="#main-content" className="skip-to-content">
               Skip to content
             </a>

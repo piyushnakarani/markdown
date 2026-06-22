@@ -39,7 +39,7 @@
     "txtDescription": "Remova toda formatação e exporte texto puro.",
     "editorTitle": "Editor Online",
     "editorDescription": "Editor Markdown com pré-visualização ao vivo.",
-    "tryNow": "Experimentar →"
+    "tryNow": "Experimentar"
   },
   "features": {
     "sectionTitle": "Por Que Desenvolvedores Amam PDFWritter",
@@ -51,7 +51,7 @@
     "free": "Totalmente Gratuito",
     "freeDesc": "Sem limites, sem assinaturas.",
     "multilingual": "Multilíngue",
-    "multilingualDesc": "Disponível em 12 idiomas com suporte RTL.",
+    "multilingualDesc": "Disponível em 11 idiomas com suporte RTL.",
     "responsive": "Funciona em Qualquer Lugar",
     "responsiveDesc": "Otimizado para todos os dispositivos.",
     "secure": "Privacidade Primeiro",
@@ -129,7 +129,7 @@
     "subtitle": "Dicas e tutoriais sobre Markdown",
     "readMore": "Ler Mais →",
     "readTime": "min de leitura",
-    "backToBlog": "← Voltar ao Blog",
+    "backToBlog": "Voltar ao Blog",
     "relatedPosts": "Artigos Relacionados",
     "tableOfContents": "Índice",
     "shareArticle": "Compartilhar artigo"

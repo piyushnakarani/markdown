@@ -24,7 +24,7 @@ function BlogContent({ locale }: { locale: string }) {
   return (
     <>
       <PageHero
-        badge="Developer Blog"
+        badge={t('badge')}
         badgeIcon={BookOpen}
         title={t('title')}
         subtitle={t('subtitle')}

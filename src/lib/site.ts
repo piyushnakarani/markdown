@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { locales } from '@/i18n/locales';
+import { getMessages, setRequestLocale } from 'next-intl/server';
 
-export const SITE_URL = 'https://pdfwritter.com';
+export const SITE_URL = process.env.NEXT_PUBLIC_APP_URL || (process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://pdfwritter.com');
 export const SITE_NAME = 'PDFWritter';
 export const SITE_TAGLINE = 'Markdown Convertor with Diagram';
 export const SITE_EMAIL = 'hello@pdfwritter.com';
@@ -10,9 +11,18 @@ export const SITE_LOGO_DARK_PATH = '/logo-dark.png';
 export const SITE_LOGO_ICON_PATH = '/logo-icon-512.png';
 
 export const DEFAULT_KEYWORDS = [
+  'markdown viewer',
+  'md viewer',
+  'md file viewer',
+  'markdown online',
+  'markdown preview',
+  'markdown to pdf',
+  'md to pdf',
+  '.md to pdf',
+  'markdown pdf',
+  'md to pdf with mermaid',
   'markdown convertor with diagram',
   'markdown converter with diagram',
-  'markdown to pdf',
   'markdown to pdf with diagrams',
   'mermaid markdown converter',
   'markdown diagram to pdf',
@@ -70,8 +80,13 @@ export function buildPageMetadata({
       apple: '/apple-touch-icon.png',
     },
     alternates: {
-      canonical: path,
-      languages: Object.fromEntries(locales.map((l) => [l, swapLocaleInPath(path, l)])),
+      canonical: `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`,
+      languages: {
+        ...Object.fromEntries(
+          locales.map((l) => [l, `${SITE_URL}${swapLocaleInPath(path, l)}`])
+        ),
+        'x-default': `${SITE_URL}${swapLocaleInPath(path, 'en')}`,
+      },
     },
     openGraph: {
       title: fullTitle,
@@ -107,6 +122,94 @@ export function buildPageMetadata({
     },
   };
 }
+
+export type BuildLocalizedPageMetadataOptions = {
+  locale: string;
+  path: string;
+  titleKey: string;
+  descriptionKey: string;
+  titleSuffix?: string;
+  keywords?: string[];
+  type?: 'website' | 'article';
+};
+
+export async function buildLocalizedPageMetadata({
+  locale,
+  path,
+  titleKey,
+  descriptionKey,
+  titleSuffix = '',
+  keywords,
+  type = 'website',
+}: BuildLocalizedPageMetadataOptions): Promise<Metadata> {
+  setRequestLocale(locale);
+  let title = '';
+  let description = '';
+  let finalKeywords = keywords;
+
+  try {
+    const messages = await getMessages();
+
+    const getNestedValue = (obj: any, keyPath: string): string => {
+      return keyPath.split('.').reduce((prev, curr) => prev?.[curr], obj) as string || '';
+    };
+
+    title = getNestedValue(messages, titleKey);
+    description = getNestedValue(messages, descriptionKey);
+
+    if (!finalKeywords) {
+      const transKeywords = getNestedValue(messages, 'metadata.keywords');
+      if (transKeywords) {
+        finalKeywords = transKeywords.split(',').map((k) => k.trim());
+      }
+    }
+  } catch (error) {
+    console.error('Failed to load localized metadata:', error);
+  }
+
+  // Fallback to English/default if translation failed or is missing
+  if (!title) {
+    if (titleKey === 'about.title') title = 'About PDFWritter';
+    else if (titleKey === 'contact.title') title = 'Contact PDFWritter';
+    else if (titleKey === 'editor.title') title = 'Online Markdown Editor';
+    else if (titleKey === 'help.title') title = 'Help & Documentation';
+    else if (titleKey === 'freeConverter.title') title = 'Free Markdown Converter Online';
+    else if (titleKey === 'tools.pdfTitle') title = 'Markdown to PDF';
+    else if (titleKey === 'tools.htmlTitle') title = 'Markdown to HTML';
+    else if (titleKey === 'tools.txtTitle') title = 'Markdown to TXT';
+    else if (titleKey === 'privacy.title') title = 'Privacy Policy';
+    else if (titleKey === 'terms.title') title = 'Terms of Service';
+    else title = 'MarkdownTools';
+  }
+
+  if (!description) {
+    if (descriptionKey === 'about.subtitle') description = 'Free Markdown convertor with diagram support for developers.';
+    else if (descriptionKey === 'contact.subtitle') description = 'Get in touch with the PDFWritter team.';
+    else if (descriptionKey === 'editor.description') description = 'Write Markdown with live preview and diagram rendering.';
+    else if (descriptionKey === 'help.subtitle') description = 'Everything you need to know about using PDFWritter.';
+    else if (descriptionKey === 'freeConverter.subtitle') description = 'Convert Markdown to any format in your browser.';
+    else if (descriptionKey === 'tools.pdfDescription') description = 'Convert Markdown to PDF online for free.';
+    else if (descriptionKey === 'tools.htmlDescription') description = 'Convert Markdown to HTML online for free.';
+    else if (descriptionKey === 'tools.txtDescription') description = 'Convert Markdown to plain text online for free.';
+    else if (descriptionKey === 'privacy.subtitle') description = 'Read the PDFWritter privacy policy. Your file privacy is guaranteed.';
+    else if (descriptionKey === 'terms.subtitle') description = 'Review the terms of service and conditions for using PDFWritter.';
+    else description = 'Free online Markdown editor and converter.';
+  }
+
+  if (titleSuffix) {
+    title = `${title}${titleSuffix}`;
+  }
+
+  return buildPageMetadata({
+    title,
+    description,
+    path,
+    locale,
+    keywords: finalKeywords || DEFAULT_KEYWORDS,
+    type,
+  });
+}
+
 
 export function buildWebApplicationJsonLd(locale: string) {
   return {

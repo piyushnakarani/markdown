@@ -2,7 +2,7 @@
   "metadata": {
     "title": "PDFWritter — Free Markdown Convertor with Diagram",
     "description": "Convert Markdown to PDF, HTML, and TXT with built-in Mermaid diagram support. Free online Markdown convertor with live preview at pdfwritter.com — export flowcharts, sequence diagrams, and docs instantly.",
-    "keywords": "markdown convertor with diagram, markdown converter with diagram, markdown to pdf, mermaid diagram markdown, markdown editor, pdfwritter, markdown to pdf with diagrams"
+    "keywords": "markdown viewer, md viewer, md file viewer, markdown online, markdown preview, markdown to pdf, md to pdf, .md to pdf, markdown pdf, md to pdf with mermaid, markdown convertor with diagram, markdown converter with diagram, mermaid diagram markdown, markdown editor, pdfwritter, markdown to pdf with diagrams"
   },
   "nav": {
     "home": "Home",
@@ -33,13 +33,16 @@
     "sectionSubtitle": "Everything you need to work with Markdown, all in your browser",
     "pdfTitle": "Markdown to PDF",
     "pdfDescription": "Convert Markdown documents into beautifully formatted PDF files with Mermaid diagram support. Perfect for reports, documentation, and sharing.",
+    "pdfBadge": "Instant Browser Compiler",
     "htmlTitle": "Markdown to HTML",
     "htmlDescription": "Transform Markdown into clean, semantic HTML ready for your website, blog, or email newsletter.",
+    "htmlBadge": "Semantic Engine Compiler",
     "txtTitle": "Markdown to TXT",
     "txtDescription": "Strip all formatting and export clean plain text. Perfect for emails, notes, or any plain-text context.",
+    "txtBadge": "Plain Text Stripper",
     "editorTitle": "Online Editor",
     "editorDescription": "A powerful Markdown editor with live preview, Mermaid diagram rendering, syntax highlighting, and instant export to any format.",
-    "tryNow": "Try Now →"
+    "tryNow": "Try Now"
   },
   "features": {
     "sectionTitle": "Why Developers Love PDFWritter",
@@ -51,13 +54,14 @@
     "free": "Completely Free",
     "freeDesc": "No limits, no subscriptions, no hidden costs. Free forever.",
     "multilingual": "Multilingual",
-    "multilingualDesc": "Available in 12 languages with full RTL support for global accessibility.",
+    "multilingualDesc": "Available in 11 languages with full RTL support for global accessibility.",
     "responsive": "Works Everywhere",
     "responsiveDesc": "Perfectly optimized for phones, tablets, laptops, and desktops.",
     "secure": "Privacy First",
     "secureDesc": "Zero tracking. Content is sent only to the render server you configure."
   },
   "howItWorks": {
+    "badge": "Simple Workflow",
     "sectionTitle": "How It Works",
     "sectionSubtitle": "Three simple steps to convert your Markdown",
     "step1Title": "Paste or Upload",
@@ -70,6 +74,7 @@
     "cta": "Open the Editor"
   },
   "editor": {
+    "badge": "Live Preview Editor",
     "title": "Online Markdown Editor",
     "description": "Write, preview, and export Markdown in real-time with syntax highlighting",
     "placeholder": "# Start writing Markdown here...\n\nType your **Markdown** content and see the live preview on the right.\n\n## Features\n- Live preview\n- Syntax highlighting\n- Export to PDF, HTML, TXT\n- Drag & drop file upload",
@@ -125,16 +130,18 @@
     "fileLoaded": "File loaded successfully!"
   },
   "blog": {
+    "badge": "Developer Blog",
     "title": "Developer Blog",
     "subtitle": "Tips, tutorials, and guides for Markdown and developer productivity",
     "readMore": "Read More →",
     "readTime": "min read",
-    "backToBlog": "← Back to Blog",
+    "backToBlog": "Back to Blog",
     "relatedPosts": "Related Articles",
     "tableOfContents": "Table of Contents",
     "shareArticle": "Share this article"
   },
   "about": {
+    "badge": "Platform Overview",
     "title": "About PDFWritter",
     "subtitle": "Free Markdown convertor with diagram support for developers",
     "missionTitle": "Our Mission",
@@ -157,6 +164,7 @@
     "emailDirect": "Or email us directly at"
   },
   "help": {
+    "badge": "Help & Support",
     "title": "Help & Documentation",
     "subtitle": "Everything you need to know about using PDFWritter",
     "gettingStarted": "Getting Started",
@@ -165,10 +173,19 @@
     "shortcuts": "Keyboard Shortcuts"
   },
   "freeConverter": {
+    "badge": "Converter Hub",
     "title": "Free Markdown Converter Online",
     "subtitle": "Convert Markdown to any format — free, fast, and right in your browser",
     "whyTitle": "Why Choose PDFWritter?",
-    "comparisonTitle": "Format Comparison"
+    "comparisonTitle": "Format Comparison",
+    "benefit1": "100% free, no limits",
+    "benefit2": "No account required",
+    "benefit3": "Client-side processing",
+    "benefit4": "Your files stay private",
+    "benefit5": "11 languages supported",
+    "benefit6": "Works on all devices",
+    "benefit7": "No ads or tracking",
+    "benefit8": "Export to multiple formats"
   },
   "footer": {
     "description": "Free Markdown convertor with diagram support. Convert, edit, and export Markdown with Mermaid charts at pdfwritter.com.",
@@ -237,5 +254,13 @@
     "ctaBadge": "Start Converting Now",
     "ctaTitle": "Elevate Your Markdown Workflow Today",
     "ctaSubtitle": "The Markdown convertor with diagram support — export Mermaid charts to PDF and HTML free at pdfwritter.com."
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "subtitle": "How we handle your data and protect your privacy."
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "subtitle": "Rules and guidelines for using PDFWritter."
   }
 }
