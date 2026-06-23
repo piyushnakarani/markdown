@@ -145,17 +145,6 @@
     "openSourceTitle": "ওপেন সোর্স",
     "openSourceText": "PDFWritter চিরকালের জন্য বিনামূল্যে।"
   },
-  "contact": {
-    "title": "যোগাযোগ করুন",
-    "subtitle": "প্রশ্ন বা পরামর্শ? আমরা শুনতে চাই।",
-    "nameLabel": "আপনার নাম",
-    "emailLabel": "ইমেইল",
-    "subjectLabel": "বিষয়",
-    "messageLabel": "বার্তা",
-    "send": "পাঠান",
-    "sent": "পাঠানো হয়েছে!",
-    "emailDirect": "সরাসরি ইমেইল করুন"
-  },
   "help": {
     "title": "সাহায্য ও ডকুমেন্টেশন",
     "subtitle": "PDFWritter সম্পর্কে সব কিছু",

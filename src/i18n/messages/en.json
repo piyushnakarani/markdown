@@ -164,17 +164,6 @@
     "openSourceTitle": "Open Source",
     "openSourceText": "PDFWritter is open source and free forever. We believe in the power of the developer community."
   },
-  "contact": {
-    "title": "Get in Touch",
-    "subtitle": "Have questions, feedback, or suggestions? We'd love to hear from you.",
-    "nameLabel": "Your Name",
-    "emailLabel": "Email Address",
-    "subjectLabel": "Subject",
-    "messageLabel": "Message",
-    "send": "Send Message",
-    "sent": "Message sent! We'll get back to you soon.",
-    "emailDirect": "Or email us directly at"
-  },
   "help": {
     "badge": "Help & Support",
     "title": "Help & Documentation",

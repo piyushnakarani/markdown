@@ -1,0 +1,17 @@
+RewriteEngine On
+RewriteBase /api/
+
+# POST /api/sendmessage -> sendmessage.php
+RewriteRule ^sendmessage$ sendmessage.php [L,QSA]
+
+<Files "config.php">
+    Require all denied
+</Files>
+
+<Files "composer.json">
+    Require all denied
+</Files>
+
+<Files "composer.lock">
+    Require all denied
+</Files>

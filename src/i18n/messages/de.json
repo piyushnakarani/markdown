@@ -145,17 +145,6 @@
     "openSourceTitle": "Open Source",
     "openSourceText": "PDFWritter ist open source und für immer kostenlos."
   },
-  "contact": {
-    "title": "Kontakt",
-    "subtitle": "Fragen oder Vorschläge? Wir freuen uns von Ihnen zu hören.",
-    "nameLabel": "Ihr Name",
-    "emailLabel": "E-Mail",
-    "subjectLabel": "Betreff",
-    "messageLabel": "Nachricht",
-    "send": "Senden",
-    "sent": "Nachricht gesendet!",
-    "emailDirect": "Oder schreiben Sie uns direkt an"
-  },
   "help": {
     "title": "Hilfe & Dokumentation",
     "subtitle": "Alles über PDFWritter",

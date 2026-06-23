@@ -145,17 +145,6 @@
     "openSourceTitle": "オープンソース",
     "openSourceText": "PDFWritterは永久に無料です。"
   },
-  "contact": {
-    "title": "お問い合わせ",
-    "subtitle": "質問やご提案はこちらから。",
-    "nameLabel": "お名前",
-    "emailLabel": "メール",
-    "subjectLabel": "件名",
-    "messageLabel": "メッセージ",
-    "send": "送信",
-    "sent": "送信完了！",
-    "emailDirect": "直接メールする"
-  },
   "help": {
     "title": "ヘルプ＆ドキュメント",
     "subtitle": "PDFWritterの使い方",

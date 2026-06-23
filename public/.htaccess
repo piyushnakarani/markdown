@@ -1,0 +1,4 @@
+RewriteEngine On
+
+# Contact form API: /api/sendmessage
+RewriteRule ^api/sendmessage$ api/sendmessage.php [L,QSA]

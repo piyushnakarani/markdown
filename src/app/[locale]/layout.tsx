@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -119,7 +120,9 @@ export default async function LocaleLayout({
       >
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
-            <TransitionLoader />
+            <Suspense fallback={null}>
+              <TransitionLoader />
+            </Suspense>
             <a href="#main-content" className="skip-to-content">
               Skip to content
             </a>

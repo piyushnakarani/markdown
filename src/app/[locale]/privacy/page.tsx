@@ -2,6 +2,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { Shield, Eye, Lock, FileKey } from 'lucide-react';
 import { buildLocalizedPageMetadata } from '@/lib/site';
 import PageHero from '@/components/PageHero';
+import { Link } from '@/i18n/navigation';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -92,7 +93,11 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
 
           {/* Contact Section */}
           <div className="pt-8 border-t border-[var(--border-color)] text-xs text-center text-[var(--text-tertiary)]">
-            If you have questions about this privacy statement, please contact us at hello@pdfwritter.com.
+            If you have questions about this privacy statement, please use our{' '}
+            <Link href="/contact" className="text-[#6366f1] hover:underline">
+              contact form
+            </Link>
+            .
           </div>
 
         </div>

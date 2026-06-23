@@ -145,17 +145,6 @@
     "openSourceTitle": "오픈소스",
     "openSourceText": "PDFWritter는 영원히 무료입니다."
   },
-  "contact": {
-    "title": "문의하기",
-    "subtitle": "질문이나 제안이 있으신가요?",
-    "nameLabel": "이름",
-    "emailLabel": "이메일",
-    "subjectLabel": "제목",
-    "messageLabel": "메시지",
-    "send": "보내기",
-    "sent": "전송 완료!",
-    "emailDirect": "직접 이메일 보내기"
-  },
   "help": {
     "title": "도움말 & 문서",
     "subtitle": "PDFWritter에 대한 모든 것",

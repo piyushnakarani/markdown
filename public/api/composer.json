@@ -1,0 +1,8 @@
+{
+  "name": "pdfwritter/contact-api",
+  "description": "Contact form mailer for PDFWritter",
+  "require": {
+    "php": ">=8.1",
+    "phpmailer/phpmailer": "^6.9"
+  }
+}

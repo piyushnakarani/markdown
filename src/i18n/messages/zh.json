@@ -145,17 +145,6 @@
     "openSourceTitle": "开源",
     "openSourceText": "PDFWritter永久免费开源。"
   },
-  "contact": {
-    "title": "联系我们",
-    "subtitle": "有问题或建议？我们很乐意听取。",
-    "nameLabel": "您的姓名",
-    "emailLabel": "邮箱",
-    "subjectLabel": "主题",
-    "messageLabel": "消息",
-    "send": "发送",
-    "sent": "已发送！",
-    "emailDirect": "或直接发邮件至"
-  },
   "help": {
     "title": "帮助与文档",
     "subtitle": "关于PDFWritter的一切",

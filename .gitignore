@@ -41,5 +41,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-/pdf-render-api/node_modules
+# php contact mailer (deployed in public/api)
+/public/api/config.php
+/public/api/vendor/
+/public/api/rate-limit/
 

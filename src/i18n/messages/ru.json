@@ -145,17 +145,6 @@
     "openSourceTitle": "Открытый Исходный Код",
     "openSourceText": "PDFWritter бесплатен навсегда."
   },
-  "contact": {
-    "title": "Свяжитесь С Нами",
-    "subtitle": "Вопросы или предложения? Мы рады помочь.",
-    "nameLabel": "Ваше Имя",
-    "emailLabel": "Email",
-    "subjectLabel": "Тема",
-    "messageLabel": "Сообщение",
-    "send": "Отправить",
-    "sent": "Отправлено!",
-    "emailDirect": "Или напишите нам напрямую"
-  },
   "help": {
     "title": "Помощь и Документация",
     "subtitle": "Всё о PDFWritter",

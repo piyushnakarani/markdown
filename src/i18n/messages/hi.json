@@ -145,17 +145,6 @@
     "openSourceTitle": "ओपन सोर्स",
     "openSourceText": "PDFWritter हमेशा के लिए मुफ्त है।"
   },
-  "contact": {
-    "title": "संपर्क करें",
-    "subtitle": "प्रश्न या सुझाव? हम सुनना चाहेंगे।",
-    "nameLabel": "आपका नाम",
-    "emailLabel": "ईमेल",
-    "subjectLabel": "विषय",
-    "messageLabel": "संदेश",
-    "send": "भेजें",
-    "sent": "संदेश भेजा गया!",
-    "emailDirect": "या सीधे ईमेल करें"
-  },
   "help": {
     "title": "सहायता और दस्तावेज़ीकरण",
     "subtitle": "PDFWritter के बारे में सब कुछ",

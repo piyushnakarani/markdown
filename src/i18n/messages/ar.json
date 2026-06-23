@@ -145,17 +145,6 @@
     "openSourceTitle": "مفتوح المصدر",
     "openSourceText": "PDFWritter مفتوح المصدر ومجاني للأبد."
   },
-  "contact": {
-    "title": "تواصل معنا",
-    "subtitle": "أسئلة أو اقتراحات؟ نحب أن نسمع منك.",
-    "nameLabel": "اسمك",
-    "emailLabel": "البريد الإلكتروني",
-    "subjectLabel": "الموضوع",
-    "messageLabel": "الرسالة",
-    "send": "إرسال",
-    "sent": "تم الإرسال!",
-    "emailDirect": "أو راسلنا مباشرة على"
-  },
   "help": {
     "title": "المساعدة والتوثيق",
     "subtitle": "كل ما تحتاج معرفته عن PDFWritter",
