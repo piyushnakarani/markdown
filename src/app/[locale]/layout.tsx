@@ -86,7 +86,12 @@ export default async function LocaleLayout({
               (function() {
                 try {
                   var saved = localStorage.getItem('markdowntools-theme');
-                  var theme = saved === 'light' ? 'light' : 'dark';
+                  var theme;
+                  if (saved === 'light' || saved === 'dark') {
+                    theme = saved;
+                  } else {
+                    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                  }
                   document.documentElement.setAttribute('data-theme', theme);
                 } catch (e) {}
               })();

@@ -3,10 +3,26 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 
 type Theme = 'light' | 'dark';
+type ThemePreference = 'system' | Theme;
 
 const THEME_STORAGE_KEY = 'markdowntools-theme';
-const THEME_VERSION_KEY = 'markdowntools-theme-version';
-const THEME_VERSION = 'premium-dark-v2';
+
+function getSystemTheme(): Theme {
+  if (typeof window === 'undefined') return 'dark';
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+function resolveTheme(preference: ThemePreference): Theme {
+  return preference === 'system' ? getSystemTheme() : preference;
+}
+
+function readStoredPreference(): ThemePreference {
+  if (typeof window === 'undefined') return 'system';
+
+  const saved = localStorage.getItem(THEME_STORAGE_KEY);
+  if (saved === 'light' || saved === 'dark') return saved;
+  return 'system';
+}
 
 interface ThemeContextType {
   theme: Theme;
@@ -23,35 +39,45 @@ export function useTheme() {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
+  const [preference, setPreference] = useState<ThemePreference>('system');
   const [theme, setTheme] = useState<Theme>('dark');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    const stored = readStoredPreference();
+    setPreference(stored);
+    setTheme(resolveTheme(stored));
     setMounted(true);
-
-    const saved = localStorage.getItem(THEME_STORAGE_KEY) as Theme | null;
-    const savedVersion = localStorage.getItem(THEME_VERSION_KEY);
-
-    if (savedVersion === THEME_VERSION && (saved === 'dark' || saved === 'light')) {
-      setTheme(saved);
-      return;
-    }
-
-    setTheme('dark');
-    localStorage.setItem(THEME_STORAGE_KEY, 'dark');
-    localStorage.setItem(THEME_VERSION_KEY, THEME_VERSION);
   }, []);
 
   useEffect(() => {
-    if (mounted) {
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem(THEME_STORAGE_KEY, theme);
-      localStorage.setItem(THEME_VERSION_KEY, THEME_VERSION);
+    if (!mounted || preference !== 'system') return;
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const syncSystemTheme = () => setTheme(getSystemTheme());
+
+    syncSystemTheme();
+    mediaQuery.addEventListener('change', syncSystemTheme);
+    return () => mediaQuery.removeEventListener('change', syncSystemTheme);
+  }, [mounted, preference]);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    const resolved = resolveTheme(preference);
+    setTheme(resolved);
+    document.documentElement.setAttribute('data-theme', resolved);
+
+    if (preference === 'system') {
+      localStorage.removeItem(THEME_STORAGE_KEY);
+    } else {
+      localStorage.setItem(THEME_STORAGE_KEY, preference);
     }
-  }, [theme, mounted]);
+  }, [preference, mounted]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+    const next: Theme = theme === 'dark' ? 'light' : 'dark';
+    setPreference(next);
   };
 
   return (

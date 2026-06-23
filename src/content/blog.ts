@@ -601,3 +601,52 @@ export function getRelatedPosts(slug: string, limit = 3): BlogPost[] {
   const others = blogPosts.filter((p) => p.slug !== slug && p.category !== current.category);
   return [...sameCategory, ...others].slice(0, limit);
 }
+
+export function getSortedBlogPosts(): BlogPost[] {
+  return [...blogPosts].sort(
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+  );
+}
+
+export function getAdjacentPosts(slug: string): {
+  prev: BlogPost | null;
+  next: BlogPost | null;
+} {
+  const sorted = getSortedBlogPosts();
+  const index = sorted.findIndex((p) => p.slug === slug);
+  if (index === -1) return { prev: null, next: null };
+  return {
+    prev: index > 0 ? sorted[index - 1] : null,
+    next: index < sorted.length - 1 ? sorted[index + 1] : null,
+  };
+}
+
+export const BLOG_CATEGORY_STYLES: Record<
+  string,
+  { text: string; bg: string; border: string; accent: string }
+> = {
+  Tools: {
+    text: '#ef4444',
+    bg: 'rgba(239, 68, 68, 0.08)',
+    border: 'rgba(239, 68, 68, 0.15)',
+    accent: '#ef4444',
+  },
+  Tutorial: {
+    text: '#f59e0b',
+    bg: 'rgba(245, 158, 11, 0.08)',
+    border: 'rgba(245, 158, 11, 0.15)',
+    accent: '#f59e0b',
+  },
+  Guide: {
+    text: '#3b82f6',
+    bg: 'rgba(59, 130, 246, 0.08)',
+    border: 'rgba(59, 130, 246, 0.15)',
+    accent: '#3b82f6',
+  },
+  Productivity: {
+    text: '#10b981',
+    bg: 'rgba(16, 185, 129, 0.08)',
+    border: 'rgba(16, 185, 129, 0.15)',
+    accent: '#10b981',
+  },
+};

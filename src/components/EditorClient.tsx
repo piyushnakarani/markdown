@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef } from 'react';
 import { useTranslations } from 'next-intl';
+import { syncProportionalScroll } from '@/lib/editor-scroll-sync';
 import {
   convertMarkdownToHtml,
   convertMarkdownToPdf,
@@ -85,14 +86,42 @@ export default function EditorClient({
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const lineNumbersRef = useRef<HTMLDivElement>(null);
+  const previewScrollRef = useRef<HTMLDivElement>(null);
+  const scrollSyncLockRef = useRef(false);
 
   const html = convertMarkdownToHtml(markdown);
 
-  // Sync scroll between textarea and line numbers
-  const handleTextareaScroll = (e: React.UIEvent<HTMLTextAreaElement>) => {
+  const syncLineNumbers = (scrollTop: number) => {
     if (lineNumbersRef.current) {
-      lineNumbersRef.current.scrollTop = e.currentTarget.scrollTop;
+      lineNumbersRef.current.scrollTop = scrollTop;
     }
+  };
+
+  const handleTextareaScroll = (e: React.UIEvent<HTMLTextAreaElement>) => {
+    const textarea = e.currentTarget;
+    syncLineNumbers(textarea.scrollTop);
+
+    const preview = previewScrollRef.current;
+    if (!preview || scrollSyncLockRef.current) return;
+
+    scrollSyncLockRef.current = true;
+    syncProportionalScroll(textarea, preview);
+    requestAnimationFrame(() => {
+      scrollSyncLockRef.current = false;
+    });
+  };
+
+  const handlePreviewScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const preview = e.currentTarget;
+    const textarea = textareaRef.current;
+    if (!textarea || scrollSyncLockRef.current) return;
+
+    scrollSyncLockRef.current = true;
+    syncProportionalScroll(preview, textarea);
+    syncLineNumbers(textarea.scrollTop);
+    requestAnimationFrame(() => {
+      scrollSyncLockRef.current = false;
+    });
   };
 
   const insertSyntax = (before: string, after: string = '') => {
@@ -422,7 +451,11 @@ export default function EditorClient({
             </div>
           )}
 
-          <div className="editor-pane-body editor-pane-scroll bg-[var(--bg-primary)]">
+          <div
+            ref={previewScrollRef}
+            className="editor-pane-body editor-pane-scroll bg-[var(--bg-primary)]"
+            onScroll={handlePreviewScroll}
+          >
             <MarkdownPreview html={html} className="markdown-preview max-w-none" />
           </div>
         </div>

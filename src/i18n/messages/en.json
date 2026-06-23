@@ -138,7 +138,19 @@
     "backToBlog": "Back to Blog",
     "relatedPosts": "Related Articles",
     "tableOfContents": "Table of Contents",
-    "shareArticle": "Share this article"
+    "shareArticle": "Share this article",
+    "share": "Share",
+    "copyLink": "Copy link",
+    "linkCopied": "Link copied",
+    "publisher": "Publisher",
+    "updated": "Updated",
+    "topics": "Topics",
+    "ctaTitle": "Try PDFWritter Free",
+    "ctaDescription": "Convert Markdown to PDF, HTML, and TXT with live preview — free, private, and in your browser.",
+    "ctaButton": "Open Editor",
+    "previousArticle": "Previous article",
+    "nextArticle": "Next article",
+    "articleNavigation": "Article navigation"
   },
   "about": {
     "badge": "Platform Overview",

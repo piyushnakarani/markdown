@@ -4,6 +4,7 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 import {
   DEFAULT_KEYWORDS,
   SITE_EMAIL,
+  SITE_LOGO_PATH,
   SITE_NAME,
   SITE_URL,
   absoluteUrl,
@@ -11,6 +12,67 @@ import {
 } from '@/lib/site';
 
 export { SITE_NAME, SITE_URL };
+
+export interface ArticleHeading {
+  id: string;
+  text: string;
+  level: 2 | 3;
+}
+
+export function slugifyHeading(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/<[^>]+>/g, '')
+    .replace(/&[a-z]+;/gi, '')
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-');
+}
+
+function uniqueHeadingId(text: string, used: Set<string>): string {
+  let id = slugifyHeading(text);
+  if (!id) id = 'section';
+
+  if (used.has(id)) {
+    let i = 2;
+    while (used.has(`${id}-${i}`)) i += 1;
+    id = `${id}-${i}`;
+  }
+
+  used.add(id);
+  return id;
+}
+
+/** Build TOC entries from markdown headings (h2/h3). */
+export function extractArticleHeadings(markdown: string): ArticleHeading[] {
+  const used = new Set<string>();
+  const headings: ArticleHeading[] = [];
+
+  for (const line of markdown.split('\n')) {
+    const match = line.match(/^(#{2,3})\s+(.+)$/);
+    if (!match) continue;
+
+    const level = match[1].length as 2 | 3;
+    const text = match[2].replace(/\*\*|__|`/g, '').trim();
+    const id = uniqueHeadingId(text, used);
+    headings.push({ id, text, level });
+  }
+
+  return headings;
+}
+
+/** Add stable anchor ids to rendered h2/h3 for TOC and deep links. */
+export function injectHeadingIds(html: string): string {
+  const used = new Set<string>();
+
+  return html.replace(/<h([23])([^>]*)>([\s\S]*?)<\/h\1>/gi, (match, level, attrs, content) => {
+    if (/\bid\s*=/.test(attrs)) return match;
+
+    const plain = content.replace(/<[^>]+>/g, '').trim();
+    const id = uniqueHeadingId(plain, used);
+    return `<h${level}${attrs} id="${id}">${content}</h${level}>`;
+  });
+}
 
 export function getPostUrl(locale: string, slug: string): string {
   return absoluteUrl(`/${locale}/blog/${slug}`);
@@ -121,12 +183,18 @@ export function buildArticleJsonLd(post: BlogPost, locale: string) {
       name: SITE_NAME,
       url: SITE_URL,
       email: SITE_EMAIL,
+      logo: {
+        '@type': 'ImageObject',
+        url: absoluteUrl(SITE_LOGO_PATH),
+      },
     },
+    image: absoluteUrl(SITE_LOGO_PATH),
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
     url,
     articleSection: post.category,
     keywords: post.keywords.join(', '),
     wordCount: estimateWordCount(post.content),
+    timeRequired: `PT${post.readTime}M`,
     inLanguage: locale,
   };
 }

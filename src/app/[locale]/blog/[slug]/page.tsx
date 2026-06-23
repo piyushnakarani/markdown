@@ -1,19 +1,41 @@
-import { setRequestLocale } from 'next-intl/server';
-import { useTranslations } from 'next-intl';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { notFound } from 'next/navigation';
-import { blogPosts, getBlogPost, getRelatedPosts } from '@/content/blog';
+import {
+  blogPosts,
+  BLOG_CATEGORY_STYLES,
+  getAdjacentPosts,
+  getBlogPost,
+  getRelatedPosts,
+} from '@/content/blog';
 import { convertMarkdownToHtml } from '@/lib/converters';
 import { locales } from '@/i18n/locales';
 import {
   buildArticleJsonLd,
   buildBreadcrumbJsonLd,
   buildPostMetadata,
+  extractArticleHeadings,
   formatBlogDate,
+  getPostUrl,
+  injectHeadingIds,
   stripLeadingH1,
 } from '@/lib/blog-seo';
-import { Calendar, Clock, ArrowLeft, ArrowRight, Tag, ChevronRight } from 'lucide-react';
+import { SITE_NAME } from '@/lib/site';
+import {
+  Calendar,
+  Clock,
+  ArrowLeft,
+  ArrowRight,
+  Tag,
+  ChevronRight,
+  PenLine,
+} from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
+import {
+  BlogReadingProgress,
+  BlogArticleTOC,
+  BlogArticleShare,
+} from '@/components/BlogArticleClient';
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
@@ -44,16 +66,44 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
   const post = getBlogPost(slug);
   if (!post) notFound();
 
-  const rawHtml = convertMarkdownToHtml(stripLeadingH1(post.content));
-  const html = prefixInternalLinks(rawHtml, locale);
+  const strippedContent = stripLeadingH1(post.content);
+  const headings = extractArticleHeadings(strippedContent);
+  const rawHtml = convertMarkdownToHtml(strippedContent);
+  const html = injectHeadingIds(prefixInternalLinks(rawHtml, locale));
   const relatedPosts = getRelatedPosts(slug, 3);
+  const { prev, next } = getAdjacentPosts(slug);
+  const shareUrl = getPostUrl(locale, slug);
+  const t = await getTranslations('blog');
+  const tNav = await getTranslations('nav');
+
+  const labels = {
+    backToBlog: t('backToBlog'),
+    publisher: t('publisher'),
+    readTime: t('readTime'),
+    updated: t('updated'),
+    topics: t('topics'),
+    relatedPosts: t('relatedPosts'),
+    previousArticle: t('previousArticle'),
+    nextArticle: t('nextArticle'),
+    articleNavigation: t('articleNavigation'),
+    ctaTitle: t('ctaTitle'),
+    ctaDescription: t('ctaDescription'),
+    ctaButton: t('ctaButton'),
+    home: tNav('home'),
+    blog: tNav('blog'),
+  };
 
   return (
     <BlogArticleContent
       post={post}
       html={html}
+      headings={headings}
       relatedPosts={relatedPosts}
+      prev={prev}
+      next={next}
       locale={locale}
+      shareUrl={shareUrl}
+      labels={labels}
     />
   );
 }
@@ -61,200 +111,243 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
 function BlogArticleContent({
   post,
   html,
+  headings,
   relatedPosts,
+  prev,
+  next,
   locale,
+  shareUrl,
+  labels,
 }: {
   post: NonNullable<ReturnType<typeof getBlogPost>>;
   html: string;
+  headings: ReturnType<typeof extractArticleHeadings>;
   relatedPosts: ReturnType<typeof getRelatedPosts>;
+  prev: ReturnType<typeof getAdjacentPosts>['prev'];
+  next: ReturnType<typeof getAdjacentPosts>['next'];
   locale: string;
+  shareUrl: string;
+  labels: {
+    backToBlog: string;
+    publisher: string;
+    readTime: string;
+    updated: string;
+    topics: string;
+    relatedPosts: string;
+    previousArticle: string;
+    nextArticle: string;
+    articleNavigation: string;
+    ctaTitle: string;
+    ctaDescription: string;
+    ctaButton: string;
+    home: string;
+    blog: string;
+  };
 }) {
-  const t = useTranslations('blog');
   const articleJsonLd = buildArticleJsonLd(post, locale);
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(post, locale);
-
-  const categoryColors: Record<string, { text: string; bg: string; border: string }> = {
-    Tools: { text: '#ef4444', bg: 'rgba(239, 68, 68, 0.08)', border: 'rgba(239, 68, 68, 0.15)' },
-    Tutorial: { text: '#f59e0b', bg: 'rgba(245, 158, 11, 0.08)', border: 'rgba(245, 158, 11, 0.15)' },
-    Guide: { text: '#3b82f6', bg: 'rgba(59, 130, 246, 0.08)', border: 'rgba(59, 130, 246, 0.15)' },
-    Productivity: { text: '#10b981', bg: 'rgba(16, 185, 129, 0.08)', border: 'rgba(16, 185, 129, 0.15)' },
-  };
-
-  const colors = categoryColors[post.category] ?? { text: '#3b82f6', bg: 'rgba(59, 130, 246, 0.08)', border: 'rgba(59, 130, 246, 0.15)' };
+  const colors = BLOG_CATEGORY_STYLES[post.category] ?? BLOG_CATEGORY_STYLES.Guide;
 
   return (
-    <>
-      {/* Inline styles to ensure tables and code snippets scale correctly on mobile */}
-      <style>{`
-        .blog-article-body table {
-          display: block;
-          width: 100%;
-          overflow-x: auto;
-          -webkit-overflow-scrolling: touch;
-        }
-        .blog-article-body img {
-          display: block;
-          max-width: 100%;
-          height: auto;
-          margin: 1.5rem auto;
-        }
-      `}</style>
+    <main className="blog-article-page">
+      <BlogReadingProgress />
 
-      <header className="relative overflow-hidden pt-12 pb-12 border-b border-[var(--border-color)]">
-        {/* Glow Effects */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.05),transparent_65%)] pointer-events-none" />
-        <div className="absolute top-12 right-1/4 w-[400px] h-[400px] bg-gradient-to-br from-[#3b82f6]/5 to-[#8b5cf6]/5 blur-[120px] rounded-full pointer-events-none" />
+      {/* Hero */}
+      <header className="blog-article-hero">
+        <div className="blog-article-hero-bg" aria-hidden />
+        <div className="blog-article-hero-glow" aria-hidden />
         <div className="absolute inset-0 mesh-grid opacity-15 pointer-events-none" aria-hidden />
 
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          
-          {/* Breadcrumb Trail */}
-          <nav aria-label="Breadcrumb" className="mb-6">
-            <ol className="flex flex-wrap items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest text-[var(--text-tertiary)]">
+        <div className="blog-article-hero-inner">
+          <nav aria-label="Breadcrumb" className="blog-article-breadcrumb">
+            <ol>
               <li>
-                <Link href="/" className="hover:text-[#3b82f6] transition-colors">Home</Link>
+                <Link href="/">{labels.home}</Link>
               </li>
-              <li aria-hidden className="text-[var(--text-tertiary)]">
+              <li aria-hidden>
                 <ChevronRight className="w-3.5 h-3.5" />
               </li>
               <li>
-                <Link href="/blog" className="hover:text-[#3b82f6] transition-colors">Blog</Link>
+                <Link href="/blog">{labels.blog}</Link>
               </li>
-              <li aria-hidden className="text-[var(--text-tertiary)]">
+              <li aria-hidden>
                 <ChevronRight className="w-3.5 h-3.5" />
               </li>
-              <li className="text-[var(--text-secondary)] font-extrabold truncate max-w-[150px] sm:max-w-none">
-                {post.titleKey}
-              </li>
+              <li aria-current="page">{post.titleKey}</li>
             </ol>
           </nav>
 
-          <Link href="/blog" className="inline-flex items-center gap-1.5 text-xs font-bold text-[#3b82f6] hover:text-[#2563eb] transition-colors mb-6 uppercase tracking-wider">
-            <ArrowLeft className="w-3.5 h-3.5" />
-            {t('backToBlog')}
+          <Link href="/blog" className="blog-article-back">
+            <ArrowLeft className="w-3.5 h-3.5" aria-hidden />
+            {labels.backToBlog}
           </Link>
 
-          {/* Title Header */}
-          <h1 className="text-2xl sm:text-3.5xl lg:text-[2.65rem] font-extrabold mb-5 leading-[1.15] tracking-tight text-[var(--text-primary)]">
-            {post.titleKey}
-          </h1>
+          <span
+            className="blog-article-category"
+            style={{
+              color: colors.text,
+              backgroundColor: colors.bg,
+              borderColor: colors.border,
+            }}
+          >
+            {post.category}
+          </span>
 
-          {/* Article Info & Author Card */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-6 border-t border-[var(--border-color)]">
-            
-            {/* Author info */}
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#3b82f6] to-[#8b5cf6] flex items-center justify-center text-white text-xs font-black shadow-sm">
-                MT
+          <h1 className="blog-article-title">{post.titleKey}</h1>
+          <p className="blog-article-excerpt">{post.excerptKey}</p>
+
+          <div className="blog-article-meta">
+            <div className="blog-article-author">
+              <div
+                className="blog-article-author-avatar"
+                style={{ background: `linear-gradient(135deg, ${colors.accent}, #8b5cf6)` }}
+                aria-hidden
+              >
+                PW
               </div>
               <div>
-                <span className="text-xs font-extrabold text-[var(--text-primary)] block leading-none">MarkdownTools Team</span>
-                <span className="text-[10px] font-bold text-[var(--text-tertiary)] uppercase tracking-wider block mt-1">Publisher</span>
+                <span className="blog-article-author-name">{SITE_NAME}</span>
+                <span className="blog-article-author-role">{labels.publisher}</span>
               </div>
             </div>
 
-            {/* Meta statistics */}
-            <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-[var(--text-secondary)]">
-              <span
-                className="px-2.5 py-0.5 rounded-lg text-[9px] font-extrabold uppercase tracking-widest border"
-                style={{
-                  color: colors.text,
-                  backgroundColor: colors.bg,
-                  borderColor: colors.border,
-                }}
-              >
-                {post.category}
-              </span>
-              <time dateTime={post.date} className="flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5 text-[var(--text-tertiary)]" />
+            <div className="blog-article-meta-stats">
+              <time dateTime={post.date}>
+                <Calendar className="w-4 h-4" aria-hidden />
                 {formatBlogDate(post.date)}
               </time>
-              <span className="flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-[var(--text-tertiary)]" />
-                {post.readTime} min read
+              <span>
+                <Clock className="w-4 h-4" aria-hidden />
+                {post.readTime} {labels.readTime}
               </span>
+              {post.dateModified !== post.date && (
+                <time dateTime={post.dateModified} className="blog-article-updated">
+                  {labels.updated}: {formatBlogDate(post.dateModified)}
+                </time>
+              )}
             </div>
-
           </div>
-
         </div>
       </header>
 
-      {/* Article Content */}
-      <article
-        className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16"
-        itemScope
-        itemType="https://schema.org/BlogPosting"
-      >
-        <meta itemProp="headline" content={post.titleKey} />
-        <meta itemProp="description" content={post.metaDescription} />
-        <meta itemProp="datePublished" content={post.date} />
-        <meta itemProp="dateModified" content={post.dateModified} />
+      {/* Content layout */}
+      <div className="blog-article-layout">
+        <BlogArticleTOC headings={headings} />
 
-        <div
-          className="markdown-preview prose-lg blog-article-body text-sm sm:text-base leading-relaxed text-[var(--text-secondary)]"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
+        <article
+          className="blog-article-main"
+          itemScope
+          itemType="https://schema.org/BlogPosting"
+        >
+          <meta itemProp="headline" content={post.titleKey} />
+          <meta itemProp="description" content={post.metaDescription} />
+          <meta itemProp="datePublished" content={post.date} />
+          <meta itemProp="dateModified" content={post.dateModified} />
+          <meta itemProp="author" content={SITE_NAME} />
 
-        {/* Article Keywords/Tags */}
-        {post.keywords.length > 0 && (
-          <div className="flex flex-wrap items-center gap-2 mt-12 pt-8 border-t border-[var(--border-color)]">
-            <Tag className="w-4 h-4 text-[var(--text-tertiary)] shrink-0" aria-hidden />
-            <span className="text-xs font-bold text-[var(--text-tertiary)] uppercase tracking-wider mr-1">Tags:</span>
-            <ul className="flex flex-wrap gap-1.5" aria-label="Article topics">
-              {post.keywords.map((keyword) => (
-                <li key={keyword}>
-                  <span className="px-2.5 py-1 text-xs font-medium rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)]/50 text-[var(--text-secondary)]">
-                    {keyword}
-                  </span>
-                </li>
-              ))}
-            </ul>
+          <div
+            className="markdown-preview blog-article-body"
+            itemProp="articleBody"
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+
+          {post.keywords.length > 0 && (
+            <footer className="blog-article-tags">
+              <Tag className="w-4 h-4 shrink-0" aria-hidden />
+              <span className="blog-article-tags-label">{labels.topics}:</span>
+              <ul aria-label={labels.topics}>
+                {post.keywords.map((keyword) => (
+                  <li key={keyword}>
+                    <span className="blog-keyword-pill">{keyword}</span>
+                  </li>
+                ))}
+              </ul>
+            </footer>
+          )}
+
+          <BlogArticleShare shareUrl={shareUrl} shareTitle={post.titleKey} />
+
+          <aside className="blog-article-cta" aria-label={labels.ctaTitle}>
+            <div className="blog-article-cta-copy">
+              <h2>{labels.ctaTitle}</h2>
+              <p>{labels.ctaDescription}</p>
+            </div>
+            <Link href="/editor" className="blog-article-cta-btn">
+              <PenLine className="w-4 h-4" aria-hidden />
+              {labels.ctaButton}
+            </Link>
+          </aside>
+        </article>
+      </div>
+
+      {/* Prev / Next */}
+      {(prev || next) && (
+        <nav className="blog-article-pagination" aria-label={labels.articleNavigation}>
+          <div className="blog-article-pagination-inner">
+            {prev ? (
+              <Link href={`/blog/${prev.slug}`} className="blog-article-pagination-link blog-article-pagination-link--prev">
+                <span className="blog-article-pagination-label">
+                  <ArrowLeft className="w-4 h-4" aria-hidden />
+                  {labels.previousArticle}
+                </span>
+                <span className="blog-article-pagination-title">{prev.titleKey}</span>
+              </Link>
+            ) : (
+              <div />
+            )}
+            {next ? (
+              <Link href={`/blog/${next.slug}`} className="blog-article-pagination-link blog-article-pagination-link--next">
+                <span className="blog-article-pagination-label">
+                  {labels.nextArticle}
+                  <ArrowRight className="w-4 h-4" aria-hidden />
+                </span>
+                <span className="blog-article-pagination-title">{next.titleKey}</span>
+              </Link>
+            ) : (
+              <div />
+            )}
           </div>
-        )}
-      </article>
+        </nav>
+      )}
 
-      {/* Related Posts */}
+      {/* Related */}
       {relatedPosts.length > 0 && (
-        <section className="bg-[var(--bg-secondary)] border-t border-[var(--border-color)] py-16 sm:py-20" aria-labelledby="related-posts-heading">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="blog-article-related" aria-labelledby="related-posts-heading">
+          <div className="blog-article-related-inner">
             <ScrollReveal>
-              <h2 id="related-posts-heading" className="text-xl sm:text-2xl font-extrabold mb-8 tracking-tight text-[var(--text-primary)]">
-                {t('relatedPosts')}
+              <h2 id="related-posts-heading" className="blog-article-related-title">
+                {labels.relatedPosts}
               </h2>
             </ScrollReveal>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="blog-article-related-grid">
               {relatedPosts.map((rp, i) => {
-                const rpColors = categoryColors[rp.category] ?? colors;
+                const rpColors = BLOG_CATEGORY_STYLES[rp.category] ?? colors;
                 return (
                   <ScrollReveal key={rp.slug} delay={i * 80}>
-                    <Link href={`/blog/${rp.slug}`} className="group blog-card h-full flex flex-col justify-between rounded-2xl border border-[var(--border-color)] bg-[var(--bg-primary)]/40 p-5 hover:bg-[var(--bg-secondary)]/50 hover:border-[#3b82f6]/20 transition-all duration-300">
-                      <div>
-                        <span
-                          className="px-2.5 py-0.5 text-[9px] font-extrabold uppercase tracking-widest rounded-lg border w-fit block mb-4"
-                          style={{
-                            color: rpColors.text,
-                            backgroundColor: rpColors.bg,
-                            borderColor: rpColors.border,
-                          }}
-                        >
-                          {rp.category}
-                        </span>
-                        <h3 className="text-sm font-bold text-[var(--text-primary)] mb-2 group-hover:text-[#3b82f6] transition-colors leading-snug line-clamp-2">
-                          {rp.titleKey}
-                        </h3>
-                        <p className="text-xs text-[var(--text-secondary)] line-clamp-3 leading-relaxed mb-4">
-                          {rp.excerptKey}
-                        </p>
-                      </div>
-                      <div className="flex items-center justify-between text-[10px] font-semibold text-[var(--text-tertiary)] pt-4 border-t border-[var(--border-color)]">
-                        <time dateTime={rp.date} className="flex items-center gap-1">
-                          <Calendar className="w-3.5 h-3.5" />
+                    <Link href={`/blog/${rp.slug}`} className="blog-card blog-card-compact group h-full flex flex-col">
+                      <span
+                        className="blog-category-pill mb-3 w-fit"
+                        style={{
+                          color: rpColors.text,
+                          backgroundColor: rpColors.bg,
+                          borderColor: rpColors.border,
+                        }}
+                      >
+                        {rp.category}
+                      </span>
+                      <h3 className="blog-card-title mb-2 group-hover:text-[#3b82f6] transition-colors line-clamp-2">
+                        {rp.titleKey}
+                      </h3>
+                      <p className="text-sm text-[var(--text-secondary)] line-clamp-3 leading-relaxed flex-1">
+                        {rp.excerptKey}
+                      </p>
+                      <div className="blog-card-footer">
+                        <time dateTime={rp.date} className="flex items-center gap-1.5 text-xs text-[var(--text-tertiary)]">
+                          <Calendar className="w-3.5 h-3.5" aria-hidden />
                           {formatBlogDate(rp.date)}
                         </time>
-                        <span className="flex items-center gap-1">
-                          <Clock className="w-3.5 h-3.5" />
-                          {rp.readTime} min
+                        <span className="blog-card-cta-icon" aria-hidden>
+                          <ArrowRight className="w-3.5 h-3.5" />
                         </span>
                       </div>
                     </Link>
@@ -268,6 +361,6 @@ function BlogArticleContent({
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-    </>
+    </main>
   );
 }

@@ -17,6 +17,7 @@ import {
   markdownHasMermaid,
   type ExportProgressStage,
 } from '@/lib/converters';
+import { syncProportionalScroll } from '@/lib/editor-scroll-sync';
 import MarkdownPreview from '@/components/MarkdownPreview';
 import ExportOverlay from '@/components/ExportOverlay';
 import {
@@ -87,6 +88,8 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const lineNumbersRef = useRef<HTMLDivElement>(null);
+  const previewScrollRef = useRef<HTMLDivElement>(null);
+  const scrollSyncLockRef = useRef(false);
 
   const html = convertMarkdownToHtml(markdown);
   const plainText = convertMarkdownToTxt(markdown);
@@ -169,10 +172,37 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleTextareaScroll = (e: React.UIEvent<HTMLTextAreaElement>) => {
+  const syncLineNumbers = (scrollTop: number) => {
     if (lineNumbersRef.current) {
-      lineNumbersRef.current.scrollTop = e.currentTarget.scrollTop;
+      lineNumbersRef.current.scrollTop = scrollTop;
     }
+  };
+
+  const handleTextareaScroll = (e: React.UIEvent<HTMLTextAreaElement>) => {
+    const textarea = e.currentTarget;
+    syncLineNumbers(textarea.scrollTop);
+
+    const preview = previewScrollRef.current;
+    if (!preview || scrollSyncLockRef.current) return;
+
+    scrollSyncLockRef.current = true;
+    syncProportionalScroll(textarea, preview);
+    requestAnimationFrame(() => {
+      scrollSyncLockRef.current = false;
+    });
+  };
+
+  const handlePreviewScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const preview = e.currentTarget;
+    const textarea = textareaRef.current;
+    if (!textarea || scrollSyncLockRef.current) return;
+
+    scrollSyncLockRef.current = true;
+    syncProportionalScroll(preview, textarea);
+    syncLineNumbers(textarea.scrollTop);
+    requestAnimationFrame(() => {
+      scrollSyncLockRef.current = false;
+    });
   };
 
   const clearAll = () => {
@@ -377,7 +407,11 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
             )}
           </div>
 
-          <div className="editor-pane-body editor-pane-scroll">
+          <div
+            ref={previewScrollRef}
+            className="editor-pane-body editor-pane-scroll"
+            onScroll={handlePreviewScroll}
+          >
             {type === 'txt' ? (
               <pre className="text-sm text-[var(--text-primary)] whitespace-pre-wrap font-mono leading-relaxed">
                 {plainText || t('noOutput')}
