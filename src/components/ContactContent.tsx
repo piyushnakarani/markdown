@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Mail, Send, Check, Loader2, AlertCircle } from 'lucide-react';
+import { event } from '@/lib/analytics';
 import { CONTACT_COPY } from '@/content/contact';
 import {
   getContactApiUrl,
@@ -54,6 +55,7 @@ export default function ContactContent() {
       const result = await submitContactForm(form, getContactApiUrl());
       if (result.success) {
         setSent(true);
+        event('submit_contact_success', { subject: form.subject });
         setForm(EMPTY_FORM);
         setFieldErrors({});
         setTimeout(() => setSent(false), 6000);
@@ -64,8 +66,10 @@ export default function ContactContent() {
         setFieldErrors(result.fields);
       }
       setFormError(result.error || CONTACT_COPY.errorGeneric);
+      event('submit_contact_error', { error: result.error || 'field_validation' });
     } catch {
       setFormError(CONTACT_COPY.errorNetwork);
+      event('submit_contact_error', { error: 'network_error' });
     } finally {
       setSubmitting(false);
     }

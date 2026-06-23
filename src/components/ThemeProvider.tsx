@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { event } from '@/lib/analytics';
 
 type Theme = 'light' | 'dark';
 type ThemePreference = 'system' | Theme;
@@ -78,6 +79,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const toggleTheme = () => {
     const next: Theme = theme === 'dark' ? 'light' : 'dark';
     setPreference(next);
+    event('change_theme', { theme: next });
   };
 
   return (

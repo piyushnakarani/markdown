@@ -10,6 +10,7 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import TransitionLoader from '@/components/TransitionLoader';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 import {
   SITE_NAME,
   SITE_TAGLINE,
@@ -120,6 +121,7 @@ export default async function LocaleLayout({
       >
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
+            <GoogleAnalytics />
             <Suspense fallback={null}>
               <TransitionLoader />
             </Suspense>

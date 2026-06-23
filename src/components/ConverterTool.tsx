@@ -20,6 +20,7 @@ import {
 import { syncProportionalScroll } from '@/lib/editor-scroll-sync';
 import MarkdownPreview from '@/components/MarkdownPreview';
 import ExportOverlay from '@/components/ExportOverlay';
+import { event } from '@/lib/analytics';
 import {
   EditorToolbarBar,
   EditorToolbarStart,
@@ -113,10 +114,16 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
       setMarkdown(text);
       setFileName(file.name);
       showToast(t('fileLoaded'));
+      event('upload_file', {
+        file_name: file.name,
+        file_size: file.size,
+        tool_type: type,
+        tool: 'converter',
+      });
     } catch {
       showToast(t('errorMessage'));
     }
-  }, [t]);
+  }, [t, type]);
 
   const handleDrop = async (e: React.DragEvent) => {
     e.preventDefault();
@@ -137,6 +144,12 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
     setExportStages(stages);
     setExportStage(stages[0]);
     setExporting(type);
+    event('export_file', {
+      format: type,
+      has_mermaid: hasMermaid,
+      char_count: markdown.length,
+      tool: 'converter',
+    });
     const onProgress = (stage: ExportProgressStage) => setExportStage(stage);
     try {
       const name = baseName();
@@ -169,6 +182,11 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
     if (!content) return;
     await navigator.clipboard.writeText(content);
     setCopied(true);
+    event('copy_output', {
+      format: type,
+      char_count: content.length,
+      tool: 'converter',
+    });
     setTimeout(() => setCopied(false), 2000);
   };
 
@@ -208,6 +226,10 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
   const clearAll = () => {
     setMarkdown('');
     setFileName('');
+    event('clear_editor', {
+      tool: 'converter',
+      type: type,
+    });
   };
 
   const ExportIcon = fmt.icon;
@@ -303,7 +325,10 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
         <div className="editor-toolbar-tabs">
           <button
             type="button"
-            onClick={() => setActiveTab('editor')}
+            onClick={() => {
+              setActiveTab('editor');
+              event('change_tab', { tab: 'editor', tool: 'converter', type });
+            }}
             className={`flex items-center gap-1 px-2.5 py-1.5 rounded-md text-xs font-semibold transition-colors ${
               activeTab === 'editor' ? 'bg-[#3b82f6] text-white' : 'text-[var(--text-secondary)]'
             }`}
@@ -313,7 +338,10 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
           </button>
           <button
             type="button"
-            onClick={() => setActiveTab('preview')}
+            onClick={() => {
+              setActiveTab('preview');
+              event('change_tab', { tab: 'preview', tool: 'converter', type });
+            }}
             className={`flex items-center gap-1 px-2.5 py-1.5 rounded-md text-xs font-semibold transition-colors ${
               activeTab === 'preview' ? 'bg-[#3b82f6] text-white' : 'text-[var(--text-secondary)]'
             }`}
@@ -385,7 +413,10 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
               <div className="flex items-center gap-0.5 bg-[var(--bg-primary)] p-0.5 rounded-lg border border-[var(--border-color)]">
                 <button
                   type="button"
-                  onClick={() => setHtmlView('preview')}
+                  onClick={() => {
+                    setHtmlView('preview');
+                    event('change_html_view', { view: 'preview', tool: 'converter' });
+                  }}
                   className={`flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-semibold transition-colors ${
                     htmlView === 'preview' ? 'bg-[#3b82f6] text-white' : 'text-[var(--text-secondary)]'
                   }`}
@@ -395,7 +426,10 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
                 </button>
                 <button
                   type="button"
-                  onClick={() => setHtmlView('code')}
+                  onClick={() => {
+                    setHtmlView('code');
+                    event('change_html_view', { view: 'code', tool: 'converter' });
+                  }}
                   className={`flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-semibold transition-colors ${
                     htmlView === 'code' ? 'bg-[#3b82f6] text-white' : 'text-[var(--text-secondary)]'
                   }`}

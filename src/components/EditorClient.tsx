@@ -19,6 +19,7 @@ import {
 } from '@/lib/converters';
 import MarkdownPreview from '@/components/MarkdownPreview';
 import ExportOverlay from '@/components/ExportOverlay';
+import { event } from '@/lib/analytics';
 import {
   EditorToolbarBar,
   EditorToolbarStart,
@@ -41,7 +42,6 @@ import {
   Upload,
   Copy,
   Trash2,
-  Download,
   Check,
   Eye,
   PenLine,
@@ -133,6 +133,11 @@ export default function EditorClient({
     const replacement = `${before}${selected || 'text'}${after}`;
     const newText = markdown.slice(0, start) + replacement + markdown.slice(end);
     setMarkdown(newText);
+    event('use_formatting_toolbar', {
+      syntax: before.trim() || after.trim() || 'unknown',
+      tool: 'editor',
+      variant,
+    });
     setTimeout(() => {
       ta.focus();
       ta.setSelectionRange(start + before.length, start + before.length + (selected || 'text').length);
@@ -156,7 +161,14 @@ export default function EditorClient({
     if (!file) return;
     const text = await readFileAsText(file);
     setMarkdown(text);
-  }, []);
+    event('upload_file', {
+      file_name: file.name,
+      file_size: file.size,
+      tool_type: variant,
+      tool: 'editor',
+      method: 'input',
+    });
+  }, [variant]);
 
   // Drag and Drop implementation
   const handleDragOver = (e: React.DragEvent) => {
@@ -175,6 +187,13 @@ export default function EditorClient({
     if (file) {
       const text = await readFileAsText(file);
       setMarkdown(text);
+      event('upload_file', {
+        file_name: file.name,
+        file_size: file.size,
+        tool_type: variant,
+        tool: 'editor',
+        method: 'drag_and_drop',
+      });
     }
   };
 
@@ -199,6 +218,13 @@ export default function EditorClient({
 
   const handleExportPdf = async () => {
     const onProgress = beginExport('pdf');
+    event('export_file', {
+      format: 'pdf',
+      has_mermaid: markdownHasMermaid(markdown),
+      char_count: markdown.length,
+      tool: 'editor',
+      variant,
+    });
     try {
       await convertMarkdownToPdf(markdown, 'document.pdf', onProgress);
     } finally {
@@ -208,6 +234,13 @@ export default function EditorClient({
 
   const handleExportHtml = async () => {
     const onProgress = beginExport('html');
+    event('export_file', {
+      format: 'html',
+      has_mermaid: markdownHasMermaid(markdown),
+      char_count: markdown.length,
+      tool: 'editor',
+      variant,
+    });
     try {
       const fullHtml = await buildHtmlDocument(markdown, 'document', onProgress);
       onProgress('finalizing');
@@ -219,6 +252,12 @@ export default function EditorClient({
 
   const handleExportTxt = async () => {
     const onProgress = beginExport('txt');
+    event('export_file', {
+      format: 'txt',
+      char_count: markdown.length,
+      tool: 'editor',
+      variant,
+    });
     try {
       const txt = await buildTxtDocument(markdown, 'document.txt', onProgress);
       onProgress('finalizing');
@@ -231,6 +270,12 @@ export default function EditorClient({
   const handleCopy = async () => {
     await navigator.clipboard.writeText(markdown);
     setCopied(true);
+    event('copy_output', {
+      format: 'markdown',
+      char_count: markdown.length,
+      tool: 'editor',
+      variant,
+    });
     setTimeout(() => setCopied(false), 2000);
   };
 
@@ -349,7 +394,10 @@ export default function EditorClient({
           </button>
           <button
             type="button"
-            onClick={() => setMarkdown('')}
+            onClick={() => {
+              setMarkdown('');
+              event('clear_editor', { tool: 'editor', variant });
+            }}
             className="btn-secondary px-3 py-2 text-xs h-9 font-semibold hover:border-red-500 hover:bg-red-500/5 text-red-400"
           >
             <Trash2 className="w-4 h-4" />
@@ -362,7 +410,10 @@ export default function EditorClient({
         <div className={mobileTabsClass}>
           <button
             type="button"
-            onClick={() => setActiveTab('editor')}
+            onClick={() => {
+              setActiveTab('editor');
+              event('change_tab', { tab: 'editor', tool: 'editor', variant });
+            }}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 ${
               activeTab === 'editor' ? 'bg-[#3b82f6] text-white shadow-md' : 'text-[var(--text-secondary)]'
             }`}
@@ -372,7 +423,10 @@ export default function EditorClient({
           </button>
           <button
             type="button"
-            onClick={() => setActiveTab('preview')}
+            onClick={() => {
+              setActiveTab('preview');
+              event('change_tab', { tab: 'preview', tool: 'editor', variant });
+            }}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 ${
               activeTab === 'preview' ? 'bg-[#3b82f6] text-white shadow-md' : 'text-[var(--text-secondary)]'
             }`}

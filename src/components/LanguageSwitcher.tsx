@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useLocale } from 'next-intl';
+import { event } from '@/lib/analytics';
 import { usePathname, useRouter } from '@/i18n/navigation';
 import { locales, localeNames, localeFlags, Locale } from '@/i18n/locales';
 import { Globe, Check, ChevronDown } from 'lucide-react';
@@ -22,6 +23,7 @@ export default function LanguageSwitcher({ variant = 'default' }: { variant?: 'd
   }, []);
 
   const handleChange = (newLocale: Locale) => {
+    event('change_language', { from: locale, to: newLocale });
     router.replace(pathname, { locale: newLocale });
     setOpen(false);
   };
