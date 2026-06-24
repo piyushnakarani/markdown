@@ -3,7 +3,6 @@ import type { BlogPost } from '@/content/blog';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import {
   DEFAULT_KEYWORDS,
-  SITE_EMAIL,
   SITE_LOGO_PATH,
   SITE_NAME,
   SITE_URL,
@@ -169,6 +168,7 @@ export function buildArticleJsonLd(post: BlogPost, locale: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
+    '@id': `${url}#article`,
     headline: post.titleKey,
     description: post.metaDescription,
     datePublished: post.date,
@@ -179,16 +179,14 @@ export function buildArticleJsonLd(post: BlogPost, locale: string) {
       url: SITE_URL,
     },
     publisher: {
-      '@type': 'Organization',
-      name: SITE_NAME,
-      url: SITE_URL,
-      email: SITE_EMAIL,
-      logo: {
-        '@type': 'ImageObject',
-        url: absoluteUrl(SITE_LOGO_PATH),
-      },
+      '@id': `${SITE_URL}#organization`,
     },
-    image: absoluteUrl(SITE_LOGO_PATH),
+    image: {
+      '@type': 'ImageObject',
+      url: absoluteUrl(SITE_LOGO_PATH),
+      width: 909,
+      height: 279,
+    },
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
     url,
     articleSection: post.category,

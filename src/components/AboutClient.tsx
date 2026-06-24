@@ -13,15 +13,12 @@ import {
   Globe,
   GitBranch,
   ArrowRight,
-  Sparkles,
   Layers,
   Cpu,
-  Lock,
-  Play,
   CheckCircle,
-  ChevronRight,
   Terminal,
 } from 'lucide-react';
+import MermaidFlowchartPreview from '@/components/MermaidFlowchartPreview';
 
 export default function AboutClient() {
   const [activeStep, setActiveStep] = useState<'input' | 'pdf' | 'html' | 'txt' | 'mermaid'>('input');
@@ -134,14 +131,8 @@ flowchart LR
             </div>
             
             <h2 className="text-sm font-bold font-sans text-gray-800 border-b pb-0.5 mb-2 mt-4">Progress Graph</h2>
-            
-            {/* Embedded simulated chart */}
-            <div className="my-4 p-3 bg-gray-50 border border-gray-100 rounded-lg flex items-center justify-center gap-3 font-sans scale-95 origin-center">
-              <div className="px-2.5 py-1 bg-blue-100 border border-blue-200 text-blue-800 rounded font-semibold text-[9px]">Markdown Source</div>
-              <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
-              <div className="px-2.5 py-1 bg-purple-100 border border-purple-200 text-purple-800 rounded font-semibold text-[9px]">Parser</div>
-              <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
-              <div className="px-2.5 py-1 bg-emerald-100 border border-emerald-200 text-emerald-800 rounded font-semibold text-[9px]">Print Document</div>
+            <div className="my-4 scale-90 origin-center">
+              <MermaidFlowchartPreview variant="light" />
             </div>
           </div>
           
@@ -182,25 +173,7 @@ Markdown Source -> Parser -> Print Document`,
       lang: 'svg',
       content: (
         <div className="p-8 h-full flex flex-col justify-center items-center select-none bg-slate-950/20">
-          <div className="relative p-6 border border-[#3b82f6]/20 bg-slate-900/50 rounded-2xl flex flex-col items-center gap-4 max-w-sm w-full shadow-lg shadow-blue-500/5 backdrop-blur-sm">
-            <span className="absolute -top-3 left-4 px-2 py-0.5 text-[10px] font-bold text-blue-400 bg-blue-950 border border-blue-800 rounded-md">VECTORS</span>
-            <div className="flex flex-col sm:flex-row items-center gap-2.5 w-full justify-center">
-              <div className="px-3 py-2 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 border border-blue-500/30 text-[#38adf8] rounded-xl text-xs font-bold font-mono tracking-tight text-center shadow-inner shadow-blue-500/10">
-                Markdown Source
-              </div>
-              <div className="h-4 sm:h-px sm:w-8 border-l-2 sm:border-l-0 sm:border-t-2 border-dashed border-slate-700 relative">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-blue-500 animate-ping" />
-              </div>
-              <div className="px-3 py-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/30 text-[#a855f7] rounded-xl text-xs font-bold font-mono tracking-tight text-center shadow-inner shadow-purple-500/10">
-                Parser Engine
-              </div>
-              <div className="h-4 sm:h-px sm:w-8 border-l-2 sm:border-l-0 sm:border-t-2 border-dashed border-slate-700" />
-              <div className="px-3 py-2 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/30 text-[#34d399] rounded-xl text-xs font-bold font-mono tracking-tight text-center shadow-inner shadow-emerald-500/10">
-                Print Document
-              </div>
-            </div>
-            <p className="text-[10px] text-[var(--text-tertiary)] mt-2 text-center">Interactive SVG vector node output. Scalable to print formats.</p>
-          </div>
+          <MermaidFlowchartPreview variant="dark" />
         </div>
       ),
     },

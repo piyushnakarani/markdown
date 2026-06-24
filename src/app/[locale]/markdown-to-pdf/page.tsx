@@ -4,6 +4,7 @@ import { Sparkles } from 'lucide-react';
 import ConverterTool from '@/components/ConverterTool';
 import PageHero from '@/components/PageHero';
 import { buildLocalizedPageMetadata } from '@/lib/site';
+import { buildToolPageJsonLd } from '@/lib/structured-data';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -29,10 +30,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function MarkdownToPdfPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <MarkdownToPdfContent />;
+  return <MarkdownToPdfContent locale={locale} />;
 }
 
-function MarkdownToPdfContent() {
+function MarkdownToPdfContent({ locale }: { locale: string }) {
   const t = useTranslations();
 
   return (
@@ -53,11 +54,18 @@ function MarkdownToPdfContent() {
         glowColor="rgba(239,68,68,0.08)"
       />
       <ConverterTool type="pdf" />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Markdown to PDF Converter',
-        description: 'Convert Markdown to PDF online for free', applicationCategory: 'UtilityApplication',
-        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }
-      })}} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            buildToolPageJsonLd(
+              'Markdown to PDF Converter',
+              'Convert Markdown to PDF online for free with Mermaid diagram support.',
+              `/${locale}/markdown-to-pdf`,
+            ),
+          ),
+        }}
+      />
     </>
   );
 }

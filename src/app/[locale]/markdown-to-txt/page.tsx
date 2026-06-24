@@ -4,6 +4,7 @@ import { Sparkles } from 'lucide-react';
 import ConverterTool from '@/components/ConverterTool';
 import PageHero from '@/components/PageHero';
 import { buildLocalizedPageMetadata } from '@/lib/site';
+import { buildToolPageJsonLd } from '@/lib/structured-data';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -19,10 +20,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function MarkdownToTxtPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <MarkdownToTxtContent />;
+  return <MarkdownToTxtContent locale={locale} />;
 }
 
-function MarkdownToTxtContent() {
+function MarkdownToTxtContent({ locale }: { locale: string }) {
   const t = useTranslations();
 
   return (
@@ -43,6 +44,18 @@ function MarkdownToTxtContent() {
         glowColor="rgba(16,185,129,0.08)"
       />
       <ConverterTool type="txt" />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            buildToolPageJsonLd(
+              'Markdown to TXT Converter',
+              'Convert Markdown to plain text online for free — strip formatting instantly.',
+              `/${locale}/markdown-to-txt`,
+            ),
+          ),
+        }}
+      />
     </>
   );
 }

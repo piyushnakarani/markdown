@@ -1,7 +1,9 @@
 import { useTranslations } from 'next-intl';
-import { setRequestLocale } from 'next-intl/server';
+import { getMessages, setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import EditorClient from '@/components/EditorClient';
+import { buildPageMetadata } from '@/lib/site';
+import { buildFaqPageJsonLd } from '@/lib/structured-data';
 import FAQAccordion from '@/components/FAQAccordion';
 import TrustSection from '@/components/TrustSection';
 import HowItWorksSection from '@/components/HowItWorksSection';
@@ -21,13 +23,28 @@ import {
   PenLine,
 } from 'lucide-react';
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const messages = await getMessages();
+  const meta = (messages as Record<string, Record<string, string>>).metadata;
+
+  return buildPageMetadata({
+    title: meta?.title || 'PDFWritter',
+    description: meta?.description || 'Free online Markdown converter and editor',
+    path: `/${locale}`,
+    locale,
+    keywords: meta?.keywords?.split(',').map((k) => k.trim()),
+  });
+}
+
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <HomeContent />;
+  return <HomeContent locale={locale} />;
 }
 
-function HomeContent() {
+function HomeContent({ locale }: { locale: string }) {
   const t = useTranslations();
   const th = useTranslations('home');
 
@@ -222,15 +239,7 @@ function HomeContent() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: faqs.map((faq) => ({
-              '@type': 'Question',
-              name: faq.q,
-              acceptedAnswer: { '@type': 'Answer', text: faq.a },
-            })),
-          }),
+          __html: JSON.stringify(buildFaqPageJsonLd(faqs, `/${locale}`)),
         }}
       />
     </>

@@ -1,14 +1,29 @@
 import type { Metadata } from 'next';
-import { locales } from '@/i18n/locales';
+import { locales, type Locale } from '@/i18n/locales';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 
-export const SITE_URL = process.env.NEXT_PUBLIC_APP_URL || (process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://pdfwritter.com');
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') || 'https://www.pdfwritter.com';
 export const SITE_NAME = 'PDFWritter';
 export const SITE_TAGLINE = 'Markdown Convertor with Diagram';
 export const SITE_EMAIL = 'hello@pdfwritter.com';
 export const SITE_LOGO_PATH = '/logo.png';
 export const SITE_LOGO_DARK_PATH = '/logo-dark.png';
 export const SITE_LOGO_ICON_PATH = '/logo-icon-512.png';
+
+const OG_LOCALE_MAP: Record<Locale, string> = {
+  en: 'en_US',
+  es: 'es_ES',
+  fr: 'fr_FR',
+  de: 'de_DE',
+  pt: 'pt_BR',
+  ar: 'ar_SA',
+  zh: 'zh_CN',
+  ja: 'ja_JP',
+  ko: 'ko_KR',
+  bn: 'bn_BD',
+  ru: 'ru_RU',
+};
 
 export const DEFAULT_KEYWORDS = [
   'markdown viewer',
@@ -42,6 +57,16 @@ export function swapLocaleInPath(path: string, locale: string): string {
   return `/${locale}${suffix}`;
 }
 
+/** Hreflang alternate URLs for a locale-prefixed path (e.g. /en/contact). */
+export function buildAlternateLanguages(path: string): Record<string, string> {
+  return {
+    ...Object.fromEntries(
+      locales.map((l) => [l, absoluteUrl(swapLocaleInPath(path, l))])
+    ),
+    'x-default': absoluteUrl(swapLocaleInPath(path, 'en')),
+  };
+}
+
 type BuildPageMetadataOptions = {
   title: string;
   description: string;
@@ -61,6 +86,9 @@ export function buildPageMetadata({
 }: BuildPageMetadataOptions): Metadata {
   const url = absoluteUrl(path);
   const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  const ogLocale = OG_LOCALE_MAP[locale as Locale] || 'en_US';
+  const logoUrl = absoluteUrl(SITE_LOGO_PATH);
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -80,13 +108,8 @@ export function buildPageMetadata({
       apple: '/apple-touch-icon.png',
     },
     alternates: {
-      canonical: `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`,
-      languages: {
-        ...Object.fromEntries(
-          locales.map((l) => [l, `${SITE_URL}${swapLocaleInPath(path, l)}`])
-        ),
-        'x-default': `${SITE_URL}${swapLocaleInPath(path, 'en')}`,
-      },
+      canonical: absoluteUrl(normalizedPath),
+      languages: buildAlternateLanguages(normalizedPath),
     },
     openGraph: {
       title: fullTitle,
@@ -94,10 +117,13 @@ export function buildPageMetadata({
       type,
       url,
       siteName: SITE_NAME,
-      locale,
+      locale: ogLocale,
+      alternateLocale: locales
+        .filter((l) => l !== locale)
+        .map((l) => OG_LOCALE_MAP[l]),
       images: [
         {
-          url: SITE_LOGO_PATH,
+          url: logoUrl,
           width: 909,
           height: 279,
           alt: `${SITE_NAME} — ${SITE_TAGLINE}`,
@@ -108,7 +134,7 @@ export function buildPageMetadata({
       card: 'summary_large_image',
       title: fullTitle,
       description,
-      images: [SITE_LOGO_PATH],
+      images: [logoUrl],
     },
     robots: {
       index: true,
@@ -212,15 +238,22 @@ export async function buildLocalizedPageMetadata({
 
 
 export function buildWebApplicationJsonLd(locale: string) {
+  const url = absoluteUrl(`/${locale}`);
   return {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
+    '@id': `${url}#webapp`,
     name: SITE_NAME,
     alternateName: SITE_TAGLINE,
     description:
       'Free online Markdown convertor with diagram support. Convert Markdown with Mermaid flowcharts, sequence diagrams, and charts to PDF, HTML, and TXT at pdfwritter.com.',
-    url: absoluteUrl(`/${locale}`),
-    image: absoluteUrl(SITE_LOGO_PATH),
+    url,
+    image: {
+      '@type': 'ImageObject',
+      url: absoluteUrl(SITE_LOGO_PATH),
+      width: 909,
+      height: 279,
+    },
     applicationCategory: 'DeveloperApplication',
     operatingSystem: 'All',
     browserRequirements: 'Requires JavaScript',
@@ -238,18 +271,5 @@ export function buildWebApplicationJsonLd(locale: string) {
       'Online Markdown editor with live preview',
       'Syntax highlighting',
     ],
-  };
-}
-
-export function buildOrganizationJsonLd() {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: SITE_NAME,
-    url: SITE_URL,
-    email: SITE_EMAIL,
-    logo: absoluteUrl(SITE_LOGO_PATH),
-    description: SITE_TAGLINE,
-    sameAs: [],
   };
 }
