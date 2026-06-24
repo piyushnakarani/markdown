@@ -11,6 +11,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import TransitionLoader from '@/components/TransitionLoader';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
+import { GoogleTagManagerHead, GoogleTagManagerNoScript } from '@/components/GoogleTagManager';
 import {
   SITE_NAME,
   SITE_TAGLINE,
@@ -80,6 +81,7 @@ export default async function LocaleLayout({
       className={`${GeistSans.variable} ${GeistMono.variable}`}
     >
       <head>
+        <GoogleTagManagerHead />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#0B0D12" />
         <script
@@ -119,6 +121,7 @@ export default async function LocaleLayout({
         className={`${GeistSans.className} min-h-screen flex flex-col antialiased`}
         suppressHydrationWarning
       >
+        <GoogleTagManagerNoScript />
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
             <GoogleAnalytics />
