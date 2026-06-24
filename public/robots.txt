@@ -1,7 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /api/
-Disallow: /_next/
-
-Sitemap: https://pdfwritter.com/sitemap.xml
-Host: https://pdfwritter.com

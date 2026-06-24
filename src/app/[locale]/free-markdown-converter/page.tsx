@@ -3,6 +3,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { FileText, Code2, FileType, PenLine, ArrowRight, Check, Sparkles } from 'lucide-react';
 import { buildLocalizedPageMetadata } from '@/lib/site';
+import { buildToolPageJsonLd } from '@/lib/structured-data';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -18,10 +19,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function FreeConverterPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <FreeConverterContent />;
+  return <FreeConverterContent locale={locale} />;
 }
 
-function FreeConverterContent() {
+function FreeConverterContent({ locale }: { locale: string }) {
   const t = useTranslations();
 
   const converters = [
@@ -89,6 +90,18 @@ function FreeConverterContent() {
           </div>
         </div>
       </section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            buildToolPageJsonLd(
+              'Free Markdown Converter',
+              'Free online Markdown converter hub — PDF, HTML, TXT export with Mermaid diagram support.',
+              `/${locale}/free-markdown-converter`,
+            ),
+          ),
+        }}
+      />
     </>
   );
 }

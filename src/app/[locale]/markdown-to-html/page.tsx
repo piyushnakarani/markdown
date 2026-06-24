@@ -4,6 +4,7 @@ import { Sparkles } from 'lucide-react';
 import ConverterTool from '@/components/ConverterTool';
 import PageHero from '@/components/PageHero';
 import { buildLocalizedPageMetadata } from '@/lib/site';
+import { buildToolPageJsonLd } from '@/lib/structured-data';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -19,10 +20,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function MarkdownToHtmlPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <MarkdownToHtmlContent />;
+  return <MarkdownToHtmlContent locale={locale} />;
 }
 
-function MarkdownToHtmlContent() {
+function MarkdownToHtmlContent({ locale }: { locale: string }) {
   const t = useTranslations();
 
   return (
@@ -43,6 +44,18 @@ function MarkdownToHtmlContent() {
         glowColor="rgba(245,158,11,0.08)"
       />
       <ConverterTool type="html" />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            buildToolPageJsonLd(
+              'Markdown to HTML Converter',
+              'Convert Markdown to clean semantic HTML online for free with Mermaid diagram support.',
+              `/${locale}/markdown-to-html`,
+            ),
+          ),
+        }}
+      />
     </>
   );
 }

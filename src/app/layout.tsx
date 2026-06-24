@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SITE_LOGO_PATH, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
+import { SITE_LOGO_PATH, SITE_NAME, SITE_TAGLINE, SITE_URL, absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   openGraph: {
-    images: [{ url: SITE_LOGO_PATH, width: 909, height: 279, alt: SITE_NAME }],
+    images: [{ url: absoluteUrl(SITE_LOGO_PATH), width: 909, height: 279, alt: SITE_NAME }],
   },
 };
 

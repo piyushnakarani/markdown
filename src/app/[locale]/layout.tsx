@@ -11,46 +11,21 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import TransitionLoader from '@/components/TransitionLoader';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
+import { GoogleTagManagerHead, GoogleTagManagerNoScript } from '@/components/GoogleTagManager';
 import {
-  SITE_NAME,
-  SITE_TAGLINE,
   SITE_URL,
-  buildPageMetadata,
-  buildOrganizationJsonLd,
-  buildWebApplicationJsonLd,
 } from '@/lib/site';
+import { LLMS_TXT_URL } from '@/lib/ai-seo';
+import { buildSiteJsonLdGraph } from '@/lib/structured-data';
 import '../globals.css';
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-  const messages = await getMessages();
-  const meta = (messages as Record<string, Record<string, string>>).metadata;
-
+export async function generateMetadata() {
   return {
     metadataBase: new URL(SITE_URL),
-    title: meta?.title || 'MarkdownTools',
-    description: meta?.description || 'Free online Markdown converter and editor',
-    keywords: meta?.keywords,
-    alternates: {
-      canonical: `${SITE_URL}/${locale}`,
-      languages: {
-        ...Object.fromEntries(
-          locales.map((l) => [l, `${SITE_URL}/${l}`])
-        ),
-        'x-default': `${SITE_URL}/en`,
-      },
-    },
-    openGraph: {
-      title: meta?.title,
-      description: meta?.description,
-      type: 'website',
-      locale: locale,
-    },
   };
 }
 
@@ -80,6 +55,9 @@ export default async function LocaleLayout({
       className={`${GeistSans.variable} ${GeistMono.variable}`}
     >
       <head>
+        <GoogleTagManagerHead />
+        <link rel="alternate" type="text/plain" href={LLMS_TXT_URL} title="LLM Content Index" />
+        <meta name="ai-content-note" content="Machine-readable site index available at /llms.txt and /llms-full.txt for AI assistants and search systems." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#0B0D12" />
         <script
@@ -105,13 +83,7 @@ export default async function LocaleLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(buildWebApplicationJsonLd(locale)),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(buildOrganizationJsonLd()),
+            __html: JSON.stringify(buildSiteJsonLdGraph(locale)),
           }}
         />
       </head>
@@ -119,6 +91,7 @@ export default async function LocaleLayout({
         className={`${GeistSans.className} min-h-screen flex flex-col antialiased`}
         suppressHydrationWarning
       >
+        <GoogleTagManagerNoScript />
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
             <GoogleAnalytics />

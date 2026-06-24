@@ -4,6 +4,7 @@ import { PenLine } from 'lucide-react';
 import EditorClient from '@/components/EditorClient';
 import PageHero from '@/components/PageHero';
 import { buildLocalizedPageMetadata } from '@/lib/site';
+import { buildToolPageJsonLd } from '@/lib/structured-data';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -30,10 +31,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function EditorPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <EditorPageContent />;
+  return <EditorPageContent locale={locale} />;
 }
 
-function EditorPageContent() {
+function EditorPageContent({ locale }: { locale: string }) {
   const t = useTranslations('editor');
 
   return (
@@ -47,6 +48,18 @@ function EditorPageContent() {
         glowColor="rgba(59,130,246,0.08)"
       />
       <EditorClient />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            buildToolPageJsonLd(
+              'Online Markdown Editor',
+              'Write Markdown with live preview, syntax highlighting, and Mermaid diagram support.',
+              `/${locale}/editor`,
+            ),
+          ),
+        }}
+      />
     </>
   );
 }
