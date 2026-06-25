@@ -8,6 +8,8 @@ export const SITE_URL =
 export const SITE_NAME = 'PDFWritter';
 export const SITE_TAGLINE = 'Markdown Convertor with Diagram';
 export const SITE_EMAIL = 'hello@pdfwritter.com';
+export const BLOG_AUTHOR_NAME = 'PDFWritter Editorial Team';
+export const BLOG_AUTHOR_ROLE = 'Technical Writing Team';
 export const SITE_LOGO_PATH = '/logo.png';
 export const SITE_LOGO_DARK_PATH = '/logo-dark.png';
 export const SITE_LOGO_ICON_PATH = '/logo-icon-512.png';
@@ -101,6 +103,11 @@ type BuildPageMetadataOptions = {
   };
 };
 
+/** Strip trailing brand suffix so root layout title template does not duplicate it. */
+export function normalizePageTitle(title: string): string {
+  return title.replace(new RegExp(`\\s*\\|\\s*${SITE_NAME}\\s*$`, 'i'), '').trim();
+}
+
 export function buildPageMetadata({
   title,
   description,
@@ -110,7 +117,8 @@ export function buildPageMetadata({
   type = 'website',
   image,
 }: BuildPageMetadataOptions): Metadata {
-  const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
+  const pageTitle = normalizePageTitle(title);
+  const fullTitle = `${pageTitle} | ${SITE_NAME}`;
   const normalizedPath = localizedPath(locale, path);
   const url = absoluteUrl(normalizedPath);
   const ogLocale = OG_LOCALE_MAP[locale as Locale] || 'en_US';
@@ -124,7 +132,7 @@ export function buildPageMetadata({
 
   return {
     metadataBase: new URL(SITE_URL),
-    title: fullTitle,
+    title: pageTitle,
     description,
     keywords,
     authors: [{ name: SITE_NAME, url: SITE_URL }],
@@ -255,6 +263,10 @@ export async function buildLocalizedPageMetadata({
     else if (descriptionKey === 'contact.subtitle') description = 'Get in touch with the PDFWritter team.';
     else if (descriptionKey === 'editor.description') description = 'Write Markdown with live preview and diagram rendering.';
     else if (descriptionKey === 'help.subtitle') description = 'Everything you need to know about using PDFWritter.';
+    else if (descriptionKey === 'help.metaDescription') {
+      description =
+        'PDFWritter help: convert Markdown to PDF, HTML, and TXT in your browser. Getting started guide, syntax reference, keyboard shortcuts, Mermaid diagrams, and FAQs.';
+    }
     else if (descriptionKey === 'freeConverter.subtitle') description = 'Convert Markdown to any format in your browser.';
     else if (descriptionKey === 'livePreview.description') {
       description =
