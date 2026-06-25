@@ -189,6 +189,7 @@ export type BuildLocalizedPageMetadataOptions = {
   titleSuffix?: string;
   keywords?: string[];
   type?: 'website' | 'article';
+  image?: BuildPageMetadataOptions['image'];
 };
 
 export async function buildLocalizedPageMetadata({
@@ -199,6 +200,7 @@ export async function buildLocalizedPageMetadata({
   titleSuffix = '',
   keywords,
   type = 'website',
+  image,
 }: BuildLocalizedPageMetadataOptions): Promise<Metadata> {
   setRequestLocale(locale);
   let title = '';
@@ -238,6 +240,7 @@ export async function buildLocalizedPageMetadata({
     else if (titleKey === 'editor.title') title = 'Online Markdown Editor';
     else if (titleKey === 'help.title') title = 'Help & Documentation';
     else if (titleKey === 'freeConverter.title') title = 'Free Markdown Converter Online';
+    else if (titleKey === 'markdownToPdf.title') title = 'Markdown to PDF Converter';
     else if (titleKey === 'tools.pdfTitle') title = 'Markdown to PDF';
     else if (titleKey === 'tools.htmlTitle') title = 'Markdown to HTML';
     else if (titleKey === 'tools.txtTitle') title = 'Markdown to TXT';
@@ -252,7 +255,10 @@ export async function buildLocalizedPageMetadata({
     else if (descriptionKey === 'editor.description') description = 'Write Markdown with live preview and diagram rendering.';
     else if (descriptionKey === 'help.subtitle') description = 'Everything you need to know about using PDFWritter.';
     else if (descriptionKey === 'freeConverter.subtitle') description = 'Convert Markdown to any format in your browser.';
-    else if (descriptionKey === 'tools.pdfDescription') description = 'Convert Markdown to PDF online for free.';
+    else if (descriptionKey === 'markdownToPdf.description') {
+      description =
+        'Convert Markdown to PDF online for free with live preview, Mermaid diagram support, and instant download — 100% private in your browser.';
+    } else if (descriptionKey === 'tools.pdfDescription') description = 'Convert Markdown to PDF online for free.';
     else if (descriptionKey === 'tools.htmlDescription') description = 'Convert Markdown to HTML online for free.';
     else if (descriptionKey === 'tools.txtDescription') description = 'Convert Markdown to plain text online for free.';
     else if (descriptionKey === 'privacy.subtitle') description = 'Read the PDFWritter privacy policy. Your file privacy is guaranteed.';
@@ -271,6 +277,7 @@ export async function buildLocalizedPageMetadata({
     locale,
     keywords: finalKeywords || DEFAULT_KEYWORDS,
     type,
+    image,
   });
 }
 

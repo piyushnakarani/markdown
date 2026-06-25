@@ -17,7 +17,8 @@ const CORE_PAGES: { path: string; title: string; description: string }[] = [
   {
     path: '/markdown-to-pdf',
     title: 'Markdown to PDF',
-    description: 'Convert Markdown to PDF in the browser with Mermaid diagram rendering and print-to-PDF export.',
+    description:
+      'Free Markdown to PDF converter with live preview, Mermaid diagram support, and instant browser-side download. No sign-up required.',
   },
   {
     path: '/markdown-to-html',
