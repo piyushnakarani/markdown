@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/markdown-to-pdf',
     '/markdown-to-html',
     '/markdown-to-txt',
+    '/markdown-live-preview',
     '/editor',
     '/blog',
     '/about',
@@ -32,7 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         url: `${BASE_URL}${path}`,
         lastModified: new Date(),
         changeFrequency: page === '' ? 'daily' : 'weekly',
-        priority: page === '' ? 1.0 : page.includes('markdown-to') ? 0.9 : 0.7,
+        priority: page === '' ? 1.0 : page.includes('markdown') ? 0.9 : 0.7,
         alternates: {
           languages: buildAlternateLanguages(page),
         },

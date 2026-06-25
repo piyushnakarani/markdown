@@ -35,6 +35,11 @@ const CORE_PAGES: { path: string; title: string; description: string }[] = [
     description: 'Write Markdown with live preview, syntax highlighting, and one-click export.',
   },
   {
+    path: '/markdown-live-preview',
+    title: 'Markdown Live Preview',
+    description: 'Free split-pane Markdown live preview with sync scroll, dark mode, and instant PDF export in the browser.',
+  },
+  {
     path: '/free-markdown-converter',
     title: 'Free Markdown Converter',
     description: 'Hub for all PDFWritter conversion tools in one place.',

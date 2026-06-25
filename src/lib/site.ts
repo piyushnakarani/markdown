@@ -93,6 +93,12 @@ type BuildPageMetadataOptions = {
   locale: string;
   keywords?: string[];
   type?: 'website' | 'article';
+  image?: {
+    url: string;
+    width: number;
+    height: number;
+    alt: string;
+  };
 };
 
 export function buildPageMetadata({
@@ -102,12 +108,19 @@ export function buildPageMetadata({
   locale,
   keywords = DEFAULT_KEYWORDS,
   type = 'website',
+  image,
 }: BuildPageMetadataOptions): Metadata {
   const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
   const normalizedPath = localizedPath(locale, path);
   const url = absoluteUrl(normalizedPath);
   const ogLocale = OG_LOCALE_MAP[locale as Locale] || 'en_US';
   const logoUrl = absoluteUrl(SITE_LOGO_PATH);
+  const ogImage = image ?? {
+    url: logoUrl,
+    width: 909,
+    height: 279,
+    alt: `${SITE_NAME} — ${SITE_TAGLINE}`,
+  };
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -142,10 +155,10 @@ export function buildPageMetadata({
         .map((l) => OG_LOCALE_MAP[l]),
       images: [
         {
-          url: logoUrl,
-          width: 909,
-          height: 279,
-          alt: `${SITE_NAME} — ${SITE_TAGLINE}`,
+          url: ogImage.url,
+          width: ogImage.width,
+          height: ogImage.height,
+          alt: ogImage.alt,
         },
       ],
     },
@@ -153,7 +166,7 @@ export function buildPageMetadata({
       card: 'summary_large_image',
       title: fullTitle,
       description,
-      images: [logoUrl],
+      images: [ogImage.url],
     },
     robots: {
       index: true,

@@ -1,4 +1,4 @@
-import { ArrowRight, Check, Code2, FileText, FileType, PenLine, Sparkles } from 'lucide-react';
+import { ArrowRight, Check, Code2, Eye, FileText, FileType, PenLine, Sparkles } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 
@@ -30,6 +30,7 @@ function FreeConverterContent({ locale }: { locale: string }) {
     { href: '/markdown-to-pdf', icon: FileText, color: '#ef4444', title: t('tools.pdfTitle'), desc: t('tools.pdfDescription') },
     { href: '/markdown-to-html', icon: Code2, color: '#f59e0b', title: t('tools.htmlTitle'), desc: t('tools.htmlDescription') },
     { href: '/markdown-to-txt', icon: FileType, color: '#10b981', title: t('tools.txtTitle'), desc: t('tools.txtDescription') },
+    { href: '/markdown-live-preview', icon: Eye, color: '#8b5cf6', title: t('tools.livePreviewTitle'), desc: t('tools.livePreviewDescription') },
     { href: '/editor', icon: PenLine, color: '#6366f1', title: t('tools.editorTitle'), desc: t('tools.editorDescription') },
   ];
 

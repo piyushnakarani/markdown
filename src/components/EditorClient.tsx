@@ -65,14 +65,16 @@ export type EditorClientProps = {
   variant?: 'page' | 'embedded' | 'hero';
   defaultMarkdown?: string;
   className?: string;
+  translationNamespace?: 'editor' | 'livePreview';
 };
 
 export default function EditorClient({
   variant = 'page',
   defaultMarkdown,
   className = '',
+  translationNamespace = 'editor',
 }: EditorClientProps) {
-  const t = useTranslations('editor');
+  const t = useTranslations(translationNamespace);
   const isEmbedded = variant === 'embedded' || variant === 'hero';
   const isHero = variant === 'hero';
   const initialMarkdown =

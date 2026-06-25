@@ -98,6 +98,14 @@ export function buildPostMetadata(post: BlogPost, locale: string): Metadata {
     locale,
     keywords: post.keywords,
     type: 'article',
+    image: post.coverImage
+      ? {
+          url: absoluteUrl(post.coverImage.src),
+          width: post.coverImage.width,
+          height: post.coverImage.height,
+          alt: post.coverImage.alt,
+        }
+      : undefined,
   });
 
   return {
@@ -189,12 +197,20 @@ export function buildArticleJsonLd(post: BlogPost, locale: string) {
     publisher: {
       '@id': `${SITE_URL}#organization`,
     },
-    image: {
-      '@type': 'ImageObject',
-      url: absoluteUrl(SITE_LOGO_PATH),
-      width: 909,
-      height: 279,
-    },
+    image: post.coverImage
+      ? {
+          '@type': 'ImageObject',
+          url: absoluteUrl(post.coverImage.src),
+          width: post.coverImage.width,
+          height: post.coverImage.height,
+          caption: post.coverImage.alt,
+        }
+      : {
+          '@type': 'ImageObject',
+          url: absoluteUrl(SITE_LOGO_PATH),
+          width: 909,
+          height: 279,
+        },
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
     url,
     articleSection: post.category,
