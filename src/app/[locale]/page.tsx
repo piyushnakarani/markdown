@@ -1,27 +1,29 @@
-import { useTranslations } from 'next-intl';
-import { getMessages, setRequestLocale } from 'next-intl/server';
-import { Link } from '@/i18n/navigation';
-import EditorClient from '@/components/EditorClient';
-import { buildPageMetadata } from '@/lib/site';
-import { buildFaqPageJsonLd } from '@/lib/structured-data';
-import FAQAccordion from '@/components/FAQAccordion';
-import TrustSection from '@/components/TrustSection';
-import HowItWorksSection from '@/components/HowItWorksSection';
-import SectionHeading from '@/components/SectionHeading';
-import ScrollReveal from '@/components/ScrollReveal';
 import {
   ArrowRight,
-  Zap,
-  Shield,
-  Globe,
-  Monitor,
-  Lock,
-  Sparkles,
-  FileText,
   Code2,
+  Eye,
+  FileText,
   FileType,
+  Globe,
+  Lock,
+  Monitor,
   PenLine,
+  Shield,
+  Sparkles,
+  Zap,
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { getMessages, setRequestLocale } from 'next-intl/server';
+
+import EditorClient from '@/components/EditorClient';
+import FAQAccordion from '@/components/FAQAccordion';
+import HowItWorksSection from '@/components/HowItWorksSection';
+import ScrollReveal from '@/components/ScrollReveal';
+import SectionHeading from '@/components/SectionHeading';
+import TrustSection from '@/components/TrustSection';
+import { Link } from '@/i18n/navigation';
+import { buildPageMetadata } from '@/lib/site';
+import { buildFaqPageJsonLd } from '@/lib/structured-data';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -83,14 +85,14 @@ function HomeContent({ locale }: { locale: string }) {
       speed: '~5ms',
     },
     {
-      href: '/editor',
-      icon: PenLine,
-      color: '#3b82f6',
-      bg: 'from-blue-500/15 to-indigo-500/5',
-      gradient: 'from-blue-500 to-indigo-500',
-      title: t('tools.editorTitle'),
-      desc: t('tools.editorDescription'),
-      flow: ['LIVE', 'EDIT'],
+      href: '/markdown-live-preview',
+      icon: Eye,
+      color: '#8b5cf6',
+      bg: 'from-violet-500/15 to-purple-500/5',
+      gradient: 'from-violet-500 to-purple-500',
+      title: t('tools.livePreviewTitle'),
+      desc: t('tools.livePreviewDescription'),
+      flow: ['MD', 'LIVE'],
       speed: 'Real-time',
     },
   ];

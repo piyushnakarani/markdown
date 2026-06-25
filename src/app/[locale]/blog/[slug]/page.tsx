@@ -1,15 +1,30 @@
-import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { Link } from '@/i18n/navigation';
-import { notFound } from 'next/navigation';
 import {
-  blogPosts,
+  ArrowLeft,
+  ArrowRight,
+  Calendar,
+  ChevronRight,
+  Clock,
+  PenLine,
+  Tag,
+} from 'lucide-react';
+import { notFound } from 'next/navigation';
+import { getTranslations,setRequestLocale } from 'next-intl/server';
+
+import {
+  BlogArticleShare,
+  BlogArticleTOC,
+  BlogReadingProgress,
+} from '@/components/BlogArticleClient';
+import ScrollReveal from '@/components/ScrollReveal';
+import {
   BLOG_CATEGORY_STYLES,
+  blogPosts,
   getAdjacentPosts,
   getBlogPost,
   getRelatedPosts,
 } from '@/content/blog';
-import { convertMarkdownToHtml } from '@/lib/converters';
 import { locales } from '@/i18n/locales';
+import { Link } from '@/i18n/navigation';
 import {
   buildArticleJsonLd,
   buildBreadcrumbJsonLd,
@@ -20,22 +35,8 @@ import {
   injectHeadingIds,
   stripLeadingH1,
 } from '@/lib/blog-seo';
+import { convertMarkdownToHtml } from '@/lib/converters';
 import { SITE_NAME } from '@/lib/site';
-import {
-  Calendar,
-  Clock,
-  ArrowLeft,
-  ArrowRight,
-  Tag,
-  ChevronRight,
-  PenLine,
-} from 'lucide-react';
-import ScrollReveal from '@/components/ScrollReveal';
-import {
-  BlogReadingProgress,
-  BlogArticleTOC,
-  BlogArticleShare,
-} from '@/components/BlogArticleClient';
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));

@@ -1,6 +1,7 @@
+import { BookOpen, FileText,HelpCircle, Keyboard } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
-import { HelpCircle, BookOpen, Keyboard, FileText } from 'lucide-react';
+
 import { buildLocalizedPageMetadata } from '@/lib/site';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {

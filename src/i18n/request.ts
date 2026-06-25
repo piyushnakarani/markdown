@@ -1,20 +1,24 @@
 import { getRequestConfig } from 'next-intl/server';
-import { routing } from './routing';
-import { Locale } from './locales';
 
-function isObject(item: any): boolean {
-  return !!(item && typeof item === 'object' && !Array.isArray(item));
+import { Locale } from './locales';
+import { routing } from './routing';
+
+type MessageValue = string | MessageTree;
+type MessageTree = { [key: string]: MessageValue };
+
+function isMessageTree(item: unknown): item is MessageTree {
+  return !!item && typeof item === 'object' && !Array.isArray(item);
 }
 
-function deepMerge(target: any, source: any): any {
-  const output = { ...target };
-  if (isObject(target) && isObject(source)) {
+function deepMerge(target: MessageTree, source: MessageTree): MessageTree {
+  const output: MessageTree = { ...target };
+  if (isMessageTree(target) && isMessageTree(source)) {
     Object.keys(source).forEach((key) => {
-      if (isObject(source[key])) {
+      if (isMessageTree(source[key])) {
         if (!(key in target)) {
           Object.assign(output, { [key]: source[key] });
         } else {
-          output[key] = deepMerge(target[key], source[key]);
+          output[key] = deepMerge(target[key] as MessageTree, source[key] as MessageTree);
         }
       } else {
         Object.assign(output, { [key]: source[key] });

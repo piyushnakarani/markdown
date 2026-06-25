@@ -1,10 +1,11 @@
-import { setRequestLocale } from 'next-intl/server';
-import { useTranslations } from 'next-intl';
-import { blogPosts } from '@/content/blog';
-import { buildBlogIndexMetadata, buildBlogIndexJsonLd } from '@/lib/blog-seo';
 import { BookOpen } from 'lucide-react';
-import PageHero from '@/components/PageHero';
+import { useTranslations } from 'next-intl';
+import { setRequestLocale } from 'next-intl/server';
+
 import BlogClient from '@/components/BlogClient';
+import PageHero from '@/components/PageHero';
+import { blogPosts } from '@/content/blog';
+import { buildBlogIndexJsonLd,buildBlogIndexMetadata } from '@/lib/blog-seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

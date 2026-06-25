@@ -1,13 +1,15 @@
 import type { Metadata } from 'next';
-import type { BlogPost } from '@/content/blog';
 import { getMessages, setRequestLocale } from 'next-intl/server';
+
+import type { BlogPost } from '@/content/blog';
 import {
+  absoluteUrl,
+  buildPageMetadata,
   DEFAULT_KEYWORDS,
+  localizedPath,
   SITE_LOGO_PATH,
   SITE_NAME,
   SITE_URL,
-  absoluteUrl,
-  buildPageMetadata,
 } from '@/lib/site';
 
 export { SITE_NAME, SITE_URL };
@@ -74,11 +76,11 @@ export function injectHeadingIds(html: string): string {
 }
 
 export function getPostUrl(locale: string, slug: string): string {
-  return absoluteUrl(`/${locale}/blog/${slug}`);
+  return absoluteUrl(localizedPath(locale, `/blog/${slug}`));
 }
 
 export function getBlogIndexUrl(locale: string): string {
-  return absoluteUrl(`/${locale}/blog`);
+  return absoluteUrl(localizedPath(locale, '/blog'));
 }
 
 /** Remove duplicate H1 when the page header already renders the title. */
@@ -96,6 +98,14 @@ export function buildPostMetadata(post: BlogPost, locale: string): Metadata {
     locale,
     keywords: post.keywords,
     type: 'article',
+    image: post.coverImage
+      ? {
+          url: absoluteUrl(post.coverImage.src),
+          width: post.coverImage.width,
+          height: post.coverImage.height,
+          alt: post.coverImage.alt,
+        }
+      : undefined,
   });
 
   return {
@@ -127,8 +137,14 @@ export async function buildBlogIndexMetadata(locale: string): Promise<Metadata> 
   try {
     const messages = await getMessages();
     
-    const getNestedValue = (obj: any, keyPath: string): string => {
-      return keyPath.split('.').reduce((prev, curr) => prev?.[curr], obj) as string || '';
+    const getNestedValue = (obj: Record<string, unknown>, keyPath: string): string => {
+      const value = keyPath.split('.').reduce<unknown>((prev, curr) => {
+        if (prev !== null && typeof prev === 'object' && curr in prev) {
+          return (prev as Record<string, unknown>)[curr];
+        }
+        return undefined;
+      }, obj);
+      return typeof value === 'string' ? value : '';
     };
 
     const transTitle = getNestedValue(messages, 'blog.title');
@@ -181,12 +197,20 @@ export function buildArticleJsonLd(post: BlogPost, locale: string) {
     publisher: {
       '@id': `${SITE_URL}#organization`,
     },
-    image: {
-      '@type': 'ImageObject',
-      url: absoluteUrl(SITE_LOGO_PATH),
-      width: 909,
-      height: 279,
-    },
+    image: post.coverImage
+      ? {
+          '@type': 'ImageObject',
+          url: absoluteUrl(post.coverImage.src),
+          width: post.coverImage.width,
+          height: post.coverImage.height,
+          caption: post.coverImage.alt,
+        }
+      : {
+          '@type': 'ImageObject',
+          url: absoluteUrl(SITE_LOGO_PATH),
+          width: 909,
+          height: 279,
+        },
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
     url,
     articleSection: post.category,

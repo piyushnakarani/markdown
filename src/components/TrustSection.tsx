@@ -1,7 +1,8 @@
 'use client';
 
+import { CloudOff,Lock, Shield, Zap } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { Shield, Zap, Lock, CloudOff } from 'lucide-react';
+
 import ScrollReveal from './ScrollReveal';
 
 export default function TrustSection() {

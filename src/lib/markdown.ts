@@ -1,4 +1,5 @@
 import { marked } from 'marked';
+
 import { mermaidCodeToHtml } from './mermaid-render';
 
 type Hljs = typeof import('highlight.js').default;

@@ -1,23 +1,26 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import {
+  ArrowRight,
+  ChevronDown,
+  Code2,
+  Eye,
+  FileText,
+  FileType,
+  Menu,
+  Moon,
+  PenLine,
+  Sun,
+  X,
+} from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useEffect, useRef,useState } from 'react';
+
 import { Link, usePathname } from '@/i18n/navigation';
-import { useTheme } from './ThemeProvider';
+
 import LanguageSwitcher from './LanguageSwitcher';
 import SiteLogo from './SiteLogo';
-import {
-  Sun,
-  Moon,
-  Menu,
-  X,
-  FileText,
-  Code2,
-  FileType,
-  PenLine,
-  ChevronDown,
-  ArrowRight,
-} from 'lucide-react';
+import { useTheme } from './ThemeProvider';
 
 export default function Header() {
   const t = useTranslations('nav');
@@ -71,6 +74,7 @@ export default function Header() {
     { href: '/markdown-to-pdf', label: t('markdownToPdf'), icon: FileText, color: '#ef4444', bg: 'from-red-500/10 to-orange-500/5' },
     { href: '/markdown-to-html', label: t('markdownToHtml'), icon: Code2, color: '#f59e0b', bg: 'from-amber-500/10 to-yellow-500/5' },
     { href: '/markdown-to-txt', label: t('markdownToTxt'), icon: FileType, color: '#10b981', bg: 'from-emerald-500/10 to-green-500/5' },
+    { href: '/markdown-live-preview', label: t('markdownLivePreview'), icon: Eye, color: '#8b5cf6', bg: 'from-violet-500/10 to-purple-500/5' },
     { href: '/editor', label: t('editor'), icon: PenLine, color: '#3b82f6', bg: 'from-blue-500/10 to-indigo-500/5' },
   ];
 

@@ -1,9 +1,10 @@
+import { Sparkles } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
-import { Sparkles } from 'lucide-react';
-import { buildLocalizedPageMetadata } from '@/lib/site';
-import PageHero from '@/components/PageHero';
+
 import AboutClient from '@/components/AboutClient';
+import PageHero from '@/components/PageHero';
+import { buildLocalizedPageMetadata } from '@/lib/site';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

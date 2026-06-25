@@ -1,8 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { Link } from '@/i18n/navigation';
+
 import { useTheme } from '@/components/ThemeProvider';
+import { Link } from '@/i18n/navigation';
 
 /** Native logo dimensions — keep in sync with public/logo.png */
 export const LOGO_WIDTH = 909;

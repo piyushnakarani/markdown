@@ -1,33 +1,35 @@
 import {
   ArrowRight,
   Check,
+  Copy,
   Download,
   Eye,
   FileText,
   GitBranch,
   Monitor,
   MousePointerClick,
+  RefreshCw,
   Shield,
   Sparkles,
-  Upload,
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import type { CSSProperties } from 'react';
 import { Fragment } from 'react';
 
-import ConverterTool from '@/components/ConverterTool';
+import EditorClient from '@/components/EditorClient';
 import FAQAccordion from '@/components/FAQAccordion';
 import PageHero from '@/components/PageHero';
 import ScrollReveal from '@/components/ScrollReveal';
 import SectionHeading from '@/components/SectionHeading';
+import { LIVE_PREVIEW_DEFAULT_MARKDOWN } from '@/content/live-preview-default';
 import { Link } from '@/i18n/navigation';
 import { absoluteUrl, buildLocalizedPageMetadata } from '@/lib/site';
 import { buildFaqPageJsonLd, buildToolPageJsonLd } from '@/lib/structured-data';
 
-const PDF_OG_IMAGE = {
-  url: '/convert-markdown-file-to-pdf.webp',
-  width: 1536,
+const LIVE_PREVIEW_OG_IMAGE = {
+  url: '/markdown-tools-banner.jpg',
+  width: 1024,
   height: 1024,
 } as const;
 
@@ -35,10 +37,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   setRequestLocale(locale);
 
-  let ogImageAlt = 'Convert markdown documents instantly into PDF online';
+  let ogImageAlt = 'Free online Markdown live preview editor with sync scroll and PDF export';
   try {
     const messages = await getMessages();
-    const value = (messages as Record<string, Record<string, string>>).markdownToPdf?.ogImageAlt;
+    const value = (messages as Record<string, Record<string, string>>).livePreview?.ogImageAlt;
     if (value) ogImageAlt = value;
   } catch {
     // use default alt
@@ -46,45 +48,50 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   return buildLocalizedPageMetadata({
     locale,
-    path: `/${locale}/markdown-to-pdf`,
-    titleKey: 'markdownToPdf.title',
-    descriptionKey: 'markdownToPdf.description',
-    titleSuffix: ' — Free Online with Live Preview',
+    path: `/${locale}/markdown-live-preview`,
+    titleKey: 'livePreview.title',
+    descriptionKey: 'livePreview.description',
+    titleSuffix: ' — Free Online Editor with Sync Scroll',
     keywords: [
-      'markdown to pdf',
-      'md to pdf',
-      '.md to pdf',
-      'markdown pdf',
-      'convert markdown to pdf',
-      'markdown to pdf converter',
-      'markdown to pdf online',
-      'free markdown to pdf',
-      'md to pdf with mermaid',
-      'markdown diagram to pdf',
-      'github readme to pdf',
+      'markdown live preview',
+      'live markdown preview',
+      'markdown preview online',
+      'markdown editor with live preview',
+      'online markdown editor',
+      'markdown viewer online',
+      'split pane markdown editor',
+      'markdown preview tool',
+      'sync scroll markdown',
+      'dillinger alternative',
+      'stackedit alternative',
+      'markdown editor no login',
       'pdfwritter',
     ],
     image: {
-      url: absoluteUrl(PDF_OG_IMAGE.url),
-      width: PDF_OG_IMAGE.width,
-      height: PDF_OG_IMAGE.height,
+      url: absoluteUrl(LIVE_PREVIEW_OG_IMAGE.url),
+      width: LIVE_PREVIEW_OG_IMAGE.width,
+      height: LIVE_PREVIEW_OG_IMAGE.height,
       alt: ogImageAlt,
     },
   });
 }
 
-export default async function MarkdownToPdfPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function MarkdownLivePreviewPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <MarkdownToPdfContent locale={locale} />;
+  return <MarkdownLivePreviewContent locale={locale} />;
 }
 
-function MarkdownToPdfContent({ locale }: { locale: string }) {
-  const t = useTranslations('markdownToPdf');
+function MarkdownLivePreviewContent({ locale }: { locale: string }) {
+  const t = useTranslations('livePreview');
 
   const howSteps = [
     {
-      icon: Upload,
+      icon: FileText,
       num: '01',
       color: '#3b82f6',
       bg: 'from-blue-500/15 to-indigo-500/5',
@@ -102,8 +109,8 @@ function MarkdownToPdfContent({ locale }: { locale: string }) {
     {
       icon: Download,
       num: '03',
-      color: '#ef4444',
-      bg: 'from-red-500/15 to-orange-500/5',
+      color: '#10b981',
+      bg: 'from-emerald-500/15 to-green-500/5',
       title: t('howStep3Title'),
       desc: t('howStep3Desc'),
     },
@@ -111,10 +118,10 @@ function MarkdownToPdfContent({ locale }: { locale: string }) {
 
   const features = [
     { icon: Monitor, title: t('feature1Title'), desc: t('feature1Desc'), color: '#3b82f6' },
-    { icon: GitBranch, title: t('feature2Title'), desc: t('feature2Desc'), color: '#f59e0b' },
+    { icon: RefreshCw, title: t('feature2Title'), desc: t('feature2Desc'), color: '#8b5cf6' },
     { icon: Shield, title: t('feature3Title'), desc: t('feature3Desc'), color: '#10b981' },
-    { icon: Upload, title: t('feature4Title'), desc: t('feature4Desc'), color: '#6366f1' },
-    { icon: FileText, title: t('feature5Title'), desc: t('feature5Desc'), color: '#ec4899' },
+    { icon: Copy, title: t('feature4Title'), desc: t('feature4Desc'), color: '#ef4444' },
+    { icon: GitBranch, title: t('feature5Title'), desc: t('feature5Desc'), color: '#f59e0b' },
     { icon: Sparkles, title: t('feature6Title'), desc: t('feature6Desc'), color: '#06b6d4' },
   ];
 
@@ -123,6 +130,7 @@ function MarkdownToPdfContent({ locale }: { locale: string }) {
     { us: t('compare2Us'), them: t('compare2Them') },
     { us: t('compare3Us'), them: t('compare3Them') },
     { us: t('compare4Us'), them: t('compare4Them') },
+    { us: t('compare5Us'), them: t('compare5Them') },
   ];
 
   const faqs = [
@@ -140,25 +148,28 @@ function MarkdownToPdfContent({ locale }: { locale: string }) {
     <>
       <PageHero
         badge={t('badge')}
-        badgeIcon={Sparkles}
+        badgeIcon={Eye}
         title={
           <>
             {t('heroBefore')}
-            <span className="bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-violet-500 to-purple-500 bg-clip-text text-transparent">
               {t('heroHighlight')}
             </span>
             {t('heroAfter')}
           </>
         }
         subtitle={t('description')}
-        accentColor="#f87171"
-        glowColor="rgba(239,68,68,0.08)"
+        accentColor="#8b5cf6"
+        glowColor="rgba(139,92,246,0.08)"
       />
 
-      <ConverterTool type="pdf" />
+      <EditorClient
+        translationNamespace="livePreview"
+        defaultMarkdown={LIVE_PREVIEW_DEFAULT_MARKDOWN}
+      />
 
       <section className="section-py relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(239,68,68,0.05),transparent_65%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.06),transparent_65%)] pointer-events-none" />
         <div className="relative page-container">
           <ScrollReveal>
             <SectionHeading
@@ -244,7 +255,7 @@ function MarkdownToPdfContent({ locale }: { locale: string }) {
           <ScrollReveal delay={80}>
             <div className="card-glass overflow-hidden mt-8">
               <div className="grid grid-cols-2 border-b border-[var(--border-color)] bg-[var(--bg-secondary)]/50">
-                <div className="px-5 py-4 text-sm font-bold text-[#ef4444]">{t('compareUs')}</div>
+                <div className="px-5 py-4 text-sm font-bold text-[#8b5cf6]">{t('compareUs')}</div>
                 <div className="px-5 py-4 text-sm font-bold text-[var(--text-tertiary)] border-l border-[var(--border-color)]">
                   {t('compareThem')}
                 </div>
@@ -283,7 +294,7 @@ function MarkdownToPdfContent({ locale }: { locale: string }) {
               <h2 className="text-xl font-bold mb-2">{t('ctaTitle')}</h2>
               <p className="text-sm text-[var(--text-secondary)]">{t('ctaDescription')}</p>
             </div>
-            <Link href="/markdown-live-preview" className="btn-primary shrink-0">
+            <Link href="/markdown-to-pdf" className="btn-primary shrink-0">
               {t('ctaButton')}
               <ArrowRight className="w-4 h-4" />
             </Link>
@@ -296,9 +307,9 @@ function MarkdownToPdfContent({ locale }: { locale: string }) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             buildToolPageJsonLd(
-              'Markdown to PDF Converter',
-              'Convert Markdown to PDF online for free with live preview, Mermaid diagram support, and instant browser-side download.',
-              `/${locale}/markdown-to-pdf`,
+              'Markdown Live Preview',
+              'Free online Markdown editor with live preview, sync scroll, Mermaid diagrams, syntax highlighting, and instant PDF export. No login required.',
+              `/${locale}/markdown-live-preview`,
             ),
           ),
         }}
@@ -306,7 +317,7 @@ function MarkdownToPdfContent({ locale }: { locale: string }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(buildFaqPageJsonLd(faqs, `/${locale}/markdown-to-pdf`)),
+          __html: JSON.stringify(buildFaqPageJsonLd(faqs, `/${locale}/markdown-live-preview`)),
         }}
       />
     </>

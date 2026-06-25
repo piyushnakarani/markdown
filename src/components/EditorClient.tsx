@@ -1,55 +1,56 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
-import { useTranslations } from 'next-intl';
-import { syncProportionalScroll } from '@/lib/editor-scroll-sync';
 import {
-  convertMarkdownToHtml,
-  convertMarkdownToPdf,
+  Bold,
+  Check,
+  Code,
+  Copy,
+  Eye,
+  FileCode,
+  FileText,
+  FileType,
+  FileUp,
+  Heading,
+  Image,
+  Italic,
+  Link2,
+  List,
+  PenLine,
+  Quote,
+  Table,
+  Trash2,
+  Upload,
+} from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { useCallback, useRef,useState } from 'react';
+
+import {
+  type EditorToolbarAction,
+  EditorToolbarBar,
+  EditorToolbarDivider,
+  EditorToolbarEnd,
+  EditorToolbarFormatButton,
+  EditorToolbarFormatGroup,
+  EditorToolbarStart,
+} from '@/components/EditorToolbar';
+import ExportOverlay from '@/components/ExportOverlay';
+import MarkdownPreview from '@/components/MarkdownPreview';
+import { event } from '@/lib/analytics';
+import {
   buildHtmlDocument,
   buildTxtDocument,
+  convertMarkdownToHtml,
+  convertMarkdownToPdf,
   downloadFile,
-  readFileAsText,
+  type ExportProgressStage,
   getExportOverlayProps,
   getHtmlExportStages,
   getPdfExportStages,
   getTxtExportStages,
   markdownHasMermaid,
-  type ExportProgressStage,
+  readFileAsText,
 } from '@/lib/converters';
-import MarkdownPreview from '@/components/MarkdownPreview';
-import ExportOverlay from '@/components/ExportOverlay';
-import { event } from '@/lib/analytics';
-import {
-  EditorToolbarBar,
-  EditorToolbarStart,
-  EditorToolbarEnd,
-  EditorToolbarDivider,
-  EditorToolbarFormatGroup,
-  EditorToolbarFormatButton,
-  type EditorToolbarAction,
-} from '@/components/EditorToolbar';
-import {
-  Bold,
-  Italic,
-  Heading,
-  Link2,
-  Image,
-  Code,
-  List,
-  Quote,
-  Table,
-  Upload,
-  Copy,
-  Trash2,
-  Check,
-  Eye,
-  PenLine,
-  FileUp,
-  FileText,
-  FileCode,
-  FileType,
-} from 'lucide-react';
+import { syncProportionalScroll } from '@/lib/editor-scroll-sync';
 
 const EMBEDDED_DEFAULT_MARKDOWN = `# Premium Markdown
 
@@ -64,14 +65,16 @@ export type EditorClientProps = {
   variant?: 'page' | 'embedded' | 'hero';
   defaultMarkdown?: string;
   className?: string;
+  translationNamespace?: 'editor' | 'livePreview';
 };
 
 export default function EditorClient({
   variant = 'page',
   defaultMarkdown,
   className = '',
+  translationNamespace = 'editor',
 }: EditorClientProps) {
-  const t = useTranslations('editor');
+  const t = useTranslations(translationNamespace);
   const isEmbedded = variant === 'embedded' || variant === 'hero';
   const isHero = variant === 'hero';
   const initialMarkdown =

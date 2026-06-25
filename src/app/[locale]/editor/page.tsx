@@ -1,6 +1,7 @@
+import { PenLine } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
-import { PenLine } from 'lucide-react';
+
 import EditorClient from '@/components/EditorClient';
 import PageHero from '@/components/PageHero';
 import { buildLocalizedPageMetadata } from '@/lib/site';
@@ -13,15 +14,16 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     path: `/${locale}/editor`,
     titleKey: 'editor.title',
     descriptionKey: 'editor.description',
-    titleSuffix: ' — Live Preview & Diagram Support',
+    titleSuffix: ' — Split-Pane Live Preview',
     keywords: [
+      'markdown live preview',
+      'live preview markdown',
+      'markdown editor with preview',
+      'split pane markdown editor',
+      'online markdown editor',
+      'markdown preview online',
       'markdown viewer',
       'md viewer',
-      'md file viewer',
-      'markdown online',
-      'markdown preview',
-      'markdown editor',
-      'live preview markdown',
       'mermaid markdown editor',
       'pdfwritter',
     ],
@@ -54,7 +56,7 @@ function EditorPageContent({ locale }: { locale: string }) {
           __html: JSON.stringify(
             buildToolPageJsonLd(
               'Online Markdown Editor',
-              'Write Markdown with live preview, syntax highlighting, and Mermaid diagram support.',
+              'Write Markdown with split-pane live preview, sync scroll, syntax highlighting, and Mermaid diagram support.',
               `/${locale}/editor`,
             ),
           ),

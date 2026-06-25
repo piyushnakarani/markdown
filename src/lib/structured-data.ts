@@ -1,9 +1,10 @@
 import {
+  absoluteUrl,
+  buildWebApplicationJsonLd,
+  localizedPath,
   SITE_NAME,
   SITE_TAGLINE,
   SITE_URL,
-  absoluteUrl,
-  buildWebApplicationJsonLd,
 } from '@/lib/site';
 
 const SITE_SUMMARY =
@@ -31,7 +32,7 @@ export function buildSiteJsonLdGraph(locale: string) {
         contactPoint: {
           '@type': 'ContactPoint',
           contactType: 'customer support',
-          url: absoluteUrl('/en/contact'),
+          url: absoluteUrl('/contact'),
         },
       },
       {
@@ -51,7 +52,7 @@ export function buildSiteJsonLdGraph(locale: string) {
         applicationCategory: 'DeveloperApplication',
         applicationSubCategory: 'Markdown Converter',
         operatingSystem: 'Web Browser',
-        url: absoluteUrl(`/${locale}`),
+        url: absoluteUrl(localizedPath(locale, '/')),
         description: SITE_SUMMARY,
         image: {
           '@type': 'ImageObject',

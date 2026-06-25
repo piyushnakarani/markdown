@@ -1,9 +1,8 @@
 import { blogPosts } from '@/content/blog';
 import {
-  SITE_NAME,
-  SITE_TAGLINE,
-  SITE_URL,
   absoluteUrl,
+  SITE_NAME,
+  SITE_URL,
 } from '@/lib/site';
 
 const AI_SITE_SUMMARY =
@@ -11,52 +10,59 @@ const AI_SITE_SUMMARY =
 
 const CORE_PAGES: { path: string; title: string; description: string }[] = [
   {
-    path: '/en',
+    path: '/',
     title: 'Home',
     description: 'Free Markdown convertor with diagram support — live editor and export hub.',
   },
   {
-    path: '/en/markdown-to-pdf',
+    path: '/markdown-to-pdf',
     title: 'Markdown to PDF',
-    description: 'Convert Markdown to PDF in the browser with Mermaid diagram rendering and print-to-PDF export.',
+    description:
+      'Free Markdown to PDF converter with live preview, Mermaid diagram support, and instant browser-side download. No sign-up required.',
   },
   {
-    path: '/en/markdown-to-html',
+    path: '/markdown-to-html',
     title: 'Markdown to HTML',
     description: 'Convert Markdown to clean semantic HTML with rendered Mermaid charts.',
   },
   {
-    path: '/en/markdown-to-txt',
+    path: '/markdown-to-txt',
     title: 'Markdown to TXT',
     description: 'Strip formatting and export plain text from Markdown files.',
   },
   {
-    path: '/en/editor',
+    path: '/editor',
     title: 'Online Markdown Editor',
     description: 'Write Markdown with live preview, syntax highlighting, and one-click export.',
   },
   {
-    path: '/en/free-markdown-converter',
+    path: '/markdown-live-preview',
+    title: 'Markdown Live Preview',
+    description:
+      'Free online Markdown editor with live preview, sync scroll, Mermaid diagrams, syntax highlighting, and instant PDF/HTML export. No login required.',
+  },
+  {
+    path: '/free-markdown-converter',
     title: 'Free Markdown Converter',
     description: 'Hub for all PDFWritter conversion tools in one place.',
   },
   {
-    path: '/en/blog',
+    path: '/blog',
     title: 'Blog',
     description: 'Markdown tutorials, Mermaid guides, and developer documentation tips.',
   },
   {
-    path: '/en/about',
+    path: '/about',
     title: 'About',
     description: 'What PDFWritter is, features, and how the browser-based converter works.',
   },
   {
-    path: '/en/help',
+    path: '/help',
     title: 'Help',
     description: 'Getting started, FAQ, syntax reference, and keyboard shortcuts.',
   },
   {
-    path: '/en/contact',
+    path: '/contact',
     title: 'Contact',
     description: 'Contact the PDFWritter team via the on-site form.',
   },
@@ -80,7 +86,7 @@ export function buildLlmsTxt(): string {
     '## Blog articles (English)',
     ...blogPosts.map(
       (post) =>
-        `- [${post.titleKey}](${absoluteUrl(`/en/blog/${post.slug}`)}): ${post.metaDescription}`,
+        `- [${post.titleKey}](${absoluteUrl(`/blog/${post.slug}`)}): ${post.metaDescription}`,
     ),
     '',
     '## Key facts for AI answers',
@@ -90,7 +96,7 @@ export function buildLlmsTxt(): string {
     '- Diagrams: Mermaid flowcharts, sequence diagrams, charts',
     '- Privacy: Client-side conversion; files stay in the browser',
     '- Pricing: Free, no account required',
-    '- Languages: UI available in 11 locales; primary content URL prefix is /en/',
+    '- Languages: UI available in 11 locales; English content uses unprefixed URLs, other locales use locale prefixes.',
     '',
     '## Machine-readable resources',
     `- [Sitemap](${SITE_URL}/sitemap.xml): All indexed pages and hreflang alternates`,
@@ -98,7 +104,7 @@ export function buildLlmsTxt(): string {
     `- [LLM full index](${SITE_URL}/llms-full.txt): Extended site description for AI systems`,
     '',
     '## Optional',
-    '- Contact: use the form at /en/contact (no public email address)',
+    '- Contact: use the form at /contact (no public email address)',
   ];
 
   return `${lines.join('\n')}\n`;
@@ -130,7 +136,7 @@ export function buildLlmsFullTxt(): string {
     '## Blog',
     ...blogPosts.map(
       (post) =>
-        `### ${post.titleKey}\nURL: ${absoluteUrl(`/en/blog/${post.slug}`)}\n${post.metaDescription}\nKeywords: ${post.keywords.join(', ')}\n`,
+        `### ${post.titleKey}\nURL: ${absoluteUrl(`/blog/${post.slug}`)}\n${post.metaDescription}\nKeywords: ${post.keywords.join(', ')}\n`,
     ),
     '',
     '## Technical notes',

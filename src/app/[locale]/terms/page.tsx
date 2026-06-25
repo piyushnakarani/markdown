@@ -1,8 +1,9 @@
+import { AlertTriangle, CheckCircle2, Scale } from 'lucide-react';
 import { setRequestLocale } from 'next-intl/server';
-import { Scale, FileText, CheckCircle2, AlertTriangle } from 'lucide-react';
-import { buildLocalizedPageMetadata } from '@/lib/site';
+
 import PageHero from '@/components/PageHero';
 import { Link } from '@/i18n/navigation';
+import { buildLocalizedPageMetadata } from '@/lib/site';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -70,9 +71,9 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
             <div className="flex gap-3">
               <AlertTriangle className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
               <div>
-                <h3 className="text-sm font-bold text-[var(--text-primary)] mb-2">3. Warranty Disclaimer ("As Is")</h3>
+                <h3 className="text-sm font-bold text-[var(--text-primary)] mb-2">3. Warranty Disclaimer (&ldquo;As Is&rdquo;)</h3>
                 <p className="text-xs leading-relaxed text-[var(--text-secondary)]">
-                  PDFWritter is provided "as is" and "as available" without warranty of any kind, express or implied. We do not warrant that the application will be uninterrupted, error-free, or meet all markdown syntax conversion requirements perfectly. Because data is stored in the browser, you are responsible for maintaining backups of your source files.
+                  PDFWritter is provided &ldquo;as is&rdquo; and &ldquo;as available&rdquo; without warranty of any kind, express or implied. We do not warrant that the application will be uninterrupted, error-free, or meet all markdown syntax conversion requirements perfectly. Because data is stored in the browser, you are responsible for maintaining backups of your source files.
                 </p>
               </div>
             </div>

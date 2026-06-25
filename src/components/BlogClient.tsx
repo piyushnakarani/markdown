@@ -1,12 +1,12 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/navigation';
-import type { BlogPost } from '@/content/blog';
-import { Calendar, Clock, ArrowRight, Search, Sparkles, BookOpen, Tag } from 'lucide-react';
-import { formatBlogDate } from '@/lib/blog-seo';
+import { ArrowRight, BookOpen, Calendar, Clock, Search } from 'lucide-react';
+import { useMemo,useState } from 'react';
+
 import ScrollReveal from '@/components/ScrollReveal';
+import type { BlogPost } from '@/content/blog';
+import { Link } from '@/i18n/navigation';
+import { formatBlogDate } from '@/lib/blog-seo';
 
 interface BlogClientProps {
   posts: BlogPost[];
@@ -22,7 +22,6 @@ const CATEGORY_COLORS: Record<string, { text: string; bg: string; border: string
 };
 
 export default function BlogClient({ posts }: BlogClientProps) {
-  const t = useTranslations('blog');
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
 

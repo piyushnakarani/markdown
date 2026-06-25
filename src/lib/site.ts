@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
-import { locales, type Locale } from '@/i18n/locales';
 import { getMessages, setRequestLocale } from 'next-intl/server';
+
+import { defaultLocale, type Locale,locales } from '@/i18n/locales';
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') || 'https://www.pdfwritter.com';
@@ -51,19 +52,37 @@ export function absoluteUrl(path: string): string {
   return `${SITE_URL}${normalized}`;
 }
 
-export function swapLocaleInPath(path: string, locale: string): string {
-  const match = path.match(/^\/([a-z]{2})(\/.*)?$/);
-  const suffix = match?.[2] ?? '';
+function pathWithoutLocale(path: string): string {
+  const normalized = path.startsWith('/') ? path : `/${path}`;
+  const match = normalized.match(/^\/([a-z]{2})(\/.*)?$/);
+
+  if (match && locales.includes(match[1] as Locale)) {
+    return match[2] ?? '';
+  }
+
+  return normalized === '/' ? '' : normalized;
+}
+
+export function localizedPath(locale: string, path: string): string {
+  const suffix = pathWithoutLocale(path);
+  if (locale === defaultLocale) {
+    return suffix || '/';
+  }
+
   return `/${locale}${suffix}`;
 }
 
-/** Hreflang alternate URLs for a locale-prefixed path (e.g. /en/contact). */
+export function swapLocaleInPath(path: string, locale: string): string {
+  return localizedPath(locale, path);
+}
+
+/** Hreflang alternate URLs for a localized path. */
 export function buildAlternateLanguages(path: string): Record<string, string> {
   return {
     ...Object.fromEntries(
-      locales.map((l) => [l, absoluteUrl(swapLocaleInPath(path, l))])
+      locales.map((l) => [l, absoluteUrl(localizedPath(l, path))])
     ),
-    'x-default': absoluteUrl(swapLocaleInPath(path, 'en')),
+    'x-default': absoluteUrl(localizedPath(defaultLocale, path)),
   };
 }
 
@@ -74,6 +93,12 @@ type BuildPageMetadataOptions = {
   locale: string;
   keywords?: string[];
   type?: 'website' | 'article';
+  image?: {
+    url: string;
+    width: number;
+    height: number;
+    alt: string;
+  };
 };
 
 export function buildPageMetadata({
@@ -83,12 +108,19 @@ export function buildPageMetadata({
   locale,
   keywords = DEFAULT_KEYWORDS,
   type = 'website',
+  image,
 }: BuildPageMetadataOptions): Metadata {
-  const url = absoluteUrl(path);
   const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
-  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  const normalizedPath = localizedPath(locale, path);
+  const url = absoluteUrl(normalizedPath);
   const ogLocale = OG_LOCALE_MAP[locale as Locale] || 'en_US';
   const logoUrl = absoluteUrl(SITE_LOGO_PATH);
+  const ogImage = image ?? {
+    url: logoUrl,
+    width: 909,
+    height: 279,
+    alt: `${SITE_NAME} — ${SITE_TAGLINE}`,
+  };
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -123,10 +155,10 @@ export function buildPageMetadata({
         .map((l) => OG_LOCALE_MAP[l]),
       images: [
         {
-          url: logoUrl,
-          width: 909,
-          height: 279,
-          alt: `${SITE_NAME} — ${SITE_TAGLINE}`,
+          url: ogImage.url,
+          width: ogImage.width,
+          height: ogImage.height,
+          alt: ogImage.alt,
         },
       ],
     },
@@ -134,7 +166,7 @@ export function buildPageMetadata({
       card: 'summary_large_image',
       title: fullTitle,
       description,
-      images: [logoUrl],
+      images: [ogImage.url],
     },
     robots: {
       index: true,
@@ -157,6 +189,7 @@ export type BuildLocalizedPageMetadataOptions = {
   titleSuffix?: string;
   keywords?: string[];
   type?: 'website' | 'article';
+  image?: BuildPageMetadataOptions['image'];
 };
 
 export async function buildLocalizedPageMetadata({
@@ -167,6 +200,7 @@ export async function buildLocalizedPageMetadata({
   titleSuffix = '',
   keywords,
   type = 'website',
+  image,
 }: BuildLocalizedPageMetadataOptions): Promise<Metadata> {
   setRequestLocale(locale);
   let title = '';
@@ -176,8 +210,14 @@ export async function buildLocalizedPageMetadata({
   try {
     const messages = await getMessages();
 
-    const getNestedValue = (obj: any, keyPath: string): string => {
-      return keyPath.split('.').reduce((prev, curr) => prev?.[curr], obj) as string || '';
+    const getNestedValue = (obj: Record<string, unknown>, keyPath: string): string => {
+      const value = keyPath.split('.').reduce<unknown>((prev, curr) => {
+        if (prev !== null && typeof prev === 'object' && curr in prev) {
+          return (prev as Record<string, unknown>)[curr];
+        }
+        return undefined;
+      }, obj);
+      return typeof value === 'string' ? value : '';
     };
 
     title = getNestedValue(messages, titleKey);
@@ -200,6 +240,8 @@ export async function buildLocalizedPageMetadata({
     else if (titleKey === 'editor.title') title = 'Online Markdown Editor';
     else if (titleKey === 'help.title') title = 'Help & Documentation';
     else if (titleKey === 'freeConverter.title') title = 'Free Markdown Converter Online';
+    else if (titleKey === 'livePreview.title') title = 'Markdown Live Preview';
+    else if (titleKey === 'markdownToPdf.title') title = 'Markdown to PDF Converter';
     else if (titleKey === 'tools.pdfTitle') title = 'Markdown to PDF';
     else if (titleKey === 'tools.htmlTitle') title = 'Markdown to HTML';
     else if (titleKey === 'tools.txtTitle') title = 'Markdown to TXT';
@@ -214,7 +256,13 @@ export async function buildLocalizedPageMetadata({
     else if (descriptionKey === 'editor.description') description = 'Write Markdown with live preview and diagram rendering.';
     else if (descriptionKey === 'help.subtitle') description = 'Everything you need to know about using PDFWritter.';
     else if (descriptionKey === 'freeConverter.subtitle') description = 'Convert Markdown to any format in your browser.';
-    else if (descriptionKey === 'tools.pdfDescription') description = 'Convert Markdown to PDF online for free.';
+    else if (descriptionKey === 'livePreview.description') {
+      description =
+        'Free online Markdown editor with live preview, sync scroll, Mermaid diagrams, and instant PDF export. No login required.';
+    } else if (descriptionKey === 'markdownToPdf.description') {
+      description =
+        'Convert Markdown to PDF online for free with live preview, Mermaid diagram support, and instant download — 100% private in your browser.';
+    } else if (descriptionKey === 'tools.pdfDescription') description = 'Convert Markdown to PDF online for free.';
     else if (descriptionKey === 'tools.htmlDescription') description = 'Convert Markdown to HTML online for free.';
     else if (descriptionKey === 'tools.txtDescription') description = 'Convert Markdown to plain text online for free.';
     else if (descriptionKey === 'privacy.subtitle') description = 'Read the PDFWritter privacy policy. Your file privacy is guaranteed.';
@@ -233,12 +281,13 @@ export async function buildLocalizedPageMetadata({
     locale,
     keywords: finalKeywords || DEFAULT_KEYWORDS,
     type,
+    image,
   });
 }
 
 
 export function buildWebApplicationJsonLd(locale: string) {
-  const url = absoluteUrl(`/${locale}`);
+  const url = absoluteUrl(localizedPath(locale, '/'));
   return {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',

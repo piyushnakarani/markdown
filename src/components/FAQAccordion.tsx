@@ -1,7 +1,7 @@
 'use client';
 
+import { Minus,Plus } from 'lucide-react';
 import { useState } from 'react';
-import { Plus, Minus } from 'lucide-react';
 
 interface FAQItem {
   q: string;
