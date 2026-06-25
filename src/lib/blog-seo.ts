@@ -8,6 +8,7 @@ import {
   SITE_URL,
   absoluteUrl,
   buildPageMetadata,
+  localizedPath,
 } from '@/lib/site';
 
 export { SITE_NAME, SITE_URL };
@@ -74,11 +75,11 @@ export function injectHeadingIds(html: string): string {
 }
 
 export function getPostUrl(locale: string, slug: string): string {
-  return absoluteUrl(`/${locale}/blog/${slug}`);
+  return absoluteUrl(localizedPath(locale, `/blog/${slug}`));
 }
 
 export function getBlogIndexUrl(locale: string): string {
-  return absoluteUrl(`/${locale}/blog`);
+  return absoluteUrl(localizedPath(locale, '/blog'));
 }
 
 /** Remove duplicate H1 when the page header already renders the title. */

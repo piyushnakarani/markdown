@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { locales, type Locale } from '@/i18n/locales';
+import { defaultLocale, locales, type Locale } from '@/i18n/locales';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 
 export const SITE_URL =
@@ -51,19 +51,37 @@ export function absoluteUrl(path: string): string {
   return `${SITE_URL}${normalized}`;
 }
 
-export function swapLocaleInPath(path: string, locale: string): string {
-  const match = path.match(/^\/([a-z]{2})(\/.*)?$/);
-  const suffix = match?.[2] ?? '';
+function pathWithoutLocale(path: string): string {
+  const normalized = path.startsWith('/') ? path : `/${path}`;
+  const match = normalized.match(/^\/([a-z]{2})(\/.*)?$/);
+
+  if (match && locales.includes(match[1] as Locale)) {
+    return match[2] ?? '';
+  }
+
+  return normalized === '/' ? '' : normalized;
+}
+
+export function localizedPath(locale: string, path: string): string {
+  const suffix = pathWithoutLocale(path);
+  if (locale === defaultLocale) {
+    return suffix || '/';
+  }
+
   return `/${locale}${suffix}`;
 }
 
-/** Hreflang alternate URLs for a locale-prefixed path (e.g. /en/contact). */
+export function swapLocaleInPath(path: string, locale: string): string {
+  return localizedPath(locale, path);
+}
+
+/** Hreflang alternate URLs for a localized path. */
 export function buildAlternateLanguages(path: string): Record<string, string> {
   return {
     ...Object.fromEntries(
-      locales.map((l) => [l, absoluteUrl(swapLocaleInPath(path, l))])
+      locales.map((l) => [l, absoluteUrl(localizedPath(l, path))])
     ),
-    'x-default': absoluteUrl(swapLocaleInPath(path, 'en')),
+    'x-default': absoluteUrl(localizedPath(defaultLocale, path)),
   };
 }
 
@@ -84,9 +102,9 @@ export function buildPageMetadata({
   keywords = DEFAULT_KEYWORDS,
   type = 'website',
 }: BuildPageMetadataOptions): Metadata {
-  const url = absoluteUrl(path);
   const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
-  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  const normalizedPath = localizedPath(locale, path);
+  const url = absoluteUrl(normalizedPath);
   const ogLocale = OG_LOCALE_MAP[locale as Locale] || 'en_US';
   const logoUrl = absoluteUrl(SITE_LOGO_PATH);
 
@@ -238,7 +256,7 @@ export async function buildLocalizedPageMetadata({
 
 
 export function buildWebApplicationJsonLd(locale: string) {
-  const url = absoluteUrl(`/${locale}`);
+  const url = absoluteUrl(localizedPath(locale, '/'));
   return {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
