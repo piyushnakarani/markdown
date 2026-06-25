@@ -1,23 +1,25 @@
-import { Suspense } from 'react';
+import '../globals.css';
+
+import { GeistMono } from 'geist/font/mono';
+import { GeistSans } from 'geist/font/sans';
+import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
-import { notFound } from 'next/navigation';
-import { GeistSans } from 'geist/font/sans';
-import { GeistMono } from 'geist/font/mono';
-import { routing } from '@/i18n/routing';
-import { isRtl, Locale, locales } from '@/i18n/locales';
-import { ThemeProvider } from '@/components/ThemeProvider';
-import Header from '@/components/Header';
+import { Suspense } from 'react';
+
 import Footer from '@/components/Footer';
-import TransitionLoader from '@/components/TransitionLoader';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import { GoogleTagManagerHead, GoogleTagManagerNoScript } from '@/components/GoogleTagManager';
+import Header from '@/components/Header';
+import { ThemeProvider } from '@/components/ThemeProvider';
+import TransitionLoader from '@/components/TransitionLoader';
+import { isRtl, Locale, locales } from '@/i18n/locales';
+import { routing } from '@/i18n/routing';
+import { LLMS_TXT_URL } from '@/lib/ai-seo';
 import {
   SITE_URL,
 } from '@/lib/site';
-import { LLMS_TXT_URL } from '@/lib/ai-seo';
 import { buildSiteJsonLdGraph } from '@/lib/structured-data';
-import '../globals.css';
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));

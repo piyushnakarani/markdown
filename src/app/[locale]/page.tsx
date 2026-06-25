@@ -1,27 +1,28 @@
-import { useTranslations } from 'next-intl';
-import { getMessages, setRequestLocale } from 'next-intl/server';
-import { Link } from '@/i18n/navigation';
-import EditorClient from '@/components/EditorClient';
-import { buildPageMetadata } from '@/lib/site';
-import { buildFaqPageJsonLd } from '@/lib/structured-data';
-import FAQAccordion from '@/components/FAQAccordion';
-import TrustSection from '@/components/TrustSection';
-import HowItWorksSection from '@/components/HowItWorksSection';
-import SectionHeading from '@/components/SectionHeading';
-import ScrollReveal from '@/components/ScrollReveal';
 import {
   ArrowRight,
-  Zap,
-  Shield,
-  Globe,
-  Monitor,
-  Lock,
-  Sparkles,
-  FileText,
   Code2,
+  FileText,
   FileType,
+  Globe,
+  Lock,
+  Monitor,
   PenLine,
+  Shield,
+  Sparkles,
+  Zap,
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { getMessages, setRequestLocale } from 'next-intl/server';
+
+import EditorClient from '@/components/EditorClient';
+import FAQAccordion from '@/components/FAQAccordion';
+import HowItWorksSection from '@/components/HowItWorksSection';
+import ScrollReveal from '@/components/ScrollReveal';
+import SectionHeading from '@/components/SectionHeading';
+import TrustSection from '@/components/TrustSection';
+import { Link } from '@/i18n/navigation';
+import { buildPageMetadata } from '@/lib/site';
+import { buildFaqPageJsonLd } from '@/lib/structured-data';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

@@ -1,8 +1,9 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { Check,Link2, List, Share2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { Link2, List, Share2, Check } from 'lucide-react';
+import { useCallback, useEffect, useState } from 'react';
+
 import type { ArticleHeading } from '@/lib/blog-seo';
 
 export function BlogReadingProgress() {

@@ -1,8 +1,9 @@
+import { Lock, Shield } from 'lucide-react';
 import { setRequestLocale } from 'next-intl/server';
-import { Shield, Eye, Lock, FileKey } from 'lucide-react';
-import { buildLocalizedPageMetadata } from '@/lib/site';
+
 import PageHero from '@/components/PageHero';
 import { Link } from '@/i18n/navigation';
+import { buildLocalizedPageMetadata } from '@/lib/site';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -53,7 +54,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
               1. What Data We Access
             </h2>
             <p className="text-sm leading-relaxed">
-              When you load a Markdown (.md) file or paste text into the editor, the application accesses it using standard browser APIs (such as the File Reader API). This text is loaded into your browser's temporary active memory only for rendering purposes.
+              When you load a Markdown (.md) file or paste text into the editor, the application accesses it using standard browser APIs (such as the File Reader API). This text is loaded into your browser&apos;s temporary active memory only for rendering purposes.
             </p>
           </section>
 

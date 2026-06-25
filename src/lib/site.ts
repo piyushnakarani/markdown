@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
-import { defaultLocale, locales, type Locale } from '@/i18n/locales';
 import { getMessages, setRequestLocale } from 'next-intl/server';
+
+import { defaultLocale, type Locale,locales } from '@/i18n/locales';
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') || 'https://www.pdfwritter.com';
@@ -194,8 +195,14 @@ export async function buildLocalizedPageMetadata({
   try {
     const messages = await getMessages();
 
-    const getNestedValue = (obj: any, keyPath: string): string => {
-      return keyPath.split('.').reduce((prev, curr) => prev?.[curr], obj) as string || '';
+    const getNestedValue = (obj: Record<string, unknown>, keyPath: string): string => {
+      const value = keyPath.split('.').reduce<unknown>((prev, curr) => {
+        if (prev !== null && typeof prev === 'object' && curr in prev) {
+          return (prev as Record<string, unknown>)[curr];
+        }
+        return undefined;
+      }, obj);
+      return typeof value === 'string' ? value : '';
     };
 
     title = getNestedValue(messages, titleKey);

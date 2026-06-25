@@ -1,16 +1,18 @@
 'use client';
 
-import { useTranslations, useLocale } from 'next-intl';
-import { Link } from '@/i18n/navigation';
-import { blogPosts, type BlogPost } from '@/content/blog';
-import { buildHomeBlogJsonLd, formatBlogDate } from '@/lib/blog-seo';
 import {
   ArrowRight,
+  BookOpen,
   Calendar,
   Clock,
-  BookOpen,
   Sparkles,
 } from 'lucide-react';
+import { useLocale,useTranslations } from 'next-intl';
+
+import { type BlogPost,blogPosts } from '@/content/blog';
+import { Link } from '@/i18n/navigation';
+import { buildHomeBlogJsonLd, formatBlogDate } from '@/lib/blog-seo';
+
 import ScrollReveal from './ScrollReveal';
 
 const CATEGORY_STYLE: Record<string, { color: string; bg: string }> = {
@@ -185,4 +187,4 @@ export default function BlogInsightsSection({ jsonLd: jsonLdProp }: BlogInsights
   );
 }
 
-export { BlogMeta, FeaturedPost, CompactPost, categoryStyle, formatBlogDate };
+export { BlogMeta, categoryStyle, CompactPost, FeaturedPost, formatBlogDate };

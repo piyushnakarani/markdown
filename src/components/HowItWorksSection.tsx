@@ -1,19 +1,21 @@
 'use client';
 
-import { Fragment } from 'react';
-import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/navigation';
-import {
-  Upload,
-  MousePointerClick,
-  Download,
-  ArrowRight,
-  FileText,
-  FileCode,
-  FileType,
-  ChevronRight,
-} from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import {
+  ArrowRight,
+  ChevronRight,
+  Download,
+  FileCode,
+  FileText,
+  FileType,
+  MousePointerClick,
+  Upload,
+} from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { Fragment } from 'react';
+
+import { Link } from '@/i18n/navigation';
+
 import ScrollReveal from './ScrollReveal';
 import SectionHeading from './SectionHeading';
 

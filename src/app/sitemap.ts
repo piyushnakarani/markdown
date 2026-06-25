@@ -1,7 +1,8 @@
 import { MetadataRoute } from 'next';
-import { locales } from '@/i18n/locales';
+
 import { blogPosts } from '@/content/blog';
-import { SITE_URL, buildAlternateLanguages, localizedPath } from '@/lib/site';
+import { locales } from '@/i18n/locales';
+import { buildAlternateLanguages, localizedPath,SITE_URL } from '@/lib/site';
 
 const BASE_URL = SITE_URL;
 

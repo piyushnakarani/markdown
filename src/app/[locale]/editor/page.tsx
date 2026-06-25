@@ -1,6 +1,7 @@
+import { PenLine } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
-import { PenLine } from 'lucide-react';
+
 import EditorClient from '@/components/EditorClient';
 import PageHero from '@/components/PageHero';
 import { buildLocalizedPageMetadata } from '@/lib/site';

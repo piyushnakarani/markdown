@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+
 import { useTheme } from '@/components/ThemeProvider';
 
 export default function Loading() {

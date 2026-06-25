@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
 import { useTranslations } from 'next-intl';
+import { useEffect, useRef,useState } from 'react';
 
 interface CounterProps {
   target: number;

@@ -1,24 +1,25 @@
 'use client';
 
-import { useState } from 'react';
-import { Link } from '@/i18n/navigation';
 import {
-  FileText,
-  FileCode,
-  FileType,
-  PenLine,
   Activity,
-  Shield,
-  Zap,
-  Globe,
-  GitBranch,
   ArrowRight,
-  Layers,
-  Cpu,
   CheckCircle,
+  Cpu,
+  FileCode,
+  FileText,
+  FileType,
+  GitBranch,
+  Globe,
+  Layers,
+  PenLine,
+  Shield,
   Terminal,
+  Zap,
 } from 'lucide-react';
+import { useState } from 'react';
+
 import MermaidFlowchartPreview from '@/components/MermaidFlowchartPreview';
+import { Link } from '@/i18n/navigation';
 
 export default function AboutClient() {
   const [activeStep, setActiveStep] = useState<'input' | 'pdf' | 'html' | 'txt' | 'mermaid'>('input');

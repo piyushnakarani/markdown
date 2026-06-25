@@ -1,10 +1,10 @@
 import {
-  SITE_NAME,
-  SITE_TAGLINE,
-  SITE_URL,
   absoluteUrl,
   buildWebApplicationJsonLd,
   localizedPath,
+  SITE_NAME,
+  SITE_TAGLINE,
+  SITE_URL,
 } from '@/lib/site';
 
 const SITE_SUMMARY =

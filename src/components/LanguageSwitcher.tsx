@@ -1,11 +1,12 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { Check, ChevronDown } from 'lucide-react';
 import { useLocale } from 'next-intl';
-import { event } from '@/lib/analytics';
+import { useEffect,useRef, useState } from 'react';
+
+import { Locale,localeFlags, localeNames, locales } from '@/i18n/locales';
 import { usePathname, useRouter } from '@/i18n/navigation';
-import { locales, localeNames, localeFlags, Locale } from '@/i18n/locales';
-import { Globe, Check, ChevronDown } from 'lucide-react';
+import { event } from '@/lib/analytics';
 
 export default function LanguageSwitcher({ variant = 'default' }: { variant?: 'default' | 'footer' }) {
   const locale = useLocale() as Locale;

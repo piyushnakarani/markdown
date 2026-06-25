@@ -1,14 +1,15 @@
 import type { Metadata } from 'next';
-import type { BlogPost } from '@/content/blog';
 import { getMessages, setRequestLocale } from 'next-intl/server';
+
+import type { BlogPost } from '@/content/blog';
 import {
+  absoluteUrl,
+  buildPageMetadata,
   DEFAULT_KEYWORDS,
+  localizedPath,
   SITE_LOGO_PATH,
   SITE_NAME,
   SITE_URL,
-  absoluteUrl,
-  buildPageMetadata,
-  localizedPath,
 } from '@/lib/site';
 
 export { SITE_NAME, SITE_URL };
@@ -128,8 +129,14 @@ export async function buildBlogIndexMetadata(locale: string): Promise<Metadata> 
   try {
     const messages = await getMessages();
     
-    const getNestedValue = (obj: any, keyPath: string): string => {
-      return keyPath.split('.').reduce((prev, curr) => prev?.[curr], obj) as string || '';
+    const getNestedValue = (obj: Record<string, unknown>, keyPath: string): string => {
+      const value = keyPath.split('.').reduce<unknown>((prev, curr) => {
+        if (prev !== null && typeof prev === 'object' && curr in prev) {
+          return (prev as Record<string, unknown>)[curr];
+        }
+        return undefined;
+      }, obj);
+      return typeof value === 'string' ? value : '';
     };
 
     const transTitle = getNestedValue(messages, 'blog.title');

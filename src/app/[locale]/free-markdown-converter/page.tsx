@@ -1,7 +1,8 @@
+import { ArrowRight, Check, Code2, FileText, FileType, PenLine, Sparkles } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
+
 import { Link } from '@/i18n/navigation';
-import { FileText, Code2, FileType, PenLine, ArrowRight, Check, Sparkles } from 'lucide-react';
 import { buildLocalizedPageMetadata } from '@/lib/site';
 import { buildToolPageJsonLd } from '@/lib/structured-data';
 

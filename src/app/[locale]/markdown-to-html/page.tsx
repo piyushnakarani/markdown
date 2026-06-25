@@ -1,6 +1,7 @@
+import { Sparkles } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
-import { Sparkles } from 'lucide-react';
+
 import ConverterTool from '@/components/ConverterTool';
 import PageHero from '@/components/PageHero';
 import { buildLocalizedPageMetadata } from '@/lib/site';

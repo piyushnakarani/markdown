@@ -1,23 +1,25 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import {
+  ArrowRight,
+  ChevronDown,
+  Code2,
+  FileText,
+  FileType,
+  Menu,
+  Moon,
+  PenLine,
+  Sun,
+  X,
+} from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useEffect, useRef,useState } from 'react';
+
 import { Link, usePathname } from '@/i18n/navigation';
-import { useTheme } from './ThemeProvider';
+
 import LanguageSwitcher from './LanguageSwitcher';
 import SiteLogo from './SiteLogo';
-import {
-  Sun,
-  Moon,
-  Menu,
-  X,
-  FileText,
-  Code2,
-  FileType,
-  PenLine,
-  ChevronDown,
-  ArrowRight,
-} from 'lucide-react';
+import { useTheme } from './ThemeProvider';
 
 export default function Header() {
   const t = useTranslations('nav');

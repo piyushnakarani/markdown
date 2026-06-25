@@ -1,9 +1,8 @@
 import { blogPosts } from '@/content/blog';
 import {
-  SITE_NAME,
-  SITE_TAGLINE,
-  SITE_URL,
   absoluteUrl,
+  SITE_NAME,
+  SITE_URL,
 } from '@/lib/site';
 
 const AI_SITE_SUMMARY =

@@ -1,4 +1,5 @@
 import { setRequestLocale } from 'next-intl/server';
+
 import ContactContent from '@/components/ContactContent';
 import { CONTACT_PAGE_META } from '@/content/contact';
 import { buildPageMetadata } from '@/lib/site';
