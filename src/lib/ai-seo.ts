@@ -38,7 +38,8 @@ const CORE_PAGES: { path: string; title: string; description: string }[] = [
   {
     path: '/markdown-live-preview',
     title: 'Markdown Live Preview',
-    description: 'Free split-pane Markdown live preview with sync scroll, dark mode, and instant PDF export in the browser.',
+    description:
+      'Free online Markdown editor with live preview, sync scroll, Mermaid diagrams, syntax highlighting, and instant PDF/HTML export. No login required.',
   },
   {
     path: '/free-markdown-converter',

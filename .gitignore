@@ -47,3 +47,6 @@ next-env.d.ts
 /public/api/vendor/
 /public/api/rate-limit/
 
+# generated SEO audit reports
+/reports/
+

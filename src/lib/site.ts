@@ -240,6 +240,7 @@ export async function buildLocalizedPageMetadata({
     else if (titleKey === 'editor.title') title = 'Online Markdown Editor';
     else if (titleKey === 'help.title') title = 'Help & Documentation';
     else if (titleKey === 'freeConverter.title') title = 'Free Markdown Converter Online';
+    else if (titleKey === 'livePreview.title') title = 'Markdown Live Preview';
     else if (titleKey === 'markdownToPdf.title') title = 'Markdown to PDF Converter';
     else if (titleKey === 'tools.pdfTitle') title = 'Markdown to PDF';
     else if (titleKey === 'tools.htmlTitle') title = 'Markdown to HTML';
@@ -255,7 +256,10 @@ export async function buildLocalizedPageMetadata({
     else if (descriptionKey === 'editor.description') description = 'Write Markdown with live preview and diagram rendering.';
     else if (descriptionKey === 'help.subtitle') description = 'Everything you need to know about using PDFWritter.';
     else if (descriptionKey === 'freeConverter.subtitle') description = 'Convert Markdown to any format in your browser.';
-    else if (descriptionKey === 'markdownToPdf.description') {
+    else if (descriptionKey === 'livePreview.description') {
+      description =
+        'Free online Markdown editor with live preview, sync scroll, Mermaid diagrams, and instant PDF export. No login required.';
+    } else if (descriptionKey === 'markdownToPdf.description') {
       description =
         'Convert Markdown to PDF online for free with live preview, Mermaid diagram support, and instant download — 100% private in your browser.';
     } else if (descriptionKey === 'tools.pdfDescription') description = 'Convert Markdown to PDF online for free.';
