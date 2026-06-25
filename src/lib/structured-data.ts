@@ -1,5 +1,7 @@
 import {
   absoluteUrl,
+  BLOG_AUTHOR_NAME,
+  BLOG_AUTHOR_ROLE,
   buildWebApplicationJsonLd,
   localizedPath,
   SITE_NAME,
@@ -34,6 +36,13 @@ export function buildSiteJsonLdGraph(locale: string) {
           contactType: 'customer support',
           url: absoluteUrl('/contact'),
         },
+      },
+      {
+        '@type': 'Person',
+        '@id': `${SITE_URL}#editorial-team`,
+        name: BLOG_AUTHOR_NAME,
+        jobTitle: BLOG_AUTHOR_ROLE,
+        worksFor: { '@id': `${SITE_URL}#organization` },
       },
       {
         '@type': 'WebSite',
@@ -110,5 +119,44 @@ export function buildFaqPageJsonLd(
       name: faq.q,
       acceptedAnswer: { '@type': 'Answer', text: faq.a },
     })),
+  };
+}
+
+export function buildHowToJsonLd(
+  name: string,
+  description: string,
+  steps: { name: string; text: string }[],
+  path: string,
+) {
+  const url = absoluteUrl(path);
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    '@id': `${url}#howto`,
+    name,
+    description,
+    url,
+    isPartOf: { '@id': `${SITE_URL}#website` },
+    step: steps.map((step, index) => ({
+      '@type': 'HowToStep',
+      position: index + 1,
+      name: step.name,
+      text: step.text,
+    })),
+  };
+}
+
+export function buildSpeakableJsonLd(cssSelectors: string[], path: string) {
+  const url = absoluteUrl(path);
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${url}#speakable`,
+    url,
+    isPartOf: { '@id': `${SITE_URL}#website` },
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: cssSelectors,
+    },
   };
 }

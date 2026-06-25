@@ -36,7 +36,7 @@ import {
   stripLeadingH1,
 } from '@/lib/blog-seo';
 import { convertMarkdownToHtml } from '@/lib/converters';
-import { SITE_NAME } from '@/lib/site';
+import { BLOG_AUTHOR_NAME } from '@/lib/site';
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
@@ -80,6 +80,8 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
   const labels = {
     backToBlog: t('backToBlog'),
     publisher: t('publisher'),
+    author: t('author'),
+    authorRole: t('authorRole'),
     readTime: t('readTime'),
     updated: t('updated'),
     topics: t('topics'),
@@ -131,6 +133,8 @@ function BlogArticleContent({
   labels: {
     backToBlog: string;
     publisher: string;
+    author: string;
+    authorRole: string;
     readTime: string;
     updated: string;
     topics: string;
@@ -207,8 +211,8 @@ function BlogArticleContent({
                 PW
               </div>
               <div>
-                <span className="blog-article-author-name">{SITE_NAME}</span>
-                <span className="blog-article-author-role">{labels.publisher}</span>
+                <span className="blog-article-author-name">{labels.author}</span>
+                <span className="blog-article-author-role">{labels.authorRole}</span>
               </div>
             </div>
 
@@ -244,7 +248,7 @@ function BlogArticleContent({
           <meta itemProp="description" content={post.metaDescription} />
           <meta itemProp="datePublished" content={post.date} />
           <meta itemProp="dateModified" content={post.dateModified} />
-          <meta itemProp="author" content={SITE_NAME} />
+          <meta itemProp="author" content={BLOG_AUTHOR_NAME} />
 
           <div
             className="markdown-preview blog-article-body"

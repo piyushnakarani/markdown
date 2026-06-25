@@ -4,6 +4,8 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 import type { BlogPost } from '@/content/blog';
 import {
   absoluteUrl,
+  BLOG_AUTHOR_NAME,
+  BLOG_AUTHOR_ROLE,
   buildPageMetadata,
   DEFAULT_KEYWORDS,
   localizedPath,
@@ -190,9 +192,11 @@ export function buildArticleJsonLd(post: BlogPost, locale: string) {
     datePublished: post.date,
     dateModified: post.dateModified,
     author: {
-      '@type': 'Organization',
-      name: SITE_NAME,
-      url: SITE_URL,
+      '@type': 'Person',
+      '@id': `${SITE_URL}#editorial-team`,
+      name: BLOG_AUTHOR_NAME,
+      jobTitle: BLOG_AUTHOR_ROLE,
+      worksFor: { '@id': `${SITE_URL}#organization` },
     },
     publisher: {
       '@id': `${SITE_URL}#organization`,

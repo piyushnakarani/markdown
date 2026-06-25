@@ -23,7 +23,7 @@ import SectionHeading from '@/components/SectionHeading';
 import TrustSection from '@/components/TrustSection';
 import { Link } from '@/i18n/navigation';
 import { buildPageMetadata } from '@/lib/site';
-import { buildFaqPageJsonLd } from '@/lib/structured-data';
+import { buildFaqPageJsonLd, buildHowToJsonLd, buildSpeakableJsonLd } from '@/lib/structured-data';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -114,6 +114,14 @@ function HomeContent({ locale }: { locale: string }) {
     { q: t('faq.q5'), a: t('faq.a5') },
     { q: t('faq.q6'), a: t('faq.a6') },
   ];
+
+  const howToSteps = [
+    { name: t('howItWorks.step1Title'), text: t('howItWorks.step1Desc') },
+    { name: t('howItWorks.step2Title'), text: t('howItWorks.step2Desc') },
+    { name: t('howItWorks.step3Title'), text: t('howItWorks.step3Desc') },
+  ];
+
+  const homePath = `/${locale}`;
 
   return (
     <>
@@ -233,7 +241,7 @@ function HomeContent({ locale }: { locale: string }) {
             />
           </ScrollReveal>
           <ScrollReveal delay={100}>
-            <FAQAccordion items={faqs} />
+            <FAQAccordion items={faqs} speakableAnswerIndex={0} />
           </ScrollReveal>
         </div>
       </section>
@@ -241,7 +249,28 @@ function HomeContent({ locale }: { locale: string }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(buildFaqPageJsonLd(faqs, `/${locale}`)),
+          __html: JSON.stringify(buildFaqPageJsonLd(faqs, homePath)),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            buildHowToJsonLd(
+              t('howItWorks.sectionTitle'),
+              t('howItWorks.sectionSubtitle'),
+              howToSteps,
+              homePath,
+            ),
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            buildSpeakableJsonLd(['.home-hero-subtitle', '.speakable-faq-answer'], homePath),
+          ),
         }}
       />
     </>

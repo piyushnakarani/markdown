@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "PDFWritter — Free Markdown Convertor with Diagram",
-    "description": "Convert Markdown to PDF, HTML, and TXT with built-in Mermaid diagram support. Free online Markdown convertor with live preview at pdfwritter.com — export flowcharts, sequence diagrams, and docs instantly.",
+    "description": "Free Markdown convertor with Mermaid diagram support. Convert to PDF, HTML, and TXT with live preview at pdfwritter.com — private, no sign-up.",
     "keywords": "markdown viewer, md viewer, md file viewer, markdown online, markdown preview, markdown to pdf, md to pdf, .md to pdf, markdown pdf, md to pdf with mermaid, markdown convertor with diagram, markdown converter with diagram, mermaid diagram markdown, markdown editor, pdfwritter, markdown to pdf with diagrams"
   },
   "nav": {
@@ -304,6 +304,8 @@
     "copyLink": "Copy link",
     "linkCopied": "Link copied",
     "publisher": "Publisher",
+    "author": "PDFWritter Editorial Team",
+    "authorRole": "Technical Writing Team",
     "updated": "Updated",
     "topics": "Topics",
     "ctaTitle": "Try PDFWritter Free",
@@ -329,6 +331,7 @@
     "badge": "Help & Support",
     "title": "Help & Documentation",
     "subtitle": "Everything you need to know about using PDFWritter",
+    "metaDescription": "PDFWritter help: convert Markdown to PDF, HTML, and TXT in your browser. Getting started guide, syntax reference, keyboard shortcuts, Mermaid diagrams, and FAQs.",
     "gettingStarted": "Getting Started",
     "faq": "Frequently Asked Questions",
     "syntaxRef": "Markdown Syntax Reference",
