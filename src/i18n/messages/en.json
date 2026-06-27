@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "PDFWritter — Free Markdown Convertor with Diagram",
-    "description": "Free Markdown convertor with Mermaid diagram support. Convert to PDF, HTML, and TXT with live preview at pdfwritter.com — private, no sign-up.",
-    "keywords": "markdown viewer, md viewer, md file viewer, markdown online, markdown preview, markdown to pdf, md to pdf, .md to pdf, markdown pdf, md to pdf with mermaid, markdown convertor with diagram, markdown converter with diagram, mermaid diagram markdown, markdown editor, pdfwritter, markdown to pdf with diagrams"
+    "title": "Free Markdown to PDF Converter Online | Mermaid Support | PDFWritter",
+    "description": "Convert Markdown to PDF, HTML and TXT online for free. Live preview, Mermaid diagram support, syntax highlighting and no signup required.",
+    "keywords": "markdown to pdf converter, free markdown to pdf, markdown converter online, markdown to html, markdown to txt, markdown editor online, markdown live preview, mermaid diagram markdown, markdown converter with diagram, md to pdf, pdfwritter"
   },
   "nav": {
     "home": "Home",
@@ -21,7 +21,7 @@
     "language": "Language"
   },
   "hero": {
-    "badge": "Markdown Convertor with Diagram",
+    "badge": "Markdown Converter with Diagram",
     "title": "Transform Your Markdown",
     "titleHighlight": "Into Anything",
     "subtitle": "Convert Markdown to PDF, HTML & TXT with Mermaid diagram support. Free, private, no sign-up — only at pdfwritter.com.",
@@ -318,9 +318,9 @@
   "about": {
     "badge": "Platform Overview",
     "title": "About PDFWritter",
-    "subtitle": "Free Markdown convertor with diagram support for developers",
+    "subtitle": "Free Markdown converter with diagram support for developers",
     "missionTitle": "Our Mission",
-    "missionText": "We believe developer tools should be free, fast, and respect your privacy. PDFWritter was built to give every developer a Markdown convertor with diagram support — export Mermaid flowcharts and docs to PDF without compromising quality or security.",
+    "missionText": "We believe developer tools should be free, fast, and respect your privacy. PDFWritter was built to give every developer a Markdown converter with diagram support — export Mermaid flowcharts and docs to PDF without compromising quality or security.",
     "featuresTitle": "What We Offer",
     "privacyTitle": "Privacy Promise",
     "privacyText": "Conversions can run in your browser or on your configured render server. The app does not collect or store your content.",
@@ -353,7 +353,7 @@
     "benefit8": "Export to multiple formats"
   },
   "footer": {
-    "description": "Free Markdown convertor with diagram support. Convert, edit, and export Markdown with Mermaid charts at pdfwritter.com.",
+    "description": "Free Markdown converter with diagram support. Convert, edit, and export Markdown with Mermaid charts at pdfwritter.com.",
     "tools": "Tools",
     "resources": "Resources",
     "legal": "Legal",
@@ -374,7 +374,7 @@
     "q5": "What file formats can I export to?",
     "a5": "You can export to PDF, HTML, and plain text (TXT) formats.",
     "q6": "Does PDFWritter support Mermaid diagrams?",
-    "a6": "Yes — PDFWritter is a Markdown convertor with diagram support. Add ```mermaid code blocks for flowcharts, sequence diagrams, Gantt charts, and pie charts. Diagrams render in live preview and export cleanly to PDF and HTML."
+    "a6": "Yes — PDFWritter is a Markdown converter with diagram support. Add ```mermaid code blocks for flowcharts, sequence diagrams, Gantt charts, and pie charts. Diagrams render in live preview and export cleanly to PDF and HTML."
   },
   "common": {
     "loading": "Loading...",
@@ -418,7 +418,7 @@
     "faqSubtitle": "Got questions? We've got answers.",
     "ctaBadge": "Start Converting Now",
     "ctaTitle": "Elevate Your Markdown Workflow Today",
-    "ctaSubtitle": "The Markdown convertor with diagram support — export Mermaid charts to PDF and HTML free at pdfwritter.com."
+    "ctaSubtitle": "The Markdown converter with diagram support — export Mermaid charts to PDF and HTML free at pdfwritter.com."
   },
   "privacy": {
     "title": "Privacy Policy",

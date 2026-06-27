@@ -10,7 +10,7 @@ import {
 } from '@/lib/site';
 
 const SITE_SUMMARY =
-  'Free online Markdown convertor with Mermaid diagram support. Convert Markdown to PDF, HTML, and TXT in your browser at pdfwritter.com.';
+  'Free online Markdown converter with Mermaid diagram support. Convert Markdown to PDF, HTML, and TXT in your browser at pdfwritter.com.';
 
 /** Single @graph document — avoids duplicate/conflicting JSON-LD blocks. */
 export function buildSiteJsonLdGraph(locale: string) {

@@ -47,6 +47,10 @@ next-env.d.ts
 /public/api/vendor/
 /public/api/rate-limit/
 
+/samples/
+
 # generated SEO audit reports
 /reports/
 
+.cursor/rules/seo-geo-aeo.mdc
+/scripts/

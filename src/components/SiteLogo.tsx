@@ -36,7 +36,7 @@ export default function SiteLogo({
     <Image
       key={src}
       src={src}
-      alt="PDFWritter — Markdown convertor with diagram"
+      alt="PDFWritter — Markdown converter with diagram"
       width={LOGO_WIDTH}
       height={LOGO_HEIGHT}
       priority={variant === 'header'}

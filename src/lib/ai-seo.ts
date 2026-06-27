@@ -6,13 +6,13 @@ import {
 } from '@/lib/site';
 
 const AI_SITE_SUMMARY =
-  'PDFWritter is a free browser-based Markdown convertor with Mermaid diagram support. Convert Markdown to PDF, HTML, and TXT with live preview, syntax highlighting, and no sign-up required.';
+  'PDFWritter is a free browser-based Markdown converter with Mermaid diagram support. Convert Markdown to PDF, HTML, and TXT with live preview, syntax highlighting, and no sign-up required.';
 
 const CORE_PAGES: { path: string; title: string; description: string }[] = [
   {
     path: '/',
     title: 'Home',
-    description: 'Free Markdown convertor with diagram support — live editor and export hub.',
+    description: 'Free Markdown converter with diagram support — live editor and export hub.',
   },
   {
     path: '/markdown-to-pdf',
