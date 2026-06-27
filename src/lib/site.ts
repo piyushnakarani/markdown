@@ -6,7 +6,7 @@ import { defaultLocale, type Locale,locales } from '@/i18n/locales';
 export const SITE_URL =
   process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') || 'https://www.pdfwritter.com';
 export const SITE_NAME = 'PDFWritter';
-export const SITE_TAGLINE = 'Markdown Convertor with Diagram';
+export const SITE_TAGLINE = 'Markdown Converter with Diagram';
 export const SITE_EMAIL = 'hello@pdfwritter.com';
 export const BLOG_AUTHOR_NAME = 'PDFWritter Editorial Team';
 export const BLOG_AUTHOR_ROLE = 'Technical Writing Team';
@@ -39,7 +39,6 @@ export const DEFAULT_KEYWORDS = [
   '.md to pdf',
   'markdown pdf',
   'md to pdf with mermaid',
-  'markdown convertor with diagram',
   'markdown converter with diagram',
   'markdown to pdf with diagrams',
   'mermaid markdown converter',
@@ -259,7 +258,7 @@ export async function buildLocalizedPageMetadata({
   }
 
   if (!description) {
-    if (descriptionKey === 'about.subtitle') description = 'Free Markdown convertor with diagram support for developers.';
+    if (descriptionKey === 'about.subtitle') description = 'Free Markdown converter with diagram support for developers.';
     else if (descriptionKey === 'contact.subtitle') description = 'Get in touch with the PDFWritter team.';
     else if (descriptionKey === 'editor.description') description = 'Write Markdown with live preview and diagram rendering.';
     else if (descriptionKey === 'help.subtitle') description = 'Everything you need to know about using PDFWritter.';
@@ -307,7 +306,7 @@ export function buildWebApplicationJsonLd(locale: string) {
     name: SITE_NAME,
     alternateName: SITE_TAGLINE,
     description:
-      'Free online Markdown convertor with diagram support. Convert Markdown with Mermaid flowcharts, sequence diagrams, and charts to PDF, HTML, and TXT at pdfwritter.com.',
+      'Free online Markdown converter with diagram support. Convert Markdown with Mermaid flowcharts, sequence diagrams, and charts to PDF, HTML, and TXT at pdfwritter.com.',
     url,
     image: {
       '@type': 'ImageObject',
@@ -324,7 +323,7 @@ export function buildWebApplicationJsonLd(locale: string) {
       priceCurrency: 'USD',
     },
     featureList: [
-      'Markdown convertor with diagram support',
+      'Markdown converter with diagram support',
       'Mermaid flowchart and sequence diagram rendering',
       'Markdown to PDF conversion',
       'Markdown to HTML conversion',

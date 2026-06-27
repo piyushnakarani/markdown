@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "PDFWritter — Free Markdown Convertor with Diagram",
-    "description": "Convert Markdown to PDF, HTML, and TXT with Mermaid diagram support. Free Markdown convertor with live preview at pdfwritter.com.",
-    "keywords": "markdown convertor with diagram, markdown converter with diagram, markdown to pdf, mermaid diagram, pdfwritter"
+    "title": "Kostenloser Markdown-zu-PDF-Konverter online | Mermaid-Unterstützung | PDFWritter",
+    "description": "Konvertiere Markdown kostenlos online in PDF, HTML und TXT. Live-Vorschau, Mermaid-Diagrammunterstützung, Syntaxhervorhebung und keine Anmeldung erforderlich.",
+    "keywords": "Markdown zu PDF Konverter, Markdown in PDF umwandeln, Markdown Converter online, Markdown zu HTML, Markdown zu TXT, Markdown Editor online, Markdown Live Vorschau, Mermaid Diagramme, PDFWritter"
   },
   "nav": {
     "home": "Startseite",
@@ -21,7 +21,7 @@
     "markdownLivePreview": "Live-Vorschau"
   },
   "hero": {
-    "badge": "Markdown Convertor with Diagram",
+    "badge": "Markdown Converter with Diagram",
     "title": "Transformieren Sie Ihr Markdown",
     "titleHighlight": "In Alles",
     "subtitle": "Konvertieren Sie Markdown sofort in PDF, HTML und TXT. Kein Upload, kein Server, keine Anmeldung.",
@@ -185,7 +185,7 @@
     "q5": "In welche Formate kann ich exportieren?",
     "a5": "PDF, HTML und Klartext (TXT).",
     "q6": "Does PDFWritter support Mermaid diagrams?",
-    "a6": "Yes — PDFWritter is a Markdown convertor with diagram support. Add mermaid code blocks for flowcharts, sequence diagrams, Gantt charts, and pie charts. Diagrams render in live preview and export cleanly to PDF and HTML."
+    "a6": "Yes — PDFWritter is a Markdown converter with diagram support. Add mermaid code blocks for flowcharts, sequence diagrams, Gantt charts, and pie charts. Diagrams render in live preview and export cleanly to PDF and HTML."
   },
   "common": {
     "loading": "Laden...",
