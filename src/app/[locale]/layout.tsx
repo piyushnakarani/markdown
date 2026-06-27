@@ -1,5 +1,6 @@
 import '../globals.css';
 
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
 import { notFound } from 'next/navigation';
@@ -108,6 +109,7 @@ export default async function LocaleLayout({
               {children}
             </main>
             <Footer />
+            <SpeedInsights />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
