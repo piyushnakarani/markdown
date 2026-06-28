@@ -12,6 +12,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@posthog/react": "^1.10.3",
     "file-saver": "^2.0.5",
     "geist": "^1.7.2",
     "highlight.js": "^11.11.1",
@@ -22,6 +23,7 @@
     "next": "^15.5.18",
     "next-intl": "^4.13.0",
     "nodemailer": "^9.0.1",
+    "posthog-js": "^1.395.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6"
   },
