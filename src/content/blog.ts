@@ -1,3 +1,9 @@
+import { content as bestOnlineMarkdownEditorContent } from './blog-posts/best-online-markdown-editor-with-preview';
+import { content as convertMarkdownToHtmlContent } from './blog-posts/convert-markdown-to-html-online';
+import { content as freeMarkdownConverterContent } from './blog-posts/free-markdown-converter-online-complete-guide';
+import { content as howToConvertMarkdownToTxtContent } from './blog-posts/how-to-convert-markdown-to-txt-online';
+import { content as markdownLivePreviewContent } from './blog-posts/markdown-live-preview-complete-guide';
+
 export interface BlogPost {
   slug: string;
   titleKey: string;
@@ -39,7 +45,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Guide',
     readTime: 10,
     date: '2026-06-25',
-    dateModified: '2026-06-25',
+    dateModified: '2026-06-28',
     coverImage: {
       src: '/convert-markdown-file-to-pdf.webp',
       alt: 'Convert markdown documents instantly into PDF online',
@@ -306,17 +312,17 @@ Yes, most modern tools support large documentation files.
     titleKey: 'Best Markdown Editors for Developers',
     excerptKey:
       'Compare the top Markdown editors for developers — from VS Code and Obsidian to free online editors with live preview and export.',
-    metaTitle: 'Best Markdown Editors for Developers (2025 Guide) | PDFWritter',
+    metaTitle: 'Best Markdown Editors for Developers (2026 Guide) | PDFWritter',
     metaDescription:
-      'Discover the best Markdown editors for developers: VS Code, Typora, Obsidian, StackEdit, and free online tools with live preview and PDF export.',
-    keywords: ['markdown editor', 'best markdown editor', 'developer tools', 'markdown preview', 'online markdown editor'],
+      'Best markdown apps and editors for developers: VS Code, Typora, Obsidian, and free online md editor with live preview and PDF export.',
+    keywords: ['markdown editor', 'best markdown editor', 'best editor for markdown', 'best markdown apps', 'md editor', 'markdown writer', 'developer tools', 'markdown preview', 'online markdown editor'],
     category: 'Tools',
     readTime: 8,
-    date: '2025-01-15',
-    dateModified: '2025-06-01',
+    date: '2026-06-25',
+    dateModified: '2026-06-28',
     content: `# Best Markdown Editors for Developers
 
-Choosing the right **Markdown editor** saves time on README files, documentation, and blog drafts. This guide compares the most popular options for developers in 2025.
+Choosing the right **Markdown editor** saves time on README files, documentation, and blog drafts. If you are searching for the **best markdown apps** or the **best editor for markdown**, this guide compares the most popular options for developers in 2026.
 
 ## 1. VS Code with Markdown Extensions
 
@@ -362,8 +368,8 @@ The best Markdown editor depends on your workflow. For fast browser-based editin
     keywords: ['markdown to pdf', 'convert markdown to pdf', 'md to pdf', 'markdown pdf converter', 'online pdf converter'],
     category: 'Tutorial',
     readTime: 5,
-    date: '2025-02-01',
-    dateModified: '2025-06-01',
+    date: '2026-06-25',
+    dateModified: '2026-06-28',
     content: `# How to Convert Markdown to PDF Online
 
 Need to turn a **Markdown file into a PDF**? You do not need desktop software. This tutorial shows how to convert Markdown to PDF entirely in your browser.
@@ -407,15 +413,15 @@ Click **Download PDF**. Your formatted document saves instantly — no email, no
       'Learn when to use Markdown vs HTML for documentation, blogs, and web content — with a comparison table and conversion tips.',
     metaTitle: 'Markdown vs HTML: Differences & When to Use Each | PDFWritter',
     metaDescription:
-      'Markdown vs HTML explained for developers. Compare readability, flexibility, and use cases — plus free tools to convert Markdown to semantic HTML.',
-    keywords: ['markdown vs html', 'markdown to html', 'markdown comparison', 'semantic html', 'documentation formats'],
+      'Markdown as HTML explained: when to write Markdown vs HTML, conversion tips, and free tools to export semantic HTML from Markdown online.',
+    keywords: ['markdown vs html', 'markdown to html', 'markdown as html', 'markdown comparison', 'semantic html', 'documentation formats'],
     category: 'Guide',
     readTime: 6,
-    date: '2025-02-15',
-    dateModified: '2025-06-01',
+    date: '2026-06-25',
+    dateModified: '2026-06-28',
     content: `# Markdown vs HTML Explained
 
-Developers often ask: should I write in **Markdown** or **HTML**? Both have a place — this guide explains the trade-offs.
+Developers often ask: should I write in **Markdown** or **HTML**? Others search for **markdown as html** — how Markdown becomes HTML during publishing. Both questions have the same answer: Markdown is for writing, HTML is for rendering. This guide explains the trade-offs.
 
 ## What is Markdown?
 
@@ -459,11 +465,11 @@ Use our [Markdown to HTML converter](/markdown-to-html) to generate clean, seman
     metaTitle: 'Beginner Guide to Markdown Syntax (2025) | PDFWritter',
     metaDescription:
       'Complete beginner guide to Markdown syntax. Learn headings, bold, lists, links, code blocks, and tables — then practice free in our online editor.',
-    keywords: ['markdown guide', 'markdown syntax', 'learn markdown', 'markdown for beginners', 'markdown cheat sheet'],
+    keywords: ['markdown guide', 'markdown syntax', 'markdown tutorial', 'learn markdown', 'markdown for beginners', 'markdown cheat sheet'],
     category: 'Tutorial',
     readTime: 10,
-    date: '2025-03-01',
-    dateModified: '2025-06-01',
+    date: '2026-06-25',
+    dateModified: '2026-06-28',
     content: `# Beginner Guide to Markdown
 
 **Markdown** lets you format text without leaving your keyboard. This beginner guide covers every essential syntax you need.
@@ -510,12 +516,12 @@ Open our [online Markdown editor](/editor) to write, preview, and export your fi
       'Compare the best documentation tools for developers — Markdown on GitHub, Docusaurus, MkDocs, GitBook, and free export options.',
     metaTitle: 'Best Documentation Tools for Developers | PDFWritter',
     metaDescription:
-      'Explore top documentation tools for developers: Markdown + GitHub, Docusaurus, MkDocs, GitBook, and free Markdown export to PDF and HTML.',
-    keywords: ['documentation tools', 'developer documentation', 'technical writing', 'markdown documentation', 'docs as code'],
+      'Top documentation tools for developers plus MkDocs alternatives. Markdown on GitHub, Docusaurus, GitBook, and free PDF/HTML export.',
+    keywords: ['documentation tools', 'developer documentation', 'mkdocs alternative', 'technical writing', 'markdown documentation', 'docs as code'],
     category: 'Tools',
     readTime: 7,
-    date: '2025-03-15',
-    dateModified: '2025-06-01',
+    date: '2026-06-25',
+    dateModified: '2026-06-28',
     content: `# Best Documentation Tools for Developers
 
 Great **developer documentation** reduces support tickets and speeds onboarding. Here are the tools teams use most in 2025.
@@ -540,7 +546,7 @@ Visual editor with collaboration features — good for teams that prefer a GUI o
 
 ### 4. MkDocs
 
-Python-based static generator — fast builds and Material theme support.
+Python-based static generator — fast builds and Material theme support. Teams looking for a **MkDocs alternative** often choose lighter browser tools like PDFWritter for quick PDF/HTML export, or Docusaurus for React-based doc sites.
 
 ### 5. PDFWritter
 
@@ -561,12 +567,12 @@ Convert Markdown docs to **PDF** for stakeholders or **HTML** for quick publishi
       'Hands-on Markdown tutorial with exercises for headings, formatting, lists, code, tables, and links — practice free in your browser.',
     metaTitle: 'Markdown Tutorial for Beginners (Hands-On) | PDFWritter',
     metaDescription:
-      'Hands-on Markdown tutorial for beginners. Practice headings, bold, lists, code blocks, and tables — then export to PDF with our free online tools.',
-    keywords: ['markdown tutorial', 'learn markdown', 'markdown exercises', 'markdown practice', 'markdown for beginners'],
+      'Hands-on markdown tutorial for beginners. Practice headings, lists, code blocks, and tables — export to PDF with our free online tools.',
+    keywords: ['markdown tutorial', 'learn markdown', 'markdown exercises', 'markdown practice', 'markdown for beginners', 'markdown writer'],
     category: 'Tutorial',
     readTime: 12,
-    date: '2025-04-01',
-    dateModified: '2025-06-01',
+    date: '2026-06-25',
+    dateModified: '2026-06-28',
     content: `# Markdown Tutorial for Beginners
 
 Learn Markdown by doing. Complete these short exercises, then paste your work into our [online editor](/editor).
@@ -616,15 +622,15 @@ Link to [PDFWritter home](/), the [editor](/editor), and [PDF converter](/markdo
       'Curated list of the best free online Markdown tools for editing, converting to PDF/HTML, and publishing documentation.',
     metaTitle: 'Best Free Markdown Tools Online (2025 List) | PDFWritter',
     metaDescription:
-      'Best free Markdown tools online: editors, PDF/HTML converters, and doc generators. Compare PDFWritter, Dillinger, StackEdit, Pandoc, and more.',
-    keywords: ['free markdown tools', 'online markdown converter', 'markdown tools online', 'free md to pdf', 'markdown utilities'],
+      'Best free markdown apps online: editors, PDF/HTML converters, and MkDocs alternatives. Compare PDFWritter, Dillinger, StackEdit, and Pandoc.',
+    keywords: ['free markdown tools', 'best markdown apps', 'online markdown converter', 'mkdocs alternative', 'markdown tools online', 'free md to pdf', 'markdown utilities'],
     category: 'Tools',
     readTime: 6,
-    date: '2025-04-15',
-    dateModified: '2025-06-01',
+    date: '2026-06-25',
+    dateModified: '2026-06-28',
     content: `# Best Free Markdown Tools Online
 
-Looking for **free Markdown tools** that work in the browser? This curated list covers editors, converters, and doc platforms.
+Looking for **free Markdown tools** or the **best markdown apps** that work in the browser? This curated list covers editors, converters, and doc platforms — including lightweight options when you need a **MkDocs alternative** for quick exports.
 
 ## Free Markdown Editors
 
@@ -659,18 +665,18 @@ Looking for **free Markdown tools** that work in the browser? This curated list 
     metaTitle: 'How Developers Use Markdown Efficiently | PDFWritter',
     metaDescription:
       'Learn how developers use Markdown for READMEs, PR descriptions, docs, and blogs. Productivity tips plus free export to PDF and HTML.',
-    keywords: ['markdown workflow', 'developer productivity', 'markdown readme', 'technical writing', 'markdown tips'],
+    keywords: ['markdown workflow', 'developer productivity', 'markdown readme', 'readme git', 'markdown writer', 'technical writing', 'markdown tips'],
     category: 'Productivity',
     readTime: 7,
-    date: '2025-05-01',
-    dateModified: '2025-06-01',
+    date: '2026-06-25',
+    dateModified: '2026-06-28',
     content: `# How Developers Use Markdown Efficiently
 
-**Markdown** is more than README syntax — it is a daily productivity tool across the software lifecycle.
+**Markdown** is more than README syntax — it is a daily productivity tool across the software lifecycle. Whether you are a developer, technical writer, or **markdown writer** on a docs team, these workflows save hours every week.
 
 ## 1. README Files
 
-Every repo needs a clear README with install steps, usage, and license info. Markdown keeps it version-controlled alongside code.
+Every repo needs a clear README with install steps, usage, and license info. Markdown keeps it version-controlled alongside code — the standard for any **readme git** workflow on GitHub and GitLab.
 
 ## 2. Pull Request Descriptions
 
@@ -703,15 +709,15 @@ Static site generators (Next.js, Hugo, Jekyll) consume Markdown — write once, 
       'Learn how to embed flowcharts, sequence diagrams, and class diagrams in your Markdown documents using Mermaid.js syntax.',
     metaTitle: 'How to Render Mermaid Diagrams in Markdown | PDFWritter',
     metaDescription:
-      'Master Mermaid.js diagrams in Markdown. Step-by-step guide to writing flowcharts, sequence diagrams, and Gantt charts with live online rendering and PDF export.',
-    keywords: ['mermaid diagrams', 'markdown mermaid', 'flowcharts in markdown', 'mermaid js syntax', 'render diagrams'],
+      'Markdown flowchart guide: create flowcharts, sequence diagrams, and Gantt charts in Markdown with Mermaid.js syntax and live PDF export.',
+    keywords: ['mermaid diagrams', 'markdown mermaid', 'markdown flowchart', 'flowcharts in markdown', 'mermaid js syntax', 'render diagrams'],
     category: 'Tutorial',
     readTime: 9,
-    date: '2025-05-15',
-    dateModified: '2025-06-01',
+    date: '2026-06-25',
+    dateModified: '2026-06-28',
     content: `# How to Render Mermaid Diagrams in Markdown
 
-Visualizing complex flows with diagrams keeps documentation clear. With **Mermaid.js**, you can render diagrams directly inside your Markdown files using simple text.
+Visualizing complex flows with diagrams keeps documentation clear. Whether you need a **markdown flowchart**, sequence diagram, or Gantt chart, **Mermaid.js** lets you render diagrams directly inside Markdown files using simple text.
 
 ## 1. Flowchart Example
 
@@ -775,15 +781,15 @@ Our [online Markdown editor](/editor) and [Markdown to PDF converter](/markdown-
       'A complete guide to writing high-impact GitHub README files that attract users and contributors to your open-source projects.',
     metaTitle: 'GitHub README Best Practices & Templates | PDFWritter',
     metaDescription:
-      'Learn how to write a professional GitHub README file. Complete guide covering structure, badges, installation guides, tables, and PDF documentation exports.',
-    keywords: ['github readme', 'best readme template', 'open source documentation', 'markdown readme guide', 'developer experience'],
+      'GitHub README best practices for readme git projects. Structure, badges, install guides, Mermaid diagrams, and PDF export for open source.',
+    keywords: ['github readme', 'readme git', 'best readme template', 'open source documentation', 'markdown readme guide', 'developer experience'],
     category: 'Guide',
     readTime: 7,
-    date: '2025-06-01',
-    dateModified: '2025-06-01',
+    date: '2026-06-25',
+    dateModified: '2026-06-28',
     content: `# GitHub README Best Practices for Developers
 
-A repository's **README** file is its front door. A clear, well-structured README drives open-source adoption, helps team members onboard, and serves as your project's main documentation.
+A repository's **README** file is its front door — and the centerpiece of every **readme git** project on GitHub. A clear, well-structured README drives open-source adoption, helps team members onboard, and serves as your project's main documentation.
 
 ## The Ideal README Structure
 
@@ -817,63 +823,144 @@ Always specify the programming language on your fenced code blocks to trigger co
 Sometimes stakeholders or enterprise clients require documentation offline. You can copy your README and convert it to a beautifully formatted document instantly using our [Markdown to PDF converter](/markdown-to-pdf).`,
   },
   {
-    slug: 'convert-markdown-to-html-online',
-    titleKey: 'How to Convert Markdown to HTML: 3 Simple Ways',
+    slug: 'free-markdown-converter-online-complete-guide',
+    titleKey: 'Free Markdown Converter Online — Complete Toolkit Guide for 2026',
     excerptKey:
-      'Discover how to convert Markdown to clean, semantic HTML for your website, blog, or CMS using online tools and command line utilities.',
-    metaTitle: 'How to Convert Markdown to HTML: 3 Simple Ways | PDFWritter',
+      'Complete guide to free online Markdown conversion: PDF, HTML, TXT export, live preview, and Mermaid diagrams — all in your browser with no sign-up.',
+    metaTitle: 'Free Markdown Converter Online (2026 Guide) | PDFWritter',
     metaDescription:
-      'Convert Markdown to semantic HTML. Compare online web converters, CLI utilities like Pandoc, and custom scripts. Clean code with syntax highlighting.',
-    keywords: ['markdown to html', 'convert md to html', 'online md to html', 'semantic html generator', 'pandoc html'],
-    category: 'Tutorial',
-    readTime: 6,
-    date: '2025-06-10',
-    dateModified: '2025-06-10',
-    content: `# How to Convert Markdown to HTML: 3 Simple Ways
-
-Markdown is excellent for writing, but web browsers consume **HTML**. Here are three simple ways to convert your Markdown files to clean, semantic HTML code.
-
-## 1. Using the PDFWritter Online Converter (Easiest)
-
-For quick, zero-config exports, use our browser tool:
-1. Open the [Markdown to HTML converter](/markdown-to-html)
-2. Type or paste your Markdown in the editor
-3. The right pane shows the real-time HTML output
-4. Click **Download HTML** to save the file, or click **Copy** to grab raw code for your CMS
-
-## 2. Using Command Line Utilities (Pandoc)
-
-If you need to batch-convert files locally or integrate conversion into a build pipeline, **Pandoc** is the developer standard.
-
-Install Pandoc (on macOS via Homebrew):
-\`\`\`bash
-brew install pandoc
-\`\`\`
-
-Convert a file:
-\`\`\`bash
-pandoc input.md -o output.html
-\`\`\`
-
-## 3. Programmatic Conversion (JavaScript/Node.js)
-
-To convert Markdown dynamically inside a web application, use a library like **marked** or **markdown-it**.
-
-\`\`\`javascript
-import { marked } from 'marked';
-
-const markdown = '# Hello World\\nThis is *italic* text.';
-const html = marked.parse(markdown);
-
-console.log(html);
-// Output: <h1>Hello World</h1><p>This is <em>italic</em> text.</p>
-\`\`\`
-
-## Best Practices for HTML Output
-
-- **Use Semantic Tags**: Ensure headers map to \`<h1>\`, \`<h2>\`, lists to \`<ul>\`, and code to \`<pre><code>\`
-- **Sanitize Input**: If processing user-provided Markdown, always pass it through a sanitizer to avoid XSS security risks
-- **Styling**: Standard HTML output is unstyled. Pair it with a CSS reset or utility class system (like Tailwind's typography plugin) for clean reading.`,
+      'Free markdown converter online: convert MD to PDF, HTML, and TXT with live preview and Mermaid support. Client-side, no sign-up. Complete toolkit guide.',
+    keywords: [
+      'free markdown converter',
+      'online markdown converter',
+      'mkdocs alternative',
+      'markdown converter with diagram',
+      'md to pdf html txt',
+      'browser markdown tools',
+      'markdown conversion toolkit',
+    ],
+    category: 'Guide',
+    readTime: 14,
+    date: '2026-06-28',
+    dateModified: '2026-06-28',
+    coverImage: {
+      src: '/free-markdown-converter-toolkit.webp',
+      alt: 'Free online markdown converter toolkit with PDF HTML and TXT export',
+      width: 1536,
+      height: 1024,
+    },
+    content: freeMarkdownConverterContent,
+  },
+  {
+    slug: 'how-to-convert-markdown-to-txt-online',
+    titleKey: 'How to Convert Markdown to TXT Online — Complete Guide for Developers in 2026',
+    excerptKey:
+      'Learn how to convert Markdown to plain text online. Strip formatting for email, LLM prompts, and legacy systems with a free client-side TXT converter.',
+    metaTitle: 'Markdown to TXT Converter Online (Free Guide 2026) | PDFWritter',
+    metaDescription:
+      'Convert markdown to TXT online instantly. Strip formatting for email, AI prompts, and plain-text systems. Free client-side md to txt converter guide.',
+    keywords: [
+      'markdown to txt',
+      'convert markdown to plain text',
+      'md to txt converter',
+      'strip markdown formatting',
+      'markdown text export',
+      'plain text from markdown',
+    ],
+    category: 'Guide',
+    readTime: 13,
+    date: '2026-06-28',
+    dateModified: '2026-06-28',
+    coverImage: {
+      src: '/convert-markdown-to-txt.webp',
+      alt: 'Convert markdown documents to plain text online',
+      width: 1536,
+      height: 1024,
+    },
+    content: howToConvertMarkdownToTxtContent,
+  },
+  {
+    slug: 'markdown-live-preview-complete-guide',
+    titleKey: 'Markdown Live Preview — Complete Guide to Real-Time Editing in 2026',
+    excerptKey:
+      'Master markdown live preview: real-time side-by-side rendering, Mermaid diagrams, and error-free export to PDF, HTML, and TXT.',
+    metaTitle: 'Markdown Live Preview Guide (Free Online 2026) | PDFWritter',
+    metaDescription:
+      'Markdown live preview guide: real-time side-by-side editing, Mermaid diagrams, and export to PDF/HTML. Free online preview tool for developers.',
+    keywords: [
+      'markdown live preview',
+      'online markdown preview',
+      'real-time markdown editor',
+      'markdown side by side preview',
+      'markdown preview tool',
+      'live md preview',
+    ],
+    category: 'Guide',
+    readTime: 13,
+    date: '2026-06-28',
+    dateModified: '2026-06-28',
+    coverImage: {
+      src: '/markdown-live-preview-guide.webp',
+      alt: 'Markdown live preview with side-by-side editing and rendering',
+      width: 1536,
+      height: 1024,
+    },
+    content: markdownLivePreviewContent,
+  },
+  {
+    slug: 'best-online-markdown-editor-with-preview',
+    titleKey: 'Best Online Markdown Editor with Live Preview — Free Guide for 2026',
+    excerptKey:
+      'Compare the best free online Markdown editors with live preview, Mermaid support, and PDF/HTML/TXT export. No install, no sign-up required.',
+    metaTitle: 'Best Online Markdown Editor with Preview (2026) | PDFWritter',
+    metaDescription:
+      'Best online markdown editor and md editor with live preview. Free markdown writer tool with PDF/HTML/TXT export. No install, no sign-up.',
+    keywords: [
+      'online markdown editor',
+      'free markdown editor online',
+      'best editor for markdown',
+      'best markdown apps',
+      'md editor',
+      'markdown writer',
+      'markdown editor with preview',
+      'browser markdown editor',
+      'markdown editor no signup',
+      'write markdown online',
+    ],
+    category: 'Guide',
+    readTime: 13,
+    date: '2026-06-28',
+    dateModified: '2026-06-28',
+    coverImage: {
+      src: '/online-markdown-editor-guide.webp',
+      alt: 'Online markdown editor with live preview and export options',
+      width: 1536,
+      height: 1024,
+    },
+    content: bestOnlineMarkdownEditorContent,
+  },
+  {
+    slug: 'convert-markdown-to-html-online',
+    titleKey: 'How to Convert Markdown to HTML Online — Complete Guide for 2026',
+    excerptKey:
+      'Complete guide to converting Markdown to semantic HTML online. Compare browser tools, Pandoc CLI, and JavaScript libraries with live preview.',
+    metaTitle: 'Markdown to HTML Converter Online (2026 Guide) | PDFWritter',
+    metaDescription:
+      'Convert markdown to HTML online — markdown as html made simple. Semantic output, Pandoc comparison, free client-side guide with live preview.',
+    keywords: [
+      'markdown to html',
+      'markdown as html',
+      'convert md to html',
+      'online md to html',
+      'semantic html generator',
+      'pandoc html',
+      'markdown html converter',
+    ],
+    category: 'Guide',
+    readTime: 13,
+    date: '2026-06-25',
+    dateModified: '2026-06-28',
+    content: convertMarkdownToHtmlContent,
   },
 ];
 

@@ -12,7 +12,7 @@ interface BlogClientProps {
   posts: BlogPost[];
 }
 
-const CATEGORIES = ['All', 'Tools', 'Tutorial', 'Guide', 'Productivity'] as const;
+const CATEGORIES = ['All', 'Tool', 'Tutorial', 'Guide', 'Productivity'] as const;
 
 const CATEGORY_COLORS: Record<string, { text: string; bg: string; border: string; accent: string }> = {
   Tools: { text: '#ef4444', bg: 'rgba(239, 68, 68, 0.08)', border: 'rgba(239, 68, 68, 0.15)', accent: 'bg-red-500' },

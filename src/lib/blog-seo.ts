@@ -299,6 +299,63 @@ function estimateWordCount(markdown: string): number {
   return plain ? plain.split(/\s+/).length : 0;
 }
 
+export interface ParsedFaq {
+  q: string;
+  a: string;
+}
+
+/** Extract FAQ pairs from a ## Frequently Asked Questions section. */
+export function extractArticleFaqs(markdown: string): ParsedFaq[] {
+  const faqMatch = markdown.match(/## Frequently Asked Questions\s*\n([\s\S]*?)(?:\n## |\n---|\s*$)/);
+  if (!faqMatch) return [];
+
+  const faqs: ParsedFaq[] = [];
+  const faqBody = faqMatch[1];
+  const blocks = faqBody.split(/\n### /).filter(Boolean);
+
+  for (const block of blocks) {
+    const lines = block.split('\n');
+    const question = lines[0].replace(/^#+\s*/, '').trim();
+    const answer = lines
+      .slice(1)
+      .join('\n')
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+      .replace(/\*\*|__|`/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+    if (question && answer) faqs.push({ q: question, a: answer });
+  }
+
+  return faqs;
+}
+
+export interface ParsedHowToStep {
+  name: string;
+  text: string;
+}
+
+/** Extract HowTo steps from a ## Step-by-Step Guide section. */
+export function extractHowToSteps(markdown: string): ParsedHowToStep[] {
+  const guideMatch = markdown.match(/## Step-by-Step Guide[^\n]*\s*\n([\s\S]*?)(?:\n## |\n---)/);
+  if (!guideMatch) return [];
+
+  const steps: ParsedHowToStep[] = [];
+  const stepRegex = /### (Step \d+[^\n]*)\n([\s\S]*?)(?=\n### Step \d+|\n## |\n---|$)/g;
+  let match: RegExpExecArray | null;
+
+  while ((match = stepRegex.exec(guideMatch[1])) !== null) {
+    const name = match[1].trim();
+    const text = match[2]
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+      .replace(/\*\*|__|`/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+    if (name && text) steps.push({ name, text });
+  }
+
+  return steps;
+}
+
 export function formatBlogDate(date: string): string {
   return new Date(date).toLocaleDateString('en-US', {
     month: 'long',
