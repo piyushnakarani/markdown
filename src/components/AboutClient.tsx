@@ -104,7 +104,7 @@ export default function AboutClient() {
       content: `# Weekly Project Update
 
 📅 **Date:** June 20, 2026
-👤 **Lead:** Jaydip
+👤 **Lead:** PdfWritter Team
 
 ## Progress Graph
 \`\`\`mermaid
@@ -128,7 +128,7 @@ flowchart LR
             <div className="flex gap-4 text-[9px] text-gray-500 mb-6 font-sans">
               <span><strong>Date:</strong> June 20, 2026</span>
               <span>|</span>
-              <span><strong>Lead:</strong> Jaydip</span>
+              <span><strong>Lead:</strong> PdfWritter Team</span>
             </div>
             
             <h2 className="text-sm font-bold font-sans text-gray-800 border-b pb-0.5 mb-2 mt-4">Progress Graph</h2>
@@ -149,7 +149,7 @@ flowchart LR
       lang: 'html',
       content: `<h1 id="weekly-project-update">Weekly Project Update</h1>
 <p>📅 <strong>Date:</strong> June 20, 2026<br>
-👤 <strong>Lead:</strong> Jaydip</p>
+👤 <strong>Lead:</strong> PdfWritter Team</p>
 
 <h2 id="progress-graph">Progress Graph</h2>
 <div className="mermaid-rendered-container">
@@ -164,7 +164,7 @@ flowchart LR
       content: `Weekly Project Update
 
 Date: June 20, 2026
-Lead: Jaydip
+Lead: PdfWritter Team
 
 Progress Graph
 Markdown Source -> Parser -> Print Document`,
