@@ -12,6 +12,7 @@ import Footer from '@/components/Footer';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import { GoogleTagManagerHead, GoogleTagManagerNoScript } from '@/components/GoogleTagManager';
 import Header from '@/components/Header';
+import PostHogProvider from '@/components/PostHogProvider';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import TransitionLoader from '@/components/TransitionLoader';
 import { isRtl, Locale, locales } from '@/i18n/locales';
@@ -96,21 +97,22 @@ export default async function LocaleLayout({
       >
         <GoogleTagManagerNoScript />
         <NextIntlClientProvider messages={messages}>
-          <ThemeProvider>
-            <GoogleAnalytics />
-            <Suspense fallback={null}>
-              <TransitionLoader />
-            </Suspense>
-            <a href="#main-content" className="skip-to-content">
-              Skip to content
-            </a>
-            <Header />
-            <main id="main-content" className="flex-1 w-full pt-[72px]">
-              {children}
-            </main>
-            <Footer />
-            <SpeedInsights />
-          </ThemeProvider>
+          <PostHogProvider>
+            <ThemeProvider>
+              <GoogleAnalytics />
+              <Suspense fallback={null}>
+                <TransitionLoader />
+              </Suspense>
+              <a href="#main-content" className="skip-to-content">
+                Skip to content
+              </a>
+              <Header />
+              <main id="main-content" className="flex-1 w-full pt-[72px]">
+                {children}
+              </main>
+              <Footer />
+            </ThemeProvider>
+          </PostHogProvider>
         </NextIntlClientProvider>
       </body>
     </html>
