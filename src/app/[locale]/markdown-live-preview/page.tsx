@@ -20,17 +20,18 @@ import { Fragment } from 'react';
 import EditorClient from '@/components/EditorClient';
 import FAQAccordion from '@/components/FAQAccordion';
 import PageHero from '@/components/PageHero';
+import RelatedBlogGuides from '@/components/RelatedBlogGuides';
 import ScrollReveal from '@/components/ScrollReveal';
 import SectionHeading from '@/components/SectionHeading';
 import { LIVE_PREVIEW_DEFAULT_MARKDOWN } from '@/content/live-preview-default';
 import { Link } from '@/i18n/navigation';
 import { absoluteUrl, buildLocalizedPageMetadata } from '@/lib/site';
-import { buildFaqPageJsonLd, buildToolPageJsonLd } from '@/lib/structured-data';
+import { buildToolPageJsonLd } from '@/lib/structured-data';
 
 const LIVE_PREVIEW_OG_IMAGE = {
-  url: '/markdown-tools-banner.jpg',
-  width: 1024,
-  height: 1024,
+  url: '/markdown-live-preview-og.webp',
+  width: 1200,
+  height: 630,
 } as const;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -276,6 +277,8 @@ function MarkdownLivePreviewContent({ locale }: { locale: string }) {
         </div>
       </section>
 
+      <RelatedBlogGuides toolKey="markdown-live-preview" accentColor="#8b5cf6" />
+
       <section className="section-py relative">
         <div className="page-container max-w-3xl">
           <ScrollReveal>
@@ -309,15 +312,10 @@ function MarkdownLivePreviewContent({ locale }: { locale: string }) {
             buildToolPageJsonLd(
               'Markdown Live Preview',
               'Free online Markdown editor with live preview, sync scroll, Mermaid diagrams, syntax highlighting, and instant PDF export. No login required.',
-              `/${locale}/markdown-live-preview`,
+              locale,
+              '/markdown-live-preview',
             ),
           ),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(buildFaqPageJsonLd(faqs, `/${locale}/markdown-live-preview`)),
         }}
       />
     </>

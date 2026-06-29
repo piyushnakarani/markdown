@@ -49,8 +49,8 @@ export const blogPosts: BlogPost[] = [
     coverImage: {
       src: '/convert-markdown-file-to-pdf.webp',
       alt: 'Convert markdown documents instantly into PDF online',
-      width: 1536,
-      height: 1024,
+      width: 1200,
+      height: 800,
     },
     content: `# How to Convert Markdown to PDF Online (Complete Guide for Developers in 2026)
 
@@ -846,8 +846,8 @@ Sometimes stakeholders or enterprise clients require documentation offline. You 
     coverImage: {
       src: '/free-markdown-converter-toolkit.webp',
       alt: 'Free online markdown converter toolkit with PDF HTML and TXT export',
-      width: 1536,
-      height: 1024,
+      width: 1200,
+      height: 800,
     },
     content: freeMarkdownConverterContent,
   },
@@ -874,8 +874,8 @@ Sometimes stakeholders or enterprise clients require documentation offline. You 
     coverImage: {
       src: '/convert-markdown-to-txt.webp',
       alt: 'Convert markdown documents to plain text online',
-      width: 1536,
-      height: 1024,
+      width: 1200,
+      height: 800,
     },
     content: howToConvertMarkdownToTxtContent,
   },
@@ -902,8 +902,8 @@ Sometimes stakeholders or enterprise clients require documentation offline. You 
     coverImage: {
       src: '/markdown-live-preview-guide.webp',
       alt: 'Markdown live preview with side-by-side editing and rendering',
-      width: 1536,
-      height: 1024,
+      width: 1200,
+      height: 800,
     },
     content: markdownLivePreviewContent,
   },
@@ -934,8 +934,8 @@ Sometimes stakeholders or enterprise clients require documentation offline. You 
     coverImage: {
       src: '/online-markdown-editor-guide.webp',
       alt: 'Online markdown editor with live preview and export options',
-      width: 1536,
-      height: 1024,
+      width: 1200,
+      height: 800,
     },
     content: bestOnlineMarkdownEditorContent,
   },

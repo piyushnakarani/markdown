@@ -2,6 +2,7 @@ import { ArrowRight, Check, Code2, Eye, FileText, FileType, PenLine, Sparkles } 
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 
+import RelatedBlogGuides from '@/components/RelatedBlogGuides';
 import { Link } from '@/i18n/navigation';
 import { buildLocalizedPageMetadata } from '@/lib/site';
 import { buildToolPageJsonLd } from '@/lib/structured-data';
@@ -92,6 +93,9 @@ function FreeConverterContent({ locale }: { locale: string }) {
           </div>
         </div>
       </section>
+
+      <RelatedBlogGuides toolKey="free-markdown-converter" accentColor="#3b82f6" />
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -99,7 +103,8 @@ function FreeConverterContent({ locale }: { locale: string }) {
             buildToolPageJsonLd(
               'Free Markdown Converter',
               'Free online Markdown converter hub — PDF, HTML, TXT export with Mermaid diagram support.',
-              `/${locale}/free-markdown-converter`,
+              locale,
+              '/free-markdown-converter',
             ),
           ),
         }}

@@ -52,5 +52,5 @@ next-env.d.ts
 # generated SEO audit reports
 /reports/
 
-.cursor/rules/seo-geo-aeo.mdc
+.cursor/*
 /scripts/

@@ -19,16 +19,17 @@ import { Fragment } from 'react';
 import ConverterTool from '@/components/ConverterTool';
 import FAQAccordion from '@/components/FAQAccordion';
 import PageHero from '@/components/PageHero';
+import RelatedBlogGuides from '@/components/RelatedBlogGuides';
 import ScrollReveal from '@/components/ScrollReveal';
 import SectionHeading from '@/components/SectionHeading';
 import { Link } from '@/i18n/navigation';
 import { absoluteUrl, buildLocalizedPageMetadata } from '@/lib/site';
-import { buildFaqPageJsonLd, buildToolPageJsonLd } from '@/lib/structured-data';
+import { buildToolPageJsonLd } from '@/lib/structured-data';
 
 const PDF_OG_IMAGE = {
   url: '/convert-markdown-file-to-pdf.webp',
-  width: 1536,
-  height: 1024,
+  width: 1200,
+  height: 800,
 } as const;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -265,6 +266,8 @@ function MarkdownToPdfContent({ locale }: { locale: string }) {
         </div>
       </section>
 
+      <RelatedBlogGuides toolKey="markdown-to-pdf" accentColor="#ef4444" />
+
       <section className="section-py relative">
         <div className="page-container max-w-3xl">
           <ScrollReveal>
@@ -298,15 +301,10 @@ function MarkdownToPdfContent({ locale }: { locale: string }) {
             buildToolPageJsonLd(
               'Markdown to PDF Converter',
               'Convert Markdown to PDF online for free with live preview, Mermaid diagram support, and instant browser-side download.',
-              `/${locale}/markdown-to-pdf`,
+              locale,
+              '/markdown-to-pdf',
             ),
           ),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(buildFaqPageJsonLd(faqs, `/${locale}/markdown-to-pdf`)),
         }}
       />
     </>

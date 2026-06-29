@@ -6,7 +6,7 @@ import { useTheme } from '@/components/ThemeProvider';
 
 export default function Loading() {
   const { theme } = useTheme();
-  const iconSrc = theme === 'dark' ? '/logo-icon-dark-192.png' : '/logo-icon-192.png';
+  const iconSrc = theme === 'dark' ? '/logo-icon-dark-192.webp' : '/logo-icon-192.webp';
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] w-full p-6">
