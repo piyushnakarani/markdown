@@ -19,11 +19,11 @@ function resolveTheme(preference: ThemePreference): Theme {
 }
 
 function readStoredPreference(): ThemePreference {
-  if (typeof window === 'undefined') return 'system';
+  if (typeof window === 'undefined') return 'dark';
 
   const saved = localStorage.getItem(THEME_STORAGE_KEY);
   if (saved === 'light' || saved === 'dark') return saved;
-  return 'system';
+  return 'dark';
 }
 
 interface ThemeContextType {
@@ -41,7 +41,7 @@ export function useTheme() {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [preference, setPreference] = useState<ThemePreference>('system');
+  const [preference, setPreference] = useState<ThemePreference>('dark');
   const [theme, setTheme] = useState<Theme>('dark');
   const [mounted, setMounted] = useState(false);
 

@@ -60,7 +60,7 @@
     "multilingualDesc": "Available in 11 languages with full RTL support for global accessibility.",
     "responsive": "Works Everywhere",
     "responsiveDesc": "Perfectly optimized for phones, tablets, laptops, and desktops.",
-    "secure": "Privacy First",
+    "secure": "Your Data, Your Control",
     "secureDesc": "Zero tracking. Content is sent only to the render server you configure."
   },
   "howItWorks": {
@@ -399,7 +399,7 @@
     "secureDesc": "No tracking or app-side storage",
     "noUpload": "Local When Possible",
     "noUploadDesc": "Use browser conversion locally or your configured render server",
-    "privacy": "Privacy First",
+    "privacy": "Zero Tracking",
     "privacyDesc": "Zero tracking, zero cookies"
   },
   "editorShowcase": {
@@ -414,6 +414,14 @@
     "blogSubtitle": "Tutorials and guides on Markdown syntax, conversion, documentation, and developer productivity.",
     "blogViewAll": "View all articles",
     "readArticle": "Read Article",
+    "aboutTitle": "What is PDFWritter?",
+    "aboutSubtitle": "A free browser-based Markdown toolkit for developers and technical writers",
+    "aboutParagraph1": "PDFWritter is a free online Markdown converter and editor built for developers, students, and technical writers. Paste or upload a .md file, preview GitHub Flavored Markdown with syntax highlighting, and export to PDF, HTML, or plain text — all without creating an account.",
+    "aboutParagraph2": "Unlike upload-only converters, PDFWritter runs conversion in your browser whenever possible so drafts, README files, and internal documentation stay private. Mermaid diagram support means flowcharts, sequence diagrams, and Gantt charts render in live preview and export cleanly to PDF and HTML.",
+    "aboutParagraph3": "Explore our guides on converting Markdown to PDF, rendering Mermaid diagrams, and getting started with Markdown syntax",
+    "aboutLinkPdf": "Markdown to PDF",
+    "aboutLinkMermaid": "Mermaid in Markdown",
+    "aboutLinkBeginner": "beginner Markdown syntax",
     "faqTitle": "Frequently Asked Questions",
     "faqSubtitle": "Got questions? We've got answers.",
     "ctaBadge": "Start Converting Now",

@@ -3,6 +3,7 @@ import '../globals.css';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
+import type { Viewport } from 'next';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
@@ -26,6 +27,12 @@ import { buildSiteJsonLdGraph } from '@/lib/structured-data';
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#0B0D12',
+};
 
 export async function generateMetadata() {
   return {
@@ -55,6 +62,7 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       dir={rtl ? 'rtl' : 'ltr'}
+      data-theme="dark"
       suppressHydrationWarning
       className={`${GeistSans.variable} ${GeistMono.variable}`}
     >
@@ -62,8 +70,6 @@ export default async function LocaleLayout({
         <GoogleTagManagerHead />
         <link rel="alternate" type="text/plain" href={LLMS_TXT_URL} title="LLM Content Index" />
         <meta name="ai-content-note" content="Machine-readable site index available at /llms.txt and /llms-full.txt for AI assistants and search systems." />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#0B0D12" />
         <script
           dangerouslySetInnerHTML={{
             __html: `

@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { useTheme } from '@/components/ThemeProvider';
 import { Link } from '@/i18n/navigation';
 
-/** Native logo dimensions — keep in sync with public/logo.png */
 export const LOGO_WIDTH = 909;
 export const LOGO_HEIGHT = 279;
 export const LOGO_ASPECT = LOGO_WIDTH / LOGO_HEIGHT;
@@ -30,7 +29,7 @@ export default function SiteLogo({
   const { theme } = useTheme();
   const height = HEIGHTS[variant];
   const width = Math.round(height * LOGO_ASPECT);
-  const src = theme === 'dark' ? '/logo-dark.png' : '/logo.png';
+  const src = theme === 'dark' ? '/logo-dark.webp' : '/logo.webp';
 
   const image = (
     <Image

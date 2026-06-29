@@ -5,6 +5,9 @@ import {
   buildWebApplicationJsonLd,
   localizedPath,
   SITE_NAME,
+  SITE_OG_IMAGE_HEIGHT,
+  SITE_OG_IMAGE_PATH,
+  SITE_OG_IMAGE_WIDTH,
   SITE_TAGLINE,
   SITE_URL,
 } from '@/lib/site';
@@ -26,7 +29,7 @@ export function buildSiteJsonLdGraph(locale: string) {
         url: SITE_URL,
         logo: {
           '@type': 'ImageObject',
-          url: absoluteUrl('/logo.png'),
+          url: absoluteUrl('/logo.webp'),
           width: 909,
           height: 279,
         },
@@ -65,9 +68,9 @@ export function buildSiteJsonLdGraph(locale: string) {
         description: SITE_SUMMARY,
         image: {
           '@type': 'ImageObject',
-          url: absoluteUrl('/logo.png'),
-          width: 909,
-          height: 279,
+          url: absoluteUrl(SITE_OG_IMAGE_PATH),
+          width: SITE_OG_IMAGE_WIDTH,
+          height: SITE_OG_IMAGE_HEIGHT,
         },
         offers: {
           '@type': 'Offer',
@@ -84,8 +87,10 @@ export function buildSiteJsonLdGraph(locale: string) {
 export function buildToolPageJsonLd(
   name: string,
   description: string,
-  path: string,
+  locale: string,
+  pathSuffix: string,
 ) {
+  const path = localizedPath(locale, pathSuffix);
   const url = absoluteUrl(path);
   return {
     '@context': 'https://schema.org',
@@ -98,55 +103,19 @@ export function buildToolPageJsonLd(
     about: { '@id': `${SITE_URL}#software` },
     primaryImageOfPage: {
       '@type': 'ImageObject',
-      url: absoluteUrl('/logo.png'),
+      url: absoluteUrl(SITE_OG_IMAGE_PATH),
+      width: SITE_OG_IMAGE_WIDTH,
+      height: SITE_OG_IMAGE_HEIGHT,
     },
   };
 }
 
-export function buildFaqPageJsonLd(
-  faqs: { q: string; a: string }[],
-  path: string,
+export function buildSpeakableJsonLd(
+  cssSelectors: string[],
+  locale: string,
+  pathSuffix: string,
 ) {
-  const url = absoluteUrl(path);
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    '@id': `${url}#faq`,
-    url,
-    isPartOf: { '@id': `${SITE_URL}#website` },
-    mainEntity: faqs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.q,
-      acceptedAnswer: { '@type': 'Answer', text: faq.a },
-    })),
-  };
-}
-
-export function buildHowToJsonLd(
-  name: string,
-  description: string,
-  steps: { name: string; text: string }[],
-  path: string,
-) {
-  const url = absoluteUrl(path);
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
-    '@id': `${url}#howto`,
-    name,
-    description,
-    url,
-    isPartOf: { '@id': `${SITE_URL}#website` },
-    step: steps.map((step, index) => ({
-      '@type': 'HowToStep',
-      position: index + 1,
-      name: step.name,
-      text: step.text,
-    })),
-  };
-}
-
-export function buildSpeakableJsonLd(cssSelectors: string[], path: string) {
+  const path = localizedPath(locale, pathSuffix);
   const url = absoluteUrl(path);
   return {
     '@context': 'https://schema.org',

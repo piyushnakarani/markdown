@@ -7,7 +7,6 @@ import {
   Globe,
   Lock,
   Monitor,
-  PenLine,
   Shield,
   Sparkles,
   Zap,
@@ -15,6 +14,7 @@ import {
 import { useTranslations } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 
+import BlogInsightsSection from '@/components/BlogInsightsSection';
 import EditorClient from '@/components/EditorClient';
 import FAQAccordion from '@/components/FAQAccordion';
 import HowItWorksSection from '@/components/HowItWorksSection';
@@ -23,7 +23,7 @@ import SectionHeading from '@/components/SectionHeading';
 import TrustSection from '@/components/TrustSection';
 import { Link } from '@/i18n/navigation';
 import { buildPageMetadata } from '@/lib/site';
-import { buildFaqPageJsonLd, buildHowToJsonLd, buildSpeakableJsonLd } from '@/lib/structured-data';
+import { buildSpeakableJsonLd } from '@/lib/structured-data';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return buildPageMetadata({
     title: meta?.title || 'PDFWritter',
     description: meta?.description || 'Free online Markdown converter and editor',
-    path: `/${locale}`,
+    path: '/',
     locale,
     keywords: meta?.keywords?.split(',').map((k) => k.trim()),
   });
@@ -115,14 +115,6 @@ function HomeContent({ locale }: { locale: string }) {
     { q: t('faq.q6'), a: t('faq.a6') },
   ];
 
-  const howToSteps = [
-    { name: t('howItWorks.step1Title'), text: t('howItWorks.step1Desc') },
-    { name: t('howItWorks.step2Title'), text: t('howItWorks.step2Desc') },
-    { name: t('howItWorks.step3Title'), text: t('howItWorks.step3Desc') },
-  ];
-
-  const homePath = `/${locale}`;
-
   return (
     <>
       {/* ===== HERO + LIVE EDITOR ===== */}
@@ -134,8 +126,8 @@ function HomeContent({ locale }: { locale: string }) {
         <div className="relative home-hero-inner">
           <header className="home-hero-copy">
             <h1 className="home-hero-title">
-              {t('hero.title')}{' '}
-              <span className="home-hero-title-accent">{t('hero.titleHighlight')}</span>
+              <span>{t('hero.title')}</span>
+              <span className="home-hero-title-accent"> {t('hero.titleHighlight')}</span>
             </h1>
             <p className="home-hero-subtitle">{t('hero.subtitle')}</p>
           </header>
@@ -163,7 +155,7 @@ function HomeContent({ locale }: { locale: string }) {
                 <Link href={tool.href} className="tool-card group flex flex-col justify-between min-h-[280px] h-full">
                   <div>
                     <div className="flex items-center justify-start gap-3 mb-5">
-                      <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${tool.bg} flex items-center justify-center`}>
+                      <div className={`w-11 h-11 rounded-xl bg-linear-to-br ${tool.bg} flex items-center justify-center`}>
                         <tool.icon className="w-5 h-5" style={{ color: tool.color }} />
                       </div>
                       <h3 className="text-base font-semibold group-hover:text-[#3b82f6] transition-colors">
@@ -172,7 +164,7 @@ function HomeContent({ locale }: { locale: string }) {
                     </div>
 
                     
-                    <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-5">
+                    <p className="text-sm text-(--text-secondary) leading-relaxed mb-5">
                       {tool.desc}
                     </p>
                   </div>
@@ -220,7 +212,7 @@ function HomeContent({ locale }: { locale: string }) {
                     <feat.icon className="w-5 h-5" style={{ color: feat.color }} />
                   </div>
                   <h3 className="text-base font-semibold mb-2">{feat.title}</h3>
-                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{feat.desc}</p>
+                  <p className="text-sm text-(--text-secondary) leading-relaxed">{feat.desc}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -230,6 +222,42 @@ function HomeContent({ locale }: { locale: string }) {
 
       {/* ===== HOW IT WORKS ===== */}
       <HowItWorksSection />
+
+      {/* ===== ABOUT ===== */}
+      <section className="section-py relative">
+        <div className="page-container max-w-3xl">
+          <ScrollReveal>
+            <SectionHeading
+              size="compact"
+              title={th('aboutTitle')}
+              subtitle={th('aboutSubtitle')}
+            />
+          </ScrollReveal>
+          <ScrollReveal delay={80}>
+            <div className="card-glass p-8 sm:p-10 space-y-4 text-sm sm:text-base text-(--text-secondary) leading-relaxed">
+              <p>{th('aboutParagraph1')}</p>
+              <p>{th('aboutParagraph2')}</p>
+              <p>
+                {th('aboutParagraph3')}{' '}
+                <Link href="/blog/how-to-convert-markdown-to-pdf-online" className="text-[#3b82f6] hover:underline">
+                  {th('aboutLinkPdf')}
+                </Link>
+                {', '}
+                <Link href="/blog/render-mermaid-diagrams-markdown" className="text-[#3b82f6] hover:underline">
+                  {th('aboutLinkMermaid')}
+                </Link>
+                {', and '}
+                <Link href="/blog/beginner-guide-markdown" className="text-[#3b82f6] hover:underline">
+                  {th('aboutLinkBeginner')}
+                </Link>
+                .
+              </p>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <BlogInsightsSection />
 
       {/* ===== FAQ ===== */}
       <section className="section-py relative">
@@ -249,27 +277,8 @@ function HomeContent({ locale }: { locale: string }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(buildFaqPageJsonLd(faqs, homePath)),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
           __html: JSON.stringify(
-            buildHowToJsonLd(
-              t('howItWorks.sectionTitle'),
-              t('howItWorks.sectionSubtitle'),
-              howToSteps,
-              homePath,
-            ),
-          ),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            buildSpeakableJsonLd(['.home-hero-subtitle', '.speakable-faq-answer'], homePath),
+            buildSpeakableJsonLd(['.home-hero-subtitle', '.speakable-faq-answer'], locale, '/'),
           ),
         }}
       />

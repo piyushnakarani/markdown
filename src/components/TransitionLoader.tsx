@@ -64,7 +64,7 @@ export default function TransitionLoader() {
 
   if (!loading) return null;
 
-  const iconSrc = theme === 'dark' ? '/logo-icon-dark-192.png' : '/logo-icon-192.png';
+  const iconSrc = theme === 'dark' ? '/logo-icon-dark-192.webp' : '/logo-icon-192.webp';
 
   return (
     <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[var(--bg-primary)]/75 backdrop-blur-sm animate-fade-in select-none">
@@ -74,7 +74,8 @@ export default function TransitionLoader() {
         <div className="absolute w-16 h-16 rounded-full bg-[#3b82f6]/5 blur-md" />
         <Image
           src={iconSrc}
-          alt="Loading..."
+          alt=""
+          aria-hidden
           width={96}
           height={96}
           unoptimized

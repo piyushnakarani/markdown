@@ -29,17 +29,14 @@ import {
   buildArticleJsonLd,
   buildBreadcrumbJsonLd,
   buildPostMetadata,
-  extractArticleFaqs,
   extractArticleHeadings,
-  extractHowToSteps,
   formatBlogDate,
   getPostUrl,
   injectHeadingIds,
   stripLeadingH1,
 } from '@/lib/blog-seo';
 import { convertMarkdownToHtml } from '@/lib/converters';
-import { BLOG_AUTHOR_NAME, localizedPath } from '@/lib/site';
-import { buildFaqPageJsonLd, buildHowToJsonLd } from '@/lib/structured-data';
+import { BLOG_AUTHOR_NAME } from '@/lib/site';
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
@@ -154,14 +151,6 @@ function BlogArticleContent({
 }) {
   const articleJsonLd = buildArticleJsonLd(post, locale);
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(post, locale);
-  const articlePath = localizedPath(locale, `/blog/${post.slug}`);
-  const faqs = extractArticleFaqs(post.content);
-  const howToSteps = extractHowToSteps(post.content);
-  const faqJsonLd = faqs.length > 0 ? buildFaqPageJsonLd(faqs, articlePath) : null;
-  const howToJsonLd =
-    howToSteps.length > 0
-      ? buildHowToJsonLd(post.titleKey, post.metaDescription, howToSteps, articlePath)
-      : null;
   const colors = BLOG_CATEGORY_STYLES[post.category] ?? BLOG_CATEGORY_STYLES.Guide;
 
   return (
@@ -377,12 +366,6 @@ function BlogArticleContent({
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-      {faqJsonLd && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-      )}
-      {howToJsonLd && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }} />
-      )}
     </main>
   );
 }

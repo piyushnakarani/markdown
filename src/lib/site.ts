@@ -10,9 +10,12 @@ export const SITE_TAGLINE = 'Markdown Converter with Diagram';
 export const SITE_EMAIL = 'hello@pdfwritter.com';
 export const BLOG_AUTHOR_NAME = 'PDFWritter Editorial Team';
 export const BLOG_AUTHOR_ROLE = 'Technical Writing Team';
-export const SITE_LOGO_PATH = '/logo.png';
-export const SITE_LOGO_DARK_PATH = '/logo-dark.png';
+export const SITE_LOGO_PATH = '/logo.webp';
+export const SITE_LOGO_DARK_PATH = '/logo-dark.webp';
 export const SITE_LOGO_ICON_PATH = '/logo-icon-512.png';
+export const SITE_OG_IMAGE_PATH = '/og-default.webp';
+export const SITE_OG_IMAGE_WIDTH = 1200;
+export const SITE_OG_IMAGE_HEIGHT = 630;
 
 const OG_LOCALE_MAP: Record<Locale, string> = {
   en: 'en_US',
@@ -51,6 +54,15 @@ export const DEFAULT_KEYWORDS = [
 export function absoluteUrl(path: string): string {
   const normalized = path.startsWith('/') ? path : `/${path}`;
   return `${SITE_URL}${normalized}`;
+}
+
+export function getDefaultOgImage() {
+  return {
+    url: absoluteUrl(SITE_OG_IMAGE_PATH),
+    width: SITE_OG_IMAGE_WIDTH,
+    height: SITE_OG_IMAGE_HEIGHT,
+    alt: `${SITE_NAME} — Free Markdown to PDF converter with Mermaid diagram support`,
+  };
 }
 
 function pathWithoutLocale(path: string): string {
@@ -107,6 +119,14 @@ export function normalizePageTitle(title: string): string {
   return title.replace(new RegExp(`\\s*\\|\\s*${SITE_NAME}\\s*$`, 'i'), '').trim();
 }
 
+/** Keep Open Graph titles within ~60 characters to avoid social preview truncation. */
+export function truncateOgTitle(title: string, maxLength = 60): string {
+  if (title.length <= maxLength) return title;
+  const trimmed = title.slice(0, maxLength - 1);
+  const lastSpace = trimmed.lastIndexOf(' ');
+  return (lastSpace > 40 ? trimmed.slice(0, lastSpace) : trimmed).trim();
+}
+
 export function buildPageMetadata({
   title,
   description,
@@ -121,13 +141,8 @@ export function buildPageMetadata({
   const normalizedPath = localizedPath(locale, path);
   const url = absoluteUrl(normalizedPath);
   const ogLocale = OG_LOCALE_MAP[locale as Locale] || 'en_US';
-  const logoUrl = absoluteUrl(SITE_LOGO_PATH);
-  const ogImage = image ?? {
-    url: logoUrl,
-    width: 909,
-    height: 279,
-    alt: `${SITE_NAME} — ${SITE_TAGLINE}`,
-  };
+  const ogImage = image ?? getDefaultOgImage();
+  const ogTitle = truncateOgTitle(fullTitle);
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -151,7 +166,7 @@ export function buildPageMetadata({
       languages: buildAlternateLanguages(normalizedPath),
     },
     openGraph: {
-      title: fullTitle,
+      title: ogTitle,
       description,
       type,
       url,
@@ -171,7 +186,7 @@ export function buildPageMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: fullTitle,
+      title: ogTitle,
       description,
       images: [ogImage.url],
     },
@@ -310,9 +325,9 @@ export function buildWebApplicationJsonLd(locale: string) {
     url,
     image: {
       '@type': 'ImageObject',
-      url: absoluteUrl(SITE_LOGO_PATH),
-      width: 909,
-      height: 279,
+      url: absoluteUrl('/og-default.webp'),
+      width: 1200,
+      height: 630,
     },
     applicationCategory: 'DeveloperApplication',
     operatingSystem: 'All',
