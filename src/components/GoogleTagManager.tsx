@@ -1,10 +1,14 @@
+import Script from 'next/script';
+
 export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID?.trim() || 'GTM-WLR8SG4X';
 
 export function GoogleTagManagerHead() {
   if (!GTM_ID) return null;
 
   return (
-    <script
+    <Script
+      id="gtm-script"
+      strategy="lazyOnload"
       dangerouslySetInnerHTML={{
         __html: `
 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

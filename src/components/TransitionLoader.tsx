@@ -78,7 +78,6 @@ export default function TransitionLoader() {
           aria-hidden
           width={96}
           height={96}
-          unoptimized
           className="relative h-10 w-10 object-contain animate-pulse"
         />
       </div>

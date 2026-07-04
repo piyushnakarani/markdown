@@ -40,7 +40,6 @@ export default function SiteLogo({
       height={LOGO_HEIGHT}
       priority={variant === 'header'}
       quality={100}
-      unoptimized
       className={`block h-auto max-w-full object-contain object-left select-none transition-opacity duration-300 ${className}`}
       style={{ height, width }}
     />

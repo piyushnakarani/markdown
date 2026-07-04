@@ -6,25 +6,25 @@ import {
   Clock,
   PenLine,
   Tag,
-} from 'lucide-react';
-import { notFound } from 'next/navigation';
-import { getTranslations,setRequestLocale } from 'next-intl/server';
+} from "lucide-react";
+import { notFound } from "next/navigation";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import {
   BlogArticleShare,
   BlogArticleTOC,
   BlogReadingProgress,
-} from '@/components/BlogArticleClient';
-import ScrollReveal from '@/components/ScrollReveal';
+} from "@/components/BlogArticleClient";
+import ScrollReveal from "@/components/ScrollReveal";
 import {
   BLOG_CATEGORY_STYLES,
   blogPosts,
   getAdjacentPosts,
   getBlogPost,
   getRelatedPosts,
-} from '@/content/blog';
-import { locales } from '@/i18n/locales';
-import { Link } from '@/i18n/navigation';
+} from "@/content/blog";
+import { locales } from "@/i18n/locales";
+import { Link } from "@/i18n/navigation";
 import {
   buildArticleJsonLd,
   buildBreadcrumbJsonLd,
@@ -34,15 +34,19 @@ import {
   getPostUrl,
   injectHeadingIds,
   stripLeadingH1,
-} from '@/lib/blog-seo';
-import { convertMarkdownToHtml } from '@/lib/converters';
-import { BLOG_AUTHOR_NAME } from '@/lib/site';
+} from "@/lib/blog-seo";
+import { convertMarkdownToHtml } from "@/lib/converters";
+import { BLOG_AUTHOR_NAME } from "@/lib/site";
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string; locale: string }> }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string; locale: string }>;
+}) {
   const { slug, locale } = await params;
   const post = getBlogPost(slug);
   if (!post) return {};
@@ -51,16 +55,22 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 function prefixInternalLinks(html: string, locale: string): string {
   return html.replace(/href="(\/[^"]*)"/g, (match, path) => {
-    const isPrefixed = locales.some((l) => path.startsWith(`/${l}/`) || path === `/${l}`);
-    if (isPrefixed || path.startsWith('//') || path.startsWith('/api')) {
+    const isPrefixed = locales.some(
+      (l) => path.startsWith(`/${l}/`) || path === `/${l}`,
+    );
+    if (isPrefixed || path.startsWith("//") || path.startsWith("/api")) {
       return match;
     }
-    const cleanPath = path === '/' ? '' : path;
+    const cleanPath = path === "/" ? "" : path;
     return `href="/${locale}${cleanPath}"`;
   });
 }
 
-export default async function BlogArticlePage({ params }: { params: Promise<{ slug: string; locale: string }> }) {
+export default async function BlogArticlePage({
+  params,
+}: {
+  params: Promise<{ slug: string; locale: string }>;
+}) {
   const { slug, locale } = await params;
   setRequestLocale(locale);
 
@@ -69,31 +79,31 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
 
   const strippedContent = stripLeadingH1(post.content);
   const headings = extractArticleHeadings(strippedContent);
-  const rawHtml = convertMarkdownToHtml(strippedContent);
+  const rawHtml = await convertMarkdownToHtml(strippedContent);
   const html = injectHeadingIds(prefixInternalLinks(rawHtml, locale));
   const relatedPosts = getRelatedPosts(slug, 3);
   const { prev, next } = getAdjacentPosts(slug);
   const shareUrl = getPostUrl(locale, slug);
-  const t = await getTranslations('blog');
-  const tNav = await getTranslations('nav');
+  const t = await getTranslations("blog");
+  const tNav = await getTranslations("nav");
 
   const labels = {
-    backToBlog: t('backToBlog'),
-    publisher: t('publisher'),
-    author: t('author'),
-    authorRole: t('authorRole'),
-    readTime: t('readTime'),
-    updated: t('updated'),
-    topics: t('topics'),
-    relatedPosts: t('relatedPosts'),
-    previousArticle: t('previousArticle'),
-    nextArticle: t('nextArticle'),
-    articleNavigation: t('articleNavigation'),
-    ctaTitle: t('ctaTitle'),
-    ctaDescription: t('ctaDescription'),
-    ctaButton: t('ctaButton'),
-    home: tNav('home'),
-    blog: tNav('blog'),
+    backToBlog: t("backToBlog"),
+    publisher: t("publisher"),
+    author: t("author"),
+    authorRole: t("authorRole"),
+    readTime: t("readTime"),
+    updated: t("updated"),
+    topics: t("topics"),
+    relatedPosts: t("relatedPosts"),
+    previousArticle: t("previousArticle"),
+    nextArticle: t("nextArticle"),
+    articleNavigation: t("articleNavigation"),
+    ctaTitle: t("ctaTitle"),
+    ctaDescription: t("ctaDescription"),
+    ctaButton: t("ctaButton"),
+    home: tNav("home"),
+    blog: tNav("blog"),
   };
 
   return (
@@ -126,8 +136,8 @@ function BlogArticleContent({
   html: string;
   headings: ReturnType<typeof extractArticleHeadings>;
   relatedPosts: ReturnType<typeof getRelatedPosts>;
-  prev: ReturnType<typeof getAdjacentPosts>['prev'];
-  next: ReturnType<typeof getAdjacentPosts>['next'];
+  prev: ReturnType<typeof getAdjacentPosts>["prev"];
+  next: ReturnType<typeof getAdjacentPosts>["next"];
   locale: string;
   shareUrl: string;
   labels: {
@@ -151,7 +161,8 @@ function BlogArticleContent({
 }) {
   const articleJsonLd = buildArticleJsonLd(post, locale);
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(post, locale);
-  const colors = BLOG_CATEGORY_STYLES[post.category] ?? BLOG_CATEGORY_STYLES.Guide;
+  const colors =
+    BLOG_CATEGORY_STYLES[post.category] ?? BLOG_CATEGORY_STYLES.Guide;
 
   return (
     <main className="blog-article-page">
@@ -161,7 +172,10 @@ function BlogArticleContent({
       <header className="blog-article-hero">
         <div className="blog-article-hero-bg" aria-hidden />
         <div className="blog-article-hero-glow" aria-hidden />
-        <div className="absolute inset-0 mesh-grid opacity-15 pointer-events-none" aria-hidden />
+        <div
+          className="absolute inset-0 mesh-grid opacity-15 pointer-events-none"
+          aria-hidden
+        />
 
         <div className="blog-article-hero-inner">
           <nav aria-label="Breadcrumb" className="blog-article-breadcrumb">
@@ -205,14 +219,20 @@ function BlogArticleContent({
             <div className="blog-article-author">
               <div
                 className="blog-article-author-avatar"
-                style={{ background: `linear-gradient(135deg, ${colors.accent}, #8b5cf6)` }}
+                style={{
+                  background: `linear-gradient(135deg, ${colors.accent}, #8b5cf6)`,
+                }}
                 aria-hidden
               >
                 PW
               </div>
               <div>
-                <span className="blog-article-author-name">{labels.author}</span>
-                <span className="blog-article-author-role">{labels.authorRole}</span>
+                <span className="blog-article-author-name">
+                  {labels.author}
+                </span>
+                <span className="blog-article-author-role">
+                  {labels.authorRole}
+                </span>
               </div>
             </div>
 
@@ -226,7 +246,10 @@ function BlogArticleContent({
                 {post.readTime} {labels.readTime}
               </span>
               {post.dateModified !== post.date && (
-                <time dateTime={post.dateModified} className="blog-article-updated">
+                <time
+                  dateTime={post.dateModified}
+                  className="blog-article-updated"
+                >
                   {labels.updated}: {formatBlogDate(post.dateModified)}
                 </time>
               )}
@@ -287,26 +310,39 @@ function BlogArticleContent({
 
       {/* Prev / Next */}
       {(prev || next) && (
-        <nav className="blog-article-pagination" aria-label={labels.articleNavigation}>
+        <nav
+          className="blog-article-pagination"
+          aria-label={labels.articleNavigation}
+        >
           <div className="blog-article-pagination-inner">
             {prev ? (
-              <Link href={`/blog/${prev.slug}`} className="blog-article-pagination-link blog-article-pagination-link--prev">
+              <Link
+                href={`/blog/${prev.slug}`}
+                className="blog-article-pagination-link blog-article-pagination-link--prev"
+              >
                 <span className="blog-article-pagination-label">
                   <ArrowLeft className="w-4 h-4" aria-hidden />
                   {labels.previousArticle}
                 </span>
-                <span className="blog-article-pagination-title">{prev.titleKey}</span>
+                <span className="blog-article-pagination-title">
+                  {prev.titleKey}
+                </span>
               </Link>
             ) : (
               <div />
             )}
             {next ? (
-              <Link href={`/blog/${next.slug}`} className="blog-article-pagination-link blog-article-pagination-link--next">
+              <Link
+                href={`/blog/${next.slug}`}
+                className="blog-article-pagination-link blog-article-pagination-link--next"
+              >
                 <span className="blog-article-pagination-label">
                   {labels.nextArticle}
                   <ArrowRight className="w-4 h-4" aria-hidden />
                 </span>
-                <span className="blog-article-pagination-title">{next.titleKey}</span>
+                <span className="blog-article-pagination-title">
+                  {next.titleKey}
+                </span>
               </Link>
             ) : (
               <div />
@@ -317,10 +353,16 @@ function BlogArticleContent({
 
       {/* Related */}
       {relatedPosts.length > 0 && (
-        <section className="blog-article-related" aria-labelledby="related-posts-heading">
+        <section
+          className="blog-article-related"
+          aria-labelledby="related-posts-heading"
+        >
           <div className="blog-article-related-inner">
             <ScrollReveal>
-              <h2 id="related-posts-heading" className="blog-article-related-title">
+              <h2
+                id="related-posts-heading"
+                className="blog-article-related-title"
+              >
                 {labels.relatedPosts}
               </h2>
             </ScrollReveal>
@@ -329,7 +371,10 @@ function BlogArticleContent({
                 const rpColors = BLOG_CATEGORY_STYLES[rp.category] ?? colors;
                 return (
                   <ScrollReveal key={rp.slug} delay={i * 80}>
-                    <Link href={`/blog/${rp.slug}`} className="blog-card blog-card-compact group h-full flex flex-col">
+                    <Link
+                      href={`/blog/${rp.slug}`}
+                      className="blog-card blog-card-compact group h-full flex flex-col"
+                    >
                       <span
                         className="blog-category-pill mb-3 w-fit"
                         style={{
@@ -347,7 +392,10 @@ function BlogArticleContent({
                         {rp.excerptKey}
                       </p>
                       <div className="blog-card-footer">
-                        <time dateTime={rp.date} className="flex items-center gap-1.5 text-xs text-[var(--text-tertiary)]">
+                        <time
+                          dateTime={rp.date}
+                          className="flex items-center gap-1.5 text-xs text-[var(--text-tertiary)]"
+                        >
                           <Calendar className="w-3.5 h-3.5" aria-hidden />
                           {formatBlogDate(rp.date)}
                         </time>
@@ -364,8 +412,14 @@ function BlogArticleContent({
         </section>
       )}
 
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
     </main>
   );
 }

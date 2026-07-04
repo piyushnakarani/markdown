@@ -101,7 +101,17 @@ export default function HeroEditorDemo() {
   const lines = typed.split('\n');
   const lineCount = Math.max(lines.length, 8);
   const lineNumbers = Array.from({ length: lineCount }, (_, i) => i + 1);
-  const previewHtml = useMemo(() => convertMarkdownToHtml(typed), [typed]);
+  const [previewHtml, setPreviewHtml] = useState('');
+
+  useEffect(() => {
+    let isMounted = true;
+    convertMarkdownToHtml(typed).then((res) => {
+      if (isMounted) setPreviewHtml(res);
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, [typed]);
 
   return (
     <div

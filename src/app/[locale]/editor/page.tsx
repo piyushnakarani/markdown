@@ -1,8 +1,9 @@
 import { PenLine } from 'lucide-react';
+import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 
-import EditorClient from '@/components/EditorClient';
+const EditorClient = dynamic(() => import('@/components/EditorClient'));
 import PageHero from '@/components/PageHero';
 import ToolSeoSections from '@/components/ToolSeoSections';
 import { buildLocalizedPageMetadata } from '@/lib/site';

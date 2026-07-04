@@ -253,7 +253,7 @@ export async function buildRenderedHtmlBody(
   markdown: string,
   options?: { forPdf?: boolean; onProgress?: ExportProgressCallback },
 ): Promise<string> {
-  const html = convertMarkdownToHtml(markdown);
+  const html = await convertMarkdownToHtml(markdown);
   if (typeof document === 'undefined') return html;
 
   const container = offscreenDomContainer(options?.forPdf ? PDF_WIDTH_PX : 800);
@@ -288,8 +288,8 @@ export async function buildHtmlDocument(
   return `<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><style>${DOCUMENT_STYLES}</style></head><body>${body}</body></html>`;
 }
 
-export function convertMarkdownToTxt(markdown: string): string {
-  const html = convertMarkdownToHtml(markdown);
+export async function convertMarkdownToTxt(markdown: string): Promise<string> {
+  const html = await convertMarkdownToHtml(markdown);
   if (typeof document !== 'undefined') {
     const temp = document.createElement('div');
     temp.innerHTML = html;
@@ -314,7 +314,7 @@ export async function buildTxtDocument(
 ): Promise<string> {
   void filename;
   onProgress?.('preparingDownload');
-  return convertMarkdownToTxt(markdown);
+  return await convertMarkdownToTxt(markdown);
 }
 
 export async function convertMarkdownToPdf(
@@ -324,7 +324,7 @@ export async function convertMarkdownToPdf(
 ): Promise<void> {
   onProgress?.('preparing');
 
-  const html = convertMarkdownToHtml(markdown);
+  const html = await convertMarkdownToHtml(markdown);
   const { iframe, content } = mountPdfIframe(html);
 
   // Set document title for PDF print dialog filename
