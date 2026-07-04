@@ -18,7 +18,6 @@ export default function Loading() {
           alt=""
           width={192}
           height={192}
-          unoptimized
           className="relative h-14 w-14 animate-pulse object-contain transition-opacity duration-300"
           aria-hidden
         />

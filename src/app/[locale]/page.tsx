@@ -11,11 +11,14 @@ import {
   Sparkles,
   Zap,
 } from 'lucide-react';
+import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 
 import BlogInsightsSection from '@/components/BlogInsightsSection';
-import EditorClient from '@/components/EditorClient';
+
+const EditorClient = dynamic(() => import('@/components/EditorClient'));
+
 import FAQAccordion from '@/components/FAQAccordion';
 import HowItWorksSection from '@/components/HowItWorksSection';
 import ScrollReveal from '@/components/ScrollReveal';

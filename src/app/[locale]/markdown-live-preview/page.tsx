@@ -12,12 +12,13 @@ import {
   Shield,
   Sparkles,
 } from 'lucide-react';
+import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import type { CSSProperties } from 'react';
 import { Fragment } from 'react';
 
-import EditorClient from '@/components/EditorClient';
+const EditorClient = dynamic(() => import('@/components/EditorClient'));
 import FAQAccordion from '@/components/FAQAccordion';
 import PageHero from '@/components/PageHero';
 import RelatedBlogGuides from '@/components/RelatedBlogGuides';

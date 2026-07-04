@@ -17,7 +17,7 @@ import {
   X,
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useCallback, useRef,useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import {
   type EditorToolbarAction,
@@ -93,8 +93,19 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
   const previewScrollRef = useRef<HTMLDivElement>(null);
   const scrollSyncLockRef = useRef(false);
 
-  const html = convertMarkdownToHtml(markdown);
-  const plainText = convertMarkdownToTxt(markdown);
+  const [html, setHtml] = useState('');
+  const [plainText, setPlainText] = useState('');
+
+  useEffect(() => {
+    let isMounted = true;
+    convertMarkdownToHtml(markdown).then(res => {
+      if (isMounted) setHtml(res);
+    });
+    convertMarkdownToTxt(markdown).then(res => {
+      if (isMounted) setPlainText(res);
+    });
+    return () => { isMounted = false; };
+  }, [markdown]);
   const lineCount = Math.max(markdown.split('\n').length, 12);
   const lineNumbers = Array.from({ length: lineCount }, (_, i) => i + 1);
 

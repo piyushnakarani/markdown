@@ -22,7 +22,7 @@ import {
   Upload,
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useCallback, useRef,useState } from 'react';
+import { useCallback, useEffect, useRef,useState } from 'react';
 
 import {
   type EditorToolbarAction,
@@ -92,7 +92,17 @@ export default function EditorClient({
   const previewScrollRef = useRef<HTMLDivElement>(null);
   const scrollSyncLockRef = useRef(false);
 
-  const html = convertMarkdownToHtml(markdown);
+  const [html, setHtml] = useState('');
+
+  useEffect(() => {
+    let isMounted = true;
+    convertMarkdownToHtml(markdown).then((res) => {
+      if (isMounted) setHtml(res);
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, [markdown]);
 
   const syncLineNumbers = (scrollTop: number) => {
     if (lineNumbersRef.current) {
