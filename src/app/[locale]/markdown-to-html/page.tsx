@@ -16,6 +16,23 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     titleKey: 'tools.htmlTitle',
     descriptionKey: 'tools.htmlDescription',
     titleSuffix: ' — Free Online Converter',
+    keywords: [
+      'markdown to html',
+      'convert markdown to html',
+      'md to html',
+      'online markdown to html converter',
+      'markdown to html converter',
+      'markdown to html online',
+      'free markdown to html',
+      'converting markdown to html',
+      'markdown-to-html converter',
+      'markdown html export',
+      'export markdown to html',
+      'convert md to html',
+      'md to html online',
+      'markdown to clean html',
+      'pdfwritter',
+    ],
   });
 }
 
