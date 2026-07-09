@@ -68,6 +68,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       'stackedit alternative',
       'markdown editor no login',
       'pdfwritter',
+      'free markdown previewer',
+      'md viewer online',
+      'real-time markdown preview',
+      'live preview markdown',
     ],
     image: {
       url: absoluteUrl(LIVE_PREVIEW_OG_IMAGE.url),

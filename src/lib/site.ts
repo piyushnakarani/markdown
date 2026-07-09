@@ -49,6 +49,63 @@ export const DEFAULT_KEYWORDS = [
   'markdown editor',
   'free markdown tools',
   'pdfwritter',
+  'markdown compiler',
+  'markdown parser',
+  'markdown renderer',
+  'markdown formatter',
+  'markdown utilities',
+  'markdown converter online',
+  'online markdown converter',
+  'github flavored markdown editor',
+  'gfm editor',
+  'gfm viewer',
+  'github readme viewer',
+  'github readme preview',
+  'mermaid compiler',
+  'mermaid diagram renderer',
+  'flowchart generator',
+  'markdown flowchart tool',
+  'markdown table generator',
+  'convert markdown file',
+  'convert md file',
+];
+
+export const SUPPORTED_LANGUAGES_KEYWORDS = [
+  // English names
+  'english',
+  'spanish',
+  'french',
+  'german',
+  'portuguese',
+  'arabic',
+  'chinese',
+  'japanese',
+  'korean',
+  'bengali',
+  'russian',
+  // Native names
+  'español',
+  'français',
+  'deutsch',
+  'português',
+  'العربية',
+  '中文',
+  '日本語',
+  '한국어',
+  'বাংলা',
+  'русский',
+  // Markdown search combinations
+  'english markdown',
+  'español markdown',
+  'français markdown',
+  'deutsch markdown',
+  'português markdown',
+  'arabic markdown',
+  'chinese markdown',
+  'japanese markdown',
+  'korean markdown',
+  'bengali markdown',
+  'russian markdown',
 ];
 
 export function absoluteUrl(path: string): string {
@@ -143,12 +200,16 @@ export function buildPageMetadata({
   const ogLocale = OG_LOCALE_MAP[locale as Locale] || 'en_US';
   const ogImage = image ?? getDefaultOgImage();
   const ogTitle = truncateOgTitle(fullTitle);
+  const finalKeywords = [
+    ...keywords,
+    ...SUPPORTED_LANGUAGES_KEYWORDS,
+  ];
 
   return {
     metadataBase: new URL(SITE_URL),
     title: pageTitle,
     description,
-    keywords,
+    keywords: finalKeywords,
     authors: [{ name: SITE_NAME, url: SITE_URL }],
     creator: SITE_NAME,
     publisher: SITE_NAME,

@@ -16,6 +16,22 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     titleKey: 'tools.txtTitle',
     descriptionKey: 'tools.txtDescription',
     titleSuffix: ' — Free Online Converter',
+    keywords: [
+      'markdown to txt',
+      'convert markdown to txt',
+      'md to txt',
+      'online markdown to txt converter',
+      'markdown to txt converter',
+      'markdown to txt online',
+      'free markdown to txt',
+      'converting markdown to txt',
+      'markdown-to-txt converter',
+      'strip markdown formatting',
+      'convert md to txt',
+      'remove markdown markdown to plain text',
+      'markdown to plain text converter',
+      'pdfwritter',
+    ],
   });
 }
 

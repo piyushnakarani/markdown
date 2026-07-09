@@ -28,6 +28,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       'md viewer',
       'mermaid markdown editor',
       'pdfwritter',
+      'free markdown editor',
+      'wysiwyg markdown editor',
+      'github markdown editor',
+      'markdown editor online',
     ],
   });
 }

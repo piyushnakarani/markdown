@@ -15,6 +15,19 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     titleKey: 'freeConverter.title',
     descriptionKey: 'freeConverter.subtitle',
     titleSuffix: ' — PDF, HTML, TXT',
+    keywords: [
+      'free markdown converter',
+      'markdown converter online',
+      'convert markdown file',
+      'markdown file converter',
+      'markdown converter tool',
+      'online markdown converter',
+      'convert markdown to pdf html txt',
+      'markdown file convert',
+      'markdown conversion',
+      'best markdown converter',
+      'pdfwritter',
+    ],
   });
 }
 
