@@ -70,6 +70,7 @@ export default async function LocaleLayout({
         <GoogleTagManagerHead />
         <link rel="alternate" type="text/plain" href={LLMS_TXT_URL} title="LLM Content Index" />
         <meta name="ai-content-note" content="Machine-readable site index available at /llms.txt and /llms-full.txt for AI assistants and search systems." />
+        <meta name="msvalidate.01" content="A20D7AEF9E821D0C20EAAE2F4C0CDD26" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
