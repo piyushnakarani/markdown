@@ -1,33 +1,55 @@
-import { useTranslations } from 'next-intl';
-import { setRequestLocale } from 'next-intl/server';
-import { Link } from '@/i18n/navigation';
-import EditorClient from '@/components/EditorClient';
-import FAQAccordion from '@/components/FAQAccordion';
-import TrustSection from '@/components/TrustSection';
-import HowItWorksSection from '@/components/HowItWorksSection';
-import SectionHeading from '@/components/SectionHeading';
-import ScrollReveal from '@/components/ScrollReveal';
 import {
   ArrowRight,
-  Zap,
-  Shield,
-  Globe,
-  Monitor,
-  Lock,
-  Sparkles,
-  FileText,
   Code2,
+  Eye,
+  FileText,
   FileType,
-  PenLine,
+  Globe,
+  Lock,
+  Monitor,
+  Shield,
+  Sparkles,
+  Zap,
 } from 'lucide-react';
+import dynamic from 'next/dynamic';
+import { useTranslations } from 'next-intl';
+import { getMessages, setRequestLocale } from 'next-intl/server';
+
+import BlogInsightsSection from '@/components/BlogInsightsSection';
+
+const EditorClient = dynamic(() => import('@/components/EditorClient'));
+
+import FAQAccordion from '@/components/FAQAccordion';
+import HowItWorksSection from '@/components/HowItWorksSection';
+import ScrollReveal from '@/components/ScrollReveal';
+import SectionHeading from '@/components/SectionHeading';
+import TrustSection from '@/components/TrustSection';
+import { Link } from '@/i18n/navigation';
+import { buildPageMetadata } from '@/lib/site';
+import { buildSpeakableJsonLd } from '@/lib/structured-data';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const messages = await getMessages();
+  const meta = (messages as Record<string, Record<string, string>>).metadata;
+
+  return buildPageMetadata({
+    title: meta?.title || 'PDFWritter',
+    description: meta?.description || 'Free online Markdown converter and editor',
+    path: '/',
+    locale,
+    keywords: meta?.keywords?.split(',').map((k) => k.trim()),
+  });
+}
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <HomeContent />;
+  return <HomeContent locale={locale} />;
 }
 
-function HomeContent() {
+function HomeContent({ locale }: { locale: string }) {
   const t = useTranslations();
   const th = useTranslations('home');
 
@@ -66,14 +88,14 @@ function HomeContent() {
       speed: '~5ms',
     },
     {
-      href: '/editor',
-      icon: PenLine,
-      color: '#3b82f6',
-      bg: 'from-blue-500/15 to-indigo-500/5',
-      gradient: 'from-blue-500 to-indigo-500',
-      title: t('tools.editorTitle'),
-      desc: t('tools.editorDescription'),
-      flow: ['LIVE', 'EDIT'],
+      href: '/markdown-live-preview',
+      icon: Eye,
+      color: '#8b5cf6',
+      bg: 'from-violet-500/15 to-purple-500/5',
+      gradient: 'from-violet-500 to-purple-500',
+      title: t('tools.livePreviewTitle'),
+      desc: t('tools.livePreviewDescription'),
+      flow: ['MD', 'LIVE'],
       speed: 'Real-time',
     },
   ];
@@ -104,11 +126,11 @@ function HomeContent() {
         <div className="home-hero-glow" aria-hidden />
         <div className="absolute inset-0 mesh-grid opacity-25 pointer-events-none" aria-hidden />
 
-        <div className="relative page-container">
+        <div className="relative home-hero-inner">
           <header className="home-hero-copy">
             <h1 className="home-hero-title">
-              {t('hero.title')}{' '}
-              <span className="home-hero-title-accent">{t('hero.titleHighlight')}</span>
+              <span>{t('hero.title')}</span>
+              <span className="home-hero-title-accent"> {t('hero.titleHighlight')}</span>
             </h1>
             <p className="home-hero-subtitle">{t('hero.subtitle')}</p>
           </header>
@@ -136,7 +158,7 @@ function HomeContent() {
                 <Link href={tool.href} className="tool-card group flex flex-col justify-between min-h-[280px] h-full">
                   <div>
                     <div className="flex items-center justify-start gap-3 mb-5">
-                      <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${tool.bg} flex items-center justify-center`}>
+                      <div className={`w-11 h-11 rounded-xl bg-linear-to-br ${tool.bg} flex items-center justify-center`}>
                         <tool.icon className="w-5 h-5" style={{ color: tool.color }} />
                       </div>
                       <h3 className="text-base font-semibold group-hover:text-[#3b82f6] transition-colors">
@@ -145,7 +167,7 @@ function HomeContent() {
                     </div>
 
                     
-                    <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-5">
+                    <p className="text-sm text-(--text-secondary) leading-relaxed mb-5">
                       {tool.desc}
                     </p>
                   </div>
@@ -193,7 +215,7 @@ function HomeContent() {
                     <feat.icon className="w-5 h-5" style={{ color: feat.color }} />
                   </div>
                   <h3 className="text-base font-semibold mb-2">{feat.title}</h3>
-                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{feat.desc}</p>
+                  <p className="text-sm text-(--text-secondary) leading-relaxed">{feat.desc}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -203,6 +225,42 @@ function HomeContent() {
 
       {/* ===== HOW IT WORKS ===== */}
       <HowItWorksSection />
+
+      {/* ===== ABOUT ===== */}
+      <section className="section-py relative">
+        <div className="page-container max-w-3xl">
+          <ScrollReveal>
+            <SectionHeading
+              size="compact"
+              title={th('aboutTitle')}
+              subtitle={th('aboutSubtitle')}
+            />
+          </ScrollReveal>
+          <ScrollReveal delay={80}>
+            <div className="card-glass p-8 sm:p-10 space-y-4 text-sm sm:text-base text-(--text-secondary) leading-relaxed">
+              <p>{th('aboutParagraph1')}</p>
+              <p>{th('aboutParagraph2')}</p>
+              <p>
+                {th('aboutParagraph3')}{' '}
+                <Link href="/blog/how-to-convert-markdown-to-pdf-online" className="text-[#3b82f6] hover:underline">
+                  {th('aboutLinkPdf')}
+                </Link>
+                {', '}
+                <Link href="/blog/render-mermaid-diagrams-markdown" className="text-[#3b82f6] hover:underline">
+                  {th('aboutLinkMermaid')}
+                </Link>
+                {', and '}
+                <Link href="/blog/beginner-guide-markdown" className="text-[#3b82f6] hover:underline">
+                  {th('aboutLinkBeginner')}
+                </Link>
+                .
+              </p>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <BlogInsightsSection />
 
       {/* ===== FAQ ===== */}
       <section className="section-py relative">
@@ -214,7 +272,7 @@ function HomeContent() {
             />
           </ScrollReveal>
           <ScrollReveal delay={100}>
-            <FAQAccordion items={faqs} />
+            <FAQAccordion items={faqs} speakableAnswerIndex={0} />
           </ScrollReveal>
         </div>
       </section>
@@ -222,15 +280,9 @@ function HomeContent() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: faqs.map((faq) => ({
-              '@type': 'Question',
-              name: faq.q,
-              acceptedAnswer: { '@type': 'Answer', text: faq.a },
-            })),
-          }),
+          __html: JSON.stringify(
+            buildSpeakableJsonLd(['.home-hero-subtitle', '.speakable-faq-answer'], locale, '/'),
+          ),
         }}
       />
     </>

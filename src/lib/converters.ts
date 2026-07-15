@@ -1,9 +1,8 @@
-import { convertMarkdownToHtml } from './markdown';
 import type { ExportProgressCallback } from './export-progress';
 import { markdownHasMermaid } from './export-progress';
+import { convertMarkdownToHtml } from './markdown';
 import {
   MERMAID_EXPORT_STYLES,
-  rasterizeMermaidDiagramsForPdf,
   renderMermaidDiagrams,
   renderMermaidDiagramsForPdf,
 } from './mermaid-render';
@@ -17,20 +16,11 @@ export {
   markdownHasMermaid,
   stageIndex,
 } from './export-progress';
-
 export { convertMarkdownToHtml } from './markdown';
 
 /** A4 content width at ~96dpi (210mm). */
 const PDF_WIDTH_PX = 794;
 const PDF_PADDING_X = 32;
-const PDF_CONTENT_WIDTH = PDF_WIDTH_PX - PDF_PADDING_X * 2;
-/** Max diagram height that fits on one page (content area, px). */
-const PDF_MAX_DIAGRAM_HEIGHT = 680;
-/** Usable A4 content height in px (~275mm at 96dpi). */
-const PDF_PAGE_CONTENT_HEIGHT = 1040;
-/** Blocks taller than this must stay on one page; smaller blocks fill remaining space. */
-const PDF_LARGE_BLOCK_THRESHOLD = Math.round(PDF_PAGE_CONTENT_HEIGHT * 0.4);
-const MAX_CANVAS_PX = 16000;
 
 const SHARED_CONTENT_STYLES = `
   * { box-sizing: border-box; }
@@ -122,6 +112,39 @@ const PDF_STYLES = `
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     line-height: 1.65;
   }
+  @media print {
+    @page {
+      size: A4 portrait;
+      margin: 15mm;
+    }
+    body, html {
+      background: #ffffff !important;
+      color: #1e293b !important;
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .pdf-capture-iframe {
+      width: 100% !important;
+      height: 100% !important;
+    }
+    .pdf-document {
+      width: 100% !important;
+      max-width: 100% !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    pre, blockquote, table, img, .mermaid, .mermaid-rendered, .pdf-diagram-block {
+      page-break-inside: avoid !important;
+      break-inside: avoid-page !important;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      page-break-after: avoid !important;
+      break-after: avoid !important;
+    }
+  }
 `;
 
 /** Off-screen DOM host for HTML string extraction (not canvas capture). */
@@ -183,37 +206,6 @@ function mountPdfIframe(markdownHtml: string): { iframe: HTMLIFrameElement; cont
   return { iframe, content };
 }
 
-function forceVisibleInClone(clonedDoc: Document): void {
-  const root = clonedDoc.querySelector('.pdf-document');
-  if (!root || !(root instanceof HTMLElement)) return;
-
-  clonedDoc.documentElement.style.background = '#ffffff';
-  clonedDoc.body.style.background = '#ffffff';
-  clonedDoc.body.style.margin = '0';
-  clonedDoc.body.style.padding = '0';
-
-  let node: HTMLElement | null = root;
-  while (node) {
-    node.style.opacity = '1';
-    node.style.visibility = 'visible';
-    node.style.transform = 'none';
-    node.style.filter = 'none';
-    node.style.overflow = 'visible';
-    if (node === clonedDoc.body) break;
-    node = node.parentElement;
-  }
-
-  root.style.width = `${PDF_WIDTH_PX}px`;
-  root.style.background = '#ffffff';
-  root.style.color = '#1e293b';
-
-  clonedDoc.querySelectorAll<HTMLImageElement>('.pdf-diagram-img').forEach((img) => {
-    img.style.maxWidth = '100%';
-    img.style.height = 'auto';
-    img.style.objectFit = 'contain';
-  });
-}
-
 async function waitForPaint(extraMs = 150): Promise<void> {
   await new Promise<void>((resolve) => {
     requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
@@ -221,47 +213,8 @@ async function waitForPaint(extraMs = 150): Promise<void> {
   await new Promise((resolve) => setTimeout(resolve, extraMs));
 }
 
-/** Chromium treats nested blockquote boxes as unbreakable — flatten them for PDF. */
-function prepareBlockquotesForPdf(root: HTMLElement): void {
-  root.querySelectorAll('blockquote blockquote').forEach((inner) => {
-    const doc = inner.ownerDocument ?? document;
-    const div = doc.createElement('div');
-    div.className = 'pdf-nested-quote';
-    while (inner.firstChild) div.appendChild(inner.firstChild);
-    inner.replaceWith(div);
-  });
-}
-
-/** Only large images/diagrams/code blocks avoid page breaks; small blocks use remaining space. */
-function applySmartPageBreaks(root: HTMLElement): void {
-  const selectors = '.pdf-diagram-img, img:not(.pdf-diagram-img), pre, table, .mermaid-rendered svg';
-  root.querySelectorAll<HTMLElement>(selectors).forEach((el) => {
-    const height = el.getBoundingClientRect().height;
-    if (height >= PDF_LARGE_BLOCK_THRESHOLD) {
-      el.classList.add('pdf-avoid-break');
-    } else {
-      el.classList.remove('pdf-avoid-break');
-    }
-  });
-}
-
-function computeCanvasScale(contentHeightPx: number): number {
-  const preferred = 2;
-  if (contentHeightPx * preferred <= MAX_CANVAS_PX) return preferred;
-  return Math.max(1, Math.floor((MAX_CANVAS_PX / contentHeightPx) * 10) / 10);
-}
-
-function downloadBlob(blob: Blob, filename: string): void {
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
-
+// Backend code commented out - PDF generation is fully client-side using native window.print()
+/*
 function getConversionApiUrl(): string | undefined {
   return process.env.NEXT_PUBLIC_CONVERSION_API_URL || process.env.NEXT_PUBLIC_PDF_API_URL;
 }
@@ -293,13 +246,14 @@ async function convertWithBackend(payload: BackendConversionPayload): Promise<Bl
 
   return response.blob();
 }
+*/
 
 /** Render markdown to HTML with Mermaid diagrams as SVG (browser only). */
 export async function buildRenderedHtmlBody(
   markdown: string,
   options?: { forPdf?: boolean; onProgress?: ExportProgressCallback },
 ): Promise<string> {
-  const html = convertMarkdownToHtml(markdown);
+  const html = await convertMarkdownToHtml(markdown);
   if (typeof document === 'undefined') return html;
 
   const container = offscreenDomContainer(options?.forPdf ? PDF_WIDTH_PX : 800);
@@ -322,23 +276,7 @@ export async function buildRenderedHtmlBody(
 }
 
 /** HTML body with diagrams rasterized for backend PDF export. */
-async function buildPdfReadyHtmlBody(
-  markdown: string,
-  onProgress?: ExportProgressCallback,
-): Promise<string> {
-  const body = await buildRenderedHtmlBody(markdown, { forPdf: true, onProgress });
-
-  const container = offscreenDomContainer(PDF_WIDTH_PX);
-  container.innerHTML = body;
-
-  try {
-    await rasterizeMermaidDiagramsForPdf(container, PDF_CONTENT_WIDTH, PDF_MAX_DIAGRAM_HEIGHT);
-    await waitForPaint(250);
-    return container.innerHTML;
-  } finally {
-    document.body.removeChild(container);
-  }
-}
+// buildPdfReadyHtmlBody commented out - backend PDF conversion is no longer used
 
 export async function buildHtmlDocument(
   markdown: string,
@@ -350,8 +288,8 @@ export async function buildHtmlDocument(
   return `<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><style>${DOCUMENT_STYLES}</style></head><body>${body}</body></html>`;
 }
 
-export function convertMarkdownToTxt(markdown: string): string {
-  const html = convertMarkdownToHtml(markdown);
+export async function convertMarkdownToTxt(markdown: string): Promise<string> {
+  const html = await convertMarkdownToHtml(markdown);
   if (typeof document !== 'undefined') {
     const temp = document.createElement('div');
     temp.innerHTML = html;
@@ -376,7 +314,7 @@ export async function buildTxtDocument(
 ): Promise<string> {
   void filename;
   onProgress?.('preparingDownload');
-  return convertMarkdownToTxt(markdown);
+  return await convertMarkdownToTxt(markdown);
 }
 
 export async function convertMarkdownToPdf(
@@ -386,81 +324,40 @@ export async function convertMarkdownToPdf(
 ): Promise<void> {
   onProgress?.('preparing');
 
-  try {
-    if (getConversionApiUrl()) {
-      const hasMermaid = markdownHasMermaid(markdown);
-      const payload = hasMermaid
-        ? {
-            format: 'pdf' as const,
-            html: await buildPdfReadyHtmlBody(markdown, onProgress),
-            filename,
-          }
-        : {
-            format: 'pdf' as const,
-            markdown,
-            filename,
-          };
-      onProgress?.('generatingPdf');
-      const pdf = await convertWithBackend(payload);
-      onProgress?.('finalizing');
-      downloadBlob(pdf, filename);
-      return;
-    }
-  } catch (error) {
-    console.warn('PDF API unavailable, falling back to browser PDF export.', error);
-  }
-
-  const html = convertMarkdownToHtml(markdown);
+  const html = await convertMarkdownToHtml(markdown);
   const { iframe, content } = mountPdfIframe(html);
+
+  // Set document title for PDF print dialog filename
+  const title = filename.replace(/\.[^/.]+$/, '');
+  const doc = iframe.contentDocument;
+  if (doc) {
+    doc.title = title;
+  }
 
   try {
     if (markdownHasMermaid(markdown)) {
       onProgress?.('buildingDiagrams');
+      await renderMermaidDiagramsForPdf(content);
+      await waitForPaint(300);
     }
+    
     onProgress?.('generatingPdf');
-    await renderMermaidDiagramsForPdf(content);
-    await waitForPaint(400);
-    await rasterizeMermaidDiagramsForPdf(content, PDF_CONTENT_WIDTH, PDF_MAX_DIAGRAM_HEIGHT);
-    await waitForPaint(250);
-    prepareBlockquotesForPdf(content);
-    applySmartPageBreaks(content);
-
-    const contentHeight = content.scrollHeight;
-    const scale = computeCanvasScale(contentHeight);
-
-    const { default: html2pdf } = await import('html2pdf.js');
-
-    const pdfOptions = {
-      margin: [10, 10, 12, 10],
-      filename,
-      image: { type: 'jpeg', quality: 0.95 },
-      html2canvas: {
-        scale,
-        useCORS: true,
-        allowTaint: true,
-        letterRendering: true,
-        scrollY: 0,
-        scrollX: 0,
-        width: PDF_WIDTH_PX,
-        windowWidth: PDF_WIDTH_PX,
-        backgroundColor: '#ffffff',
-        logging: false,
-        onclone: (clonedDoc: Document) => forceVisibleInClone(clonedDoc),
-      },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait', compress: true },
-      pagebreak: {
-        mode: ['css', 'legacy'],
-        avoid: ['.pdf-avoid-break', 'tr'],
-      },
-    };
+    await waitForPaint(150);
 
     onProgress?.('finalizing');
-    await html2pdf()
-      .set(pdfOptions as never)
-      .from(content)
-      .save();
+    await waitForPaint(100);
+
+    if (iframe.contentWindow) {
+      iframe.contentWindow.focus();
+      iframe.contentWindow.print();
+    }
   } finally {
-    document.body.removeChild(iframe);
+    // Keep iframe attached briefly to ensure print setup can read it in background
+    setTimeout(() => {
+      if (document.body.contains(iframe)) {
+        document.body.removeChild(iframe);
+      }
+    }, 2000);
   }
 }
 

@@ -1,22 +1,23 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
-import { convertMarkdownToHtml } from '@/lib/markdown';
-import MarkdownPreview from '@/components/MarkdownPreview';
 import {
   Bold,
-  Italic,
-  Heading,
-  Link2,
   Code,
-  List,
   Download,
-  PenLine,
   Eye,
-  FileText,
   FileCode,
+  FileText,
   FileType,
+  Heading,
+  Italic,
+  Link2,
+  List,
+  PenLine,
 } from 'lucide-react';
+import { useEffect, useMemo, useState } from 'react';
+
+import MarkdownPreview from '@/components/MarkdownPreview';
+import { convertMarkdownToHtml } from '@/lib/markdown';
 
 const DEMO_MARKDOWN = `# Premium Markdown
 
@@ -100,7 +101,17 @@ export default function HeroEditorDemo() {
   const lines = typed.split('\n');
   const lineCount = Math.max(lines.length, 8);
   const lineNumbers = Array.from({ length: lineCount }, (_, i) => i + 1);
-  const previewHtml = useMemo(() => convertMarkdownToHtml(typed), [typed]);
+  const [previewHtml, setPreviewHtml] = useState('');
+
+  useEffect(() => {
+    let isMounted = true;
+    convertMarkdownToHtml(typed).then((res) => {
+      if (isMounted) setPreviewHtml(res);
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, [typed]);
 
   return (
     <div

@@ -1,14 +1,20 @@
 'use client';
 
+import { Minus,Plus } from 'lucide-react';
 import { useState } from 'react';
-import { Plus, Minus } from 'lucide-react';
 
 interface FAQItem {
   q: string;
   a: string;
 }
 
-export default function FAQAccordion({ items }: { items: FAQItem[] }) {
+export default function FAQAccordion({
+  items,
+  speakableAnswerIndex,
+}: {
+  items: FAQItem[];
+  speakableAnswerIndex?: number;
+}) {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
   const toggleAccordion = (index: number) => {
@@ -54,7 +60,11 @@ export default function FAQAccordion({ items }: { items: FAQItem[] }) {
               }`}
             >
               <div className="overflow-hidden">
-                <div className="px-5 sm:px-5 pb-5 text-sm text-[var(--text-secondary)] leading-relaxed border-t border-[var(--border-color)] pt-4 mx-5">
+                <div
+                  className={`px-5 sm:px-5 pb-5 text-sm text-[var(--text-secondary)] leading-relaxed border-t border-[var(--border-color)] pt-4 mx-5${
+                    speakableAnswerIndex === i ? ' speakable-faq-answer' : ''
+                  }`}
+                >
                   {faq.a}
                 </div>
               </div>

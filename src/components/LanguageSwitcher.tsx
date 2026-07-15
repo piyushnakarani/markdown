@@ -1,10 +1,12 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { Check, ChevronDown } from 'lucide-react';
 import { useLocale } from 'next-intl';
+import { useEffect,useRef, useState } from 'react';
+
+import { Locale,localeFlags, localeNames, locales } from '@/i18n/locales';
 import { usePathname, useRouter } from '@/i18n/navigation';
-import { locales, localeNames, localeFlags, Locale } from '@/i18n/locales';
-import { Globe, Check, ChevronDown } from 'lucide-react';
+import { event } from '@/lib/analytics';
 
 export default function LanguageSwitcher({ variant = 'default' }: { variant?: 'default' | 'footer' }) {
   const locale = useLocale() as Locale;
@@ -22,6 +24,7 @@ export default function LanguageSwitcher({ variant = 'default' }: { variant?: 'd
   }, []);
 
   const handleChange = (newLocale: Locale) => {
+    event('change_language', { from: locale, to: newLocale });
     router.replace(pathname, { locale: newLocale });
     setOpen(false);
   };

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { SITE_LOGO_PATH, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
-import "./globals.css";
+
+import { absoluteUrl,SITE_LOGO_PATH, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Free Markdown convertor with diagram support. Convert Markdown with Mermaid charts to PDF, HTML, and TXT at pdfwritter.com.",
+    "Free Markdown converter with diagram support. Convert Markdown with Mermaid charts to PDF, HTML, and TXT at pdfwritter.com.",
   icons: {
     icon: [
       { url: '/favicon.ico' },
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   openGraph: {
-    images: [{ url: SITE_LOGO_PATH, width: 909, height: 279, alt: SITE_NAME }],
+    images: [{ url: absoluteUrl(SITE_LOGO_PATH), width: 909, height: 279, alt: SITE_NAME }],
   },
 };
 

@@ -1,10 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import { Link } from '@/i18n/navigation';
-import { useTheme } from '@/components/ThemeProvider';
 
-/** Native logo dimensions — keep in sync with public/logo.png */
+import { useTheme } from '@/components/ThemeProvider';
+import { Link } from '@/i18n/navigation';
+
 export const LOGO_WIDTH = 909;
 export const LOGO_HEIGHT = 279;
 export const LOGO_ASPECT = LOGO_WIDTH / LOGO_HEIGHT;
@@ -29,18 +29,17 @@ export default function SiteLogo({
   const { theme } = useTheme();
   const height = HEIGHTS[variant];
   const width = Math.round(height * LOGO_ASPECT);
-  const src = theme === 'dark' ? '/logo-dark.png' : '/logo.png';
+  const src = theme === 'dark' ? '/logo-dark.webp' : '/logo.webp';
 
   const image = (
     <Image
       key={src}
       src={src}
-      alt="PDFWritter — Markdown convertor with diagram"
+      alt="PDFWritter — Markdown converter with diagram"
       width={LOGO_WIDTH}
       height={LOGO_HEIGHT}
       priority={variant === 'header'}
       quality={100}
-      unoptimized
       className={`block h-auto max-w-full object-contain object-left select-none transition-opacity duration-300 ${className}`}
       style={{ height, width }}
     />

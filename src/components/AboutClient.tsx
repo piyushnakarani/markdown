@@ -1,27 +1,25 @@
 'use client';
 
-import { useState } from 'react';
-import { Link } from '@/i18n/navigation';
 import {
-  FileText,
-  FileCode,
-  FileType,
-  PenLine,
   Activity,
-  Shield,
-  Zap,
-  Globe,
-  GitBranch,
   ArrowRight,
-  Sparkles,
-  Layers,
-  Cpu,
-  Lock,
-  Play,
   CheckCircle,
-  ChevronRight,
+  Cpu,
+  FileCode,
+  FileText,
+  FileType,
+  GitBranch,
+  Globe,
+  Layers,
+  PenLine,
+  Shield,
   Terminal,
+  Zap,
 } from 'lucide-react';
+import { useState } from 'react';
+
+import MermaidFlowchartPreview from '@/components/MermaidFlowchartPreview';
+import { Link } from '@/i18n/navigation';
 
 export default function AboutClient() {
   const [activeStep, setActiveStep] = useState<'input' | 'pdf' | 'html' | 'txt' | 'mermaid'>('input');
@@ -106,7 +104,7 @@ export default function AboutClient() {
       content: `# Weekly Project Update
 
 📅 **Date:** June 20, 2026
-👤 **Lead:** Jaydip
+👤 **Lead:** PdfWritter Team
 
 ## Progress Graph
 \`\`\`mermaid
@@ -130,18 +128,12 @@ flowchart LR
             <div className="flex gap-4 text-[9px] text-gray-500 mb-6 font-sans">
               <span><strong>Date:</strong> June 20, 2026</span>
               <span>|</span>
-              <span><strong>Lead:</strong> Jaydip</span>
+              <span><strong>Lead:</strong> PdfWritter Team</span>
             </div>
             
             <h2 className="text-sm font-bold font-sans text-gray-800 border-b pb-0.5 mb-2 mt-4">Progress Graph</h2>
-            
-            {/* Embedded simulated chart */}
-            <div className="my-4 p-3 bg-gray-50 border border-gray-100 rounded-lg flex items-center justify-center gap-3 font-sans scale-95 origin-center">
-              <div className="px-2.5 py-1 bg-blue-100 border border-blue-200 text-blue-800 rounded font-semibold text-[9px]">Markdown Source</div>
-              <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
-              <div className="px-2.5 py-1 bg-purple-100 border border-purple-200 text-purple-800 rounded font-semibold text-[9px]">Parser</div>
-              <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
-              <div className="px-2.5 py-1 bg-emerald-100 border border-emerald-200 text-emerald-800 rounded font-semibold text-[9px]">Print Document</div>
+            <div className="my-4 scale-90 origin-center">
+              <MermaidFlowchartPreview variant="light" />
             </div>
           </div>
           
@@ -157,7 +149,7 @@ flowchart LR
       lang: 'html',
       content: `<h1 id="weekly-project-update">Weekly Project Update</h1>
 <p>📅 <strong>Date:</strong> June 20, 2026<br>
-👤 <strong>Lead:</strong> Jaydip</p>
+👤 <strong>Lead:</strong> PdfWritter Team</p>
 
 <h2 id="progress-graph">Progress Graph</h2>
 <div className="mermaid-rendered-container">
@@ -172,7 +164,7 @@ flowchart LR
       content: `Weekly Project Update
 
 Date: June 20, 2026
-Lead: Jaydip
+Lead: PdfWritter Team
 
 Progress Graph
 Markdown Source -> Parser -> Print Document`,
@@ -182,25 +174,7 @@ Markdown Source -> Parser -> Print Document`,
       lang: 'svg',
       content: (
         <div className="p-8 h-full flex flex-col justify-center items-center select-none bg-slate-950/20">
-          <div className="relative p-6 border border-[#3b82f6]/20 bg-slate-900/50 rounded-2xl flex flex-col items-center gap-4 max-w-sm w-full shadow-lg shadow-blue-500/5 backdrop-blur-sm">
-            <span className="absolute -top-3 left-4 px-2 py-0.5 text-[10px] font-bold text-blue-400 bg-blue-950 border border-blue-800 rounded-md">VECTORS</span>
-            <div className="flex flex-col sm:flex-row items-center gap-2.5 w-full justify-center">
-              <div className="px-3 py-2 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 border border-blue-500/30 text-[#38adf8] rounded-xl text-xs font-bold font-mono tracking-tight text-center shadow-inner shadow-blue-500/10">
-                Markdown Source
-              </div>
-              <div className="h-4 sm:h-px sm:w-8 border-l-2 sm:border-l-0 sm:border-t-2 border-dashed border-slate-700 relative">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-blue-500 animate-ping" />
-              </div>
-              <div className="px-3 py-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/30 text-[#a855f7] rounded-xl text-xs font-bold font-mono tracking-tight text-center shadow-inner shadow-purple-500/10">
-                Parser Engine
-              </div>
-              <div className="h-4 sm:h-px sm:w-8 border-l-2 sm:border-l-0 sm:border-t-2 border-dashed border-slate-700" />
-              <div className="px-3 py-2 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/30 text-[#34d399] rounded-xl text-xs font-bold font-mono tracking-tight text-center shadow-inner shadow-emerald-500/10">
-                Print Document
-              </div>
-            </div>
-            <p className="text-[10px] text-[var(--text-tertiary)] mt-2 text-center">Interactive SVG vector node output. Scalable to print formats.</p>
-          </div>
+          <MermaidFlowchartPreview variant="dark" />
         </div>
       ),
     },
@@ -226,7 +200,7 @@ Markdown Source -> Parser -> Print Document`,
               Developer-First Conversion Philosophy
             </h2>
             <p className="text-[var(--text-secondary)] text-sm sm:text-base leading-relaxed max-w-3xl mx-auto">
-              Our tools are constructed with one core goal: to provide zero-friction, accessible, and absolute client-side privacy. MarkdownTools supports full GitHub Flavored Markdown (GFM) specs, handles complex Mermaid.js code blocks directly, and exports clean compiled files instantly—all without needing servers, user accounts, or paywalls.
+              Our tools are constructed with one core goal: to provide zero-friction, accessible, and absolute client-side privacy. PDFWritter supports full GitHub Flavored Markdown (GFM) specs, handles complex Mermaid.js code blocks directly, and exports clean compiled files instantly—all without needing servers, user accounts, or paywalls.
             </p>
           </div>
         </div>
@@ -239,7 +213,7 @@ Markdown Source -> Parser -> Print Document`,
               Instant Multi-Format Compilation
             </h2>
             <p className="text-xs sm:text-sm text-[var(--text-secondary)] mt-2">
-              Select a stage below to simulate how the MarkdownTools pipeline processes code and handles formatting inputs.
+              Select a stage below to simulate how the PDFWritter pipeline processes code and handles formatting inputs.
             </p>
           </div>
 
@@ -534,7 +508,7 @@ Markdown Source -> Parser -> Print Document`,
               Design & Operations Values
             </h2>
             <p className="text-xs sm:text-sm text-[var(--text-secondary)] mt-2">
-              The fundamental engineering guidelines behind MarkdownTools.
+              The fundamental engineering guidelines behind PDFWritter.
             </p>
           </div>
 
@@ -554,42 +528,7 @@ Markdown Source -> Parser -> Print Document`,
           </div>
         </section>
 
-        {/* Platform Technical Specifications */}
-        <section className="card-glass p-8 sm:p-10 rounded-3xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/20 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-72 h-72 bg-[#06b6d4]/5 blur-3xl rounded-full pointer-events-none" />
-          
-          <div className="relative z-10 flex flex-col md:flex-row items-center md:justify-between gap-6 border-b border-[var(--border-color)] pb-6 mb-8 text-center md:text-left">
-            <div>
-              <h3 className="text-lg font-bold text-[var(--text-primary)] flex items-center gap-2 justify-center md:justify-start">
-                <Terminal className="w-4 h-4 text-cyan-400 animate-pulse" />
-                Technical Stack Specifications
-              </h3>
-              <p className="text-xs text-[var(--text-secondary)] mt-0.5">Under-the-hood specs driving the MarkdownTools suite.</p>
-            </div>
-            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-400 bg-cyan-950/40 border border-cyan-800/40 px-3 py-1 rounded-full">
-              Stable Build v1.4.0
-            </span>
-          </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center sm:text-left relative z-10">
-            <div>
-              <span className="text-[10px] font-bold text-[var(--text-tertiary)] uppercase tracking-wider block">Framework</span>
-              <span className="text-sm font-semibold text-[var(--text-secondary)] mt-1 block">Next.js 15 (React 19)</span>
-            </div>
-            <div>
-              <span className="text-[10px] font-bold text-[var(--text-tertiary)] uppercase tracking-wider block">Rendering Engine</span>
-              <span className="text-sm font-semibold text-[var(--text-secondary)] mt-1 block">Playwright Chromium API</span>
-            </div>
-            <div>
-              <span className="text-[10px] font-bold text-[var(--text-tertiary)] uppercase tracking-wider block">Wasm Modules</span>
-              <span className="text-sm font-semibold text-[var(--text-secondary)] mt-1 block">Mermaid SVG parser</span>
-            </div>
-            <div>
-              <span className="text-[10px] font-bold text-[var(--text-tertiary)] uppercase tracking-wider block">Styling Core</span>
-              <span className="text-sm font-semibold text-[var(--text-secondary)] mt-1 block">TailwindCSS v4 Config</span>
-            </div>
-          </div>
-        </section>
 
         {/* CTA Panel */}
         <div className="text-center pt-4 relative z-10">

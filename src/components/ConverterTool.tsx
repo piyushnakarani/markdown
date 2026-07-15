@@ -1,48 +1,51 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
-import { useTranslations } from 'next-intl';
+import type { LucideIcon } from 'lucide-react';
 import {
+  Check,
+  Code2,
+  Copy,
+  Download,
+  Eye,
+  FileCode,
+  FileText,
+  FileType,
+  FileUp,
+  PenLine,
+  Trash2,
+  Upload,
+  X,
+} from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+import {
+  type EditorToolbarAction,
+  type EditorToolbarActionVariant,
+  EditorToolbarBar,
+  EditorToolbarDivider,
+  EditorToolbarEnd,
+  EditorToolbarStart,
+} from '@/components/EditorToolbar';
+import ExportOverlay from '@/components/ExportOverlay';
+import MarkdownPreview from '@/components/MarkdownPreview';
+import { event } from '@/lib/analytics';
+import {
+  buildHtmlDocument,
+  buildTxtDocument,
   convertMarkdownToHtml,
   convertMarkdownToPdf,
   convertMarkdownToTxt,
-  buildHtmlDocument,
-  buildTxtDocument,
   downloadFile,
-  readFileAsText,
+  type ExportProgressStage,
   getExportOverlayProps,
   getHtmlExportStages,
   getPdfExportStages,
   getTxtExportStages,
   markdownHasMermaid,
-  type ExportProgressStage,
+  readFileAsText,
 } from '@/lib/converters';
-import MarkdownPreview from '@/components/MarkdownPreview';
-import ExportOverlay from '@/components/ExportOverlay';
-import {
-  EditorToolbarBar,
-  EditorToolbarStart,
-  EditorToolbarEnd,
-  EditorToolbarDivider,
-  type EditorToolbarAction,
-  type EditorToolbarActionVariant,
-} from '@/components/EditorToolbar';
-import {
-  Upload,
-  Download,
-  Trash2,
-  FileText,
-  FileCode,
-  FileType,
-  Eye,
-  PenLine,
-  FileUp,
-  Check,
-  X,
-  Copy,
-  Code2,
-} from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
+import { syncProportionalScroll } from '@/lib/editor-scroll-sync';
 
 export type ConvertType = 'pdf' | 'html' | 'txt';
 
@@ -87,9 +90,22 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const lineNumbersRef = useRef<HTMLDivElement>(null);
+  const previewScrollRef = useRef<HTMLDivElement>(null);
+  const scrollSyncLockRef = useRef(false);
 
-  const html = convertMarkdownToHtml(markdown);
-  const plainText = convertMarkdownToTxt(markdown);
+  const [html, setHtml] = useState('');
+  const [plainText, setPlainText] = useState('');
+
+  useEffect(() => {
+    let isMounted = true;
+    convertMarkdownToHtml(markdown).then(res => {
+      if (isMounted) setHtml(res);
+    });
+    convertMarkdownToTxt(markdown).then(res => {
+      if (isMounted) setPlainText(res);
+    });
+    return () => { isMounted = false; };
+  }, [markdown]);
   const lineCount = Math.max(markdown.split('\n').length, 12);
   const lineNumbers = Array.from({ length: lineCount }, (_, i) => i + 1);
 
@@ -110,10 +126,16 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
       setMarkdown(text);
       setFileName(file.name);
       showToast(t('fileLoaded'));
+      event('upload_file', {
+        file_name: file.name,
+        file_size: file.size,
+        tool_type: type,
+        tool: 'converter',
+      });
     } catch {
       showToast(t('errorMessage'));
     }
-  }, [t]);
+  }, [t, type]);
 
   const handleDrop = async (e: React.DragEvent) => {
     e.preventDefault();
@@ -134,6 +156,12 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
     setExportStages(stages);
     setExportStage(stages[0]);
     setExporting(type);
+    event('export_file', {
+      format: type,
+      has_mermaid: hasMermaid,
+      char_count: markdown.length,
+      tool: 'converter',
+    });
     const onProgress = (stage: ExportProgressStage) => setExportStage(stage);
     try {
       const name = baseName();
@@ -166,18 +194,54 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
     if (!content) return;
     await navigator.clipboard.writeText(content);
     setCopied(true);
+    event('copy_output', {
+      format: type,
+      char_count: content.length,
+      tool: 'converter',
+    });
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleTextareaScroll = (e: React.UIEvent<HTMLTextAreaElement>) => {
+  const syncLineNumbers = (scrollTop: number) => {
     if (lineNumbersRef.current) {
-      lineNumbersRef.current.scrollTop = e.currentTarget.scrollTop;
+      lineNumbersRef.current.scrollTop = scrollTop;
     }
+  };
+
+  const handleTextareaScroll = (e: React.UIEvent<HTMLTextAreaElement>) => {
+    const textarea = e.currentTarget;
+    syncLineNumbers(textarea.scrollTop);
+
+    const preview = previewScrollRef.current;
+    if (!preview || scrollSyncLockRef.current) return;
+
+    scrollSyncLockRef.current = true;
+    syncProportionalScroll(textarea, preview);
+    requestAnimationFrame(() => {
+      scrollSyncLockRef.current = false;
+    });
+  };
+
+  const handlePreviewScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const preview = e.currentTarget;
+    const textarea = textareaRef.current;
+    if (!textarea || scrollSyncLockRef.current) return;
+
+    scrollSyncLockRef.current = true;
+    syncProportionalScroll(preview, textarea);
+    syncLineNumbers(textarea.scrollTop);
+    requestAnimationFrame(() => {
+      scrollSyncLockRef.current = false;
+    });
   };
 
   const clearAll = () => {
     setMarkdown('');
     setFileName('');
+    event('clear_editor', {
+      tool: 'converter',
+      type: type,
+    });
   };
 
   const ExportIcon = fmt.icon;
@@ -273,7 +337,10 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
         <div className="editor-toolbar-tabs">
           <button
             type="button"
-            onClick={() => setActiveTab('editor')}
+            onClick={() => {
+              setActiveTab('editor');
+              event('change_tab', { tab: 'editor', tool: 'converter', type });
+            }}
             className={`flex items-center gap-1 px-2.5 py-1.5 rounded-md text-xs font-semibold transition-colors ${
               activeTab === 'editor' ? 'bg-[#3b82f6] text-white' : 'text-[var(--text-secondary)]'
             }`}
@@ -283,7 +350,10 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
           </button>
           <button
             type="button"
-            onClick={() => setActiveTab('preview')}
+            onClick={() => {
+              setActiveTab('preview');
+              event('change_tab', { tab: 'preview', tool: 'converter', type });
+            }}
             className={`flex items-center gap-1 px-2.5 py-1.5 rounded-md text-xs font-semibold transition-colors ${
               activeTab === 'preview' ? 'bg-[#3b82f6] text-white' : 'text-[var(--text-secondary)]'
             }`}
@@ -355,7 +425,10 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
               <div className="flex items-center gap-0.5 bg-[var(--bg-primary)] p-0.5 rounded-lg border border-[var(--border-color)]">
                 <button
                   type="button"
-                  onClick={() => setHtmlView('preview')}
+                  onClick={() => {
+                    setHtmlView('preview');
+                    event('change_html_view', { view: 'preview', tool: 'converter' });
+                  }}
                   className={`flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-semibold transition-colors ${
                     htmlView === 'preview' ? 'bg-[#3b82f6] text-white' : 'text-[var(--text-secondary)]'
                   }`}
@@ -365,7 +438,10 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
                 </button>
                 <button
                   type="button"
-                  onClick={() => setHtmlView('code')}
+                  onClick={() => {
+                    setHtmlView('code');
+                    event('change_html_view', { view: 'code', tool: 'converter' });
+                  }}
                   className={`flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-semibold transition-colors ${
                     htmlView === 'code' ? 'bg-[#3b82f6] text-white' : 'text-[var(--text-secondary)]'
                   }`}
@@ -377,7 +453,11 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
             )}
           </div>
 
-          <div className="editor-pane-body editor-pane-scroll">
+          <div
+            ref={previewScrollRef}
+            className="editor-pane-body editor-pane-scroll"
+            onScroll={handlePreviewScroll}
+          >
             {type === 'txt' ? (
               <pre className="text-sm text-[var(--text-primary)] whitespace-pre-wrap font-mono leading-relaxed">
                 {plainText || t('noOutput')}

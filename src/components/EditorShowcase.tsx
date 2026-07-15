@@ -1,10 +1,13 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/navigation';
 import { ArrowRight } from 'lucide-react';
+import dynamic from 'next/dynamic';
+import { useTranslations } from 'next-intl';
+
+import { Link } from '@/i18n/navigation';
+
+const EditorClient = dynamic(() => import('./EditorClient'));
 import ScrollReveal from './ScrollReveal';
-import EditorClient from './EditorClient';
 
 export default function EditorShowcase() {
   const t = useTranslations('editorShowcase');

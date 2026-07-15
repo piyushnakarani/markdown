@@ -1,27 +1,35 @@
-import { useTranslations } from 'next-intl';
-import { setRequestLocale } from 'next-intl/server';
-import { HelpCircle, BookOpen, Keyboard, FileText } from 'lucide-react';
-import { buildPageMetadata } from '@/lib/site';
+import { BookOpen, FileText, HelpCircle, Keyboard } from 'lucide-react';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+
+import FAQAccordion from '@/components/FAQAccordion';
+import SectionHeading from '@/components/SectionHeading';
+import { buildLocalizedPageMetadata } from '@/lib/site';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  return buildPageMetadata({
-    title: 'Help & Documentation',
-    description:
-      'Learn how to use PDFWritter — the Markdown convertor with diagram support. FAQ, syntax reference, Mermaid diagrams, and shortcuts.',
-    path: `/${locale}/help`,
+  return buildLocalizedPageMetadata({
     locale,
+    path: `/${locale}/help`,
+    titleKey: 'help.title',
+    descriptionKey: 'help.metaDescription',
   });
 }
 
 export default async function HelpPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <HelpContent />;
-}
 
-function HelpContent() {
-  const t = useTranslations('help');
+  const t = await getTranslations('help');
+  const tFaq = await getTranslations('faq');
+
+  const faqs = [
+    { q: tFaq('q1'), a: tFaq('a1') },
+    { q: tFaq('q2'), a: tFaq('a2') },
+    { q: tFaq('q3'), a: tFaq('a3') },
+    { q: tFaq('q4'), a: tFaq('a4') },
+    { q: tFaq('q5'), a: tFaq('a5') },
+    { q: tFaq('q6'), a: tFaq('a6') },
+  ];
 
   const syntaxRef = [
     { syntax: '# Heading 1', result: 'H1 heading' },
@@ -61,7 +69,6 @@ function HelpContent() {
       </section>
 
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 space-y-12">
-        {/* Getting Started */}
         <div className="card-glass p-8">
           <div className="flex items-center gap-3 mb-6">
             <BookOpen className="w-6 h-6 text-[#6366f1]" />
@@ -75,7 +82,13 @@ function HelpContent() {
           </ol>
         </div>
 
-        {/* Syntax Reference */}
+        <div className="card-glass p-8">
+          <SectionHeading size="compact" title={t('faq')} />
+          <div className="mt-6">
+            <FAQAccordion items={faqs} speakableAnswerIndex={0} />
+          </div>
+        </div>
+
         <div className="card-glass p-8">
           <div className="flex items-center gap-3 mb-6">
             <FileText className="w-6 h-6 text-[#f59e0b]" />
@@ -101,7 +114,6 @@ function HelpContent() {
           </div>
         </div>
 
-        {/* Keyboard Shortcuts */}
         <div className="card-glass p-8">
           <div className="flex items-center gap-3 mb-6">
             <Keyboard className="w-6 h-6 text-[#10b981]" />

@@ -1,8 +1,10 @@
+import { ArrowUpRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+
 import { Link } from '@/i18n/navigation';
+
 import LanguageSwitcher from './LanguageSwitcher';
 import SiteLogo from './SiteLogo';
-import { ArrowUpRight } from 'lucide-react';
 
 export default function Footer() {
   const t = useTranslations('footer');
@@ -12,6 +14,7 @@ export default function Footer() {
     { href: '/markdown-to-pdf', label: 'markdownToPdf' },
     { href: '/markdown-to-html', label: 'markdownToHtml' },
     { href: '/markdown-to-txt', label: 'markdownToTxt' },
+    { href: '/markdown-live-preview', label: 'markdownLivePreview' },
     { href: '/editor', label: 'editor' },
     { href: '/free-markdown-converter', label: 'freeConverter' },
   ] as const;
@@ -90,14 +93,14 @@ export default function Footer() {
             </h3>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-sm text-[var(--text-secondary)] hover:text-[#3b82f6] transition-colors duration-200">
+                <Link href="/privacy" className="text-sm text-[var(--text-secondary)] hover:text-[#3b82f6] transition-colors duration-200">
                   {t('privacy')}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-sm text-[var(--text-secondary)] hover:text-[#3b82f6] transition-colors duration-200">
+                <Link href="/terms" className="text-sm text-[var(--text-secondary)] hover:text-[#3b82f6] transition-colors duration-200">
                   {t('terms')}
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

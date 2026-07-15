@@ -1,17 +1,18 @@
+import { Sparkles } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
-import { Sparkles } from 'lucide-react';
-import { buildPageMetadata } from '@/lib/site';
-import PageHero from '@/components/PageHero';
+
 import AboutClient from '@/components/AboutClient';
+import PageHero from '@/components/PageHero';
+import { buildLocalizedPageMetadata } from '@/lib/site';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  return buildPageMetadata({
-    title: 'About MarkdownTools - Free Markdown Converter & Editor',
-    description: 'Learn about MarkdownTools — free, fast, and private Markdown tools for developers worldwide.',
-    path: `/${locale}/about`,
+  return buildLocalizedPageMetadata({
     locale,
+    path: `/${locale}/about`,
+    titleKey: 'about.title',
+    descriptionKey: 'about.subtitle',
   });
 }
 
@@ -27,7 +28,7 @@ function AboutContent() {
   return (
     <>
       <PageHero
-        badge="Platform Overview"
+        badge={t('badge')}
         badgeIcon={Sparkles}
         title={t('title')}
         subtitle={t('subtitle')}

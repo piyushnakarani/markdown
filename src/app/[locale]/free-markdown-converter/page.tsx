@@ -1,23 +1,108 @@
+import { ArrowRight, Check, Code2, Eye, FileText, FileType, PenLine, Sparkles } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
+
+import RelatedBlogGuides from '@/components/RelatedBlogGuides';
 import { Link } from '@/i18n/navigation';
-import { FileText, Code2, FileType, PenLine, ArrowRight, Check, Sparkles } from 'lucide-react';
-import { buildPageMetadata } from '@/lib/site';
+import { buildLocalizedPageMetadata } from '@/lib/site';
+import { buildToolPageJsonLd } from '@/lib/structured-data';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  return buildPageMetadata({
-    title: 'Free Markdown Convertor with Diagram — PDF, HTML, TXT',
-    description:
-      'Free Markdown convertor with diagram support. Convert MD with Mermaid charts to PDF, HTML, and TXT — no sign-up at pdfwritter.com.',
-    path: `/${locale}/free-markdown-converter`,
+  return buildLocalizedPageMetadata({
     locale,
+    path: `/${locale}/free-markdown-converter`,
+    titleKey: 'freeConverter.title',
+    descriptionKey: 'freeConverter.subtitle',
+    titleSuffix: ' — PDF, HTML, TXT',
     keywords: [
       'free markdown converter',
-      'markdown convertor with diagram',
-      'markdown to pdf free',
-      'mermaid markdown converter',
+      'markdown converter online',
+      'convert markdown file',
+      'markdown file converter',
+      'markdown converter tool',
+      'online markdown converter',
+      'convert markdown to pdf html txt',
+      'markdown file convert',
+      'markdown conversion',
+      'best markdown converter',
       'pdfwritter',
+      // Spanish
+      'convertir markdown a pdf',
+      'convertidor md a pdf online gratis',
+      'pasar archivo md a pdf vs code',
+      'exportar markdown a pdf obsidian',
+      'convertir de markdown a pdf sin perder formato',
+      'herramienta para cambiar markdown a pdf',
+      'descargar md como pdf gratis',
+      'conversor de archivos md a pdf',
+      'codigo de markdown a pdf',
+      'convertir github readme a pdf',
+      // Chinese
+      'md文件转换成pdf',
+      'vscode markdown导出pdf',
+      'markdown转pdf工具 离线',
+      'obsidian md 导出 pdf',
+      'markdown转pdf 代码高亮',
+      'markdown转pdf 自定义css',
+      'gitbook markdown 批量转 pdf',
+      'jupyter markdown 转换 pdf',
+      '免费 markdown 转 pdf 网页',
+      // Hindi / Hinglish
+      'markdown ko pdf me kaise convert kare',
+      'md file to pdf converter free',
+      'markdown to pdf online tool download',
+      'vs code se markdown pdf kaise banaye',
+      'markdown format to pdf conversion',
+      'best md to pdf converter software',
+      'markdown note ko pdf kaise kare',
+      'mobile me markdown to pdf convert',
+      'markdown code to pdf file',
+      'github md file to pdf download',
+      // Japanese
+      'markdown pdf 変換',
+      'md pdf 変換 フリー',
+      'vsコード markdown pdf 出力',
+      'markdown pdf 変換 コマンドライン',
+      'obsidian markdown pdf エクスポート',
+      'markdownをpdfに変換 レイアウト崩れない',
+      'github readme md pdf 変換',
+      'markdown pdf 変換 css テンプレート',
+      'jupterノートブック markdown pdf 変換',
+      'ノーション markdown pdf 出力',
+      // German
+      'markdown in pdf umwandeln',
+      'md zu pdf konverter kostenlos',
+      'markdown pdf exportieren vscode',
+      'md datei in pdf konvertieren offline',
+      'obsidian notizen als pdf speichern',
+      'markdown zu pdf mit eigenem css',
+      'pandoc markdown in pdf umwandeln',
+      'markdown lebenslauf als pdf exportieren',
+      'sicherer markdown zu pdf online konverter',
+      'markdown text in pdf umwandeln',
+      // Portuguese
+      'converter markdown em pdf',
+      'md para pdf online grátis',
+      'exportar markdown para pdf vscode',
+      'extensão md para pdf visual studio code',
+      'converter notas do obsidian para pdf',
+      'transformar arquivo md em pdf',
+      'conversor de markdown para pdf seguro',
+      'gerar pdf a partir de markdown',
+      'markdown para pdf com estilo css',
+      'automatizar markdown para pdf linha de comando',
+      // French
+      'convertir markdown en pdf',
+      'convertisseur md en pdf en ligne',
+      'exporter markdown vers pdf gratuitement',
+      'visual studio code extension markdown pdf',
+      'convertir fichier md en pdf sans telechargement',
+      'mise en page markdown vers pdf',
+      'convertir cv markdown en pdf',
+      'obsidian exporter note en pdf',
+      'outil en ligne markdown vers pdf',
+      'pandoc markdown en pdf commande',
     ],
   });
 }
@@ -25,28 +110,29 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function FreeConverterPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <FreeConverterContent />;
+  return <FreeConverterContent locale={locale} />;
 }
 
-function FreeConverterContent() {
+function FreeConverterContent({ locale }: { locale: string }) {
   const t = useTranslations();
 
   const converters = [
-    { href: '/markdown-to-pdf', icon: FileText, color: '#ef4444', title: 'Markdown → PDF', desc: 'Professional PDF documents from Markdown' },
-    { href: '/markdown-to-html', icon: Code2, color: '#f59e0b', title: 'Markdown → HTML', desc: 'Clean semantic HTML for the web' },
-    { href: '/markdown-to-txt', icon: FileType, color: '#10b981', title: 'Markdown → TXT', desc: 'Plain text without any formatting' },
-    { href: '/editor', icon: PenLine, color: '#6366f1', title: 'Online Editor', desc: 'Write and preview Markdown live' },
+    { href: '/markdown-to-pdf', icon: FileText, color: '#ef4444', title: t('tools.pdfTitle'), desc: t('tools.pdfDescription') },
+    { href: '/markdown-to-html', icon: Code2, color: '#f59e0b', title: t('tools.htmlTitle'), desc: t('tools.htmlDescription') },
+    { href: '/markdown-to-txt', icon: FileType, color: '#10b981', title: t('tools.txtTitle'), desc: t('tools.txtDescription') },
+    { href: '/markdown-live-preview', icon: Eye, color: '#8b5cf6', title: t('tools.livePreviewTitle'), desc: t('tools.livePreviewDescription') },
+    { href: '/editor', icon: PenLine, color: '#6366f1', title: t('tools.editorTitle'), desc: t('tools.editorDescription') },
   ];
 
   const benefits = [
-    '100% free, no limits',
-    'No account required',
-    'Client-side processing',
-    'Your files stay private',
-    '12 languages supported',
-    'Works on all devices',
-    'No ads or tracking',
-    'Export to multiple formats',
+    t('freeConverter.benefit1'),
+    t('freeConverter.benefit2'),
+    t('freeConverter.benefit3'),
+    t('freeConverter.benefit4'),
+    t('freeConverter.benefit5'),
+    t('freeConverter.benefit6'),
+    t('freeConverter.benefit7'),
+    t('freeConverter.benefit8'),
   ];
 
   return (
@@ -96,6 +182,22 @@ function FreeConverterContent() {
           </div>
         </div>
       </section>
+
+      <RelatedBlogGuides toolKey="free-markdown-converter" accentColor="#3b82f6" />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            buildToolPageJsonLd(
+              'Free Markdown Converter',
+              'Free online Markdown converter hub — PDF, HTML, TXT export with Mermaid diagram support.',
+              locale,
+              '/free-markdown-converter',
+            ),
+          ),
+        }}
+      />
     </>
   );
 }

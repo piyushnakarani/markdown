@@ -1,24 +1,111 @@
 import type { Metadata } from 'next';
-import { locales } from '@/i18n/locales';
+import { getMessages, setRequestLocale } from 'next-intl/server';
 
-export const SITE_URL = 'https://pdfwritter.com';
+import { defaultLocale, type Locale,locales } from '@/i18n/locales';
+
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') || 'https://www.pdfwritter.com';
 export const SITE_NAME = 'PDFWritter';
-export const SITE_TAGLINE = 'Markdown Convertor with Diagram';
+export const SITE_TAGLINE = 'Markdown Converter with Diagram';
 export const SITE_EMAIL = 'hello@pdfwritter.com';
-export const SITE_LOGO_PATH = '/logo.png';
-export const SITE_LOGO_DARK_PATH = '/logo-dark.png';
+export const BLOG_AUTHOR_NAME = 'PDFWritter Editorial Team';
+export const BLOG_AUTHOR_ROLE = 'Technical Writing Team';
+export const SITE_LOGO_PATH = '/logo.webp';
+export const SITE_LOGO_DARK_PATH = '/logo-dark.webp';
 export const SITE_LOGO_ICON_PATH = '/logo-icon-512.png';
+export const SITE_OG_IMAGE_PATH = '/og-default.webp';
+export const SITE_OG_IMAGE_WIDTH = 1200;
+export const SITE_OG_IMAGE_HEIGHT = 630;
+
+const OG_LOCALE_MAP: Record<Locale, string> = {
+  en: 'en_US',
+  es: 'es_ES',
+  fr: 'fr_FR',
+  de: 'de_DE',
+  pt: 'pt_BR',
+  ar: 'ar_SA',
+  zh: 'zh_CN',
+  ja: 'ja_JP',
+  ko: 'ko_KR',
+  bn: 'bn_BD',
+  ru: 'ru_RU',
+};
 
 export const DEFAULT_KEYWORDS = [
-  'markdown convertor with diagram',
-  'markdown converter with diagram',
+  'markdown viewer',
+  'md viewer',
+  'md file viewer',
+  'markdown online',
+  'markdown preview',
   'markdown to pdf',
+  'md to pdf',
+  '.md to pdf',
+  'markdown pdf',
+  'md to pdf with mermaid',
+  'markdown converter with diagram',
   'markdown to pdf with diagrams',
   'mermaid markdown converter',
   'markdown diagram to pdf',
   'markdown editor',
   'free markdown tools',
   'pdfwritter',
+  'markdown compiler',
+  'markdown parser',
+  'markdown renderer',
+  'markdown formatter',
+  'markdown utilities',
+  'markdown converter online',
+  'online markdown converter',
+  'github flavored markdown editor',
+  'gfm editor',
+  'gfm viewer',
+  'github readme viewer',
+  'github readme preview',
+  'mermaid compiler',
+  'mermaid diagram renderer',
+  'flowchart generator',
+  'markdown flowchart tool',
+  'markdown table generator',
+  'convert markdown file',
+  'convert md file',
+];
+
+export const SUPPORTED_LANGUAGES_KEYWORDS = [
+  // English names
+  'english',
+  'spanish',
+  'french',
+  'german',
+  'portuguese',
+  'arabic',
+  'chinese',
+  'japanese',
+  'korean',
+  'bengali',
+  'russian',
+  // Native names
+  'español',
+  'français',
+  'deutsch',
+  'português',
+  'العربية',
+  '中文',
+  '日本語',
+  '한국어',
+  'বাংলা',
+  'русский',
+  // Markdown search combinations
+  'english markdown',
+  'español markdown',
+  'français markdown',
+  'deutsch markdown',
+  'português markdown',
+  'arabic markdown',
+  'chinese markdown',
+  'japanese markdown',
+  'korean markdown',
+  'bengali markdown',
+  'russian markdown',
 ];
 
 export function absoluteUrl(path: string): string {
@@ -26,10 +113,47 @@ export function absoluteUrl(path: string): string {
   return `${SITE_URL}${normalized}`;
 }
 
-export function swapLocaleInPath(path: string, locale: string): string {
-  const match = path.match(/^\/([a-z]{2})(\/.*)?$/);
-  const suffix = match?.[2] ?? '';
+export function getDefaultOgImage() {
+  return {
+    url: absoluteUrl(SITE_OG_IMAGE_PATH),
+    width: SITE_OG_IMAGE_WIDTH,
+    height: SITE_OG_IMAGE_HEIGHT,
+    alt: `${SITE_NAME} — Free Markdown to PDF converter with Mermaid diagram support`,
+  };
+}
+
+function pathWithoutLocale(path: string): string {
+  const normalized = path.startsWith('/') ? path : `/${path}`;
+  const match = normalized.match(/^\/([a-z]{2})(\/.*)?$/);
+
+  if (match && locales.includes(match[1] as Locale)) {
+    return match[2] ?? '';
+  }
+
+  return normalized === '/' ? '' : normalized;
+}
+
+export function localizedPath(locale: string, path: string): string {
+  const suffix = pathWithoutLocale(path);
+  if (locale === defaultLocale) {
+    return suffix || '/';
+  }
+
   return `/${locale}${suffix}`;
+}
+
+export function swapLocaleInPath(path: string, locale: string): string {
+  return localizedPath(locale, path);
+}
+
+/** Hreflang alternate URLs for a localized path. */
+export function buildAlternateLanguages(path: string): Record<string, string> {
+  return {
+    ...Object.fromEntries(
+      locales.map((l) => [l, absoluteUrl(localizedPath(l, path))])
+    ),
+    'x-default': absoluteUrl(localizedPath(defaultLocale, path)),
+  };
 }
 
 type BuildPageMetadataOptions = {
@@ -39,7 +163,26 @@ type BuildPageMetadataOptions = {
   locale: string;
   keywords?: string[];
   type?: 'website' | 'article';
+  image?: {
+    url: string;
+    width: number;
+    height: number;
+    alt: string;
+  };
 };
+
+/** Strip trailing brand suffix so root layout title template does not duplicate it. */
+export function normalizePageTitle(title: string): string {
+  return title.replace(new RegExp(`\\s*\\|\\s*${SITE_NAME}\\s*$`, 'i'), '').trim();
+}
+
+/** Keep Open Graph titles within ~60 characters to avoid social preview truncation. */
+export function truncateOgTitle(title: string, maxLength = 60): string {
+  if (title.length <= maxLength) return title;
+  const trimmed = title.slice(0, maxLength - 1);
+  const lastSpace = trimmed.lastIndexOf(' ');
+  return (lastSpace > 40 ? trimmed.slice(0, lastSpace) : trimmed).trim();
+}
 
 export function buildPageMetadata({
   title,
@@ -48,15 +191,25 @@ export function buildPageMetadata({
   locale,
   keywords = DEFAULT_KEYWORDS,
   type = 'website',
+  image,
 }: BuildPageMetadataOptions): Metadata {
-  const url = absoluteUrl(path);
-  const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
+  const pageTitle = normalizePageTitle(title);
+  const fullTitle = `${pageTitle} | ${SITE_NAME}`;
+  const normalizedPath = localizedPath(locale, path);
+  const url = absoluteUrl(normalizedPath);
+  const ogLocale = OG_LOCALE_MAP[locale as Locale] || 'en_US';
+  const ogImage = image ?? getDefaultOgImage();
+  const ogTitle = truncateOgTitle(fullTitle);
+  const finalKeywords = [
+    ...keywords,
+    ...SUPPORTED_LANGUAGES_KEYWORDS,
+  ];
 
   return {
     metadataBase: new URL(SITE_URL),
-    title: fullTitle,
+    title: pageTitle,
     description,
-    keywords,
+    keywords: finalKeywords,
     authors: [{ name: SITE_NAME, url: SITE_URL }],
     creator: SITE_NAME,
     publisher: SITE_NAME,
@@ -70,30 +223,33 @@ export function buildPageMetadata({
       apple: '/apple-touch-icon.png',
     },
     alternates: {
-      canonical: path,
-      languages: Object.fromEntries(locales.map((l) => [l, swapLocaleInPath(path, l)])),
+      canonical: absoluteUrl(normalizedPath),
+      languages: buildAlternateLanguages(normalizedPath),
     },
     openGraph: {
-      title: fullTitle,
+      title: ogTitle,
       description,
       type,
       url,
       siteName: SITE_NAME,
-      locale,
+      locale: ogLocale,
+      alternateLocale: locales
+        .filter((l) => l !== locale)
+        .map((l) => OG_LOCALE_MAP[l]),
       images: [
         {
-          url: SITE_LOGO_PATH,
-          width: 909,
-          height: 279,
-          alt: `${SITE_NAME} — ${SITE_TAGLINE}`,
+          url: ogImage.url,
+          width: ogImage.width,
+          height: ogImage.height,
+          alt: ogImage.alt,
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: fullTitle,
+      title: ogTitle,
       description,
-      images: [SITE_LOGO_PATH],
+      images: [ogImage.url],
     },
     robots: {
       index: true,
@@ -108,16 +264,132 @@ export function buildPageMetadata({
   };
 }
 
+export type BuildLocalizedPageMetadataOptions = {
+  locale: string;
+  path: string;
+  titleKey: string;
+  descriptionKey: string;
+  titleSuffix?: string;
+  keywords?: string[];
+  type?: 'website' | 'article';
+  image?: BuildPageMetadataOptions['image'];
+};
+
+export async function buildLocalizedPageMetadata({
+  locale,
+  path,
+  titleKey,
+  descriptionKey,
+  titleSuffix = '',
+  keywords,
+  type = 'website',
+  image,
+}: BuildLocalizedPageMetadataOptions): Promise<Metadata> {
+  setRequestLocale(locale);
+  let title = '';
+  let description = '';
+  let finalKeywords = keywords;
+
+  try {
+    const messages = await getMessages();
+
+    const getNestedValue = (obj: Record<string, unknown>, keyPath: string): string => {
+      const value = keyPath.split('.').reduce<unknown>((prev, curr) => {
+        if (prev !== null && typeof prev === 'object' && curr in prev) {
+          return (prev as Record<string, unknown>)[curr];
+        }
+        return undefined;
+      }, obj);
+      return typeof value === 'string' ? value : '';
+    };
+
+    title = getNestedValue(messages, titleKey);
+    description = getNestedValue(messages, descriptionKey);
+
+    if (!finalKeywords) {
+      const transKeywords = getNestedValue(messages, 'metadata.keywords');
+      if (transKeywords) {
+        finalKeywords = transKeywords.split(',').map((k) => k.trim());
+      }
+    }
+  } catch (error) {
+    console.error('Failed to load localized metadata:', error);
+  }
+
+  // Fallback to English/default if translation failed or is missing
+  if (!title) {
+    if (titleKey === 'about.title') title = 'About PDFWritter';
+    else if (titleKey === 'contact.title') title = 'Contact PDFWritter';
+    else if (titleKey === 'editor.title') title = 'Online Markdown Editor';
+    else if (titleKey === 'help.title') title = 'Help & Documentation';
+    else if (titleKey === 'freeConverter.title') title = 'Free Markdown Converter Online';
+    else if (titleKey === 'livePreview.title') title = 'Markdown Live Preview';
+    else if (titleKey === 'markdownToPdf.title') title = 'Markdown to PDF Converter';
+    else if (titleKey === 'tools.pdfTitle') title = 'Markdown to PDF';
+    else if (titleKey === 'tools.htmlTitle') title = 'Markdown to HTML';
+    else if (titleKey === 'tools.txtTitle') title = 'Markdown to TXT';
+    else if (titleKey === 'privacy.title') title = 'Privacy Policy';
+    else if (titleKey === 'terms.title') title = 'Terms of Service';
+    else title = 'MarkdownTools';
+  }
+
+  if (!description) {
+    if (descriptionKey === 'about.subtitle') description = 'Free Markdown converter with diagram support for developers.';
+    else if (descriptionKey === 'contact.subtitle') description = 'Get in touch with the PDFWritter team.';
+    else if (descriptionKey === 'editor.description') description = 'Write Markdown with live preview and diagram rendering.';
+    else if (descriptionKey === 'help.subtitle') description = 'Everything you need to know about using PDFWritter.';
+    else if (descriptionKey === 'help.metaDescription') {
+      description =
+        'PDFWritter help: convert Markdown to PDF, HTML, and TXT in your browser. Getting started guide, syntax reference, keyboard shortcuts, Mermaid diagrams, and FAQs.';
+    }
+    else if (descriptionKey === 'freeConverter.subtitle') description = 'Convert Markdown to any format in your browser.';
+    else if (descriptionKey === 'livePreview.description') {
+      description =
+        'Free online Markdown editor with live preview, sync scroll, Mermaid diagrams, and instant PDF export. No login required.';
+    } else if (descriptionKey === 'markdownToPdf.description') {
+      description =
+        'Convert Markdown to PDF online for free with live preview, Mermaid diagram support, and instant download — 100% private in your browser.';
+    } else if (descriptionKey === 'tools.pdfDescription') description = 'Convert Markdown to PDF online for free.';
+    else if (descriptionKey === 'tools.htmlDescription') description = 'Convert Markdown to HTML online for free.';
+    else if (descriptionKey === 'tools.txtDescription') description = 'Convert Markdown to plain text online for free.';
+    else if (descriptionKey === 'privacy.subtitle') description = 'Read the PDFWritter privacy policy. Your file privacy is guaranteed.';
+    else if (descriptionKey === 'terms.subtitle') description = 'Review the terms of service and conditions for using PDFWritter.';
+    else description = 'Free online Markdown editor and converter.';
+  }
+
+  if (titleSuffix) {
+    title = `${title}${titleSuffix}`;
+  }
+
+  return buildPageMetadata({
+    title,
+    description,
+    path,
+    locale,
+    keywords: finalKeywords || DEFAULT_KEYWORDS,
+    type,
+    image,
+  });
+}
+
+
 export function buildWebApplicationJsonLd(locale: string) {
+  const url = absoluteUrl(localizedPath(locale, '/'));
   return {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
+    '@id': `${url}#webapp`,
     name: SITE_NAME,
     alternateName: SITE_TAGLINE,
     description:
-      'Free online Markdown convertor with diagram support. Convert Markdown with Mermaid flowcharts, sequence diagrams, and charts to PDF, HTML, and TXT at pdfwritter.com.',
-    url: absoluteUrl(`/${locale}`),
-    image: absoluteUrl(SITE_LOGO_PATH),
+      'Free online Markdown converter with diagram support. Convert Markdown with Mermaid flowcharts, sequence diagrams, and charts to PDF, HTML, and TXT at pdfwritter.com.',
+    url,
+    image: {
+      '@type': 'ImageObject',
+      url: absoluteUrl('/og-default.webp'),
+      width: 1200,
+      height: 630,
+    },
     applicationCategory: 'DeveloperApplication',
     operatingSystem: 'All',
     browserRequirements: 'Requires JavaScript',
@@ -127,7 +399,7 @@ export function buildWebApplicationJsonLd(locale: string) {
       priceCurrency: 'USD',
     },
     featureList: [
-      'Markdown convertor with diagram support',
+      'Markdown converter with diagram support',
       'Mermaid flowchart and sequence diagram rendering',
       'Markdown to PDF conversion',
       'Markdown to HTML conversion',
@@ -135,18 +407,5 @@ export function buildWebApplicationJsonLd(locale: string) {
       'Online Markdown editor with live preview',
       'Syntax highlighting',
     ],
-  };
-}
-
-export function buildOrganizationJsonLd() {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: SITE_NAME,
-    url: SITE_URL,
-    email: SITE_EMAIL,
-    logo: absoluteUrl(SITE_LOGO_PATH),
-    description: SITE_TAGLINE,
-    sameAs: [],
   };
 }

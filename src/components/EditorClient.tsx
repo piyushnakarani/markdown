@@ -1,54 +1,56 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
-import { useTranslations } from 'next-intl';
 import {
-  convertMarkdownToHtml,
-  convertMarkdownToPdf,
+  Bold,
+  Check,
+  Code,
+  Copy,
+  Eye,
+  FileCode,
+  FileText,
+  FileType,
+  FileUp,
+  Heading,
+  Image,
+  Italic,
+  Link2,
+  List,
+  PenLine,
+  Quote,
+  Table,
+  Trash2,
+  Upload,
+} from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { useCallback, useEffect, useRef,useState } from 'react';
+
+import {
+  type EditorToolbarAction,
+  EditorToolbarBar,
+  EditorToolbarDivider,
+  EditorToolbarEnd,
+  EditorToolbarFormatButton,
+  EditorToolbarFormatGroup,
+  EditorToolbarStart,
+} from '@/components/EditorToolbar';
+import ExportOverlay from '@/components/ExportOverlay';
+import MarkdownPreview from '@/components/MarkdownPreview';
+import { event } from '@/lib/analytics';
+import {
   buildHtmlDocument,
   buildTxtDocument,
+  convertMarkdownToHtml,
+  convertMarkdownToPdf,
   downloadFile,
-  readFileAsText,
+  type ExportProgressStage,
   getExportOverlayProps,
   getHtmlExportStages,
   getPdfExportStages,
   getTxtExportStages,
   markdownHasMermaid,
-  type ExportProgressStage,
+  readFileAsText,
 } from '@/lib/converters';
-import MarkdownPreview from '@/components/MarkdownPreview';
-import ExportOverlay from '@/components/ExportOverlay';
-import {
-  EditorToolbarBar,
-  EditorToolbarStart,
-  EditorToolbarEnd,
-  EditorToolbarDivider,
-  EditorToolbarFormatGroup,
-  EditorToolbarFormatButton,
-  type EditorToolbarAction,
-} from '@/components/EditorToolbar';
-import {
-  Bold,
-  Italic,
-  Heading,
-  Link2,
-  Image,
-  Code,
-  List,
-  Quote,
-  Table,
-  Upload,
-  Copy,
-  Trash2,
-  Download,
-  Check,
-  Eye,
-  PenLine,
-  FileUp,
-  FileText,
-  FileCode,
-  FileType,
-} from 'lucide-react';
+import { syncProportionalScroll } from '@/lib/editor-scroll-sync';
 
 const EMBEDDED_DEFAULT_MARKDOWN = `# Premium Markdown
 
@@ -63,14 +65,16 @@ export type EditorClientProps = {
   variant?: 'page' | 'embedded' | 'hero';
   defaultMarkdown?: string;
   className?: string;
+  translationNamespace?: 'editor' | 'livePreview';
 };
 
 export default function EditorClient({
   variant = 'page',
   defaultMarkdown,
   className = '',
+  translationNamespace = 'editor',
 }: EditorClientProps) {
-  const t = useTranslations('editor');
+  const t = useTranslations(translationNamespace);
   const isEmbedded = variant === 'embedded' || variant === 'hero';
   const isHero = variant === 'hero';
   const initialMarkdown =
@@ -85,14 +89,52 @@ export default function EditorClient({
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const lineNumbersRef = useRef<HTMLDivElement>(null);
+  const previewScrollRef = useRef<HTMLDivElement>(null);
+  const scrollSyncLockRef = useRef(false);
 
-  const html = convertMarkdownToHtml(markdown);
+  const [html, setHtml] = useState('');
 
-  // Sync scroll between textarea and line numbers
-  const handleTextareaScroll = (e: React.UIEvent<HTMLTextAreaElement>) => {
+  useEffect(() => {
+    let isMounted = true;
+    convertMarkdownToHtml(markdown).then((res) => {
+      if (isMounted) setHtml(res);
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, [markdown]);
+
+  const syncLineNumbers = (scrollTop: number) => {
     if (lineNumbersRef.current) {
-      lineNumbersRef.current.scrollTop = e.currentTarget.scrollTop;
+      lineNumbersRef.current.scrollTop = scrollTop;
     }
+  };
+
+  const handleTextareaScroll = (e: React.UIEvent<HTMLTextAreaElement>) => {
+    const textarea = e.currentTarget;
+    syncLineNumbers(textarea.scrollTop);
+
+    const preview = previewScrollRef.current;
+    if (!preview || scrollSyncLockRef.current) return;
+
+    scrollSyncLockRef.current = true;
+    syncProportionalScroll(textarea, preview);
+    requestAnimationFrame(() => {
+      scrollSyncLockRef.current = false;
+    });
+  };
+
+  const handlePreviewScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const preview = e.currentTarget;
+    const textarea = textareaRef.current;
+    if (!textarea || scrollSyncLockRef.current) return;
+
+    scrollSyncLockRef.current = true;
+    syncProportionalScroll(preview, textarea);
+    syncLineNumbers(textarea.scrollTop);
+    requestAnimationFrame(() => {
+      scrollSyncLockRef.current = false;
+    });
   };
 
   const insertSyntax = (before: string, after: string = '') => {
@@ -104,6 +146,11 @@ export default function EditorClient({
     const replacement = `${before}${selected || 'text'}${after}`;
     const newText = markdown.slice(0, start) + replacement + markdown.slice(end);
     setMarkdown(newText);
+    event('use_formatting_toolbar', {
+      syntax: before.trim() || after.trim() || 'unknown',
+      tool: 'editor',
+      variant,
+    });
     setTimeout(() => {
       ta.focus();
       ta.setSelectionRange(start + before.length, start + before.length + (selected || 'text').length);
@@ -127,7 +174,14 @@ export default function EditorClient({
     if (!file) return;
     const text = await readFileAsText(file);
     setMarkdown(text);
-  }, []);
+    event('upload_file', {
+      file_name: file.name,
+      file_size: file.size,
+      tool_type: variant,
+      tool: 'editor',
+      method: 'input',
+    });
+  }, [variant]);
 
   // Drag and Drop implementation
   const handleDragOver = (e: React.DragEvent) => {
@@ -146,6 +200,13 @@ export default function EditorClient({
     if (file) {
       const text = await readFileAsText(file);
       setMarkdown(text);
+      event('upload_file', {
+        file_name: file.name,
+        file_size: file.size,
+        tool_type: variant,
+        tool: 'editor',
+        method: 'drag_and_drop',
+      });
     }
   };
 
@@ -170,6 +231,13 @@ export default function EditorClient({
 
   const handleExportPdf = async () => {
     const onProgress = beginExport('pdf');
+    event('export_file', {
+      format: 'pdf',
+      has_mermaid: markdownHasMermaid(markdown),
+      char_count: markdown.length,
+      tool: 'editor',
+      variant,
+    });
     try {
       await convertMarkdownToPdf(markdown, 'document.pdf', onProgress);
     } finally {
@@ -179,6 +247,13 @@ export default function EditorClient({
 
   const handleExportHtml = async () => {
     const onProgress = beginExport('html');
+    event('export_file', {
+      format: 'html',
+      has_mermaid: markdownHasMermaid(markdown),
+      char_count: markdown.length,
+      tool: 'editor',
+      variant,
+    });
     try {
       const fullHtml = await buildHtmlDocument(markdown, 'document', onProgress);
       onProgress('finalizing');
@@ -190,6 +265,12 @@ export default function EditorClient({
 
   const handleExportTxt = async () => {
     const onProgress = beginExport('txt');
+    event('export_file', {
+      format: 'txt',
+      char_count: markdown.length,
+      tool: 'editor',
+      variant,
+    });
     try {
       const txt = await buildTxtDocument(markdown, 'document.txt', onProgress);
       onProgress('finalizing');
@@ -202,6 +283,12 @@ export default function EditorClient({
   const handleCopy = async () => {
     await navigator.clipboard.writeText(markdown);
     setCopied(true);
+    event('copy_output', {
+      format: 'markdown',
+      char_count: markdown.length,
+      tool: 'editor',
+      variant,
+    });
     setTimeout(() => setCopied(false), 2000);
   };
 
@@ -320,7 +407,10 @@ export default function EditorClient({
           </button>
           <button
             type="button"
-            onClick={() => setMarkdown('')}
+            onClick={() => {
+              setMarkdown('');
+              event('clear_editor', { tool: 'editor', variant });
+            }}
             className="btn-secondary px-3 py-2 text-xs h-9 font-semibold hover:border-red-500 hover:bg-red-500/5 text-red-400"
           >
             <Trash2 className="w-4 h-4" />
@@ -333,7 +423,10 @@ export default function EditorClient({
         <div className={mobileTabsClass}>
           <button
             type="button"
-            onClick={() => setActiveTab('editor')}
+            onClick={() => {
+              setActiveTab('editor');
+              event('change_tab', { tab: 'editor', tool: 'editor', variant });
+            }}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 ${
               activeTab === 'editor' ? 'bg-[#3b82f6] text-white shadow-md' : 'text-[var(--text-secondary)]'
             }`}
@@ -343,7 +436,10 @@ export default function EditorClient({
           </button>
           <button
             type="button"
-            onClick={() => setActiveTab('preview')}
+            onClick={() => {
+              setActiveTab('preview');
+              event('change_tab', { tab: 'preview', tool: 'editor', variant });
+            }}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 ${
               activeTab === 'preview' ? 'bg-[#3b82f6] text-white shadow-md' : 'text-[var(--text-secondary)]'
             }`}
@@ -422,7 +518,11 @@ export default function EditorClient({
             </div>
           )}
 
-          <div className="editor-pane-body editor-pane-scroll bg-[var(--bg-primary)]">
+          <div
+            ref={previewScrollRef}
+            className="editor-pane-body editor-pane-scroll bg-[var(--bg-primary)]"
+            onScroll={handlePreviewScroll}
+          >
             <MarkdownPreview html={html} className="markdown-preview max-w-none" />
           </div>
         </div>

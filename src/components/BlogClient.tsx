@@ -1,18 +1,18 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/navigation';
-import type { BlogPost } from '@/content/blog';
-import { Calendar, Clock, ArrowRight, Search, Sparkles, BookOpen, Tag } from 'lucide-react';
-import { formatBlogDate } from '@/lib/blog-seo';
+import { ArrowRight, BookOpen, Calendar, Clock, Search } from 'lucide-react';
+import { useMemo,useState } from 'react';
+
 import ScrollReveal from '@/components/ScrollReveal';
+import type { BlogPost } from '@/content/blog';
+import { Link } from '@/i18n/navigation';
+import { formatBlogDate } from '@/lib/blog-seo';
 
 interface BlogClientProps {
   posts: BlogPost[];
 }
 
-const CATEGORIES = ['All', 'Tools', 'Tutorial', 'Guide', 'Productivity'] as const;
+const CATEGORIES = ['All', 'Tool', 'Tutorial', 'Guide', 'Productivity'] as const;
 
 const CATEGORY_COLORS: Record<string, { text: string; bg: string; border: string; accent: string }> = {
   Tools: { text: '#ef4444', bg: 'rgba(239, 68, 68, 0.08)', border: 'rgba(239, 68, 68, 0.15)', accent: 'bg-red-500' },
@@ -22,7 +22,6 @@ const CATEGORY_COLORS: Record<string, { text: string; bg: string; border: string
 };
 
 export default function BlogClient({ posts }: BlogClientProps) {
-  const t = useTranslations('blog');
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
