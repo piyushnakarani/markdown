@@ -32,9 +32,11 @@ export default function FAQAccordion({
             data-open={isOpen}
           >
             <button
+              id={`faq-button-${i}`}
               className="flex items-center justify-between gap-4 w-full p-5 sm:p-5 text-left select-none"
               onClick={() => toggleAccordion(i)}
               aria-expanded={isOpen}
+              aria-controls={`faq-content-${i}`}
             >
               <span className="font-medium text-sm sm:text-base text-[var(--text-primary)] pr-4">
                 {faq.q}
@@ -45,6 +47,7 @@ export default function FAQAccordion({
                     ? 'bg-[#3b82f6]/10 border-[#3b82f6]/30 text-[#3b82f6] rotate-0'
                     : 'bg-[var(--bg-primary)] border-[var(--border-color)] text-[var(--text-secondary)]'
                 }`}
+                aria-hidden
               >
                 {isOpen ? (
                   <Minus className="w-4 h-4" />
@@ -55,6 +58,9 @@ export default function FAQAccordion({
             </button>
 
             <div
+              id={`faq-content-${i}`}
+              role="region"
+              aria-labelledby={`faq-button-${i}`}
               className={`grid transition-all duration-350 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
               }`}
