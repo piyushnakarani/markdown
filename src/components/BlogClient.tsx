@@ -104,6 +104,7 @@ export default function BlogClient({ posts }: BlogClientProps) {
               <ScrollReveal className="mb-12">
                 <Link
                   href={`/blog/${featuredPost.slug}`}
+                  locale="en"
                   className="group blog-card blog-card-featured block relative overflow-hidden rounded-3xl border border-[var(--border-color)] bg-gradient-to-br from-[var(--bg-secondary)] to-[var(--bg-primary)] p-6 sm:p-8 hover:border-[#3b82f6]/40 transition-all duration-500"
                 >
                   {/* Decorative glowing accent */}
@@ -166,6 +167,7 @@ export default function BlogClient({ posts }: BlogClientProps) {
                   <ScrollReveal key={post.slug} delay={i * 60}>
                     <Link
                       href={`/blog/${post.slug}`}
+                      locale="en"
                       className="group blog-card flex flex-col h-full rounded-2xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/40 p-5 hover:bg-[var(--bg-secondary)]/80 hover:border-[#3b82f6]/20 transition-all duration-300"
                     >
                       <div className="flex-1">

@@ -144,7 +144,7 @@ export default function Header() {
                 )}
               </div>
 
-              <Link href="/blog" className={navLinkClass('/blog')}>
+              <Link href="/blog" locale="en" className={navLinkClass('/blog')}>
                 {t('blog')}
               </Link>
               <Link href="/about" className={navLinkClass('/about')}>

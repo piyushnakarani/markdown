@@ -2,17 +2,23 @@ import type { Metadata } from 'next';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 
 import type { BlogPost } from '@/content/blog';
+import { defaultLocale } from '@/i18n/locales';
 import {
   absoluteUrl,
   BLOG_AUTHOR_NAME,
   BLOG_AUTHOR_ROLE,
   buildPageMetadata,
   DEFAULT_KEYWORDS,
-  localizedPath,
   SITE_LOGO_PATH,
   SITE_NAME,
   SITE_URL,
 } from '@/lib/site';
+
+/** Blog is English-only — always /blog and /blog/{slug}, never locale-prefixed. */
+function blogCanonical(path: string) {
+  const url = absoluteUrl(path.startsWith('/') ? path : `/${path}`);
+  return { canonical: url };
+}
 
 export { SITE_NAME, SITE_URL };
 
@@ -77,12 +83,12 @@ export function injectHeadingIds(html: string): string {
   });
 }
 
-export function getPostUrl(locale: string, slug: string): string {
-  return absoluteUrl(localizedPath(locale, `/blog/${slug}`));
+export function getPostUrl(_locale: string, slug: string): string {
+  return absoluteUrl(`/blog/${slug}`);
 }
 
-export function getBlogIndexUrl(locale: string): string {
-  return absoluteUrl(localizedPath(locale, '/blog'));
+export function getBlogIndexUrl(_locale?: string): string {
+  return absoluteUrl('/blog');
 }
 
 /** Remove duplicate H1 when the page header already renders the title. */
@@ -90,14 +96,16 @@ export function stripLeadingH1(markdown: string): string {
   return markdown.replace(/^#\s+.+\n+/, '');
 }
 
-export function buildPostMetadata(post: BlogPost, locale: string): Metadata {
-  setRequestLocale(locale);
-  const path = `/${locale}/blog/${post.slug}`;
+export function buildPostMetadata(post: BlogPost, _locale: string): Metadata {
+  // Blog pages always resolve as English (/blog/slug); ignore UI locale for SEO.
+  setRequestLocale(defaultLocale);
+  const articlePath = `/blog/${post.slug}`;
+
   const base = buildPageMetadata({
     title: post.metaTitle,
     description: post.metaDescription,
-    path,
-    locale,
+    path: articlePath,
+    locale: defaultLocale,
     keywords: post.keywords,
     type: 'article',
     image: post.coverImage
@@ -112,6 +120,8 @@ export function buildPostMetadata(post: BlogPost, locale: string): Metadata {
 
   return {
     ...base,
+    // No hreflang — blog is not localized.
+    alternates: blogCanonical(articlePath),
     openGraph: {
       ...base.openGraph,
       type: 'article',
@@ -119,13 +129,15 @@ export function buildPostMetadata(post: BlogPost, locale: string): Metadata {
       modifiedTime: post.dateModified,
       section: post.category,
       tags: post.keywords,
+      locale: 'en_US',
+      alternateLocale: undefined,
     },
   };
 }
 
-export async function buildBlogIndexMetadata(locale: string): Promise<Metadata> {
-  setRequestLocale(locale);
-  const path = `/${locale}/blog`;
+export async function buildBlogIndexMetadata(_locale: string): Promise<Metadata> {
+  setRequestLocale(defaultLocale);
+  const blogPath = '/blog';
   let title = 'Markdown Blog — Tutorials, Guides & Diagram Tips';
   let description = 'Free Markdown tutorials and guides: convert MD with diagrams to PDF, learn Mermaid syntax, pick editors, and improve developer documentation workflows.';
   let keywords = [
@@ -172,17 +184,27 @@ export async function buildBlogIndexMetadata(locale: string): Promise<Metadata> 
     console.error('Failed to load localized blog index metadata:', error);
   }
 
-  return buildPageMetadata({
+  const base = buildPageMetadata({
     title,
     description,
-    path,
-    locale,
+    path: blogPath,
+    locale: defaultLocale,
     keywords,
   });
+
+  return {
+    ...base,
+    alternates: blogCanonical(blogPath),
+    openGraph: {
+      ...base.openGraph,
+      locale: 'en_US',
+      alternateLocale: undefined,
+    },
+  };
 }
 
-export function buildArticleJsonLd(post: BlogPost, locale: string) {
-  const url = getPostUrl(locale, post.slug);
+export function buildArticleJsonLd(post: BlogPost, _locale?: string) {
+  const url = getPostUrl(defaultLocale, post.slug);
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -221,11 +243,11 @@ export function buildArticleJsonLd(post: BlogPost, locale: string) {
     keywords: post.keywords.join(', '),
     wordCount: estimateWordCount(post.content),
     timeRequired: `PT${post.readTime}M`,
-    inLanguage: locale,
+    inLanguage: 'en',
   };
 }
 
-export function buildBreadcrumbJsonLd(post: BlogPost, locale: string) {
+export function buildBreadcrumbJsonLd(post: BlogPost, _locale?: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -234,19 +256,19 @@ export function buildBreadcrumbJsonLd(post: BlogPost, locale: string) {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: absoluteUrl(`/${locale}`),
+        item: absoluteUrl('/'),
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Blog',
-        item: getBlogIndexUrl(locale),
+        item: getBlogIndexUrl(),
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: post.titleKey,
-        item: getPostUrl(locale, post.slug),
+        item: getPostUrl(defaultLocale, post.slug),
       },
     ],
   };

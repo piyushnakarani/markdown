@@ -76,6 +76,7 @@ export default function Footer() {
                 <li key={href}>
                   <Link
                     href={href}
+                    locale={href === '/blog' ? 'en' : undefined}
                     className="text-sm text-[var(--text-secondary)] hover:text-[#3b82f6] transition-colors duration-200 inline-flex items-center gap-1 group"
                   >
                     {tNav(label)}

@@ -242,15 +242,15 @@ function HomeContent({ locale }: { locale: string }) {
               <p>{th('aboutParagraph2')}</p>
               <p>
                 {th('aboutParagraph3')}{' '}
-                <Link href="/blog/how-to-convert-markdown-to-pdf-online" className="text-[#3b82f6] hover:underline">
+                <Link href="/blog/how-to-convert-markdown-to-pdf-online" locale="en" className="text-[#3b82f6] hover:underline">
                   {th('aboutLinkPdf')}
                 </Link>
                 {', '}
-                <Link href="/blog/render-mermaid-diagrams-markdown" className="text-[#3b82f6] hover:underline">
+                <Link href="/blog/render-mermaid-diagrams-markdown" locale="en" className="text-[#3b82f6] hover:underline">
                   {th('aboutLinkMermaid')}
                 </Link>
                 {', and '}
-                <Link href="/blog/beginner-guide-markdown" className="text-[#3b82f6] hover:underline">
+                <Link href="/blog/beginner-guide-markdown" locale="en" className="text-[#3b82f6] hover:underline">
                   {th('aboutLinkBeginner')}
                 </Link>
                 .
