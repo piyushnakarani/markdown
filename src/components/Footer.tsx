@@ -1,7 +1,12 @@
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Mail } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
+import RedditIcon from '@/components/icons/RedditIcon';
 import { Link } from '@/i18n/navigation';
+import { SITE_EMAIL, SITE_REDDIT_URL } from '@/lib/site';
+
+const socialLinkClass =
+  'flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-secondary)] transition-colors duration-200 hover:border-[#3b82f6]/40 hover:text-[#3b82f6]';
 
 import LanguageSwitcher from './LanguageSwitcher';
 import SiteLogo from './SiteLogo';
@@ -34,9 +39,30 @@ export default function Footer() {
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-4">
             <SiteLogo variant="footer" className="mb-6" />
-            <p className="text-sm text-[var(--text-secondary)] leading-relaxed max-w-sm mb-8">
+            <p className="text-sm text-[var(--text-secondary)] leading-relaxed max-w-sm mb-6">
               {t('description')}
             </p>
+
+            <div className="mb-8 flex items-center gap-2.5">
+              <a
+                href={`mailto:${SITE_EMAIL}`}
+                className={socialLinkClass}
+                aria-label={`Email ${SITE_EMAIL}`}
+                title={SITE_EMAIL}
+              >
+                <Mail className="h-5 w-5" aria-hidden />
+              </a>
+              <a
+                href={SITE_REDDIT_URL}
+                target="_blank"
+                rel="noopener noreferrer me"
+                className={socialLinkClass}
+                aria-label="PDFWritter on Reddit"
+                title="u/pdfwritter"
+              >
+                <RedditIcon className="h-5 w-5" />
+              </a>
+            </div>
 
             <div className="mb-6 max-w-[200px]">
               <p className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-3">
@@ -76,6 +102,7 @@ export default function Footer() {
                 <li key={href}>
                   <Link
                     href={href}
+                    locale={href === '/blog' ? 'en' : undefined}
                     className="text-sm text-[var(--text-secondary)] hover:text-[#3b82f6] transition-colors duration-200 inline-flex items-center gap-1 group"
                   >
                     {tNav(label)}

@@ -74,8 +74,7 @@ export default function TransitionLoader() {
         <div className="absolute w-16 h-16 rounded-full bg-[#3b82f6]/5 blur-md" />
         <Image
           src={iconSrc}
-          alt=""
-          aria-hidden
+          alt="PDFWritter"
           width={96}
           height={96}
           className="relative h-10 w-10 object-contain animate-pulse"

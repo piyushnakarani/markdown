@@ -13,7 +13,7 @@ export default function FAQAccordion({
   speakableAnswerIndex,
 }: {
   items: FAQItem[];
-  speakableAnswerIndex?: number;
+  speakableAnswerIndex?: number | number[];
 }) {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
@@ -68,7 +68,12 @@ export default function FAQAccordion({
               <div className="overflow-hidden">
                 <div
                   className={`px-5 sm:px-5 pb-5 text-sm text-[var(--text-secondary)] leading-relaxed border-t border-[var(--border-color)] pt-4 mx-5${
-                    speakableAnswerIndex === i ? ' speakable-faq-answer' : ''
+                    speakableAnswerIndex !== undefined &&
+                    (Array.isArray(speakableAnswerIndex)
+                      ? speakableAnswerIndex.includes(i)
+                      : speakableAnswerIndex === i)
+                      ? ' speakable-faq-answer'
+                      : ''
                   }`}
                 >
                   {faq.a}

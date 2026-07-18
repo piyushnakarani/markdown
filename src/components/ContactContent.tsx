@@ -3,6 +3,7 @@
 import { AlertCircle,Check, Loader2, Mail, Send } from 'lucide-react';
 import { useState } from 'react';
 
+import RedditIcon from '@/components/icons/RedditIcon';
 import { CONTACT_COPY } from '@/content/contact';
 import { event } from '@/lib/analytics';
 import {
@@ -13,6 +14,7 @@ import {
   submitContactForm,
   validateContactForm,
 } from '@/lib/contact';
+import { SITE_EMAIL, SITE_REDDIT_URL } from '@/lib/site';
 
 const EMPTY_FORM: ContactFormData = {
   name: '',
@@ -94,6 +96,26 @@ export default function ContactContent() {
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">{CONTACT_COPY.title}</h1>
           <p className="text-[var(--text-secondary)] text-lg max-w-xl mx-auto">{CONTACT_COPY.subtitle}</p>
+          <div className="mt-6 flex items-center justify-center gap-3">
+            <a
+              href={`mailto:${SITE_EMAIL}`}
+              className="flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--border-color)] text-[var(--text-secondary)] transition-colors hover:border-[#6366f1]/40 hover:text-[#6366f1]"
+              aria-label={`Email ${SITE_EMAIL}`}
+              title={SITE_EMAIL}
+            >
+              <Mail className="h-5 w-5" aria-hidden />
+            </a>
+            <a
+              href={SITE_REDDIT_URL}
+              target="_blank"
+              rel="noopener noreferrer me"
+              className="flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--border-color)] transition-colors hover:border-[#FC471E]/50"
+              aria-label="PDFWritter on Reddit"
+              title="u/pdfwritter"
+            >
+              <RedditIcon className="h-5 w-5" />
+            </a>
+          </div>
         </div>
       </section>
 
@@ -215,7 +237,6 @@ export default function ContactContent() {
           </button>
         </form>
 
-        <p className="text-center text-sm text-[var(--text-tertiary)] mt-6">{CONTACT_COPY.formNote}</p>
       </section>
     </>
   );

@@ -54,11 +54,20 @@ export async function generateMetadata({
 }
 
 function prefixInternalLinks(html: string, locale: string): string {
+  // Blog is English-only — never rewrite /blog links to /{locale}/blog/...
+  if (locale === "en") return html;
+
   return html.replace(/href="(\/[^"]*)"/g, (match, path) => {
     const isPrefixed = locales.some(
       (l) => path.startsWith(`/${l}/`) || path === `/${l}`,
     );
-    if (isPrefixed || path.startsWith("//") || path.startsWith("/api")) {
+    if (
+      isPrefixed ||
+      path.startsWith("//") ||
+      path.startsWith("/api") ||
+      path === "/blog" ||
+      path.startsWith("/blog/")
+    ) {
       return match;
     }
     const cleanPath = path === "/" ? "" : path;
@@ -187,7 +196,7 @@ function BlogArticleContent({
                 <ChevronRight className="w-3.5 h-3.5" />
               </li>
               <li>
-                <Link href="/blog">{labels.blog}</Link>
+                <Link href="/blog" locale="en">{labels.blog}</Link>
               </li>
               <li aria-hidden>
                 <ChevronRight className="w-3.5 h-3.5" />
@@ -196,7 +205,7 @@ function BlogArticleContent({
             </ol>
           </nav>
 
-          <Link href="/blog" className="blog-article-back">
+          <Link href="/blog" locale="en" className="blog-article-back">
             <ArrowLeft className="w-3.5 h-3.5" aria-hidden />
             {labels.backToBlog}
           </Link>
@@ -318,6 +327,7 @@ function BlogArticleContent({
             {prev ? (
               <Link
                 href={`/blog/${prev.slug}`}
+                locale="en"
                 className="blog-article-pagination-link blog-article-pagination-link--prev"
               >
                 <span className="blog-article-pagination-label">
@@ -334,6 +344,7 @@ function BlogArticleContent({
             {next ? (
               <Link
                 href={`/blog/${next.slug}`}
+                locale="en"
                 className="blog-article-pagination-link blog-article-pagination-link--next"
               >
                 <span className="blog-article-pagination-label">
@@ -373,6 +384,7 @@ function BlogArticleContent({
                   <ScrollReveal key={rp.slug} delay={i * 80}>
                     <Link
                       href={`/blog/${rp.slug}`}
+                      locale="en"
                       className="blog-card blog-card-compact group h-full flex flex-col"
                     >
                       <span

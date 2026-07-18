@@ -30,6 +30,7 @@ export default function RelatedBlogGuides({
             <ScrollReveal key={guide.slug} delay={index * 60}>
               <Link
                 href={`/blog/${guide.slug}`}
+                locale="en"
                 className="card-glass group p-5 h-full flex flex-col hover-lift"
               >
                 <BookOpen className="w-5 h-5 mb-3" style={{ color: accentColor }} />

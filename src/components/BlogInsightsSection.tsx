@@ -57,6 +57,7 @@ function FeaturedPost({ post, readTimeLabel, ctaLabel }: { post: BlogPost; readT
   return (
     <Link
       href={`/blog/${post.slug}`}
+      locale="en"
       className="blog-card blog-card-featured group h-full"
       style={{ '--blog-accent': style.color } as React.CSSProperties}
     >
@@ -96,6 +97,7 @@ function CompactPost({ post, readTimeLabel, ctaLabel, index }: { post: BlogPost;
   return (
     <Link
       href={`/blog/${post.slug}`}
+      locale="en"
       className="blog-card blog-card-compact group h-full"
       style={{ '--blog-accent': style.color } as React.CSSProperties}
     >
@@ -153,7 +155,7 @@ export default function BlogInsightsSection({ jsonLd: jsonLdProp }: BlogInsights
                 {th('blogSubtitle')}
               </p>
             </div>
-            <Link href="/blog" className="btn-secondary shrink-0 self-start lg:self-auto">
+            <Link href="/blog" locale="en" className="btn-secondary shrink-0 self-start lg:self-auto">
               {th('blogViewAll')}
               <ArrowRight className="w-4 h-4" />
             </Link>
