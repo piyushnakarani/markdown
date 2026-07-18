@@ -238,7 +238,7 @@ function HomeContent({ locale }: { locale: string }) {
           </ScrollReveal>
           <ScrollReveal delay={80}>
             <div className="card-glass p-8 sm:p-10 space-y-4 text-sm sm:text-base text-(--text-secondary) leading-relaxed">
-              <p>{th('aboutParagraph1')}</p>
+              <p className="speakable-definition">{th('aboutParagraph1')}</p>
               <p>{th('aboutParagraph2')}</p>
               <p>
                 {th('aboutParagraph3')}{' '}
@@ -260,6 +260,54 @@ function HomeContent({ locale }: { locale: string }) {
         </div>
       </section>
 
+      {/* ===== GEO COMPARISON ===== */}
+      <section className="section-py section-divider relative">
+        <div className="page-container max-w-4xl">
+          <ScrollReveal>
+            <SectionHeading
+              size="compact"
+              title={th('compareTitle')}
+              subtitle={th('compareSubtitle')}
+            />
+          </ScrollReveal>
+          <ScrollReveal delay={80}>
+            <div className="overflow-x-auto rounded-2xl border border-(--border-color) bg-(--bg-secondary)/40">
+              <table className="w-full min-w-[640px] text-left text-sm">
+                <thead>
+                  <tr className="border-b border-(--border-color) text-(--text-secondary)">
+                    <th className="px-4 py-3 font-semibold">{th('compareColFeature')}</th>
+                    <th className="px-4 py-3 font-semibold text-[#3b82f6]">{th('compareColPdfwritter')}</th>
+                    <th className="px-4 py-3 font-semibold">{th('compareColUpload')}</th>
+                    <th className="px-4 py-3 font-semibold">{th('compareColDesktop')}</th>
+                  </tr>
+                </thead>
+                <tbody className="text-(--text-secondary)">
+                  {(
+                    [
+                      ['compareRowAccount', 'compareRowAccountPw', 'compareRowAccountUpload', 'compareRowAccountDesktop'],
+                      ['compareRowPrivacy', 'compareRowPrivacyPw', 'compareRowPrivacyUpload', 'compareRowPrivacyDesktop'],
+                      ['compareRowMermaid', 'compareRowMermaidPw', 'compareRowMermaidUpload', 'compareRowMermaidDesktop'],
+                      ['compareRowPreview', 'compareRowPreviewPw', 'compareRowPreviewUpload', 'compareRowPreviewDesktop'],
+                      ['compareRowFormats', 'compareRowFormatsPw', 'compareRowFormatsUpload', 'compareRowFormatsDesktop'],
+                      ['compareRowInstall', 'compareRowInstallPw', 'compareRowInstallUpload', 'compareRowInstallDesktop'],
+                    ] as const
+                  ).map((row) => (
+                    <tr key={row[0]} className="border-b border-(--border-color)/70 last:border-0">
+                      <th scope="row" className="px-4 py-3 font-medium text-(--text-primary)">
+                        {th(row[0])}
+                      </th>
+                      <td className="px-4 py-3">{th(row[1])}</td>
+                      <td className="px-4 py-3">{th(row[2])}</td>
+                      <td className="px-4 py-3">{th(row[3])}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
       <BlogInsightsSection />
 
       {/* ===== FAQ ===== */}
@@ -272,7 +320,7 @@ function HomeContent({ locale }: { locale: string }) {
             />
           </ScrollReveal>
           <ScrollReveal delay={100}>
-            <FAQAccordion items={faqs} speakableAnswerIndex={0} />
+            <FAQAccordion items={faqs} speakableAnswerIndex={[0, 1, 5]} />
           </ScrollReveal>
         </div>
       </section>
@@ -281,7 +329,11 @@ function HomeContent({ locale }: { locale: string }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
-            buildSpeakableJsonLd(['.home-hero-subtitle', '.speakable-faq-answer'], locale, '/'),
+            buildSpeakableJsonLd(
+              ['.home-hero-subtitle', '.speakable-definition', '.speakable-faq-answer'],
+              locale,
+              '/',
+            ),
           ),
         }}
       />

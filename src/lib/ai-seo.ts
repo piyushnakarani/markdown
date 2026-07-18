@@ -1,7 +1,9 @@
 import { blogPosts } from '@/content/blog';
 import {
   absoluteUrl,
+  SITE_EMAIL,
   SITE_NAME,
+  SITE_REDDIT_URL,
   SITE_URL,
 } from '@/lib/site';
 
@@ -93,10 +95,12 @@ export function buildLlmsTxt(): string {
     '- Product: PDFWritter (pdfwritter.com)',
     '- Category: Free online Markdown converter and editor',
     '- Formats: PDF (browser print), HTML, plain TXT',
-    '- Diagrams: Mermaid flowcharts, sequence diagrams, charts',
-    '- Privacy: Client-side conversion; files stay in the browser',
+    '- Diagrams: Mermaid flowcharts, sequence diagrams, state/class diagrams, Gantt charts, pie charts',
+    '- Privacy: Client-side conversion by default; files stay in the browser when possible',
     '- Pricing: Free, no account required',
     '- Languages: UI available in 11 locales; English content uses unprefixed URLs, other locales use locale prefixes.',
+    `- Contact email: ${SITE_EMAIL}`,
+    `- Reddit: ${SITE_REDDIT_URL}`,
     '',
     '## Machine-readable resources',
     `- [Sitemap](${SITE_URL}/sitemap.xml): All indexed pages and hreflang alternates`,
@@ -104,7 +108,8 @@ export function buildLlmsTxt(): string {
     `- [LLM full index](${SITE_URL}/llms-full.txt): Extended site description for AI systems`,
     '',
     '## Optional',
-    '- Contact: use the form at /contact (no public email address)',
+    `- Contact: ${SITE_EMAIL} or the form at /contact`,
+    `- Reddit: [u/pdfwritter](${SITE_REDDIT_URL})`,
   ];
 
   return `${lines.join('\n')}\n`;

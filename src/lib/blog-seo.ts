@@ -7,10 +7,13 @@ import {
   absoluteUrl,
   BLOG_AUTHOR_NAME,
   BLOG_AUTHOR_ROLE,
+  BLOG_AUTHOR_URL,
   buildPageMetadata,
   DEFAULT_KEYWORDS,
+  SITE_EMAIL,
   SITE_LOGO_PATH,
   SITE_NAME,
+  SITE_SAME_AS,
   SITE_URL,
 } from '@/lib/site';
 
@@ -218,6 +221,9 @@ export function buildArticleJsonLd(post: BlogPost, _locale?: string) {
       '@id': `${SITE_URL}#editorial-team`,
       name: BLOG_AUTHOR_NAME,
       jobTitle: BLOG_AUTHOR_ROLE,
+      url: BLOG_AUTHOR_URL,
+      email: SITE_EMAIL,
+      sameAs: [...SITE_SAME_AS],
       worksFor: { '@id': `${SITE_URL}#organization` },
     },
     publisher: {
@@ -285,6 +291,8 @@ export function buildBlogIndexJsonLd(posts: BlogPost[], locale: string) {
       '@type': 'Organization',
       name: SITE_NAME,
       url: SITE_URL,
+      email: SITE_EMAIL,
+      sameAs: [...SITE_SAME_AS],
     },
     blogPost: posts.map((post) => ({
       '@type': 'BlogPosting',

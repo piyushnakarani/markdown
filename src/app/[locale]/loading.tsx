@@ -15,11 +15,10 @@ export default function Loading() {
         <Image
           key={iconSrc}
           src={iconSrc}
-          alt=""
+          alt="PDFWritter"
           width={192}
           height={192}
           className="relative h-14 w-14 animate-pulse object-contain transition-opacity duration-300"
-          aria-hidden
         />
       </div>
 

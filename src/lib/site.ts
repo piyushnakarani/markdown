@@ -7,9 +7,13 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') || 'https://www.pdfwritter.com';
 export const SITE_NAME = 'PDFWritter';
 export const SITE_TAGLINE = 'Markdown Converter with Diagram';
-export const SITE_EMAIL = 'hello@pdfwritter.com';
+export const SITE_EMAIL = 'pdfwritter@gmail.com';
+export const SITE_REDDIT_URL = 'https://www.reddit.com/user/pdfwritter/';
+/** Public brand profiles for Organization/Person `sameAs` (entity linking). */
+export const SITE_SAME_AS = [SITE_REDDIT_URL] as const;
 export const BLOG_AUTHOR_NAME = 'PDFWritter Editorial Team';
 export const BLOG_AUTHOR_ROLE = 'Technical Writing Team';
+export const BLOG_AUTHOR_URL = `${SITE_URL}/about`;
 export const SITE_LOGO_PATH = '/logo.webp';
 export const SITE_LOGO_DARK_PATH = '/logo-dark.webp';
 export const SITE_LOGO_ICON_PATH = '/logo-icon-512.png';

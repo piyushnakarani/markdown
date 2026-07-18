@@ -8,7 +8,6 @@ export const CONTACT_COPY = {
   send: 'Send Message',
   sending: 'Sending...',
   sent: "Message sent! We'll get back to you soon.",
-  formNote: "Use the form above — it's the only way to reach us. We'll respond as soon as we can.",
   errorGeneric: 'Something went wrong. Please try again.',
   errorNetwork: 'Could not reach the server. Please try again later.',
   errorName: 'Please enter a valid name (2–100 characters).',
@@ -19,5 +18,6 @@ export const CONTACT_COPY = {
 
 export const CONTACT_PAGE_META = {
   title: 'Contact PDFWritter',
-  description: 'Get in touch with the PDFWritter team via our contact form.',
+  description:
+    'Contact PDFWritter at pdfwritter@gmail.com, on Reddit u/pdfwritter, or via the on-site form.',
 } as const;
