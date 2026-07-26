@@ -1,7 +1,10 @@
+import { content as bestMarkdownResumeToolsContent } from './blog-posts/best-markdown-to-pdf-tools-for-resumes';
 import { content as bestOnlineMarkdownEditorContent } from './blog-posts/best-online-markdown-editor-with-preview';
 import { content as convertMarkdownToHtmlContent } from './blog-posts/convert-markdown-to-html-online';
+import { content as preserveMarkdownFormattingContent } from './blog-posts/convert-markdown-to-pdf-without-losing-formatting';
 import { content as freeMarkdownConverterContent } from './blog-posts/free-markdown-converter-online-complete-guide';
 import { content as howToConvertMarkdownToTxtContent } from './blog-posts/how-to-convert-markdown-to-txt-online';
+import { content as beautifulMarkdownPdfContent } from './blog-posts/make-beautiful-pdf-from-markdown';
 import { content as markdownLivePreviewContent } from './blog-posts/markdown-live-preview-complete-guide';
 
 export interface BlogPost {
@@ -25,6 +28,75 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: 'how-to-convert-markdown-to-pdf-without-losing-formatting',
+    titleKey: 'How to Convert Markdown to PDF Without Losing Formatting',
+    excerptKey:
+      'Preserve headings, tables, code blocks, images, and Mermaid diagrams when converting Markdown to PDF with this reliable preview-first workflow.',
+    metaTitle: 'Markdown to PDF Without Losing Formatting | PDFWritter',
+    metaDescription:
+      'Convert Markdown to PDF without losing headings, tables, code, images, or Mermaid diagrams. Follow this reliable preview and export checklist.',
+    keywords: [
+      'convert markdown to pdf without losing formatting',
+      'preserve markdown formatting in pdf',
+      'markdown to pdf formatting',
+      'markdown tables to pdf',
+      'markdown code blocks pdf',
+      'mermaid markdown to pdf',
+      'md to pdf converter',
+    ],
+    category: 'Tutorial',
+    readTime: 12,
+    date: '2026-07-26',
+    dateModified: '2026-07-26',
+    content: preserveMarkdownFormattingContent,
+  },
+  {
+    slug: 'best-markdown-to-pdf-tools-for-resumes',
+    titleKey: 'Best Markdown to PDF Tools for Creating Professional Resumes',
+    excerptKey:
+      'Compare PDFWritter, Pandoc, Typora, VS Code, JSON Resume, and Obsidian for creating polished, searchable, and recruiter-ready resume PDFs.',
+    metaTitle: 'Best Markdown to PDF Resume Tools (2026) | PDFWritter',
+    metaDescription:
+      'Compare the best Markdown to PDF tools for professional resumes, from browser converters to Pandoc templates. Choose the right resume workflow.',
+    keywords: [
+      'best markdown to pdf tools for resumes',
+      'markdown resume pdf',
+      'create resume with markdown',
+      'markdown cv generator',
+      'pandoc resume',
+      'professional resume pdf',
+      'developer resume markdown',
+    ],
+    category: 'Tools',
+    readTime: 13,
+    date: '2026-07-26',
+    dateModified: '2026-07-26',
+    content: bestMarkdownResumeToolsContent,
+  },
+  {
+    slug: 'make-beautiful-pdf-from-markdown',
+    titleKey: 'Can You Make a Beautiful PDF from Markdown?',
+    excerptKey:
+      'Learn how structure, typography, spacing, images, Mermaid diagrams, and a consistent theme turn plain Markdown into a polished PDF.',
+    metaTitle: 'How to Make a Beautiful PDF from Markdown | PDFWritter',
+    metaDescription:
+      'Yes, Markdown can create beautiful PDFs. Learn how to improve typography, spacing, images, diagrams, tables, code, and page layout before export.',
+    keywords: [
+      'beautiful pdf from markdown',
+      'make markdown look good in pdf',
+      'markdown pdf design',
+      'styled markdown to pdf',
+      'professional markdown pdf',
+      'markdown pdf template',
+      'pretty markdown export',
+    ],
+    category: 'Guide',
+    readTime: 12,
+    date: '2026-07-26',
+    dateModified: '2026-07-26',
+    content: beautifulMarkdownPdfContent,
+  },
   {
     slug: 'how-to-convert-markdown-to-pdf-online',
     titleKey: 'How to Convert Markdown to PDF Online (Complete Guide for Developers in 2026)',

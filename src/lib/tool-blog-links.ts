@@ -3,9 +3,9 @@ import { type BlogPost,blogPosts } from '@/content/blog';
 /** Curated blog slugs per tool route — strengthens internal linking from tool pages. */
 export const TOOL_BLOG_LINKS: Record<string, string[]> = {
   'markdown-to-pdf': [
-    'how-to-convert-markdown-to-pdf-online',
-    'convert-markdown-to-pdf',
-    'render-mermaid-diagrams-markdown',
+    'how-to-convert-markdown-to-pdf-without-losing-formatting',
+    'make-beautiful-pdf-from-markdown',
+    'best-markdown-to-pdf-tools-for-resumes',
   ],
   'markdown-to-html': [
     'convert-markdown-to-html-online',
@@ -24,13 +24,13 @@ export const TOOL_BLOG_LINKS: Record<string, string[]> = {
   ],
   editor: [
     'best-online-markdown-editor-with-preview',
-    'best-markdown-editors',
+    'best-markdown-to-pdf-tools-for-resumes',
     'markdown-tutorial-beginners',
   ],
   'free-markdown-converter': [
     'free-markdown-converter-online-complete-guide',
-    'free-markdown-tools',
-    'how-to-convert-markdown-to-pdf-online',
+    'how-to-convert-markdown-to-pdf-without-losing-formatting',
+    'make-beautiful-pdf-from-markdown',
   ],
 };
 
