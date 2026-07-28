@@ -33,9 +33,17 @@ const SHARED_CONTENT_STYLES = `
   a { color: #4f46e5; text-decoration: underline; }
   strong, b { font-weight: 700; color: #0f172a; }
   em, i { font-style: italic; }
-  ul, ol { margin: 0.45rem 0 0.75rem; padding-left: 1.35rem; }
-  li { margin: 0.2rem 0; font-size: 0.9rem; line-height: 1.55; }
-  li > ul, li > ol { margin-top: 0.2rem; }
+  ul { margin: 0.45rem 0 0.75rem; padding-left: 1.5rem; list-style: disc outside; }
+  ol { margin: 0.45rem 0 0.75rem; padding-left: 1.5rem; list-style: decimal outside; }
+  li { margin: 0.2rem 0; font-size: 0.9rem; line-height: 1.55; display: list-item; }
+  li > ul, li > ol { margin: 0.2rem 0; padding-left: 1.35rem; }
+  ul ul, ol ul { list-style: circle outside; }
+  ul ul ul, ol ol ul, ol ul ul { list-style: square outside; }
+  ol ol, ul ol { list-style: lower-alpha outside; }
+  ol ol ol, ul ul ol, ul ol ol { list-style: lower-roman outside; }
+  ul.contains-task-list { list-style: none; padding-left: 0; }
+  li.task-list-item { list-style: none; }
+  li.task-list-item input[type="checkbox"] { margin-right: 0.45rem; vertical-align: middle; }
   blockquote {
     margin: 0.75rem 0;
     padding: 0.55rem 0.9rem;
@@ -66,7 +74,7 @@ const SHARED_CONTENT_STYLES = `
   th, td { border: 1px solid #cbd5e1; padding: 0.45rem 0.6rem; text-align: left; vertical-align: top; }
   th { background: #f1f5f9; font-weight: 700; color: #0f172a; }
   tr { page-break-inside: avoid; break-inside: avoid-page; }
-  code {
+  :not(pre) > code {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.82em;
     background: #f1f5f9;
@@ -76,21 +84,35 @@ const SHARED_CONTENT_STYLES = `
   }
   pre {
     margin: 0.65rem 0 0.85rem;
-    padding: 0.85rem 1rem;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
+    padding: 0.95rem 1.05rem;
+    background: #0d1117;
+    border: 1px solid #30363d;
     border-radius: 8px;
     overflow: visible;
     white-space: pre-wrap;
     word-wrap: break-word;
     overflow-wrap: anywhere;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
-  pre code { background: none; padding: 0; font-size: 0.78rem; line-height: 1.5; color: #1e293b !important; }
-  .hljs, pre, pre code, code { color: #1e293b !important; }
-  .hljs-comment, .hljs-quote { color: #64748b !important; }
-  .hljs-keyword, .hljs-selector-tag, .hljs-built_in { color: #7c3aed !important; }
-  .hljs-string, .hljs-attr, .hljs-symbol { color: #059669 !important; }
-  .hljs-title, .hljs-section { color: #2563eb !important; }
+  pre code, pre .hljs {
+    background: transparent;
+    padding: 0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.78rem;
+    line-height: 1.65;
+    color: #e6edf3 !important;
+  }
+  pre .hljs-comment, pre .hljs-quote { color: #8b949e !important; font-style: italic; }
+  pre .hljs-keyword, pre .hljs-selector-tag, pre .hljs-meta .hljs-keyword { color: #39c5cf !important; }
+  pre .hljs-built_in, pre .hljs-type { color: #79c0ff !important; }
+  pre .hljs-string, pre .hljs-attr, pre .hljs-template-tag, pre .hljs-template-variable { color: #ff7eb6 !important; }
+  pre .hljs-title, pre .hljs-title.function_, pre .hljs-section { color: #e2b08a !important; }
+  pre .hljs-number, pre .hljs-literal, pre .hljs-symbol { color: #79c0ff !important; }
+  pre .hljs-variable, pre .hljs-params, pre .hljs-property { color: #c9d1d9 !important; }
+  pre .hljs-punctuation, pre .hljs-operator { color: #e6edf3 !important; }
+  .katex-display { margin: 1rem 0; overflow-x: auto; overflow-y: hidden; text-align: center; }
+  .katex { font-size: 1.05em; }
   hr { border: none; border-top: 1px solid #e2e8f0; margin: 1.25rem 0; }
   img { max-width: 100%; height: auto; border-radius: 6px; }
   .pdf-avoid-break { page-break-inside: avoid; break-inside: avoid-page; }
@@ -189,6 +211,7 @@ function mountPdfIframe(markdownHtml: string): { iframe: HTMLIFrameElement; cont
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=${PDF_WIDTH_PX}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.css" crossorigin="anonymous">
 <style>${PDF_STYLES}</style>
 </head>
 <body>
@@ -285,7 +308,7 @@ export async function buildHtmlDocument(
 ): Promise<string> {
   const body = await buildRenderedHtmlBody(markdown, { onProgress });
   onProgress?.('generatingHtml');
-  return `<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><style>${DOCUMENT_STYLES}</style></head><body>${body}</body></html>`;
+  return `<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.css" crossorigin="anonymous"><style>${DOCUMENT_STYLES}</style></head><body>${body}</body></html>`;
 }
 
 export async function convertMarkdownToTxt(markdown: string): Promise<string> {
