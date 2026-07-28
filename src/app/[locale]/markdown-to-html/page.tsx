@@ -5,7 +5,7 @@ import { setRequestLocale } from 'next-intl/server';
 import ConverterTool from '@/components/ConverterTool';
 import PageHero from '@/components/PageHero';
 import ToolSeoSections from '@/components/ToolSeoSections';
-import { buildLocalizedPageMetadata } from '@/lib/site';
+import { buildLocalizedPageMetadata, withToolBrandKeywords } from '@/lib/site';
 import { buildToolPageJsonLd } from '@/lib/structured-data';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     titleKey: 'tools.htmlTitle',
     descriptionKey: 'tools.htmlDescription',
     titleSuffix: ' — Free Online Converter',
-    keywords: [
+    keywords: withToolBrandKeywords([
       'markdown to html',
       'convert markdown to html',
       'md to html',
@@ -31,7 +31,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       'convert md to html',
       'md to html online',
       'markdown to clean html',
-      'pdfwritter',
       // Spanish
       'convertir markdown a pdf',
       'convertidor md a pdf online gratis',
@@ -108,7 +107,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       'obsidian exporter note en pdf',
       'outil en ligne markdown vers pdf',
       'pandoc markdown en pdf commande',
-    ],
+    ], 'html'),
   });
 }
 

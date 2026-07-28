@@ -6,7 +6,7 @@ import { setRequestLocale } from 'next-intl/server';
 const EditorClient = dynamic(() => import('@/components/EditorClient'));
 import PageHero from '@/components/PageHero';
 import ToolSeoSections from '@/components/ToolSeoSections';
-import { buildLocalizedPageMetadata } from '@/lib/site';
+import { buildLocalizedPageMetadata, withToolBrandKeywords } from '@/lib/site';
 import { buildToolPageJsonLd } from '@/lib/structured-data';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     titleKey: 'editor.title',
     descriptionKey: 'editor.description',
     titleSuffix: ' — Split-Pane Live Preview',
-    keywords: [
+    keywords: withToolBrandKeywords([
       'markdown live preview',
       'live preview markdown',
       'markdown editor with preview',
@@ -27,7 +27,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       'markdown viewer',
       'md viewer',
       'mermaid markdown editor',
-      'pdfwritter',
       'free markdown editor',
       'wysiwyg markdown editor',
       'github markdown editor',
@@ -108,7 +107,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       'obsidian exporter note en pdf',
       'outil en ligne markdown vers pdf',
       'pandoc markdown en pdf commande',
-    ],
+    ], 'editor'),
   });
 }
 

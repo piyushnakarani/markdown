@@ -26,7 +26,7 @@ import ScrollReveal from '@/components/ScrollReveal';
 import SectionHeading from '@/components/SectionHeading';
 import { LIVE_PREVIEW_DEFAULT_MARKDOWN } from '@/content/live-preview-default';
 import { Link } from '@/i18n/navigation';
-import { absoluteUrl, buildLocalizedPageMetadata } from '@/lib/site';
+import { absoluteUrl, buildLocalizedPageMetadata, withToolBrandKeywords } from '@/lib/site';
 import { buildToolPageJsonLd } from '@/lib/structured-data';
 
 const LIVE_PREVIEW_OG_IMAGE = {
@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     titleKey: 'livePreview.title',
     descriptionKey: 'livePreview.description',
     titleSuffix: ' — Free Online Editor with Sync Scroll',
-    keywords: [
+    keywords: withToolBrandKeywords([
       'markdown live preview',
       'live markdown preview',
       'markdown preview online',
@@ -67,7 +67,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       'dillinger alternative',
       'stackedit alternative',
       'markdown editor no login',
-      'pdfwritter',
       'free markdown previewer',
       'md viewer online',
       'real-time markdown preview',
@@ -148,7 +147,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       'obsidian exporter note en pdf',
       'outil en ligne markdown vers pdf',
       'pandoc markdown en pdf commande',
-    ],
+    ], 'preview'),
     image: {
       url: absoluteUrl(LIVE_PREVIEW_OG_IMAGE.url),
       width: LIVE_PREVIEW_OG_IMAGE.width,

@@ -63,7 +63,7 @@ export function buildSiteJsonLdGraph(locale: string) {
         alternateName: SITE_TAGLINE,
         url: SITE_URL,
         description: SITE_SUMMARY,
-        inLanguage: ['en', 'es', 'fr', 'de', 'pt', 'ar', 'zh', 'ja', 'ko', 'bn', 'ru'],
+        inLanguage: ['en', 'es', 'fr', 'de', 'pt', 'ar', 'zh-Hans', 'ja', 'ko', 'bn', 'ru'],
         publisher: { '@id': `${SITE_URL}#organization` },
       },
       {
