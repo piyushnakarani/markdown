@@ -35,6 +35,90 @@ const OG_LOCALE_MAP: Record<Locale, string> = {
   ru: 'ru_RU',
 };
 
+/** Brand + tool phrases for search / brand queries (pdfwritter + each product). */
+export const BRAND_KEYWORDS = [
+  'pdfwritter',
+  'pdfwritter.com',
+  'pdfwritter online',
+  'pdfwritter free',
+  'pdfwritter markdown',
+  'pdfwritter markdown converter',
+  'pdfwritter converter',
+  'pdfwritter mermaid',
+  'pdfwritter mermaid markdown',
+  'pdfwritter markdown to pdf',
+  'pdfwritter md to pdf',
+  'pdfwritter markdown pdf',
+  'pdfwritter markdown to html',
+  'pdfwritter md to html',
+  'pdfwritter markdown html',
+  'pdfwritter markdown to txt',
+  'pdfwritter md to txt',
+  'pdfwritter markdown txt',
+  'pdfwritter markdown editor',
+  'pdfwritter editor',
+  'pdfwritter online markdown editor',
+  'pdfwritter markdown live preview',
+  'pdfwritter live preview',
+  'pdfwritter markdown preview',
+  'pdfwritter free markdown converter',
+  'pdfwritter free converter',
+];
+
+/** Extra brand phrases scoped to a specific tool page. */
+export const TOOL_BRAND_KEYWORDS = {
+  pdf: [
+    'pdfwritter markdown to pdf',
+    'pdfwritter md to pdf',
+    'pdfwritter markdown pdf',
+    'pdfwritter pdf converter',
+    'pdfwritter convert markdown to pdf',
+  ],
+  html: [
+    'pdfwritter markdown to html',
+    'pdfwritter md to html',
+    'pdfwritter markdown html',
+    'pdfwritter html converter',
+    'pdfwritter convert markdown to html',
+  ],
+  txt: [
+    'pdfwritter markdown to txt',
+    'pdfwritter md to txt',
+    'pdfwritter markdown txt',
+    'pdfwritter txt converter',
+    'pdfwritter convert markdown to txt',
+  ],
+  editor: [
+    'pdfwritter markdown editor',
+    'pdfwritter editor',
+    'pdfwritter online markdown editor',
+    'pdfwritter split pane editor',
+  ],
+  preview: [
+    'pdfwritter markdown live preview',
+    'pdfwritter live preview',
+    'pdfwritter markdown preview',
+    'pdfwritter md viewer',
+  ],
+  converter: [
+    'pdfwritter free markdown converter',
+    'pdfwritter markdown converter',
+    'pdfwritter free converter',
+    'pdfwritter convert markdown',
+  ],
+} as const;
+
+export type ToolBrandKey = keyof typeof TOOL_BRAND_KEYWORDS;
+
+/** Prepend tool-scoped brand keywords without duplicates. */
+export function withToolBrandKeywords(
+  keywords: string[],
+  tool?: ToolBrandKey,
+): string[] {
+  const toolKeywords = tool ? [...TOOL_BRAND_KEYWORDS[tool]] : [];
+  return [...new Set([...toolKeywords, ...keywords])];
+}
+
 export const DEFAULT_KEYWORDS = [
   'markdown viewer',
   'md viewer',
@@ -52,7 +136,7 @@ export const DEFAULT_KEYWORDS = [
   'markdown diagram to pdf',
   'markdown editor',
   'free markdown tools',
-  'pdfwritter',
+  ...BRAND_KEYWORDS,
   'markdown compiler',
   'markdown parser',
   'markdown renderer',
@@ -205,8 +289,7 @@ export function buildPageMetadata({
   const ogImage = image ?? getDefaultOgImage();
   const ogTitle = truncateOgTitle(fullTitle);
   const finalKeywords = [
-    ...keywords,
-    ...SUPPORTED_LANGUAGES_KEYWORDS,
+    ...new Set([...keywords, ...BRAND_KEYWORDS, ...SUPPORTED_LANGUAGES_KEYWORDS]),
   ];
 
   return {

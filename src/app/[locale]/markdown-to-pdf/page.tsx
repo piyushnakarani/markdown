@@ -23,7 +23,7 @@ import RelatedBlogGuides from '@/components/RelatedBlogGuides';
 import ScrollReveal from '@/components/ScrollReveal';
 import SectionHeading from '@/components/SectionHeading';
 import { Link } from '@/i18n/navigation';
-import { absoluteUrl, buildLocalizedPageMetadata } from '@/lib/site';
+import { absoluteUrl, buildLocalizedPageMetadata, withToolBrandKeywords } from '@/lib/site';
 import { buildToolPageJsonLd } from '@/lib/structured-data';
 
 const PDF_OG_IMAGE = {
@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     titleKey: 'markdownToPdf.title',
     descriptionKey: 'markdownToPdf.description',
     titleSuffix: ' — Free Online with Live Preview',
-    keywords: [
+    keywords: withToolBrandKeywords([
       'markdown to pdf',
       'md to pdf',
       '.md to pdf',
@@ -63,7 +63,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       'md to pdf with mermaid',
       'markdown diagram to pdf',
       'github readme to pdf',
-      'pdfwritter',
       'online markdown to pdf converter',
       'markdown-to-pdf converter',
       'converting markdown to pdf',
@@ -173,7 +172,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       'obsidian exporter note en pdf',
       'outil en ligne markdown vers pdf',
       'pandoc markdown en pdf commande',
-    ],
+    ], 'pdf'),
     image: {
       url: absoluteUrl(PDF_OG_IMAGE.url),
       width: PDF_OG_IMAGE.width,
