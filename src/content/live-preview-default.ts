@@ -73,17 +73,17 @@ You can create multiple paragraphs by leaving an empty line.
 
 ## Links
 
-[OpenAI](https://openai.com)
+[PDFWritter](https://www.pdfwritter.com)
 
 Automatic URL:
 
-https://www.example.com
+https://www.pdfwritter.com/markdown-to-pdf
 
 ---
 
 ## Images
 
-![Placeholder Image](https://picsum.photos/500/250)
+![PDFWritter logo](/logo.webp)
 
 ---
 
@@ -246,7 +246,7 @@ You can embed HTML directly in Markdown.
 - [ ] Testing
 - [ ] Deployment
 
-Visit https://www.example.com for documentation.
+Visit https://www.pdfwritter.com for documentation.
 
 > Markdown is simple, readable, and portable.
 
