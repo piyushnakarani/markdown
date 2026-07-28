@@ -133,13 +133,13 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-[var(--border-color)] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-12 pt-8 border-t border-[var(--border-color)] text-center gap-4">
           <p className="text-sm text-[var(--text-secondary)]">
             © {new Date().getFullYear()} PDFWritter. {t('copyright')}
           </p>
-          <p className="text-sm text-[var(--text-secondary)]">
+          {/* <p className="text-sm text-[var(--text-secondary)]">
             {t('madeWith')}
-          </p>
+          </p> */}
         </div>
       </div>
     </footer>

@@ -17,6 +17,8 @@ const aiSearchBots = [
   'PerplexityBot',
   'Google-Extended',
   'Applebot-Extended',
+  'FacebookBot',
+  'Amazonbot',
 ];
 
 /** Training-oriented crawlers — blocked; does not affect AI search bots above. */

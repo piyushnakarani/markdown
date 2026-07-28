@@ -28,7 +28,7 @@ const OG_LOCALE_MAP: Record<Locale, string> = {
   de: 'de_DE',
   pt: 'pt_BR',
   ar: 'ar_SA',
-  zh: 'zh_CN',
+  'zh-Hans': 'zh_CN',
   ja: 'ja_JP',
   ko: 'ko_KR',
   bn: 'bn_BD',
@@ -269,7 +269,8 @@ export function truncateOgTitle(title: string, maxLength = 60): string {
   if (title.length <= maxLength) return title;
   const trimmed = title.slice(0, maxLength - 1);
   const lastSpace = trimmed.lastIndexOf(' ');
-  return (lastSpace > 40 ? trimmed.slice(0, lastSpace) : trimmed).trim();
+  const truncated = (lastSpace > 40 ? trimmed.slice(0, lastSpace) : trimmed).trim();
+  return truncated.replace(/\s*[|\-]\s*$/, '');
 }
 
 export function buildPageMetadata({

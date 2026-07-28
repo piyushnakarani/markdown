@@ -255,6 +255,9 @@ function HomeContent({ locale }: { locale: string }) {
                 </Link>
                 .
               </p>
+              <p>
+                PDFWritter builds upon open standards. We fully support the <a href="https://github.github.com/gfm/" target="_blank" rel="noopener noreferrer" className="text-[#3b82f6] hover:underline">GitHub Flavored Markdown (GFM)</a> specification for core formatting and integrate <a href="https://mermaid.js.org/" target="_blank" rel="noopener noreferrer" className="text-[#3b82f6] hover:underline">Mermaid.js</a> for native diagram generation. For command-line desktop alternatives, consider <a href="https://pandoc.org/" target="_blank" rel="noopener noreferrer" className="text-[#3b82f6] hover:underline">Pandoc</a>.
+              </p>
             </div>
           </ScrollReveal>
         </div>
