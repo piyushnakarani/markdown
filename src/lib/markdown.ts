@@ -1,17 +1,26 @@
+import hljs from 'highlight.js';
+import katex from 'katex';
+import { marked } from 'marked';
+import markedKatex from 'marked-katex-extension';
+
 import { mermaidCodeToHtml } from './mermaid-render';
 
-let markedInstance: typeof import('marked').marked | null = null;
+let markedReady = false;
 
-async function getMarked() {
-  if (markedInstance) return markedInstance;
+/**
+ * `breaks: true` folds adjacent lines into one paragraph, which prevents the
+ * KaTeX block tokenizer from seeing `$$ ... $$`. Ensure a blank line before
+ * opening display-math fences.
+ */
+function isolateDisplayMath(markdown: string): string {
+  return markdown.replace(/([^\n])\n(\$\$)\n/g, '$1\n\n$2\n');
+}
 
-  const [hljsModule, markedModule] = await Promise.all([
-    import('highlight.js'),
-    import('marked')
-  ]);
-  
-  const hljs = hljsModule.default;
-  const { marked } = markedModule;
+function ensureMarkedConfigured() {
+  if (markedReady) return;
+
+  // Keep katex in the client bundle (avoids missing vendor-chunks/katex.js).
+  void katex;
 
   marked.setOptions({
     gfm: true,
@@ -30,12 +39,17 @@ async function getMarked() {
     return `<pre><code class="hljs language-${language}">${highlighted}</code></pre>`;
   };
 
+  marked.use(
+    markedKatex({
+      throwOnError: false,
+      nonStandard: true,
+    }),
+  );
   marked.use({ renderer });
-  markedInstance = marked;
-  return markedInstance;
+  markedReady = true;
 }
 
 export async function convertMarkdownToHtml(markdown: string): Promise<string> {
-  const marked = await getMarked();
-  return marked.parse(markdown) as string;
+  ensureMarkedConfigured();
+  return marked.parse(isolateDisplayMath(markdown)) as string;
 }

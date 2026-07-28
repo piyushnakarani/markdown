@@ -59,6 +59,65 @@ Convert markdown to **PDF**, **HTML**, and **TXT** instantly.
 - Client-side processing
 - Fast & secure browser engine
 - Live preview as you type
+
+## Quick Start
+
+1. Type or paste Markdown here
+2. Pick an export format
+3. Click **Download PDF** 
+
+### Checklist
+
+- [x] Headings, lists, and tables
+- [x] Syntax-highlighted code
+- [x] Mermaid diagrams
+- [x] LaTeX / KaTeX math
+
+## Code Example
+
+\`\`\`javascript
+function hello(name) {
+  return \`Hello, \${name}!\`;
+}
+\`\`\`
+
+## Tables
+
+| Use case | Why Markdown |
+|----------|--------------|
+| AI chats | Copy → paste → PDF |
+| Resumes | Plain text you can version |
+| Reports | Fast structure, clean export |
+
+## Diagram (Mermaid)
+
+\`\`\`mermaid
+flowchart LR
+  A[Paste Markdown] --> B[Live preview]
+  B --> C[Download PDF]
+  C --> D[Share]
+\`\`\`
+
+## Math (LaTeX / KaTeX)
+
+Inline math looks like this: $E = mc^2$
+
+Block math equations:
+
+$$
+\\int_0^1 x^2 \\, dx = \\frac{1}{3}
+$$
+
+## Nested list
+
+- Structure
+  - Headings and paragraphs
+  - Bullet, numbered, and task lists
+- Media
+  - Images and links
+  - Blockquotes
+
+> Tip: This editor supports full GitHub Flavored Markdown and renders instantly in your browser!
 `;
 
 export type EditorClientProps = {
@@ -96,9 +155,13 @@ export default function EditorClient({
 
   useEffect(() => {
     let isMounted = true;
-    convertMarkdownToHtml(markdown).then((res) => {
-      if (isMounted) setHtml(res);
-    });
+    convertMarkdownToHtml(markdown)
+      .then((res) => {
+        if (isMounted) setHtml(res);
+      })
+      .catch((err) => {
+        console.error('Markdown preview failed:', err);
+      });
     return () => {
       isMounted = false;
     };

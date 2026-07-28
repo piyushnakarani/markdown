@@ -3,8 +3,10 @@ import { content as bestOnlineMarkdownEditorContent } from './blog-posts/best-on
 import { content as convertMarkdownToHtmlContent } from './blog-posts/convert-markdown-to-html-online';
 import { content as preserveMarkdownFormattingContent } from './blog-posts/convert-markdown-to-pdf-without-losing-formatting';
 import { content as freeMarkdownConverterContent } from './blog-posts/free-markdown-converter-online-complete-guide';
+import { content as githubMathContent } from './blog-posts/github-markdown-math-latex-support';
 import { content as howToConvertMarkdownToTxtContent } from './blog-posts/how-to-convert-markdown-to-txt-online';
 import { content as beautifulMarkdownPdfContent } from './blog-posts/make-beautiful-pdf-from-markdown';
+import { content as mathRenderingContent } from './blog-posts/markdown-latex-math-katex-rendering-guide';
 import { content as markdownLivePreviewContent } from './blog-posts/markdown-live-preview-complete-guide';
 
 export interface BlogPost {
@@ -28,6 +30,53 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: 'github-markdown-math-latex-support',
+    titleKey: 'How to Use LaTeX and Math Expressions in GitHub Flavored Markdown',
+    excerptKey:
+      'Learn how to write math equations using LaTeX and KaTeX in GitHub Flavored Markdown, and how to export them to professional PDFs.',
+    metaTitle: 'GitHub Markdown Math & LaTeX Support Guide | PDFWritter',
+    metaDescription:
+      'A complete guide to writing math expressions in GitHub Markdown using LaTeX and KaTeX. Export your mathematical formulas natively to PDF.',
+    keywords: [
+      'github matex',
+      'markdown latex',
+      'markdown latex and matex support',
+      'github math latex',
+      'export markdown math to pdf',
+      'github flavored markdown equations',
+      'pdfwritter',
+      'pdfwritter markdown to pdf'
+    ],
+    category: 'Guide',
+    readTime: 6,
+    date: '2026-07-28',
+    dateModified: '2026-07-28',
+    content: githubMathContent,
+  },
+  {
+    slug: 'markdown-latex-math-katex-rendering-guide',
+    titleKey: 'Markdown Math Guide: Rendering LaTeX and KaTeX to HTML and PDF',
+    excerptKey:
+      "A comprehensive guide on writing mathematical equations in Markdown and exporting them to PDF using PDFWritter's KaTeX support.",
+    metaTitle: 'Markdown LaTeX & KaTeX Rendering Guide | PDFWritter',
+    metaDescription:
+      'Learn the difference between LaTeX and KaTeX in Markdown, how to write math blocks, and export beautiful PDF documents from your equations.',
+    keywords: [
+      'markdown latex',
+      'markdown katex',
+      'render markdown math to pdf',
+      'latex math equations markdown',
+      'markdown latex and matex support',
+      'pdfwritter',
+      'pdfwritter markdown to pdf'
+    ],
+    category: 'Tutorial',
+    readTime: 7,
+    date: '2026-07-28',
+    dateModified: '2026-07-28',
+    content: mathRenderingContent,
+  },
   {
     slug: 'how-to-convert-markdown-to-pdf-without-losing-formatting',
     titleKey: 'How to Convert Markdown to PDF Without Losing Formatting',

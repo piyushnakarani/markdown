@@ -1,4 +1,6 @@
 import '../globals.css';
+import 'katex/dist/katex.min.css';
+import 'highlight.js/styles/github-dark.css';
 
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { GeistMono } from 'geist/font/mono';
