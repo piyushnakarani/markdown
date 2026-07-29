@@ -157,9 +157,12 @@
     "benefit7": "কোন বিজ্ঞাপন বা ট্র্যাকিং",
     "benefit8": "একাধিক ফরম্যাটে রপ্তানি করুন",
     "comparisonTitle": "ফরম্যাট তুলনা",
-    "subtitle": "যেকোনো ফরম্যাটে বিনামূল্যে রূপান্তর",
-    "title": "বিনামূল্যে মার্কডাউন কনভার্টার",
-    "whyTitle": "কেন PDFWritter?"
+    "subtitle": "Markdown রূপান্তরের জন্য একটি বিনামূল্যের হাব — ব্রাউজারে PDF, HTML বা TXT-এ রপ্তানি। সাইন-আপ নেই, ডিফল্টে প্রাইভেট।",
+    "title": "বিনামূল্যে অনলাইন Markdown কনভার্টার",
+    "whyTitle": "কেন PDFWritter?",
+    "pdfHintBefore": "শুধু Markdown থেকে PDF চাই?",
+    "pdfHintLink": "ডেডিকেটেড Markdown to PDF কনভার্টার খুলুন",
+    "pdfHintAfter": "।"
   },
   "help": {
     "badge": "সাহায্য এবং সমর্থন",
@@ -399,7 +402,11 @@
     "howSubtitle": "আপনার .md ফাইলকে পেশাদার PDF-এ রূপান্তরের তিনটি সহজ ধাপ",
     "howTitle": "Markdown কে PDF-এ কীভাবে রূপান্তর করবেন",
     "ogImageAlt": "Markdown ডকুমেন্ট অনলাইনে তাৎক্ষণিক PDF-এ রূপান্তর করুন",
-    "title": "Markdown to PDF কনভার্টার"
+    "title": "Markdown to PDF কনভার্টার",
+    "faq9Q": "Mermaid ডায়াগ্রামসহ md কীভাবে PDF-এ রূপান্তর করব?",
+    "faq9A": "mermaid কোড ফেন্সসহ Markdown পেস্ট করুন। PDFWritter লাইভ প্রিভিউতে ডায়াগ্রাম রেন্ডার করে এবং ডাউনলোড করা PDF-এ রাখে — আলাদা Mermaid CLI লাগে না।",
+    "faq10Q": "Markdown থেকে PDF কি LaTeX গণিত সমর্থন করে?",
+    "faq10A": "হ্যাঁ। Markdown-এ KaTeX-স্টাইল গণিত ব্যবহার করুন ($ইনলাইন$ বা $$ব্লক$$)। সমীকরণ প্রিভিউতে দেখা যায় এবং টেক্সট ও ডায়াগ্রামসহ PDF-এ রপ্তানি হয়।"
   },
   "metadata": {
     "description": "Markdown বিনামূল্যে অনলাইনে PDF, HTML এবং TXT-তে রূপান্তর করুন। লাইভ প্রিভিউ, Mermaid ডায়াগ্রাম সাপোর্ট, সিনট্যাক্স হাইলাইটিং এবং সাইনআপের প্রয়োজন নেই।",

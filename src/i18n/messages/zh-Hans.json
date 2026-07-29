@@ -157,9 +157,12 @@
     "benefit7": "没有广告或跟踪",
     "benefit8": "导出为多种格式",
     "comparisonTitle": "格式对比",
-    "subtitle": "免费转换Markdown为任何格式",
-    "title": "免费Markdown转换器",
-    "whyTitle": "为什么选择PDFWritter？"
+    "subtitle": "一站式免费 Markdown 转换中心 — 在浏览器中导出为 PDF、HTML 或 TXT。无需注册，默认私密。",
+    "title": "免费在线 Markdown 转换器",
+    "whyTitle": "为什么选择PDFWritter？",
+    "pdfHintBefore": "只想把 Markdown 转成 PDF？",
+    "pdfHintLink": "打开专用的 Markdown 转 PDF 工具",
+    "pdfHintAfter": "。"
   },
   "help": {
     "badge": "帮助与支持",
@@ -399,7 +402,11 @@
     "howSubtitle": "三个简单步骤，将 .md 文件转换为专业 PDF",
     "howTitle": "如何将 Markdown 转换为 PDF",
     "ogImageAlt": "在线即时将 Markdown 文档转换为 PDF",
-    "title": "Markdown 转 PDF 转换器"
+    "title": "Markdown 转 PDF 转换器",
+    "faq9Q": "如何将带 Mermaid 图表的 md 转为 PDF？",
+    "faq9A": "粘贴包含 mermaid 代码块的 Markdown。PDFWritter 会在实时预览中渲染图表，并保留在下载的 PDF 中——无需单独的 Mermaid 命令行工具。",
+    "faq10Q": "Markdown 转 PDF 是否支持 LaTeX 数学公式？",
+    "faq10A": "支持。在 Markdown 中使用 KaTeX 风格公式（$行内$ 或 $$块级$$）。公式会在预览中渲染，并与文本、图表一并导出到 PDF。"
   },
   "metadata": {
     "description": "免费在线将 Markdown 转换为 PDF、HTML 和 TXT。支持实时预览、Mermaid 图表、语法高亮，无需注册。",

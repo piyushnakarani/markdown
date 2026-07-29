@@ -14,94 +14,22 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     path: `/${locale}/free-markdown-converter`,
     titleKey: 'freeConverter.title',
     descriptionKey: 'freeConverter.subtitle',
-    titleSuffix: ' — PDF, HTML, TXT',
+    titleSuffix: ' — PDF, HTML & TXT Hub',
     keywords: withToolBrandKeywords([
+      // Hub cluster (not PDF head terms — those live on /markdown-to-pdf)
       'free markdown converter',
       'markdown converter online',
-      'convert markdown file',
-      'markdown file converter',
-      'markdown converter tool',
       'online markdown converter',
-      'convert markdown to pdf html txt',
-      'markdown file convert',
+      'markdown file converter',
+      'convert markdown file',
+      'markdown converter tool',
       'markdown conversion',
       'best markdown converter',
-      // Spanish
-      'convertir markdown a pdf',
-      'convertidor md a pdf online gratis',
-      'pasar archivo md a pdf vs code',
-      'exportar markdown a pdf obsidian',
-      'convertir de markdown a pdf sin perder formato',
-      'herramienta para cambiar markdown a pdf',
-      'descargar md como pdf gratis',
-      'conversor de archivos md a pdf',
-      'codigo de markdown a pdf',
-      'convertir github readme a pdf',
-      // Chinese
-      'md文件转换成pdf',
-      'vscode markdown导出pdf',
-      'markdown转pdf工具 离线',
-      'obsidian md 导出 pdf',
-      'markdown转pdf 代码高亮',
-      'markdown转pdf 自定义css',
-      'gitbook markdown 批量转 pdf',
-      'jupyter markdown 转换 pdf',
-      '免费 markdown 转 pdf 网页',
-      // Hindi / Hinglish
-      'markdown ko pdf me kaise convert kare',
-      'md file to pdf converter free',
-      'markdown to pdf online tool download',
-      'vs code se markdown pdf kaise banaye',
-      'markdown format to pdf conversion',
-      'best md to pdf converter software',
-      'markdown note ko pdf kaise kare',
-      'mobile me markdown to pdf convert',
-      'markdown code to pdf file',
-      'github md file to pdf download',
-      // Japanese
-      'markdown pdf 変換',
-      'md pdf 変換 フリー',
-      'vsコード markdown pdf 出力',
-      'markdown pdf 変換 コマンドライン',
-      'obsidian markdown pdf エクスポート',
-      'markdownをpdfに変換 レイアウト崩れない',
-      'github readme md pdf 変換',
-      'markdown pdf 変換 css テンプレート',
-      'jupterノートブック markdown pdf 変換',
-      'ノーション markdown pdf 出力',
-      // German
-      'markdown in pdf umwandeln',
-      'md zu pdf konverter kostenlos',
-      'markdown pdf exportieren vscode',
-      'md datei in pdf konvertieren offline',
-      'obsidian notizen als pdf speichern',
-      'markdown zu pdf mit eigenem css',
-      'pandoc markdown in pdf umwandeln',
-      'markdown lebenslauf als pdf exportieren',
-      'sicherer markdown zu pdf online konverter',
-      'markdown text in pdf umwandeln',
-      // Portuguese
-      'converter markdown em pdf',
-      'md para pdf online grátis',
-      'exportar markdown para pdf vscode',
-      'extensão md para pdf visual studio code',
-      'converter notas do obsidian para pdf',
-      'transformar arquivo md em pdf',
-      'conversor de markdown para pdf seguro',
-      'gerar pdf a partir de markdown',
-      'markdown para pdf com estilo css',
-      'automatizar markdown para pdf linha de comando',
-      // French
-      'convertir markdown en pdf',
-      'convertisseur md en pdf en ligne',
-      'exporter markdown vers pdf gratuitement',
-      'visual studio code extension markdown pdf',
-      'convertir fichier md en pdf sans telechargement',
-      'mise en page markdown vers pdf',
-      'convertir cv markdown en pdf',
-      'obsidian exporter note en pdf',
-      'outil en ligne markdown vers pdf',
-      'pandoc markdown en pdf commande',
+      'convert markdown to pdf html txt',
+      'free online markdown converter',
+      'markdown multi format converter',
+      'markdown export pdf html txt',
+      'free markdown tools online',
     ], 'converter'),
   });
 }
@@ -144,6 +72,13 @@ function FreeConverterContent({ locale }: { locale: string }) {
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">{t('freeConverter.title')}</h1>
           <p className="text-[var(--text-secondary)] text-lg max-w-xl mx-auto">{t('freeConverter.subtitle')}</p>
+          <p className="text-sm text-[var(--text-tertiary)] max-w-xl mx-auto mt-4">
+            {t('freeConverter.pdfHintBefore')}{' '}
+            <Link href="/markdown-to-pdf" className="text-[#ef4444] font-medium hover:underline">
+              {t('freeConverter.pdfHintLink')}
+            </Link>
+            {t('freeConverter.pdfHintAfter')}
+          </p>
         </div>
       </section>
 
@@ -190,7 +125,7 @@ function FreeConverterContent({ locale }: { locale: string }) {
           __html: JSON.stringify(
             buildToolPageJsonLd(
               'Free Markdown Converter',
-              'Free online Markdown converter hub — PDF, HTML, TXT export with Mermaid diagram support.',
+              'Free online Markdown converter hub. Pick PDF, HTML, or TXT export — Mermaid diagrams supported. For Markdown to PDF specifically, use the dedicated PDF tool.',
               locale,
               '/free-markdown-converter',
             ),

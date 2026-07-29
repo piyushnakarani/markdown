@@ -157,9 +157,12 @@
     "benefit7": "広告も追跡もありません",
     "benefit8": "複数の形式にエクスポート",
     "comparisonTitle": "フォーマット比較",
-    "subtitle": "あらゆるフォーマットに無料で変換",
-    "title": "無料Markdownコンバーター",
-    "whyTitle": "なぜPDFWritter？"
+    "subtitle": "Markdown 変換の無料ハブ — ブラウザで PDF・HTML・TXT に書き出し。登録不要、デフォルトでプライベート。",
+    "title": "無料オンライン Markdown コンバーター",
+    "whyTitle": "なぜPDFWritter？",
+    "pdfHintBefore": "Markdown を PDF だけに変換したい場合は",
+    "pdfHintLink": "専用の Markdown → PDF コンバーターを開く",
+    "pdfHintAfter": "。"
   },
   "help": {
     "badge": "ヘルプとサポート",
@@ -399,7 +402,11 @@
     "howSubtitle": ".mdファイルをプロフェッショナルなPDFに変換する3つの簡単なステップ",
     "howTitle": "MarkdownをPDFに変換する方法",
     "ogImageAlt": "Markdownドキュメントをオンラインで即座にPDFに変換",
-    "title": "Markdown to PDF コンバーター"
+    "title": "Markdown to PDF コンバーター",
+    "faq9Q": "Mermaid 図を含む md を PDF に変換するには？",
+    "faq9A": "mermaid コードフェンスを含む Markdown を貼り付けてください。PDFWritter はライブプレビューで図を描画し、ダウンロードした PDF にも保持します。別途 Mermaid CLI は不要です。",
+    "faq10Q": "Markdown から PDF は LaTeX 数式に対応していますか？",
+    "faq10A": "はい。Markdown で KaTeX 形式の数式（$インライン$ または $$ブロック$$）を使えます。数式はプレビューに表示され、テキストや図とともに PDF に書き出されます。"
   },
   "metadata": {
     "description": "MarkdownをPDF、HTML、TXTへ無料でオンライン変換。ライブプレビュー、Mermaid図のサポート、シンタックスハイライトに対応し、登録不要です。",

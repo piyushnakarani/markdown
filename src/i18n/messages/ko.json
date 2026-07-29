@@ -157,9 +157,12 @@
     "benefit7": "광고 또는 추적 없음",
     "benefit8": "다양한 형식으로 내보내기",
     "comparisonTitle": "형식 비교",
-    "subtitle": "모든 형식으로 무료 변환",
-    "title": "무료 마크다운 변환기",
-    "whyTitle": "왜 PDFWritter인가?"
+    "subtitle": "Markdown 변환을 위한 무료 허브 — 브라우저에서 PDF, HTML, TXT로 내보내기. 가입 없음, 기본적으로 비공개.",
+    "title": "무료 온라인 Markdown 변환기",
+    "whyTitle": "왜 PDFWritter인가?",
+    "pdfHintBefore": "Markdown을 PDF만 원하시나요?",
+    "pdfHintLink": "전용 Markdown → PDF 변환기 열기",
+    "pdfHintAfter": "."
   },
   "help": {
     "badge": "도움말 및 지원",
@@ -399,7 +402,11 @@
     "howSubtitle": ".md 파일을 전문 PDF로 변환하는 3가지 간단한 단계",
     "howTitle": "Markdown을 PDF로 변환하는 방법",
     "ogImageAlt": "Markdown 문서를 온라인에서 즉시 PDF로 변환",
-    "title": "Markdown to PDF 변환기"
+    "title": "Markdown to PDF 변환기",
+    "faq9Q": "Mermaid 다이어그램이 있는 md를 PDF로 변환하려면?",
+    "faq9A": "mermaid 코드 펜스가 포함된 Markdown을 붙여넣으세요. PDFWritter는 라이브 미리보기에서 다이어그램을 렌더링하고 다운로드한 PDF에도 유지합니다. 별도의 Mermaid CLI는 필요 없습니다.",
+    "faq10Q": "Markdown을 PDF로 변환할 때 LaTeX 수식을 지원하나요?",
+    "faq10A": "네. Markdown에서 KaTeX 스타일 수식($인라인$ 또는 $$블록$$)을 사용하세요. 수식은 미리보기에 렌더링되고 텍스트·다이어그램과 함께 PDF로 내보내집니다."
   },
   "metadata": {
     "description": "Markdown을 PDF, HTML, TXT로 무료 온라인 변환하세요. 라이브 미리보기, Mermaid 다이어그램 지원, 구문 강조를 제공하며 가입이 필요 없습니다.",

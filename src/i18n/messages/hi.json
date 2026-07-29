@@ -157,9 +157,12 @@
     "benefit7": "कोई विज्ञापन या ट्रैकिंग नहीं",
     "benefit8": "एकाधिक प्रारूपों में निर्यात करें",
     "comparisonTitle": "फॉर्मेट तुलना",
-    "subtitle": "किसी भी फॉर्मेट में मुफ्त कनवर्ट करें",
-    "title": "मुफ्त मार्कडाउन कनवर्टर",
-    "whyTitle": "PDFWritter क्यों?"
+    "subtitle": "Markdown कनवर्ज़न के लिए मुफ़्त हब — ब्राउज़र में PDF, HTML या TXT में एक्सपोर्ट। साइन-अप नहीं, डिफ़ॉल्ट रूप से प्राइवेट।",
+    "title": "मुफ़्त ऑनलाइन Markdown कनवर्टर",
+    "whyTitle": "PDFWritter क्यों?",
+    "pdfHintBefore": "सिर्फ़ Markdown to PDF चाहिए?",
+    "pdfHintLink": "समर्पित Markdown to PDF कनवर्टर खोलें",
+    "pdfHintAfter": "."
   },
   "help": {
     "badge": "सहायता एवं सहायता",
@@ -399,7 +402,11 @@
     "howSubtitle": "अपनी .md फ़ाइल को प्रोफेशनल PDF में बदलने के तीन सरल कदम",
     "howTitle": "Markdown को PDF में कैसे कन्वर्ट करें",
     "ogImageAlt": "Markdown दस्तावेज़ ऑनलाइन तुरंत PDF में कन्वर्ट करें",
-    "title": "Markdown to PDF कनवर्टर"
+    "title": "Markdown to PDF कनवर्टर",
+    "faq9Q": "Mermaid डायग्राम के साथ md को PDF में कैसे कन्वर्ट करें?",
+    "faq9A": "mermaid कोड फेंस वाला Markdown पेस्ट करें। PDFWritter लाइव प्रीव्यू में डायग्राम रेंडर करता है और डाउनलोड किए गए PDF में रखता है — अलग Mermaid CLI की ज़रूरत नहीं।",
+    "faq10Q": "क्या Markdown to PDF LaTeX गणित सपोर्ट करता है?",
+    "faq10A": "हाँ। अपने Markdown में KaTeX-स्टाइल गणित इस्तेमाल करें ($इनलाइन$ या $$ब्लॉक$$)। समीकरण प्रीव्यू में दिखते हैं और टेक्स्ट व डायग्राम के साथ PDF में एक्सपोर्ट होते हैं।"
   },
   "metadata": {
     "description": "Markdown को PDF, HTML और TXT में मुफ्त ऑनलाइन कन्वर्ट करें। लाइव प्रीव्यू, Mermaid डायग्राम सपोर्ट, सिंटैक्स हाइलाइटिंग और साइनअप की जरूरत नहीं।",

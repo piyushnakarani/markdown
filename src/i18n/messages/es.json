@@ -157,9 +157,12 @@
     "benefit7": "Sin anuncios ni seguimiento",
     "benefit8": "Exportar a múltiples formatos",
     "comparisonTitle": "Comparación de Formatos",
-    "subtitle": "Convierte Markdown a cualquier formato — gratis y en tu navegador",
-    "title": "Convertidor de Markdown Gratuito",
-    "whyTitle": "¿Por Qué Elegir PDFWritter?"
+    "subtitle": "Un hub gratuito para convertir Markdown — exporta a PDF, HTML o TXT en tu navegador. Sin registro, privado por defecto.",
+    "title": "Convertidor de Markdown gratis online",
+    "whyTitle": "¿Por Qué Elegir PDFWritter?",
+    "pdfHintBefore": "¿Solo necesitas Markdown a PDF?",
+    "pdfHintLink": "Abre el convertidor dedicado de Markdown a PDF",
+    "pdfHintAfter": "."
   },
   "help": {
     "badge": "Ayuda y soporte",
@@ -399,7 +402,11 @@
     "howSubtitle": "Tres pasos simples para convertir tu archivo .md en un PDF profesional",
     "howTitle": "Cómo convertir Markdown a PDF",
     "ogImageAlt": "Convierte documentos markdown a PDF online al instante",
-    "title": "Convertidor de Markdown a PDF"
+    "title": "Convertidor de Markdown a PDF",
+    "faq9Q": "¿Cómo convierto md a PDF con diagramas Mermaid?",
+    "faq9A": "Pega Markdown que incluya bloques de código mermaid. PDFWritter renderiza los diagramas en la vista previa en vivo y los conserva en el PDF descargado — sin CLI de Mermaid por separado.",
+    "faq10Q": "¿Markdown a PDF admite matemáticas LaTeX?",
+    "faq10A": "Sí. Usa matemáticas estilo KaTeX en tu Markdown ($inline$ o $$bloque$$). Las ecuaciones se renderizan en la vista previa y se exportan al PDF junto con el texto y los diagramas."
   },
   "metadata": {
     "description": "Convierte Markdown a PDF, HTML y TXT online gratis. Vista previa en vivo, soporte para diagramas Mermaid, resaltado de sintaxis y sin registro.",

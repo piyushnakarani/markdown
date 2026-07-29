@@ -210,7 +210,7 @@
   "markdownToPdf": {
     "badge": "Free Online Converter",
     "title": "Markdown to PDF Converter",
-    "description": "Convert Markdown to PDF online for free with live preview, Mermaid diagram support, and instant download — 100% private in your browser. No sign-up required.",
+    "description": "Convert Markdown to PDF online for free — md to PDF with live preview, Mermaid diagrams, and KaTeX math. Private browser export, no sign-up.",
     "heroBefore": "Markdown to ",
     "heroHighlight": "PDF",
     "heroAfter": " Converter",
@@ -265,6 +265,10 @@
     "faq7A": "PDFWritter offers live preview, Mermaid diagram support, and 100% browser-side conversion — making it ideal for developers and technical writers who need private, high-quality PDF export.",
     "faq8Q": "How do I convert a .md file to PDF?",
     "faq8A": "Drag and drop your .md file onto the converter, verify the preview looks correct, then click Export PDF to download.",
+    "faq9Q": "How do I convert md to PDF with Mermaid diagrams?",
+    "faq9A": "Paste Markdown that includes mermaid code fences. PDFWritter renders the diagrams in the live preview and keeps them in the downloaded PDF — no separate Mermaid CLI needed.",
+    "faq10Q": "Does Markdown to PDF support LaTeX math?",
+    "faq10A": "Yes. Use KaTeX-style math in your Markdown ($inline$ or $$block$$). Equations render in the preview and export into the PDF alongside your text and diagrams.",
     "ctaTitle": "Need live preview while writing?",
     "ctaDescription": "Try our split-pane Markdown editor with sync scroll and instant PDF export.",
     "ctaButton": "Open Live Preview",
@@ -340,7 +344,7 @@
   "freeConverter": {
     "badge": "Converter Hub",
     "title": "Free Markdown Converter Online",
-    "subtitle": "Convert Markdown to any format — free, fast, and right in your browser",
+    "subtitle": "One free hub for Markdown conversion — export to PDF, HTML, or TXT in your browser. No sign-up, private by default.",
     "whyTitle": "Why Choose PDFWritter?",
     "comparisonTitle": "Format Comparison",
     "benefit1": "100% free, no limits",
@@ -350,7 +354,10 @@
     "benefit5": "11 languages supported",
     "benefit6": "Works on all devices",
     "benefit7": "No ads or tracking",
-    "benefit8": "Export to multiple formats"
+    "benefit8": "Export to multiple formats",
+    "pdfHintBefore": "Looking only for Markdown to PDF?",
+    "pdfHintLink": "Open the dedicated Markdown to PDF converter",
+    "pdfHintAfter": "."
   },
   "footer": {
     "description": "Free Markdown converter with diagram support. Convert, edit, and export Markdown with Mermaid charts at pdfwritter.com.",
