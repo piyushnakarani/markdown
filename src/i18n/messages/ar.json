@@ -157,9 +157,12 @@
     "benefit7": "لا إعلانات أو تتبع",
     "benefit8": "تصدير إلى صيغ متعددة",
     "comparisonTitle": "مقارنة الصيغ",
-    "subtitle": "حول ماركداون لأي صيغة — مجاناً",
-    "title": "محول ماركداون مجاني",
-    "whyTitle": "لماذا PDFWritter؟"
+    "subtitle": "مركز مجاني لتحويل Markdown — صدّر إلى PDF أو HTML أو TXT في متصفحك. بدون تسجيل، خاص افتراضيًا.",
+    "title": "محوّل Markdown مجاني عبر الإنترنت",
+    "whyTitle": "لماذا PDFWritter؟",
+    "pdfHintBefore": "تحتاج فقط Markdown إلى PDF؟",
+    "pdfHintLink": "افتح محوّل Markdown إلى PDF المخصص",
+    "pdfHintAfter": "."
   },
   "help": {
     "badge": "المساعدة والدعم",
@@ -399,7 +402,11 @@
     "howSubtitle": "ثلاث خطوات بسيطة لتحويل ملف .md إلى PDF احترافي",
     "howTitle": "كيفية تحويل Markdown إلى PDF",
     "ogImageAlt": "حوّل مستندات markdown إلى PDF على الإنترنت فوراً",
-    "title": "محول Markdown إلى PDF"
+    "title": "محول Markdown إلى PDF",
+    "faq9Q": "كيف أحوّل md إلى PDF مع مخططات Mermaid؟",
+    "faq9A": "الصق Markdown يتضمن كتل شيفرة mermaid. يعرض PDFWritter المخططات في المعاينة المباشرة ويحافظ عليها في ملف PDF المُنزَّل — دون الحاجة إلى CLI منفصل لـ Mermaid.",
+    "faq10Q": "هل يدعم تحويل Markdown إلى PDF رياضيات LaTeX؟",
+    "faq10A": "نعم. استخدم رياضيات بنمط KaTeX في Markdown ($inline$ أو $$block$$). تُعرض المعادلات في المعاينة وتُصدَّر إلى PDF مع النص والمخططات."
   },
   "metadata": {
     "description": "حوّل Markdown إلى PDF وHTML وTXT مجانًا عبر الإنترنت. معاينة مباشرة، دعم مخططات Mermaid، تمييز الصياغة، ولا حاجة للتسجيل.",
