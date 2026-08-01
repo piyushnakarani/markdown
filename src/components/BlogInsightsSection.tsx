@@ -80,13 +80,6 @@ function FeaturedPost({ post, readTimeLabel, ctaLabel }: { post: BlogPost; readT
         <p className="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed flex-1 line-clamp-3">
           {post.excerptKey}
         </p>
-
-        <div className="blog-card-footer">
-          <span className="blog-card-cta-label">{ctaLabel}</span>
-          <span className="blog-card-cta-icon">
-            <ArrowRight className="w-3.5 h-3.5" />
-          </span>
-        </div>
       </div>
     </Link>
   );
@@ -114,10 +107,6 @@ function CompactPost({ post, readTimeLabel, ctaLabel, index }: { post: BlogPost;
           <p className="text-xs text-[var(--text-secondary)] line-clamp-2 leading-relaxed mb-3 flex-1">
             {post.excerptKey}
           </p>
-          <span className="inline-flex items-center gap-1 text-xs font-semibold text-[var(--text-tertiary)] group-hover:text-[var(--blog-accent,#3b82f6)] transition-colors">
-            {ctaLabel}
-            <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-          </span>
         </div>
       </div>
     </Link>

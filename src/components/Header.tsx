@@ -81,15 +81,15 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed left-0 right-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          scrolled ? 'top-3 px-4 sm:px-6' : 'top-0 px-4 sm:px-6 lg:px-8'
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          scrolled ? 'glass nav-glow border-b border-[var(--border-color)] bg-[var(--bg-primary)]/80 backdrop-blur-md' : 'px-4 sm:px-6 lg:px-8'
         }`}
       >
         <div
-          className={`mx-auto transition-all duration-500 ${
+          className={`mx-auto transition-all duration-500 page-container ${
             scrolled
-              ? 'max-w-5xl page-container glass nav-glow rounded-2xl px-5 py-2'
-              : 'page-container bg-transparent py-5'
+              ? 'px-4 sm:px-6 lg:px-8 py-3'
+              : 'bg-transparent py-5'
           }`}
         >
           <div className="flex items-center justify-between">

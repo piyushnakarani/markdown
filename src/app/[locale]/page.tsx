@@ -155,31 +155,19 @@ function HomeContent({ locale }: { locale: string }) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {tools.map((tool, i) => (
               <ScrollReveal key={tool.href} delay={i * 80}>
-                <Link href={tool.href} className="tool-card group flex flex-col justify-between min-h-[280px] h-full">
-                  <div>
-                    <div className="flex items-center justify-start gap-3 mb-5">
-                      <div className={`w-11 h-11 rounded-xl bg-linear-to-br ${tool.bg} flex items-center justify-center`}>
-                        <tool.icon className="w-5 h-5" style={{ color: tool.color }} />
-                      </div>
-                      <h3 className="text-base font-semibold group-hover:text-[#3b82f6] transition-colors">
+                <Link href={tool.href} className="tool-card group block h-full">
+                  <div className="flex items-center justify-start gap-3 mb-4">
+                    <div className={`w-11 h-11 rounded-xl bg-linear-to-br ${tool.bg} flex items-center justify-center shrink-0`}>
+                      <tool.icon className="w-5 h-5" style={{ color: tool.color }} />
+                    </div>
+                    <h3 className="text-base font-semibold group-hover:text-[#3b82f6] transition-colors">
                       {tool.title}
                     </h3>
-                    </div>
-
-                    
-                    <p className="text-sm text-(--text-secondary) leading-relaxed mb-5">
-                      {tool.desc}
-                    </p>
                   </div>
-
-                  <div className="tool-card-cta">
-                    <span className="tool-card-cta-label">
-                      {t('tools.tryNow').replace(/\s*[→←\u2190-\u2193\u2196-\u2199]+\s*$/u, '').trim()}
-                    </span>
-                    <span className="tool-card-cta-icon" aria-hidden="true">
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </span>
-                  </div>
+                  
+                  <p className="text-sm text-(--text-secondary) leading-relaxed line-clamp-2">
+                    {tool.desc}
+                  </p>
                 </Link>
               </ScrollReveal>
             ))}
@@ -188,13 +176,13 @@ function HomeContent({ locale }: { locale: string }) {
       </section>
 
       {/* ===== TRUST ===== */}
-      <TrustSection />
+      {/* <TrustSection /> */}
 
       {/* ===== STATISTICS ===== */}
       {/* <StatsSection /> */}
 
       {/* ===== FEATURES ===== */}
-      <section className="section-py section-divider relative">
+      {/* <section className="section-py section-divider relative">
         <div className="page-container">
           <ScrollReveal>
             <SectionHeading
@@ -221,13 +209,13 @@ function HomeContent({ locale }: { locale: string }) {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ===== HOW IT WORKS ===== */}
       <HowItWorksSection />
 
       {/* ===== ABOUT ===== */}
-      <section className="section-py relative">
+      {/* <section className="section-py relative">
         <div className="page-container max-w-3xl">
           <ScrollReveal>
             <SectionHeading
@@ -261,7 +249,7 @@ function HomeContent({ locale }: { locale: string }) {
             </div>
           </ScrollReveal>
         </div>
-      </section>
+      </section> */}
 
       {/* ===== GEO COMPARISON ===== */}
       <section className="section-py section-divider relative">
