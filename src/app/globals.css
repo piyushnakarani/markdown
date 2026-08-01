@@ -1895,7 +1895,6 @@ body::before {
 
 .blog-card-featured {
   padding: 1.75rem 1.5rem;
-  min-height: 22rem;
 }
 
 @media (min-width: 640px) {
