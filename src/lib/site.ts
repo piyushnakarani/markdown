@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 
 import { defaultLocale, type Locale,locales } from '@/i18n/locales';
+import { ALL_LANGUAGE_KEYWORDS, languageKeywordsForLocale } from '@/lib/locale-keywords';
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') || 'https://www.pdfwritter.com';
@@ -120,81 +121,19 @@ export function withToolBrandKeywords(
 }
 
 export const DEFAULT_KEYWORDS = [
-  'markdown viewer',
-  'md viewer',
-  'md file viewer',
-  'markdown online',
-  'markdown preview',
+  'markdown to pdf with mermaid',
+  'mermaid to pdf',
+  'free markdown converter online',
   'markdown to pdf',
   'md to pdf',
-  '.md to pdf',
-  'markdown pdf',
-  'md to pdf with mermaid',
-  'markdown converter with diagram',
-  'markdown to pdf with diagrams',
-  'mermaid markdown converter',
-  'markdown diagram to pdf',
-  'markdown editor',
-  'free markdown tools',
+  'markdown live preview',
+  'markdown to html',
+  'markdown to txt',
+  'online markdown editor',
   ...BRAND_KEYWORDS,
-  'markdown compiler',
-  'markdown parser',
-  'markdown renderer',
-  'markdown formatter',
-  'markdown utilities',
-  'markdown converter online',
-  'online markdown converter',
-  'github flavored markdown editor',
-  'gfm editor',
-  'gfm viewer',
-  'github readme viewer',
-  'github readme preview',
-  'mermaid compiler',
-  'mermaid diagram renderer',
-  'flowchart generator',
-  'markdown flowchart tool',
-  'markdown table generator',
-  'convert markdown file',
-  'convert md file',
 ];
 
-export const SUPPORTED_LANGUAGES_KEYWORDS = [
-  // English names
-  'english',
-  'spanish',
-  'french',
-  'german',
-  'portuguese',
-  'arabic',
-  'chinese',
-  'japanese',
-  'korean',
-  'bengali',
-  'russian',
-  // Native names
-  'español',
-  'français',
-  'deutsch',
-  'português',
-  'العربية',
-  '中文',
-  '日本語',
-  '한국어',
-  'বাংলা',
-  'русский',
-  // Markdown search combinations
-  'english markdown',
-  'español markdown',
-  'français markdown',
-  'deutsch markdown',
-  'português markdown',
-  'arabic markdown',
-  'chinese markdown',
-  'japanese markdown',
-  'korean markdown',
-  'bengali markdown',
-  'russian markdown',
-];
+export const SUPPORTED_LANGUAGES_KEYWORDS = [...ALL_LANGUAGE_KEYWORDS];
 
 export function absoluteUrl(path: string): string {
   const normalized = path.startsWith('/') ? path : `/${path}`;
@@ -212,10 +151,15 @@ export function getDefaultOgImage() {
 
 function pathWithoutLocale(path: string): string {
   const normalized = path.startsWith('/') ? path : `/${path}`;
-  const match = normalized.match(/^\/([a-z]{2})(\/.*)?$/);
 
-  if (match && locales.includes(match[1] as Locale)) {
-    return match[2] ?? '';
+  // Longest locale codes first so `zh-Hans` wins over a hypothetical `zh`.
+  const sorted = [...locales].sort((a, b) => b.length - a.length);
+  for (const locale of sorted) {
+    if (locale === defaultLocale) continue;
+    if (normalized === `/${locale}`) return '';
+    if (normalized.startsWith(`/${locale}/`)) {
+      return normalized.slice(`/${locale}`.length) || '';
+    }
   }
 
   return normalized === '/' ? '' : normalized;
@@ -290,7 +234,11 @@ export function buildPageMetadata({
   const ogImage = image ?? getDefaultOgImage();
   const ogTitle = truncateOgTitle(fullTitle);
   const finalKeywords = [
-    ...new Set([...keywords, ...BRAND_KEYWORDS, ...SUPPORTED_LANGUAGES_KEYWORDS]),
+    ...new Set([
+      ...keywords,
+      ...BRAND_KEYWORDS,
+      ...languageKeywordsForLocale(locale),
+    ]),
   ];
 
   return {

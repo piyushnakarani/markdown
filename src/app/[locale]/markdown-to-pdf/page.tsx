@@ -23,6 +23,9 @@ import RelatedBlogGuides from '@/components/RelatedBlogGuides';
 import ScrollReveal from '@/components/ScrollReveal';
 import SectionHeading from '@/components/SectionHeading';
 import { Link } from '@/i18n/navigation';
+import {
+  pdfKeywordsForLocale,
+} from '@/lib/locale-keywords';
 import { absoluteUrl, buildLocalizedPageMetadata, withToolBrandKeywords } from '@/lib/site';
 import { buildToolPageJsonLd } from '@/lib/structured-data';
 
@@ -50,38 +53,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     path: `/${locale}/markdown-to-pdf`,
     titleKey: 'markdownToPdf.title',
     descriptionKey: 'markdownToPdf.description',
-    titleSuffix: ' — Free Online with Mermaid',
-    keywords: withToolBrandKeywords([
-      // P0 head cluster (OpenSEO research)
-      'markdown to pdf',
-      'md to pdf',
-      'markdown pdf converter',
-      'markdown to pdf online',
-      'md to pdf online',
-      'markdown to pdf free',
-      'convert markdown to pdf online',
-      'online markdown to pdf',
-      'export markdown to pdf',
-      'markdown to pdf online free',
-      'convert markdown to pdf free',
-      'markdown to pdf converter',
-      'convert markdown to pdf',
-      'free markdown to pdf',
-      'online markdown to pdf converter',
-      '.md to pdf',
-      'convert md to pdf',
-      'how to convert markdown to pdf',
-      'how to convert a .md file to pdf',
-      // P1 differentiation
-      'mermaid to pdf',
-      'markdown to pdf with mermaid',
-      'markdown with mermaid to pdf',
-      'md to pdf with mermaid',
-      'markdown diagram to pdf',
-      'markdown to pdf with latex',
-      'github readme to pdf',
-      'best markdown to pdf converter',
-    ], 'pdf'),
+    titleSuffix: ' — Free Online Mermaid PDF',
+    keywords: withToolBrandKeywords(pdfKeywordsForLocale(locale), 'pdf'),
     image: {
       url: absoluteUrl(PDF_OG_IMAGE.url),
       width: PDF_OG_IMAGE.width,

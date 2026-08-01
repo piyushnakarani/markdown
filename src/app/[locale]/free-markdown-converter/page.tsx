@@ -4,6 +4,7 @@ import { setRequestLocale } from 'next-intl/server';
 
 import RelatedBlogGuides from '@/components/RelatedBlogGuides';
 import { Link } from '@/i18n/navigation';
+import { converterKeywordsForLocale } from '@/lib/locale-keywords';
 import { buildLocalizedPageMetadata, withToolBrandKeywords } from '@/lib/site';
 import { buildToolPageJsonLd } from '@/lib/structured-data';
 
@@ -14,23 +15,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     path: `/${locale}/free-markdown-converter`,
     titleKey: 'freeConverter.title',
     descriptionKey: 'freeConverter.subtitle',
-    titleSuffix: ' — PDF, HTML & TXT Hub',
-    keywords: withToolBrandKeywords([
-      // Hub cluster (not PDF head terms — those live on /markdown-to-pdf)
-      'free markdown converter',
-      'markdown converter online',
-      'online markdown converter',
-      'markdown file converter',
-      'convert markdown file',
-      'markdown converter tool',
-      'markdown conversion',
-      'best markdown converter',
-      'convert markdown to pdf html txt',
-      'free online markdown converter',
-      'markdown multi format converter',
-      'markdown export pdf html txt',
-      'free markdown tools online',
-    ], 'converter'),
+    titleSuffix: ' — Free PDF, HTML & TXT',
+    keywords: withToolBrandKeywords(converterKeywordsForLocale(locale), 'converter'),
   });
 }
 
