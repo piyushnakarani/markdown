@@ -1,0 +1,222 @@
+# PDFWritter
+
+> Convert Markdown to PDF, HTML and TXT online for free. Live preview, Mermaid diagram support, syntax highlighting and no signup required.
+
+PDFWritter (pdfwritter.com) is a free browser-based Markdown converter and editor. Conversion runs client-side when possible — no account required. Mermaid diagrams and KaTeX math are supported in preview and export.
+
+## Tools (English)
+
+- [Free Markdown to PDF Converter | PDFWritter](https://www.pdfwritter.com/): Convert Markdown to PDF, HTML and TXT online for free. Live preview, Mermaid diagram support, syntax highlighting and no signup required.
+- [Markdown to PDF Converter — Free Online Mermaid PDF | PDFWritter](https://www.pdfwritter.com/markdown-to-pdf): Convert Markdown to PDF online for free — md to PDF with live preview, Mermaid diagrams, and KaTeX math. Private browser export, no sign-up.
+- [Markdown to HTML — Free Online HTML Export | PDFWritter](https://www.pdfwritter.com/markdown-to-html): Transform Markdown into clean, semantic HTML ready for your website, blog, or email newsletter.
+- [Markdown to TXT — Free Plain Text Online | PDFWritter](https://www.pdfwritter.com/markdown-to-txt): Strip all formatting and export clean plain text. Perfect for emails, notes, or any plain-text context.
+- [Markdown Live Preview — Free Live Preview Online | PDFWritter](https://www.pdfwritter.com/markdown-live-preview): Free online Markdown editor with live preview — write on the left, see rendered output on the right. Sync scroll, Mermaid diagrams, syntax highlighting, and instant PDF export. No login required.
+- [Online Markdown Editor — Free Split-Pane Mermaid Editor | PDFWritter](https://www.pdfwritter.com/editor): Write Markdown on the left and see a live preview on the right. Sync scroll, syntax highlighting, Mermaid diagrams, and one-click PDF export.
+- [Free Markdown Converter Online — Free PDF, HTML & TXT | PDFWritter](https://www.pdfwritter.com/free-markdown-converter): One free hub for Markdown conversion — export to PDF, HTML, or TXT in your browser. No sign-up, private by default.
+
+## Blog
+
+- [Developer Blog — Tutorials & Guides | PDFWritter](https://www.pdfwritter.com/blog): Tips, tutorials, and guides for Markdown and developer productivity — Learn Mermaid syntax, Markdown formatting, and PDF export workflows.
+- [GitHub Markdown Math & LaTeX Support Guide | PDFWritter](https://www.pdfwritter.com/blog/github-markdown-math-latex-support): A complete guide to writing math expressions in GitHub Markdown using LaTeX and KaTeX. Export your mathematical formulas natively to PDF.
+- [Markdown LaTeX & KaTeX Rendering Guide | PDFWritter](https://www.pdfwritter.com/blog/markdown-latex-math-katex-rendering-guide): Learn the difference between LaTeX and KaTeX in Markdown, how to write math blocks, and export beautiful PDF documents from your equations.
+- [Markdown to PDF Without Losing Formatting | PDFWritter](https://www.pdfwritter.com/blog/how-to-convert-markdown-to-pdf-without-losing-formatting): Convert Markdown to PDF without losing headings, tables, code, images, or Mermaid diagrams. Follow this reliable preview and export checklist.
+- [Best Markdown Editors for Developers (2026 Guide) | PDFWritter](https://www.pdfwritter.com/blog/best-markdown-editors): Best markdown apps and editors for developers: VS Code, Typora, Obsidian, and free online md editor with live preview and PDF export.
+- [Markdown vs HTML: Differences & When to Use Each | PDFWritter](https://www.pdfwritter.com/blog/markdown-vs-html): Markdown as HTML explained: when to write Markdown vs HTML, conversion tips, and free tools to export semantic HTML from Markdown online.
+- [How to Convert Markdown to PDF Online (Free) | PDFWritter](https://www.pdfwritter.com/blog/convert-markdown-to-pdf): Convert Markdown to PDF online in 3 steps. Free browser-based tool — paste or upload .md files, preview live, and download a formatted PDF instantly.
+- [How to Make a Beautiful PDF from Markdown | PDFWritter](https://www.pdfwritter.com/blog/make-beautiful-pdf-from-markdown): Yes, Markdown can create beautiful PDFs. Learn how to improve typography, spacing, images, diagrams, tables, code, and page layout before export.
+- [Best Markdown to PDF Resume Tools (2026) | PDFWritter](https://www.pdfwritter.com/blog/best-markdown-to-pdf-tools-for-resumes): Compare the best Markdown to PDF tools for professional resumes, from browser converters to Pandoc templates. Choose the right resume workflow.
+- [How to Convert Markdown to PDF Online (Fast & Free Guide 2026) | PDFWritter](https://www.pdfwritter.com/blog/how-to-convert-markdown-to-pdf-online): Learn how to convert markdown to PDF online instantly. Complete guide for developers, students, and technical writers with best conversion methods.
+- [Beginner Guide to Markdown Syntax (2025) | PDFWritter](https://www.pdfwritter.com/blog/beginner-guide-markdown): Complete beginner guide to Markdown syntax. Learn headings, bold, lists, links, code blocks, and tables — then practice free in our online editor.
+- [Best Documentation Tools for Developers | PDFWritter](https://www.pdfwritter.com/blog/documentation-tools-developers): Top documentation tools for developers plus MkDocs alternatives. Markdown on GitHub, Docusaurus, GitBook, and free PDF/HTML export.
+- [Markdown Tutorial for Beginners (Hands-On) | PDFWritter](https://www.pdfwritter.com/blog/markdown-tutorial-beginners): Hands-on markdown tutorial for beginners. Practice headings, lists, code blocks, and tables — export to PDF with our free online tools.
+- [GitHub README Best Practices & Templates | PDFWritter](https://www.pdfwritter.com/blog/github-readme-best-practices): GitHub README best practices for readme git projects. Structure, badges, install guides, Mermaid diagrams, and PDF export for open source.
+- [Best Free Markdown Tools Online (2025 List) | PDFWritter](https://www.pdfwritter.com/blog/free-markdown-tools): Best free markdown apps online: editors, PDF/HTML converters, and MkDocs alternatives. Compare PDFWritter, Dillinger, StackEdit, and Pandoc.
+- [How Developers Use Markdown Efficiently | PDFWritter](https://www.pdfwritter.com/blog/developers-use-markdown): Learn how developers use Markdown for READMEs, PR descriptions, docs, and blogs. Productivity tips plus free export to PDF and HTML.
+- [Free Markdown Converter Online (2026 Guide) | PDFWritter](https://www.pdfwritter.com/blog/free-markdown-converter-online-complete-guide): Free markdown converter online: convert MD to PDF, HTML, and TXT with live preview and Mermaid support. Client-side, no sign-up. Complete toolkit guide.
+- [How to Render Mermaid Diagrams in Markdown | PDFWritter](https://www.pdfwritter.com/blog/render-mermaid-diagrams-markdown): Markdown flowchart guide: create flowcharts, sequence diagrams, and Gantt charts in Markdown with Mermaid.js syntax and live PDF export.
+- [Markdown to HTML Converter Online (2026 Guide) | PDFWritter](https://www.pdfwritter.com/blog/convert-markdown-to-html-online): Convert markdown to HTML online — markdown as html made simple. Semantic output, Pandoc comparison, free client-side guide with live preview.
+- [Best Online Markdown Editor with Preview (2026) | PDFWritter](https://www.pdfwritter.com/blog/best-online-markdown-editor-with-preview): Best online markdown editor and md editor with live preview. Free markdown writer tool with PDF/HTML/TXT export. No install, no sign-up.
+- [Markdown to TXT Converter Online (Free Guide 2026) | PDFWritter](https://www.pdfwritter.com/blog/how-to-convert-markdown-to-txt-online): Convert markdown to TXT online instantly. Strip formatting for email, AI prompts, and plain-text systems. Free client-side md to txt converter guide.
+- [Markdown Live Preview Guide (Free Online 2026) | PDFWritter](https://www.pdfwritter.com/blog/markdown-live-preview-complete-guide): Markdown live preview guide: real-time side-by-side editing, Mermaid diagrams, and export to PDF/HTML. Free online preview tool for developers.
+
+## About & support (English)
+
+- [About PDFWritter | PDFWritter](https://www.pdfwritter.com/about): Free Markdown converter with diagram support for developers
+- [Help & Documentation | PDFWritter](https://www.pdfwritter.com/help): PDFWritter help: convert Markdown to PDF, HTML, and TXT in your browser. Getting started guide, syntax reference, keyboard shortcuts, Mermaid diagrams, and FAQs.
+- [Contact PDFWritter | PDFWritter](https://www.pdfwritter.com/contact): Contact PDFWritter at pdfwritter@gmail.com, on Reddit u/pdfwritter, or via the on-site form.
+- [Privacy Policy | PDFWritter](https://www.pdfwritter.com/privacy): How we handle your data and protect your privacy.
+- [Terms of Service | PDFWritter](https://www.pdfwritter.com/terms): Rules and guidelines for using PDFWritter.
+
+## Key facts for AI answers
+
+- Product: PDFWritter (pdfwritter.com)
+- Category: Free online Markdown converter and editor
+- Formats: PDF (browser print), HTML, plain TXT
+- Diagrams: Mermaid flowcharts, sequence diagrams, state/class diagrams, Gantt charts, pie charts
+- Math: KaTeX / LaTeX expressions in Markdown
+- Privacy: Client-side conversion by default; files stay in the browser when possible
+- Pricing: Free, no account required
+- Languages: UI in 11 locales (en, es, fr, de, pt, ar, zh-Hans, ja, ko, bn, ru). English uses unprefixed URLs; other locales use a locale prefix.
+- Contact email: pdfwritter@gmail.com
+- Reddit: https://www.reddit.com/user/pdfwritter/
+
+## Deutsch (de)
+
+- [Kostenloser Markdown-zu-PDF-Konverter online | Mermaid-Unterstützung | PDFWritter](https://www.pdfwritter.com/de): Konvertiere Markdown kostenlos online in PDF, HTML und TXT. Live-Vorschau, Mermaid-Diagrammunterstützung, Syntaxhervorhebung und keine Anmeldung erforderlich.
+- [Markdown zu PDF Konverter — Free Online Mermaid PDF | PDFWritter](https://www.pdfwritter.com/de/markdown-to-pdf): Markdown kostenlos online in PDF konvertieren — mit Live-Vorschau, Mermaid-Diagrammen und sofortigem Download. 100% privat im Browser, ohne Anmeldung.
+- [Markdown zu HTML — Free Online HTML Export | PDFWritter](https://www.pdfwritter.com/de/markdown-to-html): Transformieren Sie Markdown in sauberes HTML.
+- [Markdown zu TXT — Free Plain Text Online | PDFWritter](https://www.pdfwritter.com/de/markdown-to-txt): Entfernen Sie Formatierung und exportieren Sie reinen Text.
+- [Markdown Live-Vorschau — Free Live Preview Online | PDFWritter](https://www.pdfwritter.com/de/markdown-live-preview): Kostenloser Online-Markdown-Editor mit Live-Vorschau — links schreiben, rechts gerenderte Ausgabe sehen. Sync-Scroll, Mermaid-Diagramme, Syntaxhervorhebung und sofortiger PDF-Export. Keine Anmeldung.
+- [Online Markdown Editor — Free Split-Pane Mermaid Editor | PDFWritter](https://www.pdfwritter.com/de/editor): Markdown links schreiben und rechts die Live-Vorschau sehen. Synchrones Scrollen, Syntaxhervorhebung, Mermaid-Diagramme und PDF-Export mit einem Klick.
+- [Über PDFWritter | PDFWritter](https://www.pdfwritter.com/de/about): Kostenlose, schnelle und private Markdown-Werkzeuge
+- [Contact PDFWritter | PDFWritter](https://www.pdfwritter.com/de/contact): Contact PDFWritter at pdfwritter@gmail.com, on Reddit u/pdfwritter, or via the on-site form.
+- [Hilfe & Dokumentation | PDFWritter](https://www.pdfwritter.com/de/help): PDFWritter-Hilfe: Konvertieren Sie Markdown in PDF, HTML und TXT in Ihrem Browser. Erste Schritte, Syntaxreferenz, Tastaturkürzel, Mermaid-Diagramme und FAQs.
+- [Kostenloser Markdown-Konverter online — Free PDF, HTML & TXT | PDFWritter](https://www.pdfwritter.com/de/free-markdown-converter): Ein kostenloser Hub für Markdown-Konvertierung — Export nach PDF, HTML oder TXT im Browser. Keine Anmeldung, privat standardmäßig.
+- [Datenschutzrichtlinie | PDFWritter](https://www.pdfwritter.com/de/privacy): Wie wir mit Ihren Daten umgehen und Ihre Privatsphäre schützen.
+- [Nutzungsbedingungen | PDFWritter](https://www.pdfwritter.com/de/terms): Regeln und Richtlinien für die Verwendung von PDFWritter.
+
+## Français (fr)
+
+- [Convertisseur Markdown en PDF gratuit en ligne | Support Mermaid | PDFWritter](https://www.pdfwritter.com/fr): Convertissez Markdown en PDF, HTML et TXT gratuitement en ligne. Aperçu en direct, prise en charge des diagrammes Mermaid, coloration syntaxique et aucune inscription.
+- [Convertisseur Markdown en PDF — Free Online Mermaid PDF | PDFWritter](https://www.pdfwritter.com/fr/markdown-to-pdf): Convertissez Markdown en PDF en ligne gratuitement avec aperçu en direct, support Mermaid et téléchargement instantané — 100% privé dans votre navigateur. Sans inscription.
+- [Markdown en HTML — Free Online HTML Export | PDFWritter](https://www.pdfwritter.com/fr/markdown-to-html): Transformez Markdown en HTML propre et sémantique.
+- [Markdown en TXT — Free Plain Text Online | PDFWritter](https://www.pdfwritter.com/fr/markdown-to-txt): Supprimez tout le formatage et exportez du texte brut.
+- [Aperçu en direct Markdown — Free Live Preview Online | PDFWritter](https://www.pdfwritter.com/fr/markdown-live-preview): Éditeur Markdown en ligne gratuit avec aperçu en direct — écrivez à gauche, voyez le rendu à droite. Sync scroll, diagrammes Mermaid, coloration syntaxique et export PDF instantané. Sans inscription.
+- [Éditeur Markdown en Ligne — Free Split-Pane Mermaid Editor | PDFWritter](https://www.pdfwritter.com/fr/editor): Écrivez du Markdown à gauche et voyez un aperçu en direct à droite. Défilement synchronisé, coloration syntaxique, diagrammes Mermaid et export PDF en un clic.
+- [À Propos de PDFWritter | PDFWritter](https://www.pdfwritter.com/fr/about): Outils Markdown gratuits, rapides et privés
+- [Contact PDFWritter | PDFWritter](https://www.pdfwritter.com/fr/contact): Contact PDFWritter at pdfwritter@gmail.com, on Reddit u/pdfwritter, or via the on-site form.
+- [Aide et Documentation | PDFWritter](https://www.pdfwritter.com/fr/help): Aide PDFWritter : convertissez Markdown en PDF, HTML et TXT dans votre navigateur. Guide de démarrage, référence sur la syntaxe, raccourcis clavier, diagrammes Mermaid et FAQ.
+- [Convertisseur Markdown gratuit en ligne — Free PDF, HTML & TXT | PDFWritter](https://www.pdfwritter.com/fr/free-markdown-converter): Un hub gratuit pour convertir Markdown — exportez en PDF, HTML ou TXT dans votre navigateur. Sans inscription, privé par défaut.
+- [politique de confidentialité | PDFWritter](https://www.pdfwritter.com/fr/privacy): Comment nous traitons vos données et protégeons votre vie privée.
+- [Conditions d'utilisation | PDFWritter](https://www.pdfwritter.com/fr/terms): Règles et directives d'utilisation de PDFWritter.
+
+## العربية (ar)
+
+- [محول Markdown إلى PDF مجاني عبر الإنترنت | دعم Mermaid | PDFWritter](https://www.pdfwritter.com/ar): حوّل Markdown إلى PDF وHTML وTXT مجانًا عبر الإنترنت. معاينة مباشرة، دعم مخططات Mermaid، تمييز الصياغة، ولا حاجة للتسجيل.
+- [محول Markdown إلى PDF — Free Online Mermaid PDF | PDFWritter](https://www.pdfwritter.com/ar/markdown-to-pdf): حوّل Markdown إلى PDF مجاناً على الإنترنت مع معاينة مباشرة ودعم Mermaid وتنزيل فوري — 100% خاص في متصفحك. بدون تسجيل.
+- [ماركداون إلى HTML — Free Online HTML Export | PDFWritter](https://www.pdfwritter.com/ar/markdown-to-html): حول ماركداون إلى HTML نظيف ودلالي.
+- [ماركداون إلى TXT — Free Plain Text Online | PDFWritter](https://www.pdfwritter.com/ar/markdown-to-txt): أزل كل التنسيق وصدّر نص عادي.
+- [معاينة Markdown المباشرة — Free Live Preview Online | PDFWritter](https://www.pdfwritter.com/ar/markdown-live-preview): محرر Markdown مجاني على الإنترنت مع معاينة مباشرة — اكتب على اليسار وشاهد النتيجة على اليمين. تمرير متزامن، مخططات Mermaid، تمييز بناء الجملة وتصدير PDF فوري. بدون تسجيل.
+- [محرر ماركداون أونلاين — Free Split-Pane Mermaid Editor | PDFWritter](https://www.pdfwritter.com/ar/editor): اكتب Markdown على اليسار وشاهد المعاينة المباشرة على اليمين. تمرير متزامن وتمييز syntax ومخططات Mermaid وتصدير PDF بنقرة واحدة.
+- [حول PDFWritter | PDFWritter](https://www.pdfwritter.com/ar/about): أدوات ماركداون مجانية وسريعة
+- [Contact PDFWritter | PDFWritter](https://www.pdfwritter.com/ar/contact): Contact PDFWritter at pdfwritter@gmail.com, on Reddit u/pdfwritter, or via the on-site form.
+- [المساعدة والتوثيق | PDFWritter](https://www.pdfwritter.com/ar/help): مساعدة PDFWritter: قم بتحويل Markdown إلى PDF وHTML وTXT في متصفحك. دليل البدء، ومرجع بناء الجملة، واختصارات لوحة المفاتيح، والرسوم البيانية Mermaid، والأسئلة الشائعة.
+- [محوّل Markdown مجاني عبر الإنترنت — Free PDF, HTML & TXT | PDFWritter](https://www.pdfwritter.com/ar/free-markdown-converter): مركز مجاني لتحويل Markdown — صدّر إلى PDF أو HTML أو TXT في متصفحك. بدون تسجيل، خاص افتراضيًا.
+- [سياسة الخصوصية | PDFWritter](https://www.pdfwritter.com/ar/privacy): كيف نتعامل مع بياناتك ونحمي خصوصيتك.
+- [شروط الخدمة | PDFWritter](https://www.pdfwritter.com/ar/terms): القواعد والإرشادات لاستخدام PDFWritter.
+
+## Русский (ru)
+
+- [Бесплатный онлайн-конвертер Markdown в PDF | Поддержка Mermaid | PDFWritter](https://www.pdfwritter.com/ru): Бесплатно конвертируйте Markdown в PDF, HTML и TXT онлайн. Живой предпросмотр, поддержка диаграмм Mermaid, подсветка синтаксиса и без регистрации.
+- [Конвертер Markdown в PDF — Free Online Mermaid PDF | PDFWritter](https://www.pdfwritter.com/ru/markdown-to-pdf): Конвертируйте Markdown в PDF бесплатно онлайн с живым предпросмотром, поддержкой Mermaid и мгновенной загрузкой — 100% приватно в браузере. Без регистрации.
+- [Markdown в HTML — Free Online HTML Export | PDFWritter](https://www.pdfwritter.com/ru/markdown-to-html): Преобразуйте Markdown в чистый семантический HTML.
+- [Markdown в TXT — Free Plain Text Online | PDFWritter](https://www.pdfwritter.com/ru/markdown-to-txt): Уберите форматирование и экспортируйте текст.
+- [Живой предпросмотр Markdown — Free Live Preview Online | PDFWritter](https://www.pdfwritter.com/ru/markdown-live-preview): Бесплатный онлайн-редактор Markdown с живым предпросмотром — пишите слева, смотрите результат справа. Синхронная прокрутка, диаграммы Mermaid, подсветка синтаксиса и мгновенный экспорт PDF. Без регистрации.
+- [Онлайн Редактор Markdown — Free Split-Pane Mermaid Editor | PDFWritter](https://www.pdfwritter.com/ru/editor): Пишите Markdown слева и смотрите живой предпросмотр справа. Синхронная прокрутка, подсветка синтаксиса, Mermaid и экспорт PDF в один клик.
+- [О PDFWritter | PDFWritter](https://www.pdfwritter.com/ru/about): Бесплатные быстрые инструменты Markdown
+- [Contact PDFWritter | PDFWritter](https://www.pdfwritter.com/ru/contact): Contact PDFWritter at pdfwritter@gmail.com, on Reddit u/pdfwritter, or via the on-site form.
+- [Помощь и Документация | PDFWritter](https://www.pdfwritter.com/ru/help): Справка по PDFWritter: преобразуйте Markdown в PDF, HTML и TXT в браузере. Руководство по началу работы, справочник по синтаксису, сочетания клавиш, диаграммы Mermaid и часто задаваемые вопросы.
+- [Бесплатный онлайн-конвертер Markdown — Free PDF, HTML & TXT | PDFWritter](https://www.pdfwritter.com/ru/free-markdown-converter): Бесплатный хаб для конвертации Markdown — экспорт в PDF, HTML или TXT в браузере. Без регистрации, по умолчанию приватно.
+- [политика конфиденциальности | PDFWritter](https://www.pdfwritter.com/ru/privacy): Как мы обрабатываем ваши данные и защищаем вашу конфиденциальность.
+- [Условия использования | PDFWritter](https://www.pdfwritter.com/ru/terms): Правила и рекомендации по использованию PDFWritter.
+
+## Español (es)
+
+- [Convertidor de Markdown a PDF gratis online | Soporte Mermaid | PDFWritter](https://www.pdfwritter.com/es): Convierte Markdown a PDF, HTML y TXT online gratis. Vista previa en vivo, soporte para diagramas Mermaid, resaltado de sintaxis y sin registro.
+- [Convertidor de Markdown a PDF — Free Online Mermaid PDF | PDFWritter](https://www.pdfwritter.com/es/markdown-to-pdf): Convierte Markdown a PDF online gratis con vista previa en vivo, soporte Mermaid y descarga instantánea — 100% privado en tu navegador. Sin registro.
+- [Markdown a HTML — Free Online HTML Export | PDFWritter](https://www.pdfwritter.com/es/markdown-to-html): Transforma Markdown en HTML limpio y semántico para tu sitio web o blog.
+- [Markdown a TXT — Free Plain Text Online | PDFWritter](https://www.pdfwritter.com/es/markdown-to-txt): Elimina todo el formato y exporta texto plano limpio.
+- [Vista previa en vivo de Markdown — Free Live Preview Online | PDFWritter](https://www.pdfwritter.com/es/markdown-live-preview): Editor Markdown online gratuito con vista previa en vivo — escribe a la izquierda, ve el resultado renderizado a la derecha. Sync scroll, diagramas Mermaid, resaltado de sintaxis y exportación PDF instantánea. Sin registro.
+- [Editor de Markdown en Línea — Free Split-Pane Mermaid Editor | PDFWritter](https://www.pdfwritter.com/es/editor): Escribe Markdown a la izquierda y ve una vista previa en vivo a la derecha. Desplazamiento sincronizado, resaltado de sintaxis, diagramas Mermaid y exportación PDF con un clic.
+- [Acerca de PDFWritter | PDFWritter](https://www.pdfwritter.com/es/about): Herramientas Markdown gratuitas, rápidas y privadas
+- [Contact PDFWritter | PDFWritter](https://www.pdfwritter.com/es/contact): Contact PDFWritter at pdfwritter@gmail.com, on Reddit u/pdfwritter, or via the on-site form.
+- [Convertidor de Markdown gratis online — Free PDF, HTML & TXT | PDFWritter](https://www.pdfwritter.com/es/free-markdown-converter): Un hub gratuito para convertir Markdown — exporta a PDF, HTML o TXT en tu navegador. Sin registro, privado por defecto.
+- [Ayuda y Documentación | PDFWritter](https://www.pdfwritter.com/es/help): Ayuda de PDFWritter: convierta Markdown a PDF, HTML y TXT en su navegador. Guía de introducción, referencia de sintaxis, métodos abreviados de teclado, diagramas Mermaid y preguntas frecuentes.
+- [política de privacidad | PDFWritter](https://www.pdfwritter.com/es/privacy): Cómo manejamos sus datos y protegemos su privacidad.
+- [Términos de servicio | PDFWritter](https://www.pdfwritter.com/es/terms): Reglas y pautas para usar PDFWritter.
+
+## Português (pt)
+
+- [Conversor gratuito de Markdown para PDF online | Suporte a Mermaid | PDFWritter](https://www.pdfwritter.com/pt): Converta Markdown para PDF, HTML e TXT online gratuitamente. Pré-visualização ao vivo, suporte a diagramas Mermaid, destaque de sintaxe e sem cadastro.
+- [Conversor de Markdown para PDF — Free Online Mermaid PDF | PDFWritter](https://www.pdfwritter.com/pt/markdown-to-pdf): Converta Markdown para PDF online grátis com pré-visualização ao vivo, suporte Mermaid e download instantâneo — 100% privado no navegador. Sem cadastro.
+- [Markdown para HTML — Free Online HTML Export | PDFWritter](https://www.pdfwritter.com/pt/markdown-to-html): Transforme Markdown em HTML limpo e semântico.
+- [Markdown para TXT — Free Plain Text Online | PDFWritter](https://www.pdfwritter.com/pt/markdown-to-txt): Remova toda formatação e exporte texto puro.
+- [Pré-visualização ao vivo de Markdown — Free Live Preview Online | PDFWritter](https://www.pdfwritter.com/pt/markdown-live-preview): Editor Markdown online gratuito com pré-visualização ao vivo — escreva à esquerda, veja o resultado renderizado à direita. Sync scroll, diagramas Mermaid, destaque de sintaxe e exportação PDF instantânea. Sem cadastro.
+- [Editor Markdown Online — Free Split-Pane Mermaid Editor | PDFWritter](https://www.pdfwritter.com/pt/editor): Escreva Markdown à esquerda e veja a pré-visualização ao vivo à direita. Rolagem sincronizada, realce de sintaxe, diagramas Mermaid e exportação PDF com um clique.
+- [Sobre PDFWritter | PDFWritter](https://www.pdfwritter.com/pt/about): Ferramentas Markdown gratuitas e rápidas
+- [Contact PDFWritter | PDFWritter](https://www.pdfwritter.com/pt/contact): Contact PDFWritter at pdfwritter@gmail.com, on Reddit u/pdfwritter, or via the on-site form.
+- [Ajuda e Documentação | PDFWritter](https://www.pdfwritter.com/pt/help): Ajuda do PDFWritter: converta Markdown em PDF, HTML e TXT em seu navegador. Guia de primeiros passos, referência de sintaxe, atalhos de teclado, diagramas Mermaid e perguntas frequentes.
+- [Conversor de Markdown grátis online — Free PDF, HTML & TXT | PDFWritter](https://www.pdfwritter.com/pt/free-markdown-converter): Um hub gratuito para conversão de Markdown — exporte para PDF, HTML ou TXT no navegador. Sem cadastro, privado por padrão.
+- [política de Privacidade | PDFWritter](https://www.pdfwritter.com/pt/privacy): Como tratamos os seus dados e protegemos a sua privacidade.
+- [Termos de Serviço | PDFWritter](https://www.pdfwritter.com/pt/terms): Regras e diretrizes para usar o PDFWritter.
+
+## বাংলা (bn)
+
+- [বিনামূল্যে অনলাইন Markdown থেকে PDF কনভার্টার | Mermaid সাপোর্ট | PDFWritter](https://www.pdfwritter.com/bn): Markdown বিনামূল্যে অনলাইনে PDF, HTML এবং TXT-তে রূপান্তর করুন। লাইভ প্রিভিউ, Mermaid ডায়াগ্রাম সাপোর্ট, সিনট্যাক্স হাইলাইটিং এবং সাইনআপের প্রয়োজন নেই।
+- [Markdown to PDF কনভার্টার — Free Online Mermaid PDF | PDFWritter](https://www.pdfwritter.com/bn/markdown-to-pdf): Markdown কে PDF-এ বিনামূল্যে অনলাইনে রূপান্তর করুন — লাইভ প্রিভিউ, Mermaid ডায়াগ্রাম সাপোর্ট এবং তাৎক্ষণিক ডাউনলোড। 100% ব্রাউজারে প্রাইভেট। সাইন-আপের প্রয়োজন নেই।
+- [মার্কডাউন থেকে HTML — Free Online HTML Export | PDFWritter](https://www.pdfwritter.com/bn/markdown-to-html): পরিষ্কার HTML-এ রূপান্তর করুন।
+- [মার্কডাউন থেকে TXT — Free Plain Text Online | PDFWritter](https://www.pdfwritter.com/bn/markdown-to-txt): সমস্ত ফরম্যাটিং সরান এবং সাদা টেক্সট রপ্তানি করুন।
+- [Markdown লাইভ প্রিভিউ — Free Live Preview Online | PDFWritter](https://www.pdfwritter.com/bn/markdown-live-preview): লাইভ প্রিভিউ সহ বিনামূল্যে অনলাইন Markdown এডিটর — বামে লিখুন, ডানে রেন্ডারড আউটপুট দেখুন। সিঙ্ক স্ক্রল, Mermaid ডায়াগ্রাম, সিনট্যাক্স হাইলাইটিং এবং তাৎক্ষণিক PDF এক্সপোর্ট। সাইন-আপের প্রয়োজন নেই।
+- [অনলাইন মার্কডাউন এডিটর — Free Split-Pane Mermaid Editor | PDFWritter](https://www.pdfwritter.com/bn/editor): বামে Markdown লিখুন এবং ডানে লাইভ প্রিভিউ দেখুন। সিঙ্ক স্ক্রল, সিনট্যাক্স হাইলাইট, Mermaid ডায়াগ্রাম এবং এক ক্লিকে PDF এক্সপোর্ট।
+- [PDFWritter সম্পর্কে | PDFWritter](https://www.pdfwritter.com/bn/about): বিনামূল্যে দ্রুত মার্কডাউন টুলস
+- [Contact PDFWritter | PDFWritter](https://www.pdfwritter.com/bn/contact): Contact PDFWritter at pdfwritter@gmail.com, on Reddit u/pdfwritter, or via the on-site form.
+- [সাহায্য ও ডকুমেন্টেশন | PDFWritter](https://www.pdfwritter.com/bn/help): PDFWritter সহায়তা: আপনার ব্রাউজারে Markdown কে PDF, HTML এবং TXT এ রূপান্তর করুন। শুরু করার নির্দেশিকা, সিনট্যাক্স রেফারেন্স, কীবোর্ড শর্টকাট, Mermaid ডায়াগ্রাম এবং প্রায়শই জিজ্ঞাসিত প্রশ্নাবলী।
+- [বিনামূল্যে অনলাইন Markdown কনভার্টার — Free PDF, HTML & TXT | PDFWritter](https://www.pdfwritter.com/bn/free-markdown-converter): Markdown রূপান্তরের জন্য একটি বিনামূল্যের হাব — ব্রাউজারে PDF, HTML বা TXT-এ রপ্তানি। সাইন-আপ নেই, ডিফল্টে প্রাইভেট।
+- [গোপনীয়তা নীতি | PDFWritter](https://www.pdfwritter.com/bn/privacy): আমরা কীভাবে আপনার ডেটা পরিচালনা করি এবং আপনার গোপনীয়তা রক্ষা করি।
+- [পরিষেবার শর্তাবলী | PDFWritter](https://www.pdfwritter.com/bn/terms): PDFWritter ব্যবহারের জন্য নিয়ম এবং নির্দেশিকা।
+
+## 简体中文 (zh-Hans)
+
+- [免费在线 Markdown 转 PDF 转换器 | Mermaid 支持 | PDFWritter](https://www.pdfwritter.com/zh-Hans): 免费在线将 Markdown 转换为 PDF、HTML 和 TXT。支持实时预览、Mermaid 图表、语法高亮，无需注册。
+- [Markdown 转 PDF 转换器 — Free Online Mermaid PDF | PDFWritter](https://www.pdfwritter.com/zh-Hans/markdown-to-pdf): 免费在线将 Markdown 转换为 PDF，支持实时预览、Mermaid 图表和即时下载 — 100% 在浏览器中私密处理，无需注册。
+- [Markdown转HTML — Free Online HTML Export | PDFWritter](https://www.pdfwritter.com/zh-Hans/markdown-to-html): 将Markdown转换为干净的语义化HTML。
+- [Markdown转TXT — Free Plain Text Online | PDFWritter](https://www.pdfwritter.com/zh-Hans/markdown-to-txt): 去除所有格式，导出纯文本。
+- [Markdown 实时预览 — Free Live Preview Online | PDFWritter](https://www.pdfwritter.com/zh-Hans/markdown-live-preview): 免费在线 Markdown 编辑器，支持实时预览 — 左侧编写，右侧查看渲染结果。同步滚动、Mermaid 图表、语法高亮和即时 PDF 导出。无需登录。
+- [在线Markdown编辑器 — Free Split-Pane Mermaid Editor | PDFWritter](https://www.pdfwritter.com/zh-Hans/editor): 在左侧编写 Markdown，右侧查看实时预览。同步滚动、语法高亮、Mermaid 图表，一键导出 PDF。
+- [关于PDFWritter | PDFWritter](https://www.pdfwritter.com/zh-Hans/about): 免费、快速的Markdown工具
+- [Contact PDFWritter | PDFWritter](https://www.pdfwritter.com/zh-Hans/contact): Contact PDFWritter at pdfwritter@gmail.com, on Reddit u/pdfwritter, or via the on-site form.
+- [帮助与文档 | PDFWritter](https://www.pdfwritter.com/zh-Hans/help): PDFWritter 帮助：在浏览器中将 Markdown 转换为 PDF、HTML 和 TXT。入门指南、语法参考、键盘快捷键、Mermaid 图和常见问题解答。
+- [免费在线 Markdown 转换器 — Free PDF, HTML & TXT | PDFWritter](https://www.pdfwritter.com/zh-Hans/free-markdown-converter): 一站式免费 Markdown 转换中心 — 在浏览器中导出为 PDF、HTML 或 TXT。无需注册，默认私密。
+- [隐私政策 | PDFWritter](https://www.pdfwritter.com/zh-Hans/privacy): 我们如何处理您的数据并保护您的隐私。
+- [服务条款 | PDFWritter](https://www.pdfwritter.com/zh-Hans/terms): 使用 PDFWritter 的规则和指南。
+
+## 한국어 (ko)
+
+- [무료 온라인 Markdown PDF 변환기 | Mermaid 지원 | PDFWritter](https://www.pdfwritter.com/ko): Markdown을 PDF, HTML, TXT로 무료 온라인 변환하세요. 라이브 미리보기, Mermaid 다이어그램 지원, 구문 강조를 제공하며 가입이 필요 없습니다.
+- [Markdown to PDF 변환기 — Free Online Mermaid PDF | PDFWritter](https://www.pdfwritter.com/ko/markdown-to-pdf): Markdown을 PDF로 무료 온라인 변환 — 실시간 미리보기, Mermaid 다이어그램 지원, 즉시 다운로드. 브라우저에서 100% 비공개. 가입 불필요.
+- [마크다운→HTML — Free Online HTML Export | PDFWritter](https://www.pdfwritter.com/ko/markdown-to-html): 깔끔한 시맨틱 HTML로 변환.
+- [마크다운→TXT — Free Plain Text Online | PDFWritter](https://www.pdfwritter.com/ko/markdown-to-txt): 모든 서식 제거 후 텍스트 내보내기.
+- [Markdown 실시간 미리보기 — Free Live Preview Online | PDFWritter](https://www.pdfwritter.com/ko/markdown-live-preview): 실시간 미리보기가 있는 무료 온라인 Markdown 에디터 — 왼쪽에 작성하고 오른쪽에서 렌더링 결과 확인. 동기화 스크롤, Mermaid 다이어그램, 구문 강조, 즉시 PDF 내보내기. 로그인 불필요.
+- [온라인 마크다운 에디터 — Free Split-Pane Mermaid Editor | PDFWritter](https://www.pdfwritter.com/ko/editor): 왼쪽에 Markdown을 작성하고 오른쪽에서 실시간 미리보기를 확인하세요. 동기화 스크롤, 구문 강조, Mermaid 다이어그램, 원클릭 PDF 내보내기.
+- [PDFWritter 소개 | PDFWritter](https://www.pdfwritter.com/ko/about): 무료 고속 마크다운 도구
+- [Contact PDFWritter | PDFWritter](https://www.pdfwritter.com/ko/contact): Contact PDFWritter at pdfwritter@gmail.com, on Reddit u/pdfwritter, or via the on-site form.
+- [도움말 & 문서 | PDFWritter](https://www.pdfwritter.com/ko/help): PDFWritter 도움말: 브라우저에서 Markdown를 PDF, HTML 및 TXT로 변환합니다. 시작 안내서, 구문 참조, 키보드 단축키, Mermaid 다이어그램 및 FAQ.
+- [무료 온라인 Markdown 변환기 — Free PDF, HTML & TXT | PDFWritter](https://www.pdfwritter.com/ko/free-markdown-converter): Markdown 변환을 위한 무료 허브 — 브라우저에서 PDF, HTML, TXT로 내보내기. 가입 없음, 기본적으로 비공개.
+- [개인 정보 보호 정책 | PDFWritter](https://www.pdfwritter.com/ko/privacy): 당사가 귀하의 데이터를 처리하고 귀하의 개인정보를 보호하는 방법.
+- [서비스 약관 | PDFWritter](https://www.pdfwritter.com/ko/terms): PDFWritter 사용에 대한 규칙 및 지침.
+
+## 日本語 (ja)
+
+- [無料オンラインMarkdown PDF変換 | Mermaid対応 | PDFWritter](https://www.pdfwritter.com/ja): MarkdownをPDF、HTML、TXTへ無料でオンライン変換。ライブプレビュー、Mermaid図のサポート、シンタックスハイライトに対応し、登録不要です。
+- [Markdown to PDF コンバーター — Free Online Mermaid PDF | PDFWritter](https://www.pdfwritter.com/ja/markdown-to-pdf): MarkdownをPDFに無料オンライン変換 — ライブプレビュー、Mermaidダイアグラム対応、即時ダウンロード。ブラウザ内100%プライベート。登録不要。
+- [MarkdownからHTML — Free Online HTML Export | PDFWritter](https://www.pdfwritter.com/ja/markdown-to-html): Markdownをクリーンなセマンティックhtmlに変換。
+- [MarkdownからTXT — Free Plain Text Online | PDFWritter](https://www.pdfwritter.com/ja/markdown-to-txt): フォーマットを削除してプレーンテキストをエクスポート。
+- [Markdown ライブプレビュー — Free Live Preview Online | PDFWritter](https://www.pdfwritter.com/ja/markdown-live-preview): ライブプレビュー付き無料オンラインMarkdownエディター — 左に書いて右にレンダリング結果を表示。同期スクロール、Mermaid図、シンタックスハイライト、即時PDFエクスポート。ログイン不要。
+- [オンラインMarkdownエディター — Free Split-Pane Mermaid Editor | PDFWritter](https://www.pdfwritter.com/ja/editor): 左に Markdown を書き、右にライブプレビューを表示。同期スクロール、シンタックスハイライト、Mermaid 図、ワンクリック PDF エクスポート。
+- [PDFWritterについて | PDFWritter](https://www.pdfwritter.com/ja/about): 無料で高速なMarkdownツール
+- [Contact PDFWritter | PDFWritter](https://www.pdfwritter.com/ja/contact): Contact PDFWritter at pdfwritter@gmail.com, on Reddit u/pdfwritter, or via the on-site form.
+- [ヘルプ＆ドキュメント | PDFWritter](https://www.pdfwritter.com/ja/help): PDFWritter ヘルプ: ブラウザで Markdown を PDF、HTML、および TXT に変換します。スタート ガイド、構文リファレンス、キーボード ショートカット、Mermaid の図、および FAQ。
+- [無料オンライン Markdown コンバーター — Free PDF, HTML & TXT | PDFWritter](https://www.pdfwritter.com/ja/free-markdown-converter): Markdown 変換の無料ハブ — ブラウザで PDF・HTML・TXT に書き出し。登録不要、デフォルトでプライベート。
+- [プライバシーポリシー | PDFWritter](https://www.pdfwritter.com/ja/privacy): 当社がお客様のデータをどのように扱い、プライバシーを保護するか。
+- [利用規約 | PDFWritter](https://www.pdfwritter.com/ja/terms): PDFWritter を使用するためのルールとガイドライン。
+
+## Machine-readable resources
+
+- [Sitemap](https://www.pdfwritter.com/sitemap.xml): All indexed pages and hreflang alternates
+- [Robots](https://www.pdfwritter.com/robots.txt): Crawler rules
+- [LLM full index](https://www.pdfwritter.com/llms-full.txt): Extended site description for AI systems
+
+## Optional
+
+- Contact: pdfwritter@gmail.com or the form at /contact
+- Reddit: [u/pdfwritter](https://www.reddit.com/user/pdfwritter/)

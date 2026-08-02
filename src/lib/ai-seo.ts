@@ -1,3 +1,6 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
 import { blogPosts } from '@/content/blog';
 import {
   absoluteUrl,
@@ -70,49 +73,13 @@ const CORE_PAGES: { path: string; title: string; description: string }[] = [
   },
 ];
 
-/** llms.txt — concise index for AI crawlers (https://llmstxt.org). */
+/**
+ * llms.txt — expert-authored index for AI crawlers (https://llmstxt.org).
+ * Source of truth: repo-root `llms.txt` (tools, blog, all locales).
+ */
 export function buildLlmsTxt(): string {
-  const lines = [
-    `# ${SITE_NAME}`,
-    '',
-    `> ${AI_SITE_SUMMARY}`,
-    '',
-    '## Canonical site',
-    `- [${SITE_URL}](${SITE_URL}): Primary domain for all PDFWritter tools and content.`,
-    '',
-    '## Core tools (English)',
-    ...CORE_PAGES.map(
-      (page) => `- [${page.title}](${absoluteUrl(page.path)}): ${page.description}`,
-    ),
-    '',
-    '## Blog articles (English)',
-    ...blogPosts.map(
-      (post) =>
-        `- [${post.titleKey}](${absoluteUrl(`/blog/${post.slug}`)}): ${post.metaDescription}`,
-    ),
-    '',
-    '## Key facts for AI answers',
-    '- Product: PDFWritter (pdfwritter.com)',
-    '- Category: Free online Markdown converter and editor',
-    '- Formats: PDF (browser print), HTML, plain TXT',
-    '- Diagrams: Mermaid flowcharts, sequence diagrams, state/class diagrams, Gantt charts, pie charts',
-    '- Privacy: Client-side conversion by default; files stay in the browser when possible',
-    '- Pricing: Free, no account required',
-    '- Languages: UI available in 11 locales; English content uses unprefixed URLs, other locales use locale prefixes.',
-    `- Contact email: ${SITE_EMAIL}`,
-    `- Reddit: ${SITE_REDDIT_URL}`,
-    '',
-    '## Machine-readable resources',
-    `- [Sitemap](${SITE_URL}/sitemap.xml): All indexed pages and hreflang alternates`,
-    `- [Robots](${SITE_URL}/robots.txt): Crawler rules`,
-    `- [LLM full index](${SITE_URL}/llms-full.txt): Extended site description for AI systems`,
-    '',
-    '## Optional',
-    `- Contact: ${SITE_EMAIL} or the form at /contact`,
-    `- Reddit: [u/pdfwritter](${SITE_REDDIT_URL})`,
-  ];
-
-  return `${lines.join('\n')}\n`;
+  const content = readFileSync(join(process.cwd(), 'llms.txt'), 'utf8');
+  return content.endsWith('\n') ? content : `${content}\n`;
 }
 
 /** Extended llms-full.txt with more context for AI retrieval. */
