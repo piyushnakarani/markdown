@@ -2,43 +2,48 @@ import type { MetadataRoute } from 'next';
 
 import { SITE_URL } from '@/lib/site';
 
-const allowAll = {
-  userAgent: '*',
-  allow: ['/', '/_next/static/', '/llms.txt', '/llms-full.txt'],
-  disallow: ['/api/'],
-};
-
-/** AI search / assistant crawlers — keep open for GEO visibility. */
-const aiSearchBots = [
+/** Explicit allow list for search + AI crawlers (GEO / AI search visibility). */
+const ALLOWED_BOTS = [
   'GPTBot',
   'ChatGPT-User',
-  'OAI-SearchBot',
-  'ClaudeBot',
-  'PerplexityBot',
+  'anthropic-ai',
   'Google-Extended',
-  'Applebot-Extended',
-  'FacebookBot',
-  'Amazonbot',
-];
+  'Gemini-Deep-Research',
+  'PerplexityBot',
+  'CCBot',
+  'Bytespider',
+  'MistralAI-User',
+  'DeepSeekBot',
+  'cohere-ai',
+  'Meta-ExternalAgent',
+  'bedrockbot',
+  'bigsur.ai',
+  'Googlebot',
+  'Googlebot-News',
+  'Bingbot',
+  'DuckDuckBot',
+  'GigaBot',
+  'Nutch',
+  'AhrefsBot',
+] as const;
 
-/** Training-oriented crawlers — blocked; does not affect AI search bots above. */
-const aiTrainingBots = ['CCBot', 'Bytespider', 'anthropic-ai', 'cohere-ai'];
+/** Paths that should not be crawled (APIs, private endpoints). */
+const DISALLOW = ['/api/'] as const;
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      allowAll,
-      ...aiSearchBots.map((userAgent) => ({
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: [...DISALLOW],
+      },
+      ...ALLOWED_BOTS.map((userAgent) => ({
         userAgent,
         allow: '/',
-        disallow: ['/api/'],
-      })),
-      ...aiTrainingBots.map((userAgent) => ({
-        userAgent,
-        disallow: ['/'],
+        disallow: [...DISALLOW],
       })),
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,
-    host: SITE_URL,
   };
 }
