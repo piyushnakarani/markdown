@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   return buildLocalizedPageMetadata({
     locale,
-    path: `/${locale}/markdown-live-preview`,
+    path: '/markdown-live-preview',
     titleKey: 'livePreview.title',
     descriptionKey: 'livePreview.description',
     titleSuffix: ' — Free Live Preview Online',

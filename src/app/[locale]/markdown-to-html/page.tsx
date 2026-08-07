@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   return buildLocalizedPageMetadata({
     locale,
-    path: `/${locale}/markdown-to-html`,
+    path: '/markdown-to-html',
     titleKey: 'tools.htmlTitle',
     descriptionKey: 'tools.htmlDescription',
     titleSuffix: ' — Free Online HTML Export',

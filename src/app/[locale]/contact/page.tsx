@@ -9,7 +9,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return buildPageMetadata({
     title: CONTACT_PAGE_META.title,
     description: CONTACT_PAGE_META.description,
-    path: `/${locale}/contact`,
+    path: '/contact',
     locale,
   });
 }

@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   return buildLocalizedPageMetadata({
     locale,
-    path: `/${locale}/editor`,
+    path: '/editor',
     titleKey: 'editor.title',
     descriptionKey: 'editor.description',
     titleSuffix: ' — Free Split-Pane Mermaid Editor',

@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   return buildLocalizedPageMetadata({
     locale,
-    path: `/${locale}/markdown-to-pdf`,
+    path: '/markdown-to-pdf',
     titleKey: 'markdownToPdf.title',
     descriptionKey: 'markdownToPdf.description',
     titleSuffix: ' — Free Online Mermaid PDF',
