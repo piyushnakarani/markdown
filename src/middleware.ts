@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 
-import { locales } from './i18n/locales';
+import { defaultLocale, locales } from './i18n/locales';
 import { routing } from './i18n/routing';
 
 const intlMiddleware = createMiddleware(routing);
@@ -12,9 +12,19 @@ const CANONICAL_HOST = (
 
 const ROOT_FILES = new Set(['/robots.txt', '/sitemap.xml', '/llms.txt', '/llms-full.txt']);
 
+const NON_DEFAULT_LOCALES = locales.filter((l) => l !== defaultLocale).join('|');
+
 /** Blog is English-only — /es/blog/... must not exist as indexable locale variants. */
 const LOCALE_BLOG_RE = new RegExp(
   `^/(${locales.join('|')})(/blog(?:/.*)?)$`,
+);
+
+/**
+ * Legacy bad hreflang URLs: /ar/en/about → /ar/about.
+ * Keep 301s until Search Console drops the indexed 404s.
+ */
+const DOUBLE_EN_LOCALE_RE = new RegExp(
+  `^/(${NON_DEFAULT_LOCALES})/en(?:/(.*))?$`,
 );
 
 export default function middleware(request: NextRequest) {
@@ -35,6 +45,14 @@ export default function middleware(request: NextRequest) {
   if (localeBlog) {
     const url = request.nextUrl.clone();
     url.pathname = localeBlog[2];
+    return NextResponse.redirect(url, 301);
+  }
+
+  const doubleEn = request.nextUrl.pathname.match(DOUBLE_EN_LOCALE_RE);
+  if (doubleEn) {
+    const url = request.nextUrl.clone();
+    const rest = doubleEn[2] ? `/${doubleEn[2]}` : '';
+    url.pathname = `/${doubleEn[1]}${rest}`;
     return NextResponse.redirect(url, 301);
   }
 

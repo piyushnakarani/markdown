@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   return buildLocalizedPageMetadata({
     locale,
-    path: `/${locale}/free-markdown-converter`,
+    path: '/free-markdown-converter',
     titleKey: 'freeConverter.title',
     descriptionKey: 'freeConverter.subtitle',
     titleSuffix: ' — Free PDF, HTML & TXT',

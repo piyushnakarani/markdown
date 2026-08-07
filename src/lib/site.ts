@@ -150,15 +150,22 @@ export function getDefaultOgImage() {
 }
 
 function pathWithoutLocale(path: string): string {
-  const normalized = path.startsWith('/') ? path : `/${path}`;
+  let normalized = path.startsWith('/') ? path : `/${path}`;
 
-  // Longest locale codes first so `zh-Hans` wins over a hypothetical `zh`.
+  // Strip every leading locale segment, including default `en`
+  // (localePrefix: 'as-needed'). Loop so accidental doubles like
+  // `/ar/en/about` collapse to `/about`. Longest codes first (`zh-Hans`).
   const sorted = [...locales].sort((a, b) => b.length - a.length);
-  for (const locale of sorted) {
-    if (locale === defaultLocale) continue;
-    if (normalized === `/${locale}`) return '';
-    if (normalized.startsWith(`/${locale}/`)) {
-      return normalized.slice(`/${locale}`.length) || '';
+  let stripped = true;
+  while (stripped) {
+    stripped = false;
+    for (const locale of sorted) {
+      if (normalized === `/${locale}`) return '';
+      if (normalized.startsWith(`/${locale}/`)) {
+        normalized = normalized.slice(`/${locale}`.length) || '/';
+        stripped = true;
+        break;
+      }
     }
   }
 
