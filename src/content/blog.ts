@@ -39,14 +39,12 @@ export const blogPosts: BlogPost[] = [
     metaDescription:
       'A complete guide to writing math expressions in GitHub Markdown using LaTeX and KaTeX. Export your mathematical formulas natively to PDF.',
     keywords: [
-      'github matex',
+      'github markdown math',
       'markdown latex',
-      'markdown latex and matex support',
-      'github math latex',
+      'katex markdown',
       'export markdown math to pdf',
       'github flavored markdown equations',
       'pdfwritter',
-      'pdfwritter markdown to pdf'
     ],
     category: 'Guide',
     readTime: 6,
@@ -67,9 +65,7 @@ export const blogPosts: BlogPost[] = [
       'markdown katex',
       'render markdown math to pdf',
       'latex math equations markdown',
-      'markdown latex and matex support',
       'pdfwritter',
-      'pdfwritter markdown to pdf'
     ],
     category: 'Tutorial',
     readTime: 7,

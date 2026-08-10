@@ -17,6 +17,9 @@ export default function Footer() {
 
   const toolLinks = [
     { href: '/markdown-to-pdf', label: 'markdownToPdf' },
+    { href: '/chatgpt-to-pdf', label: 'chatgptToPdf' },
+    { href: '/mermaid-markdown-to-pdf', label: 'mermaidToPdf' },
+    { href: '/ai-markdown-to-pdf', label: 'aiToPdf' },
     { href: '/markdown-to-html', label: 'markdownToHtml' },
     { href: '/markdown-to-txt', label: 'markdownToTxt' },
     { href: '/markdown-live-preview', label: 'markdownLivePreview' },

@@ -52,6 +52,22 @@ const CORE_PAGES: { path: string; title: string; description: string }[] = [
     description: 'Hub for all PDFWritter conversion tools in one place.',
   },
   {
+    path: '/chatgpt-to-pdf',
+    title: 'ChatGPT to PDF',
+    description:
+      'Paste ChatGPT Markdown answers and download a clean PDF with live preview. Free and private.',
+  },
+  {
+    path: '/ai-markdown-to-pdf',
+    title: 'AI Markdown to PDF',
+    description: 'Convert ChatGPT, Claude, or Gemini Markdown output to PDF online.',
+  },
+  {
+    path: '/mermaid-markdown-to-pdf',
+    title: 'Mermaid Markdown to PDF',
+    description: 'Export Markdown with Mermaid diagrams to PDF — diagrams render in preview first.',
+  },
+  {
     path: '/blog',
     title: 'Blog',
     description: 'Markdown tutorials, Mermaid guides, and developer documentation tips.',

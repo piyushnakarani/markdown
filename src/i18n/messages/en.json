@@ -1,8 +1,8 @@
 {
   "metadata": {
     "title": "Free Markdown to PDF Converter",
-    "description": "Convert Markdown to PDF, HTML and TXT online for free. Live preview, Mermaid diagram support, syntax highlighting and no signup required.",
-    "keywords": "markdown to pdf converter, free markdown to pdf, markdown converter online, markdown to html, markdown to txt, markdown editor online, markdown live preview, mermaid diagram markdown, markdown converter with diagram, md to pdf, pdfwritter, pdfwritter.com, pdfwritter markdown, pdfwritter markdown converter, pdfwritter markdown to pdf, pdfwritter markdown to html, pdfwritter markdown to txt, pdfwritter markdown editor, pdfwritter markdown live preview, pdfwritter free markdown converter, pdfwritter mermaid, markdown compiler, markdown parser, markdown renderer, markdown formatter, markdown utilities, github flavored markdown editor, gfm editor, gfm viewer, github readme viewer, github readme preview, mermaid compiler, mermaid diagram renderer, flowchart generator, markdown flowchart tool, markdown table generator, convert markdown file, convert md file"
+    "description": "Convert Markdown to PDF online free with Mermaid diagrams, KaTeX math, and live preview. Private browser export to PDF, HTML, and TXT — no sign-up.",
+    "keywords": "markdown to pdf, free markdown to pdf, md to pdf, markdown to pdf with mermaid, mermaid to pdf, markdown converter online, markdown to html, markdown live preview, pdfwritter"
   },
   "nav": {
     "home": "Home",
@@ -17,14 +17,17 @@
     "markdownToTxt": "Markdown to TXT",
     "markdownLivePreview": "Live Preview",
     "freeConverter": "Free Converter",
+    "chatgptToPdf": "ChatGPT to PDF",
+    "mermaidToPdf": "Mermaid to PDF",
+    "aiToPdf": "AI Markdown to PDF",
     "theme": "Toggle theme",
     "language": "Language"
   },
   "hero": {
-    "badge": "Markdown Converter with Diagram",
-    "title": "Transform Your Markdown",
-    "titleHighlight": "Into Anything",
-    "subtitle": "Convert Markdown to PDF, HTML & TXT with Mermaid diagram support. Free, private, no sign-up — only at pdfwritter.com.",
+    "badge": "Free Markdown to PDF · Mermaid & Math",
+    "title": "Free Markdown to PDF",
+    "titleHighlight": "with Mermaid Diagrams",
+    "subtitle": "Convert Markdown to PDF, HTML & TXT online — live preview, KaTeX math, private browser export. Free, no sign-up.",
     "cta": "Start Converting",
     "ctaSecondary": "Try the Editor",
     "trustedBy": "Trusted by developers worldwide"
@@ -209,9 +212,9 @@
   },
   "markdownToPdf": {
     "badge": "Free Online Converter",
-    "title": "Markdown to PDF Converter",
-    "description": "Convert Markdown to PDF online for free — md to PDF with live preview, Mermaid diagrams, and KaTeX math. Private browser export, no sign-up.",
-    "heroBefore": "Markdown to ",
+    "title": "Free Markdown to PDF Converter",
+    "description": "Convert Markdown to PDF online free — md to PDF with live preview, Mermaid diagrams, and KaTeX math. Private browser export, no sign-up.",
+    "heroBefore": "Free Markdown to ",
     "heroHighlight": "PDF",
     "heroAfter": " Converter",
     "howBadge": "Simple Workflow",
@@ -322,14 +325,16 @@
   "about": {
     "badge": "Platform Overview",
     "title": "About PDFWritter",
-    "subtitle": "Free Markdown converter with diagram support for developers",
+    "subtitle": "Free Markdown to PDF converter with Mermaid diagrams for developers",
     "missionTitle": "Our Mission",
     "missionText": "We believe developer tools should be free, fast, and respect your privacy. PDFWritter was built to give every developer a Markdown converter with diagram support — export Mermaid flowcharts and docs to PDF without compromising quality or security.",
     "featuresTitle": "What We Offer",
     "privacyTitle": "Privacy Promise",
     "privacyText": "Conversions can run in your browser or on your configured render server. The app does not collect or store your content.",
     "openSourceTitle": "Open Source",
-    "openSourceText": "PDFWritter is open source and free forever. We believe in the power of the developer community."
+    "openSourceText": "PDFWritter is free forever. We believe in the power of the developer community.",
+    "disambiguationTitle": "Not the desktop “PDF Writer” software",
+    "disambiguationText": "PDFWritter (pdfwritter.com) is a free browser tool that converts Markdown to PDF, HTML, and TXT with Mermaid and KaTeX support. It is not related to pdfwriter.com or any desktop PDF Writer / virtual printer products. If you need Markdown → PDF online, you are in the right place."
   },
   "help": {
     "badge": "Help & Support",
@@ -381,7 +386,9 @@
     "q5": "What file formats can I export to?",
     "a5": "You can export to PDF for sharing and printing, semantic HTML for blogs or CMS paste-in, and plain TXT when you need unformatted text for email, prompts, or legacy systems. PDF export uses your browser print pipeline (Save as PDF) so output stays local when you convert client-side. HTML export keeps structure and rendered Mermaid diagrams where supported. Pick the format from the editor toolbar after you confirm the live preview looks right.",
     "q6": "Does PDFWritter support Mermaid diagrams?",
-    "a6": "Yes. PDFWritter is a Markdown converter with built-in Mermaid diagram support. Add fenced mermaid code blocks for flowcharts, sequence diagrams, state diagrams, class diagrams, Gantt charts, and pie charts. Diagrams render in the live preview and are included when you export to PDF or HTML, which is the main difference versus many paste-only Markdown tools that drop diagrams or require a separate renderer. If a diagram type fails to render, share the Mermaid source with us at pdfwritter@gmail.com or on Reddit at u/pdfwritter."
+    "a6": "Yes. PDFWritter is a Markdown converter with built-in Mermaid diagram support. Add fenced mermaid code blocks for flowcharts, sequence diagrams, state diagrams, class diagrams, Gantt charts, and pie charts. Diagrams render in the live preview and are included when you export to PDF or HTML, which is the main difference versus many paste-only Markdown tools that drop diagrams or require a separate renderer. If a diagram type fails to render, share the Mermaid source with us at pdfwritter@gmail.com or on Reddit at u/pdfwritter.",
+    "q7": "Is PDFWritter the same as PDF Writer (pdfwriter.com)?",
+    "a7": "No. PDFWritter at pdfwritter.com is a free online Markdown to PDF converter with Mermaid diagrams and KaTeX math that runs in your browser. It is not the desktop PDF Writer software sold at pdfwriter.com. If you want to paste Markdown and download a PDF (with diagrams), use PDFWritter."
   },
   "common": {
     "loading": "Loading...",

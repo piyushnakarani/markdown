@@ -36,102 +36,57 @@ const OG_LOCALE_MAP: Record<Locale, string> = {
   ru: 'ru_RU',
 };
 
-/** Brand + tool phrases for search / brand queries (pdfwritter + each product). */
-export const BRAND_KEYWORDS = [
-  'pdfwritter',
-  'pdfwritter.com',
-  'pdfwritter online',
-  'pdfwritter free',
-  'pdfwritter markdown',
-  'pdfwritter markdown converter',
-  'pdfwritter converter',
-  'pdfwritter mermaid',
-  'pdfwritter mermaid markdown',
-  'pdfwritter markdown to pdf',
-  'pdfwritter md to pdf',
-  'pdfwritter markdown pdf',
-  'pdfwritter markdown to html',
-  'pdfwritter md to html',
-  'pdfwritter markdown html',
-  'pdfwritter markdown to txt',
-  'pdfwritter md to txt',
-  'pdfwritter markdown txt',
-  'pdfwritter markdown editor',
-  'pdfwritter editor',
-  'pdfwritter online markdown editor',
-  'pdfwritter markdown live preview',
-  'pdfwritter live preview',
-  'pdfwritter markdown preview',
-  'pdfwritter free markdown converter',
-  'pdfwritter free converter',
-];
+/**
+ * Keep meta keywords lean. Google does not use them for ranking; long stuffed
+ * lists are a spam/quality risk for small sites.
+ */
+export const BRAND_KEYWORDS = ['pdfwritter', 'pdfwritter.com'] as const;
 
-/** Extra brand phrases scoped to a specific tool page. */
+/** Optional brand hint per tool — one short phrase max, not keyword dumps. */
 export const TOOL_BRAND_KEYWORDS = {
-  pdf: [
-    'pdfwritter markdown to pdf',
-    'pdfwritter md to pdf',
-    'pdfwritter markdown pdf',
-    'pdfwritter pdf converter',
-    'pdfwritter convert markdown to pdf',
-  ],
-  html: [
-    'pdfwritter markdown to html',
-    'pdfwritter md to html',
-    'pdfwritter markdown html',
-    'pdfwritter html converter',
-    'pdfwritter convert markdown to html',
-  ],
-  txt: [
-    'pdfwritter markdown to txt',
-    'pdfwritter md to txt',
-    'pdfwritter markdown txt',
-    'pdfwritter txt converter',
-    'pdfwritter convert markdown to txt',
-  ],
-  editor: [
-    'pdfwritter markdown editor',
-    'pdfwritter editor',
-    'pdfwritter online markdown editor',
-    'pdfwritter split pane editor',
-  ],
-  preview: [
-    'pdfwritter markdown live preview',
-    'pdfwritter live preview',
-    'pdfwritter markdown preview',
-    'pdfwritter md viewer',
-  ],
-  converter: [
-    'pdfwritter free markdown converter',
-    'pdfwritter markdown converter',
-    'pdfwritter free converter',
-    'pdfwritter convert markdown',
-  ],
+  pdf: ['pdfwritter markdown to pdf'],
+  html: ['pdfwritter markdown to html'],
+  txt: ['pdfwritter markdown to txt'],
+  editor: ['pdfwritter markdown editor'],
+  preview: ['pdfwritter markdown live preview'],
+  converter: ['pdfwritter free markdown converter'],
 } as const;
 
 export type ToolBrandKey = keyof typeof TOOL_BRAND_KEYWORDS;
 
-/** Prepend tool-scoped brand keywords without duplicates. */
+const META_KEYWORDS_MAX = 16;
+
+/** Merge page keywords with a single brand hint; cap length for quality. */
 export function withToolBrandKeywords(
   keywords: string[],
   tool?: ToolBrandKey,
 ): string[] {
-  const toolKeywords = tool ? [...TOOL_BRAND_KEYWORDS[tool]] : [];
-  return [...new Set([...toolKeywords, ...keywords])];
+  const toolKeywords = tool ? [...TOOL_BRAND_KEYWORDS[tool]] : ['pdfwritter'];
+  return [...new Set([...toolKeywords, ...keywords])].slice(0, META_KEYWORDS_MAX);
 }
 
 export const DEFAULT_KEYWORDS = [
+  'markdown to pdf',
+  'md to pdf',
   'markdown to pdf with mermaid',
   'mermaid to pdf',
   'free markdown converter online',
-  'markdown to pdf',
-  'md to pdf',
   'markdown live preview',
   'markdown to html',
   'markdown to txt',
   'online markdown editor',
-  ...BRAND_KEYWORDS,
+  'pdfwritter',
 ];
+
+/**
+ * Small-site ranking focus: index English first. Other locales stay usable in
+ * the UI but are noindex until demand and unique content justify them.
+ */
+export const INDEXABLE_LOCALES: readonly Locale[] = [defaultLocale];
+
+export function isIndexableLocale(locale: string): boolean {
+  return INDEXABLE_LOCALES.includes(locale as Locale);
+}
 
 export const SUPPORTED_LANGUAGES_KEYWORDS = [...ALL_LANGUAGE_KEYWORDS];
 
@@ -185,11 +140,11 @@ export function swapLocaleInPath(path: string, locale: string): string {
   return localizedPath(locale, path);
 }
 
-/** Hreflang alternate URLs for a localized path. */
+/** Hreflang alternate URLs — only for indexable locales (avoids pointing at noindex URLs). */
 export function buildAlternateLanguages(path: string): Record<string, string> {
   return {
     ...Object.fromEntries(
-      locales.map((l) => [l, absoluteUrl(localizedPath(l, path))])
+      INDEXABLE_LOCALES.map((l) => [l, absoluteUrl(localizedPath(l, path))])
     ),
     'x-default': absoluteUrl(localizedPath(defaultLocale, path)),
   };
@@ -240,13 +195,10 @@ export function buildPageMetadata({
   const ogLocale = OG_LOCALE_MAP[locale as Locale] || 'en_US';
   const ogImage = image ?? getDefaultOgImage();
   const ogTitle = truncateOgTitle(fullTitle);
+  const indexable = isIndexableLocale(locale);
   const finalKeywords = [
-    ...new Set([
-      ...keywords,
-      ...BRAND_KEYWORDS,
-      ...languageKeywordsForLocale(locale),
-    ]),
-  ];
+    ...new Set([...keywords, ...languageKeywordsForLocale(locale)]),
+  ].slice(0, META_KEYWORDS_MAX);
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -276,7 +228,7 @@ export function buildPageMetadata({
       url,
       siteName: SITE_NAME,
       locale: ogLocale,
-      alternateLocale: locales
+      alternateLocale: INDEXABLE_LOCALES
         .filter((l) => l !== locale)
         .map((l) => OG_LOCALE_MAP[l]),
       images: [
@@ -295,10 +247,10 @@ export function buildPageMetadata({
       images: [ogImage.url],
     },
     robots: {
-      index: true,
+      index: indexable,
       follow: true,
       googleBot: {
-        index: true,
+        index: indexable,
         follow: true,
         'max-image-preview': 'large',
         'max-snippet': -1,

@@ -9,7 +9,9 @@
     "privacyText": "콘텐츠는 브라우저를 떠나지 않습니다.",
     "privacyTitle": "프라이버시 약속",
     "subtitle": "무료 고속 마크다운 도구",
-    "title": "PDFWritter 소개"
+    "title": "PDFWritter 소개",
+    "disambiguationTitle": "Not the desktop “PDF Writer” software",
+    "disambiguationText": "PDFWritter (pdfwritter.com) is a free browser tool that converts Markdown to PDF, HTML, and TXT with Mermaid and KaTeX support. It is not related to pdfwriter.com or any desktop PDF Writer / virtual printer products. If you need Markdown → PDF online, you are in the right place."
   },
   "blog": {
     "articleNavigation": "기사 탐색",
@@ -118,7 +120,9 @@
     "q3": "지원하는 마크다운 문법은?",
     "q4": "모바일에서 사용 가능한가요?",
     "q5": "내보내기 형식은?",
-    "q6": "Does PDFWritter support Mermaid diagrams?"
+    "q6": "Does PDFWritter support Mermaid diagrams?",
+    "q7": "Is PDFWritter the same as PDF Writer (pdfwriter.com)?",
+    "a7": "No. PDFWritter at pdfwritter.com is a free online Markdown to PDF converter with Mermaid diagrams and KaTeX math that runs in your browser. It is not the desktop PDF Writer software sold at pdfwriter.com."
   },
   "features": {
     "clientSide": "100% 클라이언트사이드",
@@ -427,7 +431,10 @@
     "markdownToPdf": "마크다운→PDF",
     "markdownToTxt": "마크다운→TXT",
     "theme": "테마 전환",
-    "tools": "도구"
+    "tools": "도구",
+    "chatgptToPdf": "ChatGPT to PDF",
+    "mermaidToPdf": "Mermaid to PDF",
+    "aiToPdf": "AI Markdown to PDF"
   },
   "privacy": {
     "subtitle": "당사가 귀하의 데이터를 처리하고 귀하의 개인정보를 보호하는 방법.",

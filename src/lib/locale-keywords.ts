@@ -65,41 +65,25 @@ export const ALL_LANGUAGE_KEYWORDS: readonly string[] = [];
 /* -------------------------------------------------------------------------- */
 
 export const SHARED_PDF_KEYWORDS = [
-  // Moat / low competition
-  'mermaid to pdf',
   'markdown to pdf with mermaid',
-  'markdown to pdf with latex',
+  'mermaid to pdf',
   'markdown diagram to pdf',
-  // Head anchors (needed for topical relevance)
+  'markdown to pdf with latex',
   'markdown to pdf',
   'md to pdf',
+  'free markdown to pdf',
+  'markdown to pdf online free',
 ] as const;
 
 export const LOCALE_PDF_KEYWORDS: LocaleKeywordMap = {
   en: [
     'markdown with mermaid to pdf',
-    'md to pdf with mermaid',
     'mermaid markdown to pdf',
-    'how to convert markdown to pdf with mermaid',
-    'markdown to pdf free',
     'convert markdown to pdf free',
-    'markdown to pdf online free',
-    'free markdown to pdf',
-    'markdown to pdf no signup',
     'markdown to pdf in browser',
-    'convert markdown to pdf without losing formatting',
     'github readme to pdf',
-    'how to convert github readme to pdf',
-    'obsidian markdown to pdf',
-    'obsidian notes to pdf online',
-    'export markdown math to pdf',
     'markdown latex to pdf',
-    'markdown resume to pdf online',
-    'md to pdf online',
-    'convert md to pdf',
-    'how to convert markdown to pdf',
-    'pandoc markdown to pdf',
-    'vscode markdown to pdf online',
+    'convert markdown to pdf without losing formatting',
   ],
   es: [
     'convertir markdown a pdf con mermaid',
