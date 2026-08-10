@@ -63,7 +63,7 @@ export function buildSiteJsonLdGraph(locale: string) {
         alternateName: SITE_TAGLINE,
         url: SITE_URL,
         description: SITE_SUMMARY,
-        inLanguage: ['en', 'es', 'fr', 'de', 'pt', 'ar', 'zh-Hans', 'ja', 'ko', 'bn', 'ru'],
+        inLanguage: ['en'],
         publisher: { '@id': `${SITE_URL}#organization` },
       },
       {
@@ -103,19 +103,42 @@ export function buildToolPageJsonLd(
   const url = absoluteUrl(path);
   return {
     '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': `${url}#webpage`,
-    name,
-    description,
-    url,
-    isPartOf: { '@id': `${SITE_URL}#website` },
-    about: { '@id': `${SITE_URL}#software` },
-    primaryImageOfPage: {
-      '@type': 'ImageObject',
-      url: absoluteUrl(SITE_OG_IMAGE_PATH),
-      width: SITE_OG_IMAGE_WIDTH,
-      height: SITE_OG_IMAGE_HEIGHT,
-    },
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        '@id': `${url}#webpage`,
+        name,
+        description,
+        url,
+        isPartOf: { '@id': `${SITE_URL}#website` },
+        about: { '@id': `${SITE_URL}#software` },
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: absoluteUrl(SITE_OG_IMAGE_PATH),
+          width: SITE_OG_IMAGE_WIDTH,
+          height: SITE_OG_IMAGE_HEIGHT,
+        },
+        breadcrumb: { '@id': `${url}#breadcrumb` },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${url}#breadcrumb`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: absoluteUrl(localizedPath(locale, '/')),
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name,
+            item: url,
+          },
+        ],
+      },
+    ],
   };
 }
 

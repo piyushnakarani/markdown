@@ -116,6 +116,7 @@ function HomeContent({ locale }: { locale: string }) {
     { q: t('faq.q4'), a: t('faq.a4') },
     { q: t('faq.q5'), a: t('faq.a5') },
     { q: t('faq.q6'), a: t('faq.a6') },
+    { q: t('faq.q7'), a: t('faq.a7') },
   ];
 
   return (
@@ -311,7 +312,7 @@ function HomeContent({ locale }: { locale: string }) {
             />
           </ScrollReveal>
           <ScrollReveal delay={100}>
-            <FAQAccordion items={faqs} speakableAnswerIndex={[0, 1, 5]} />
+            <FAQAccordion items={faqs} speakableAnswerIndex={[0, 1, 5, 6]} />
           </ScrollReveal>
         </div>
       </section>

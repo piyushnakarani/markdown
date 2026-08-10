@@ -1,4 +1,4 @@
-import { ArrowRight, Check, Code2, Eye, FileText, FileType, PenLine, Sparkles } from 'lucide-react';
+import { ArrowRight, Check, Code2, Eye, FileText, FileType, GitBranch, PenLine, Sparkles } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 
@@ -31,6 +31,9 @@ function FreeConverterContent({ locale }: { locale: string }) {
 
   const converters = [
     { href: '/markdown-to-pdf', icon: FileText, color: '#ef4444', title: t('tools.pdfTitle'), desc: t('tools.pdfDescription') },
+    { href: '/chatgpt-to-pdf', icon: Sparkles, color: '#10a37f', title: t('nav.chatgptToPdf'), desc: 'Paste ChatGPT answers and download a clean PDF — free and private.' },
+    { href: '/mermaid-markdown-to-pdf', icon: GitBranch, color: '#8b5cf6', title: t('nav.mermaidToPdf'), desc: 'Export Markdown with Mermaid flowcharts and diagrams to PDF.' },
+    { href: '/ai-markdown-to-pdf', icon: Sparkles, color: '#3b82f6', title: t('nav.aiToPdf'), desc: 'Convert ChatGPT, Claude, or Gemini Markdown to PDF in your browser.' },
     { href: '/markdown-to-html', icon: Code2, color: '#f59e0b', title: t('tools.htmlTitle'), desc: t('tools.htmlDescription') },
     { href: '/markdown-to-txt', icon: FileType, color: '#10b981', title: t('tools.txtTitle'), desc: t('tools.txtDescription') },
     { href: '/markdown-live-preview', icon: Eye, color: '#8b5cf6', title: t('tools.livePreviewTitle'), desc: t('tools.livePreviewDescription') },

@@ -9,7 +9,9 @@
     "privacyText": "आपकी सामग्री कभी ब्राउज़र नहीं छोड़ती।",
     "privacyTitle": "गोपनीयता वादा",
     "subtitle": "मुफ्त और तेज़ मार्कडाउन टूल्स",
-    "title": "PDFWritter के बारे में"
+    "title": "PDFWritter के बारे में",
+    "disambiguationTitle": "Not the desktop “PDF Writer” software",
+    "disambiguationText": "PDFWritter (pdfwritter.com) is a free browser tool that converts Markdown to PDF, HTML, and TXT with Mermaid and KaTeX support. It is not related to pdfwriter.com or any desktop PDF Writer / virtual printer products. If you need Markdown → PDF online, you are in the right place."
   },
   "blog": {
     "articleNavigation": "आलेख नेविगेशन",
@@ -118,7 +120,9 @@
     "q3": "कौन सी मार्कडाउन सिंटैक्स सपोर्ट है?",
     "q4": "क्या मोबाइल पर काम करता है?",
     "q5": "कौन से फॉर्मेट में निर्यात कर सकते हैं?",
-    "q6": "Does PDFWritter support Mermaid diagrams?"
+    "q6": "Does PDFWritter support Mermaid diagrams?",
+    "q7": "Is PDFWritter the same as PDF Writer (pdfwriter.com)?",
+    "a7": "No. PDFWritter at pdfwritter.com is a free online Markdown to PDF converter with Mermaid diagrams and KaTeX math that runs in your browser. It is not the desktop PDF Writer software sold at pdfwriter.com."
   },
   "features": {
     "clientSide": "100% क्लाइंट-साइड",
@@ -427,7 +431,10 @@
     "markdownToPdf": "मार्कडाउन से PDF",
     "markdownToTxt": "मार्कडाउन से TXT",
     "theme": "थीम बदलें",
-    "tools": "टूल्स"
+    "tools": "टूल्स",
+    "chatgptToPdf": "ChatGPT to PDF",
+    "mermaidToPdf": "Mermaid to PDF",
+    "aiToPdf": "AI Markdown to PDF"
   },
   "privacy": {
     "subtitle": "हम आपके डेटा को कैसे संभालते हैं और आपकी गोपनीयता की रक्षा करते हैं।",

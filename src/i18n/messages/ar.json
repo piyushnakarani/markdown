@@ -9,7 +9,9 @@
     "privacyText": "محتواك لا يغادر متصفحك أبداً.",
     "privacyTitle": "وعد الخصوصية",
     "subtitle": "أدوات ماركداون مجانية وسريعة",
-    "title": "حول PDFWritter"
+    "title": "حول PDFWritter",
+    "disambiguationTitle": "Not the desktop “PDF Writer” software",
+    "disambiguationText": "PDFWritter (pdfwritter.com) is a free browser tool that converts Markdown to PDF, HTML, and TXT with Mermaid and KaTeX support. It is not related to pdfwriter.com or any desktop PDF Writer / virtual printer products. If you need Markdown → PDF online, you are in the right place."
   },
   "blog": {
     "articleNavigation": "الملاحة المادة",
@@ -118,7 +120,9 @@
     "q3": "ما صيغة ماركداون المدعومة؟",
     "q4": "هل يعمل على الجوال؟",
     "q5": "ما صيغ التصدير؟",
-    "q6": "Does PDFWritter support Mermaid diagrams?"
+    "q6": "Does PDFWritter support Mermaid diagrams?",
+    "q7": "Is PDFWritter the same as PDF Writer (pdfwriter.com)?",
+    "a7": "No. PDFWritter at pdfwritter.com is a free online Markdown to PDF converter with Mermaid diagrams and KaTeX math that runs in your browser. It is not the desktop PDF Writer software sold at pdfwriter.com."
   },
   "features": {
     "clientSide": "100% من جانب العميل",
@@ -427,7 +431,10 @@
     "markdownToPdf": "ماركداون إلى PDF",
     "markdownToTxt": "ماركداون إلى TXT",
     "theme": "تبديل السمة",
-    "tools": "الأدوات"
+    "tools": "الأدوات",
+    "chatgptToPdf": "ChatGPT to PDF",
+    "mermaidToPdf": "Mermaid to PDF",
+    "aiToPdf": "AI Markdown to PDF"
   },
   "privacy": {
     "subtitle": "كيف نتعامل مع بياناتك ونحمي خصوصيتك.",

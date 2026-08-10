@@ -8,6 +8,9 @@ PDFWritter (pdfwritter.com) is a free browser-based Markdown converter and edito
 
 - [Free Markdown to PDF Converter | PDFWritter](https://www.pdfwritter.com/): Convert Markdown to PDF, HTML and TXT online for free. Live preview, Mermaid diagram support, syntax highlighting and no signup required.
 - [Markdown to PDF Converter — Free Online Mermaid PDF | PDFWritter](https://www.pdfwritter.com/markdown-to-pdf): Convert Markdown to PDF online for free — md to PDF with live preview, Mermaid diagrams, and KaTeX math. Private browser export, no sign-up.
+- [ChatGPT to PDF — Convert ChatGPT Markdown Free | PDFWritter](https://www.pdfwritter.com/chatgpt-to-pdf): Paste ChatGPT answers (Markdown) and download a clean PDF. Live preview, code, tables, Mermaid — free, private, no sign-up.
+- [AI Markdown to PDF — ChatGPT, Claude, Gemini Free | PDFWritter](https://www.pdfwritter.com/ai-markdown-to-pdf): Convert AI Markdown from ChatGPT, Claude, or Gemini to PDF online. Live preview, Mermaid, KaTeX — free and private.
+- [Mermaid Markdown to PDF — Diagrams in PDF Free | PDFWritter](https://www.pdfwritter.com/mermaid-markdown-to-pdf): Convert Markdown with Mermaid diagrams to PDF online. Flowcharts and sequence diagrams render in live preview — no CLI.
 - [Markdown to HTML — Free Online HTML Export | PDFWritter](https://www.pdfwritter.com/markdown-to-html): Transform Markdown into clean, semantic HTML ready for your website, blog, or email newsletter.
 - [Markdown to TXT — Free Plain Text Online | PDFWritter](https://www.pdfwritter.com/markdown-to-txt): Strip all formatting and export clean plain text. Perfect for emails, notes, or any plain-text context.
 - [Markdown Live Preview — Free Live Preview Online | PDFWritter](https://www.pdfwritter.com/markdown-live-preview): Free online Markdown editor with live preview — write on the left, see rendered output on the right. Sync scroll, Mermaid diagrams, syntax highlighting, and instant PDF export. No login required.

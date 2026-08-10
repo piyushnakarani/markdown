@@ -9,7 +9,9 @@
     "privacyText": "Tu contenido nunca sale de tu navegador. No recopilamos ni almacenamos ningún dato.",
     "privacyTitle": "Promesa de Privacidad",
     "subtitle": "Herramientas Markdown gratuitas, rápidas y privadas",
-    "title": "Acerca de PDFWritter"
+    "title": "Acerca de PDFWritter",
+    "disambiguationTitle": "Not the desktop “PDF Writer” software",
+    "disambiguationText": "PDFWritter (pdfwritter.com) is a free browser tool that converts Markdown to PDF, HTML, and TXT with Mermaid and KaTeX support. It is not related to pdfwriter.com or any desktop PDF Writer / virtual printer products. If you need Markdown → PDF online, you are in the right place."
   },
   "blog": {
     "articleNavigation": "Navegación del artículo",
@@ -118,7 +120,9 @@
     "q3": "¿Qué sintaxis Markdown se soporta?",
     "q4": "¿Puedo usarlo en móvil?",
     "q5": "¿A qué formatos puedo exportar?",
-    "q6": "Does PDFWritter support Mermaid diagrams?"
+    "q6": "Does PDFWritter support Mermaid diagrams?",
+    "q7": "Is PDFWritter the same as PDF Writer (pdfwriter.com)?",
+    "a7": "No. PDFWritter at pdfwritter.com is a free online Markdown to PDF converter with Mermaid diagrams and KaTeX math that runs in your browser. It is not the desktop PDF Writer software sold at pdfwriter.com."
   },
   "features": {
     "clientSide": "100% del Lado del Cliente",
@@ -427,7 +431,10 @@
     "markdownToPdf": "Markdown a PDF",
     "markdownToTxt": "Markdown a TXT",
     "theme": "Cambiar tema",
-    "tools": "Herramientas"
+    "tools": "Herramientas",
+    "chatgptToPdf": "ChatGPT to PDF",
+    "mermaidToPdf": "Mermaid to PDF",
+    "aiToPdf": "AI Markdown to PDF"
   },
   "privacy": {
     "subtitle": "Cómo manejamos sus datos y protegemos su privacidad.",

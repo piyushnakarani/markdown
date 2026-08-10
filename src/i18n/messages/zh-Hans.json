@@ -9,7 +9,9 @@
     "privacyText": "您的内容永远不会离开浏览器。",
     "privacyTitle": "隐私承诺",
     "subtitle": "免费、快速的Markdown工具",
-    "title": "关于PDFWritter"
+    "title": "关于PDFWritter",
+    "disambiguationTitle": "Not the desktop “PDF Writer” software",
+    "disambiguationText": "PDFWritter (pdfwritter.com) is a free browser tool that converts Markdown to PDF, HTML, and TXT with Mermaid and KaTeX support. It is not related to pdfwriter.com or any desktop PDF Writer / virtual printer products. If you need Markdown → PDF online, you are in the right place."
   },
   "blog": {
     "articleNavigation": "文章导航",
@@ -118,7 +120,9 @@
     "q3": "支持什么Markdown语法？",
     "q4": "手机上能用吗？",
     "q5": "可以导出什么格式？",
-    "q6": "Does PDFWritter support Mermaid diagrams?"
+    "q6": "Does PDFWritter support Mermaid diagrams?",
+    "q7": "Is PDFWritter the same as PDF Writer (pdfwriter.com)?",
+    "a7": "No. PDFWritter at pdfwritter.com is a free online Markdown to PDF converter with Mermaid diagrams and KaTeX math that runs in your browser. It is not the desktop PDF Writer software sold at pdfwriter.com."
   },
   "features": {
     "clientSide": "100%客户端",
@@ -427,7 +431,10 @@
     "markdownToPdf": "Markdown转PDF",
     "markdownToTxt": "Markdown转TXT",
     "theme": "切换主题",
-    "tools": "工具"
+    "tools": "工具",
+    "chatgptToPdf": "ChatGPT to PDF",
+    "mermaidToPdf": "Mermaid to PDF",
+    "aiToPdf": "AI Markdown to PDF"
   },
   "privacy": {
     "subtitle": "我们如何处理您的数据并保护您的隐私。",

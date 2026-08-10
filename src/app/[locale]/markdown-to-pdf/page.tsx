@@ -53,7 +53,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     path: '/markdown-to-pdf',
     titleKey: 'markdownToPdf.title',
     descriptionKey: 'markdownToPdf.description',
-    titleSuffix: ' — Free Online Mermaid PDF',
+    titleSuffix: ' — Mermaid & Math, Free Online',
     keywords: withToolBrandKeywords(pdfKeywordsForLocale(locale), 'pdf'),
     image: {
       url: absoluteUrl(PDF_OG_IMAGE.url),
@@ -255,6 +255,46 @@ function MarkdownToPdfContent({ locale }: { locale: string }) {
               ))}
             </div>
           </ScrollReveal>
+        </div>
+      </section>
+
+      <section className="section-py relative">
+        <div className="page-container max-w-4xl">
+          <ScrollReveal>
+            <SectionHeading
+              size="compact"
+              title="Popular Markdown to PDF workflows"
+              subtitle="Capture the searches competitors rank for — same converter, clearer intent pages."
+            />
+          </ScrollReveal>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
+            {[
+              {
+                href: '/chatgpt-to-pdf',
+                title: 'ChatGPT to PDF',
+                desc: 'Paste ChatGPT answers and export a clean PDF.',
+              },
+              {
+                href: '/ai-markdown-to-pdf',
+                title: 'AI Markdown to PDF',
+                desc: 'ChatGPT, Claude, and Gemini → PDF in one place.',
+              },
+              {
+                href: '/mermaid-markdown-to-pdf',
+                title: 'Mermaid to PDF',
+                desc: 'Keep flowcharts and sequence diagrams in the PDF.',
+              },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="card-glass p-5 block hover:border-[#ef4444]/40 transition-colors"
+              >
+                <h3 className="font-semibold mb-1 text-[#ef4444]">{item.title}</h3>
+                <p className="text-sm text-[var(--text-secondary)]">{item.desc}</p>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

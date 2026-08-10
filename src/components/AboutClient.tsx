@@ -16,12 +16,14 @@ import {
   Terminal,
   Zap,
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import MermaidFlowchartPreview from '@/components/MermaidFlowchartPreview';
 import { Link } from '@/i18n/navigation';
 
 export default function AboutClient() {
+  const t = useTranslations('about');
   const [activeStep, setActiveStep] = useState<'input' | 'pdf' | 'html' | 'txt' | 'mermaid'>('input');
 
   const functionalities = [
@@ -139,7 +141,7 @@ flowchart LR
           
           <div className="border-t pt-1 flex justify-between text-[8px] text-gray-400 font-sans">
             <span>Page 1 of 1</span>
-            <span>Generated via markdowntools.com</span>
+            <span>Generated via pdfwritter.com</span>
           </div>
         </div>
       ),
@@ -204,6 +206,25 @@ Markdown Source -> Parser -> Print Document`,
             </p>
           </div>
         </div>
+
+        {/* Brand disambiguation — helps users (and search) separate us from pdfwriter.com */}
+        <section className="relative card-glass p-6 sm:p-8 rounded-2xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/40">
+          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[var(--text-primary)] mb-3">
+            {t('disambiguationTitle')}
+          </h2>
+          <p className="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed max-w-3xl">
+            {t('disambiguationText')}
+          </p>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Link href="/markdown-to-pdf" className="btn-primary text-sm">
+              Markdown to PDF
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link href="/contact" className="btn-secondary text-sm">
+              Contact
+            </Link>
+          </div>
+        </section>
 
         {/* Interactive Simulator: The Conversion Pipeline */}
         <section className="space-y-10">
