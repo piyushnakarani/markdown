@@ -1,4 +1,4 @@
-import { ArrowRight, Check, Code2, Eye, FileText, FileType, GitBranch, PenLine, Sparkles } from 'lucide-react';
+import { ArrowRight, Check, Code2, Eye, FileSpreadsheet, FileText, FileType, GitBranch, PenLine, Sparkles } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 
@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     path: '/free-markdown-converter',
     titleKey: 'freeConverter.title',
     descriptionKey: 'freeConverter.subtitle',
-    titleSuffix: ' — Free PDF, HTML & TXT',
+    titleSuffix: ' — Free PDF, HTML, TXT & DOCX',
     keywords: withToolBrandKeywords(converterKeywordsForLocale(locale), 'converter'),
   });
 }
@@ -36,6 +36,7 @@ function FreeConverterContent({ locale }: { locale: string }) {
     { href: '/ai-markdown-to-pdf', icon: Sparkles, color: '#3b82f6', title: t('nav.aiToPdf'), desc: 'Convert ChatGPT, Claude, or Gemini Markdown to PDF in your browser.' },
     { href: '/markdown-to-html', icon: Code2, color: '#f59e0b', title: t('tools.htmlTitle'), desc: t('tools.htmlDescription') },
     { href: '/markdown-to-txt', icon: FileType, color: '#10b981', title: t('tools.txtTitle'), desc: t('tools.txtDescription') },
+    { href: '/markdown-to-docx', icon: FileSpreadsheet, color: '#3b82f6', title: t('tools.docxTitle'), desc: t('tools.docxDescription') },
     { href: '/markdown-live-preview', icon: Eye, color: '#8b5cf6', title: t('tools.livePreviewTitle'), desc: t('tools.livePreviewDescription') },
     { href: '/editor', icon: PenLine, color: '#6366f1', title: t('tools.editorTitle'), desc: t('tools.editorDescription') },
   ];

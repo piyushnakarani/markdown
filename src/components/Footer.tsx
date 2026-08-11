@@ -22,6 +22,7 @@ export default function Footer() {
     { href: '/ai-markdown-to-pdf', label: 'aiToPdf' },
     { href: '/markdown-to-html', label: 'markdownToHtml' },
     { href: '/markdown-to-txt', label: 'markdownToTxt' },
+    { href: '/markdown-to-docx', label: 'markdownToDocx' },
     { href: '/markdown-live-preview', label: 'markdownLivePreview' },
     { href: '/editor', label: 'editor' },
     { href: '/free-markdown-converter', label: 'freeConverter' },

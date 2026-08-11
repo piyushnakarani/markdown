@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Free Markdown converter with diagram support. Convert Markdown with Mermaid charts to PDF, HTML, and TXT at pdfwritter.com.",
+    "Free Markdown converter with diagram support. Convert Markdown with Mermaid charts to PDF, HTML, TXT, and DOCX at pdfwritter.com.",
   icons: {
     icon: [
       { url: '/favicon.ico' },

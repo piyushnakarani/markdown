@@ -8,6 +8,7 @@ import {
   Download,
   Eye,
   FileCode,
+  FileSpreadsheet,
   FileText,
   FileType,
   FileUp,
@@ -42,12 +43,19 @@ import {
   getHtmlExportStages,
   getPdfExportStages,
   getTxtExportStages,
+  getDocxExportStages,
   markdownHasMermaid,
   readFileAsText,
 } from '@/lib/converters';
+import { buildDocxDocument, downloadDocxBlob } from '@/lib/docx-export';
 import { syncProportionalScroll } from '@/lib/editor-scroll-sync';
+import {
+  applyMarkdownPaste,
+  normalizeMermaidInMarkdown,
+  pastedTextHasRawMermaid,
+} from '@/lib/mermaid-normalize';
 
-export type ConvertType = 'pdf' | 'html' | 'txt';
+export type ConvertType = 'pdf' | 'html' | 'txt' | 'docx';
 
 const DEFAULT_MD = `# My Document
 
@@ -70,6 +78,7 @@ const FORMAT: Record<
   pdf: { label: 'PDF', gradient: 'from-red-600 to-orange-500', icon: FileText, ext: 'pdf' },
   html: { label: 'HTML', gradient: 'from-amber-600 to-yellow-500', icon: FileCode, ext: 'html' },
   txt: { label: 'TXT', gradient: 'from-emerald-600 to-green-500', icon: FileType, ext: 'txt' },
+  docx: { label: 'DOCX', gradient: 'from-blue-600 to-indigo-500', icon: FileSpreadsheet, ext: 'docx' },
 };
 
 export default function ConverterTool({ type }: { type: ConvertType }) {
@@ -79,7 +88,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
 
   const [markdown, setMarkdown] = useState(DEFAULT_MD);
   const [fileName, setFileName] = useState('');
-  const [exporting, setExporting] = useState<'pdf' | 'html' | 'txt' | null>(null);
+  const [exporting, setExporting] = useState<'pdf' | 'html' | 'txt' | 'docx' | null>(null);
   const [exportStage, setExportStage] = useState<ExportProgressStage>('preparing');
   const [exportStages, setExportStages] = useState<ExportProgressStage[]>([]);
   const [copied, setCopied] = useState(false);
@@ -122,7 +131,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
       return;
     }
     try {
-      const text = await readFileAsText(file);
+      const text = normalizeMermaidInMarkdown(await readFileAsText(file));
       setMarkdown(text);
       setFileName(file.name);
       showToast(t('fileLoaded'));
@@ -152,7 +161,9 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
         ? getPdfExportStages(hasMermaid)
         : type === 'html'
           ? getHtmlExportStages(hasMermaid)
-          : getTxtExportStages();
+          : type === 'docx'
+            ? getDocxExportStages(hasMermaid)
+            : getTxtExportStages();
     setExportStages(stages);
     setExportStage(stages[0]);
     setExporting(type);
@@ -171,6 +182,10 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
         const fullHtml = await buildHtmlDocument(markdown, name, onProgress);
         onProgress('finalizing');
         downloadFile(fullHtml, `${name}.html`, 'text/html');
+      } else if (type === 'docx') {
+        const blob = await buildDocxDocument(markdown, `${name}.docx`, onProgress);
+        onProgress('finalizing');
+        downloadDocxBlob(blob, `${name}.docx`);
       } else {
         const txt = await buildTxtDocument(markdown, `${name}.txt`, onProgress);
         onProgress('finalizing');
@@ -244,10 +259,24 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
     });
   };
 
+  const handlePaste = (e: React.ClipboardEvent<HTMLTextAreaElement>) => {
+    const pasted = e.clipboardData.getData('text/plain');
+    if (!pastedTextHasRawMermaid(pasted)) return;
+
+    e.preventDefault();
+    const ta = e.currentTarget;
+    const { text, cursor } = applyMarkdownPaste(markdown, pasted, ta.selectionStart, ta.selectionEnd);
+    setMarkdown(text);
+    requestAnimationFrame(() => {
+      ta.focus();
+      ta.setSelectionRange(cursor, cursor);
+    });
+  };
+
   const ExportIcon = fmt.icon;
 
   const exportVariant: EditorToolbarActionVariant =
-    type === 'pdf' ? 'pdf' : type === 'html' ? 'html' : 'txt';
+    type === 'pdf' ? 'pdf' : type === 'html' ? 'html' : type === 'docx' ? 'docx' : 'txt';
 
   const toolbarActions: EditorToolbarAction[] = [
     ...(type !== 'pdf'
@@ -403,6 +432,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
               ref={textareaRef}
               value={markdown}
               onChange={(e) => setMarkdown(e.target.value)}
+              onPaste={handlePaste}
               onScroll={handleTextareaScroll}
               placeholder={t('pasteHere')}
               className="editor-textarea"
@@ -417,7 +447,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
         <div className={`flex flex-col min-h-0 bg-[var(--bg-primary)] ${activeTab !== 'preview' ? 'hidden md:flex' : 'flex'}`}>
           <div className="editor-pane-header">
             <div className="flex items-center gap-2 text-xs font-bold text-[var(--text-secondary)]">
-              <ExportIcon className="w-4 h-4" style={{ color: type === 'pdf' ? '#8b5cf6' : type === 'html' ? '#f59e0b' : '#10b981' }} />
+              <ExportIcon className="w-4 h-4" style={{ color: type === 'pdf' ? '#8b5cf6' : type === 'html' ? '#f59e0b' : type === 'docx' ? '#3b82f6' : '#10b981' }} />
               {type === 'txt' ? t('outputTitle') : te('previewTab')}
             </div>
 

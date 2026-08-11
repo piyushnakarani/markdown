@@ -2257,9 +2257,16 @@ body::before {
   box-shadow: 0 2px 8px rgba(5, 150, 105, 0.25);
 }
 
+.editor-toolbar-action--docx {
+  background: linear-gradient(135deg, #2563eb 0%, #6366f1 100%);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+}
+
 .editor-toolbar-action--pdf:hover:not(:disabled),
 .editor-toolbar-action--html:hover:not(:disabled),
 .editor-toolbar-action--txt:hover:not(:disabled),
+.editor-toolbar-action--docx:hover:not(:disabled),
 .editor-toolbar-action--download:hover:not(:disabled) {
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
 }

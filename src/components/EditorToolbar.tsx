@@ -11,6 +11,7 @@ export type EditorToolbarActionVariant =
   | 'pdf'
   | 'html'
   | 'txt'
+  | 'docx'
   | 'danger'
   | 'download';
 
@@ -31,6 +32,7 @@ const VARIANT_SHORT_LABELS: Partial<Record<EditorToolbarActionVariant, string>> 
   pdf: 'PDF',
   html: 'HTML',
   txt: 'TXT',
+  docx: 'DOCX',
 };
 
 export function EditorToolbarBar({

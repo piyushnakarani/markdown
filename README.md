@@ -1,6 +1,6 @@
 # PDFWritter (pdfwritter.com)
 
-Free **Markdown converter with diagram** support. Convert Markdown with Mermaid flowcharts and charts to PDF, HTML, and TXT.
+Free **Markdown converter with diagram** support. Convert Markdown with Mermaid flowcharts and charts to PDF, HTML, TXT, and DOCX.
 
 ## Getting Started
 

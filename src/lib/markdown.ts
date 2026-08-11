@@ -3,6 +3,7 @@ import katex from 'katex';
 import { marked } from 'marked';
 import markedKatex from 'marked-katex-extension';
 
+import { normalizeMermaidInMarkdown } from './mermaid-normalize';
 import { mermaidCodeToHtml } from './mermaid-render';
 
 let markedReady = false;
@@ -51,5 +52,6 @@ function ensureMarkedConfigured() {
 
 export async function convertMarkdownToHtml(markdown: string): Promise<string> {
   ensureMarkedConfigured();
-  return marked.parse(isolateDisplayMath(markdown)) as string;
+  const normalized = normalizeMermaidInMarkdown(markdown);
+  return marked.parse(isolateDisplayMath(normalized)) as string;
 }

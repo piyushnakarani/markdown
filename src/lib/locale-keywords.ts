@@ -540,13 +540,89 @@ export function txtKeywordsForLocale(locale: string): string[] {
 }
 
 /* -------------------------------------------------------------------------- */
+/* Markdown → DOCX                                                              */
+/* -------------------------------------------------------------------------- */
+
+export const SHARED_DOCX_KEYWORDS = [
+  'markdown to docx',
+  'markdown to word',
+  'md to docx',
+  'convert markdown to docx online',
+] as const;
+
+export const LOCALE_DOCX_KEYWORDS: LocaleKeywordMap = {
+  en: [
+    'convert markdown to docx free',
+    'markdown to word document online',
+    'markdown to docx no signup',
+    'md to docx converter',
+    'export markdown to word',
+    'markdown to docx with mermaid',
+  ],
+  es: [
+    'convertir markdown a docx gratis',
+    'markdown a word online',
+    'markdown a docx sin registro',
+    'convertir markdown a word',
+  ],
+  fr: [
+    'convertir markdown en docx gratuitement',
+    'markdown en word sans inscription',
+    'convertisseur markdown vers docx',
+  ],
+  de: [
+    'markdown zu docx kostenlos',
+    'markdown in word umwandeln online',
+    'markdown zu docx ohne anmeldung',
+    'md zu docx konverter',
+  ],
+  pt: [
+    'converter markdown para docx grátis',
+    'markdown para word online',
+    'markdown para docx sem cadastro',
+  ],
+  ar: [
+    'تحويل markdown إلى docx مجانا',
+    'محول markdown إلى word',
+  ],
+  'zh-Hans': [
+    '免费 markdown 转 docx',
+    'markdown 转 word 在线',
+    'markdown转docx 无需注册',
+  ],
+  ja: [
+    'markdown docx 変換 無料',
+    'markdownをwordに変換',
+    'md docx 変換 オンライン',
+  ],
+  ko: [
+    '마크다운 docx 변환 무료',
+    '마크다운을 word로 변환',
+    'md to docx 온라인',
+  ],
+  bn: [
+    'markdown to docx',
+    'মার্কডাউন টু docx',
+  ],
+  ru: [
+    'markdown в docx бесплатно',
+    'конвертировать markdown в word',
+    'markdown в docx без регистрации',
+  ],
+};
+
+export function docxKeywordsForLocale(locale: string): string[] {
+  return keywordsForLocale(locale, LOCALE_DOCX_KEYWORDS, SHARED_DOCX_KEYWORDS);
+}
+
+/* -------------------------------------------------------------------------- */
 /* Free converter hub — multi-format, not PDF-head cannibalization             */
 /* -------------------------------------------------------------------------- */
 
 export const SHARED_CONVERTER_KEYWORDS = [
   'free markdown converter online',
   'markdown converter no signup',
-  'convert markdown to pdf html txt',
+  'convert markdown to pdf html txt docx',
   'online markdown converter',
 ] as const;
 
@@ -558,6 +634,7 @@ export const LOCALE_CONVERTER_KEYWORDS: LocaleKeywordMap = {
     'markdown file converter free',
     'convert markdown file online free',
     'best free markdown converter 2026',
+    'convert markdown to docx online free',
   ],
   es: [
     'convertidor markdown gratis online',

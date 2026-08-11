@@ -51,6 +51,11 @@ import {
   readFileAsText,
 } from '@/lib/converters';
 import { syncProportionalScroll } from '@/lib/editor-scroll-sync';
+import {
+  applyMarkdownPaste,
+  normalizeMermaidInMarkdown,
+  pastedTextHasRawMermaid,
+} from '@/lib/mermaid-normalize';
 
 const EMBEDDED_DEFAULT_MARKDOWN = `# Premium Markdown
 
@@ -235,7 +240,7 @@ export default function EditorClient({
   const handleFileUpload = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    const text = await readFileAsText(file);
+    const text = normalizeMermaidInMarkdown(await readFileAsText(file));
     setMarkdown(text);
     event('upload_file', {
       file_name: file.name,
@@ -261,7 +266,7 @@ export default function EditorClient({
     setIsDragging(false);
     const file = e.dataTransfer.files?.[0];
     if (file) {
-      const text = await readFileAsText(file);
+      const text = normalizeMermaidInMarkdown(await readFileAsText(file));
       setMarkdown(text);
       event('upload_file', {
         file_name: file.name,
@@ -353,6 +358,20 @@ export default function EditorClient({
       variant,
     });
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handlePaste = (e: React.ClipboardEvent<HTMLTextAreaElement>) => {
+    const pasted = e.clipboardData.getData('text/plain');
+    if (!pastedTextHasRawMermaid(pasted)) return;
+
+    e.preventDefault();
+    const ta = e.currentTarget;
+    const { text, cursor } = applyMarkdownPaste(markdown, pasted, ta.selectionStart, ta.selectionEnd);
+    setMarkdown(text);
+    requestAnimationFrame(() => {
+      ta.focus();
+      ta.setSelectionRange(cursor, cursor);
+    });
   };
 
   // Generate mock line numbers
@@ -561,6 +580,7 @@ export default function EditorClient({
               ref={textareaRef}
               value={markdown}
               onChange={(e) => setMarkdown(e.target.value)}
+              onPaste={handlePaste}
               onScroll={handleTextareaScroll}
               className="editor-textarea"
               spellCheck={false}
