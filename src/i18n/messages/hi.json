@@ -472,7 +472,10 @@
     "txtTitle": "मार्कडाउन से TXT",
     "docxTitle": "मार्कडाउन से DOCX",
     "docxDescription": "मार्कडाउन को संपादन योग्य Word (.docx) दस्तावेज़ में बदलें — शीर्षक, सूचियाँ, तालिकाएँ और Mermaid आरेख के साथ।",
-    "docxBadge": "Word निर्यात"
+    "docxBadge": "Word निर्यात",
+    "chatgptDescription": "ChatGPT उत्तर पेस्ट करें और साफ़ PDF डाउनलोड करें — मुफ़्त और निजी।",
+    "mermaidDescription": "Mermaid फ़्लोचार्ट और डायग्राम वाला Markdown PDF में निर्यात करें।",
+    "aiDescription": "ब्राउज़र में ChatGPT, Claude या Gemini Markdown को PDF में बदलें।"
   },
   "trust": {
     "fast": "तेजी से रूपांतरण",

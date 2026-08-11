@@ -472,7 +472,10 @@
     "txtTitle": "Markdown转TXT",
     "docxTitle": "Markdown转DOCX",
     "docxDescription": "将 Markdown 转换为可编辑的 Word (.docx) 文档，支持标题、列表、表格和 Mermaid 图表。",
-    "docxBadge": "Word 文档导出"
+    "docxBadge": "Word 文档导出",
+    "chatgptDescription": "粘贴 ChatGPT 回答并下载干净的 PDF — 免费且私密。",
+    "mermaidDescription": "将含 Mermaid 流程图与图表的 Markdown 导出为 PDF。",
+    "aiDescription": "在浏览器中将 ChatGPT、Claude 或 Gemini 的 Markdown 转为 PDF。"
   },
   "trust": {
     "fast": "快速转换",

@@ -472,7 +472,10 @@
     "txtTitle": "মার্কডাউন থেকে TXT",
     "docxTitle": "মার্কডাউন থেকে DOCX",
     "docxDescription": "মার্কডাউন সম্পাদনযোগ্য Word (.docx) ডকুমেন্টে রূপান্তর করুন — শিরোনাম, তালিকা, টেবিল ও Mermaid ডায়াগ্রাম সহ।",
-    "docxBadge": "Word এক্সপোর্ট"
+    "docxBadge": "Word এক্সপোর্ট",
+    "chatgptDescription": "ChatGPT উত্তর পেস্ট করে পরিষ্কার PDF ডাউনলোড করুন — বিনামূল্যে ও ব্যক্তিগত।",
+    "mermaidDescription": "Mermaid ফ্লোচার্ট ও ডায়াগ্রামসহ Markdown PDF-এ এক্সপোর্ট করুন।",
+    "aiDescription": "ব্রাউজারে ChatGPT, Claude বা Gemini Markdown কে PDF-এ রূপান্তর করুন।"
   },
   "trust": {
     "fast": "দ্রুত রূপান্তর",

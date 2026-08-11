@@ -73,40 +73,36 @@ export default async function MarkdownToPdfPage({ params }: { params: Promise<{ 
 function MarkdownToPdfContent({ locale }: { locale: string }) {
   const t = useTranslations('markdownToPdf');
 
+  const accent = '#ef4444';
+
   const howSteps = [
     {
       icon: Upload,
       num: '01',
-      color: '#3b82f6',
-      bg: 'from-blue-500/15 to-indigo-500/5',
       title: t('howStep1Title'),
       desc: t('howStep1Desc'),
     },
     {
       icon: Eye,
       num: '02',
-      color: '#8b5cf6',
-      bg: 'from-violet-500/15 to-purple-500/5',
       title: t('howStep2Title'),
       desc: t('howStep2Desc'),
     },
     {
       icon: Download,
       num: '03',
-      color: '#ef4444',
-      bg: 'from-red-500/15 to-orange-500/5',
       title: t('howStep3Title'),
       desc: t('howStep3Desc'),
     },
   ];
 
   const features = [
-    { icon: Monitor, title: t('feature1Title'), desc: t('feature1Desc'), color: '#3b82f6' },
-    { icon: GitBranch, title: t('feature2Title'), desc: t('feature2Desc'), color: '#f59e0b' },
-    { icon: Shield, title: t('feature3Title'), desc: t('feature3Desc'), color: '#10b981' },
-    { icon: Upload, title: t('feature4Title'), desc: t('feature4Desc'), color: '#6366f1' },
-    { icon: FileText, title: t('feature5Title'), desc: t('feature5Desc'), color: '#ec4899' },
-    { icon: Sparkles, title: t('feature6Title'), desc: t('feature6Desc'), color: '#06b6d4' },
+    { icon: Monitor, title: t('feature1Title'), desc: t('feature1Desc') },
+    { icon: GitBranch, title: t('feature2Title'), desc: t('feature2Desc') },
+    { icon: Shield, title: t('feature3Title'), desc: t('feature3Desc') },
+    { icon: Upload, title: t('feature4Title'), desc: t('feature4Desc') },
+    { icon: FileText, title: t('feature5Title'), desc: t('feature5Desc') },
+    { icon: Sparkles, title: t('feature6Title'), desc: t('feature6Desc') },
   ];
 
   const compareRows = [
@@ -137,24 +133,21 @@ function MarkdownToPdfContent({ locale }: { locale: string }) {
         title={
           <>
             {t('heroBefore')}
-            <span className="bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
-              {t('heroHighlight')}
-            </span>
+            <span style={{ color: accent }}>{t('heroHighlight')}</span>
             {t('heroAfter')}
           </>
         }
         subtitle={t('description')}
-        accentColor="#f87171"
-        glowColor="rgba(239,68,68,0.08)"
+        accentColor={accent}
       />
 
       <ConverterTool type="pdf" />
 
-      <section className="section-py relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(239,68,68,0.05),transparent_65%)] pointer-events-none" />
+      <section className="section-py relative">
         <div className="relative page-container">
           <ScrollReveal>
             <SectionHeading
+              size="compact"
               badge={t('howBadge')}
               title={t('howTitle')}
               subtitle={t('howSubtitle')}
@@ -164,24 +157,20 @@ function MarkdownToPdfContent({ locale }: { locale: string }) {
           <div className="workflow-steps">
             {howSteps.map((step, i) => (
               <Fragment key={step.num}>
-                <ScrollReveal delay={i * 100}>
+                <ScrollReveal delay={i * 80}>
                   <article
                     className="workflow-step group h-full"
                     data-step={step.num}
-                    style={{ '--step-color': step.color } as CSSProperties}
+                    style={{ '--step-color': accent } as CSSProperties}
                   >
-                    <div className="workflow-step-glow" aria-hidden />
                     <div className="relative z-10">
-                      <div className="flex items-start justify-between gap-4 mb-5">
-                        <div
-                          className={`workflow-step-icon bg-gradient-to-br ${step.bg}`}
-                          style={{ color: step.color }}
-                        >
-                          <step.icon className="w-6 h-6" strokeWidth={2} />
+                      <div className="flex items-start justify-between gap-3 mb-4">
+                        <div className="workflow-step-icon" style={{ color: accent }}>
+                          <step.icon className="w-5 h-5" strokeWidth={2} />
                         </div>
                         <span className="workflow-step-badge">{step.num}</span>
                       </div>
-                      <h3 className="workflow-step-title text-lg font-bold mb-2 tracking-tight">
+                      <h3 className="workflow-step-title text-base font-semibold mb-1.5 tracking-tight">
                         {step.title}
                       </h3>
                       <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{step.desc}</p>
@@ -191,7 +180,7 @@ function MarkdownToPdfContent({ locale }: { locale: string }) {
                 {i < howSteps.length - 1 && (
                   <div className="workflow-connector hidden md:flex" aria-hidden>
                     <div className="workflow-connector-line" />
-                    <MousePointerClick className="workflow-connector-arrow w-5 h-5 shrink-0 opacity-40" />
+                    <MousePointerClick className="workflow-connector-arrow w-4 h-4 shrink-0 opacity-40" />
                   </div>
                 )}
               </Fragment>
@@ -200,7 +189,7 @@ function MarkdownToPdfContent({ locale }: { locale: string }) {
         </div>
       </section>
 
-      <section className="section-py relative">
+      <section className="section-py section-divider relative">
         <div className="page-container">
           <ScrollReveal>
             <SectionHeading
@@ -210,17 +199,17 @@ function MarkdownToPdfContent({ locale }: { locale: string }) {
             />
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {features.map((feature, i) => (
               <ScrollReveal key={feature.title} delay={i * 60}>
-                <div className="card-glass group p-6 hover-lift h-full">
+                <div className="card-glass group h-full">
                   <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center mb-4"
-                    style={{ background: `${feature.color}14` }}
+                    className="w-8 h-8 rounded-md flex items-center justify-center mb-3 border border-[var(--border-color)]"
+                    style={{ background: `color-mix(in srgb, ${accent} 10%, transparent)` }}
                   >
-                    <feature.icon className="w-5 h-5" style={{ color: feature.color }} />
+                    <feature.icon className="w-4 h-4" style={{ color: accent }} />
                   </div>
-                  <h3 className="text-base font-semibold mb-2">{feature.title}</h3>
+                  <h3 className="text-sm font-semibold mb-1.5">{feature.title}</h3>
                   <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{feature.desc}</p>
                 </div>
               </ScrollReveal>
@@ -229,26 +218,26 @@ function MarkdownToPdfContent({ locale }: { locale: string }) {
         </div>
       </section>
 
-      <section className="section-py relative bg-[var(--bg-secondary)]/30">
+      <section className="section-py relative">
         <div className="page-container max-w-4xl">
           <ScrollReveal>
             <SectionHeading size="compact" title={t('compareTitle')} />
           </ScrollReveal>
           <ScrollReveal delay={80}>
-            <div className="card-glass overflow-hidden mt-8">
-              <div className="grid grid-cols-2 border-b border-[var(--border-color)] bg-[var(--bg-secondary)]/50">
-                <div className="px-5 py-4 text-sm font-bold text-[#ef4444]">{t('compareUs')}</div>
-                <div className="px-5 py-4 text-sm font-bold text-[var(--text-tertiary)] border-l border-[var(--border-color)]">
+            <div className="rounded-lg border border-[var(--border-color)] bg-[var(--bg-primary)] overflow-hidden">
+              <div className="grid grid-cols-2 border-b border-[var(--border-color)] bg-[var(--bg-tertiary)]">
+                <div className="px-4 py-2.5 text-sm font-semibold" style={{ color: accent }}>{t('compareUs')}</div>
+                <div className="px-4 py-2.5 text-sm font-semibold text-[var(--text-tertiary)] border-l border-[var(--border-color)]">
                   {t('compareThem')}
                 </div>
               </div>
               {compareRows.map((row) => (
                 <div key={row.us} className="grid grid-cols-2 border-b border-[var(--border-color)] last:border-b-0">
-                  <div className="px-5 py-4 text-sm text-[var(--text-secondary)] flex items-start gap-2">
-                    <Check className="w-4 h-4 text-[#10b981] shrink-0 mt-0.5" />
+                  <div className="px-4 py-2.5 text-sm text-[var(--text-secondary)] flex items-start gap-2">
+                    <Check className="w-3.5 h-3.5 text-[var(--accent)] shrink-0 mt-0.5" />
                     {row.us}
                   </div>
-                  <div className="px-5 py-4 text-sm text-[var(--text-tertiary)] border-l border-[var(--border-color)]">
+                  <div className="px-4 py-2.5 text-sm text-[var(--text-tertiary)] border-l border-[var(--border-color)]">
                     {row.them}
                   </div>
                 </div>
@@ -258,7 +247,7 @@ function MarkdownToPdfContent({ locale }: { locale: string }) {
         </div>
       </section>
 
-      <section className="section-py relative">
+      <section className="section-py section-divider relative">
         <div className="page-container max-w-4xl">
           <ScrollReveal>
             <SectionHeading
@@ -267,7 +256,7 @@ function MarkdownToPdfContent({ locale }: { locale: string }) {
               subtitle="Capture the searches competitors rank for — same converter, clearer intent pages."
             />
           </ScrollReveal>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {[
               {
                 href: '/chatgpt-to-pdf',
@@ -288,9 +277,9 @@ function MarkdownToPdfContent({ locale }: { locale: string }) {
               <Link
                 key={item.href}
                 href={item.href}
-                className="card-glass p-5 block hover:border-[#ef4444]/40 transition-colors"
+                className="card-glass block hover:border-[var(--border-hover)] transition-colors cursor-pointer"
               >
-                <h3 className="font-semibold mb-1 text-[#ef4444]">{item.title}</h3>
+                <h3 className="text-sm font-semibold mb-1" style={{ color: accent }}>{item.title}</h3>
                 <p className="text-sm text-[var(--text-secondary)]">{item.desc}</p>
               </Link>
             ))}
@@ -298,7 +287,7 @@ function MarkdownToPdfContent({ locale }: { locale: string }) {
         </div>
       </section>
 
-      <RelatedBlogGuides toolKey="markdown-to-pdf" accentColor="#ef4444" />
+      <RelatedBlogGuides toolKey="markdown-to-pdf" accentColor={accent} />
 
       <section className="section-py relative">
         <div className="page-container max-w-3xl">
@@ -311,11 +300,11 @@ function MarkdownToPdfContent({ locale }: { locale: string }) {
         </div>
       </section>
 
-      <section className="pb-20">
+      <section className="pb-16">
         <div className="page-container max-w-4xl">
-          <div className="card-glass p-8 sm:p-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div className="card-glass p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
-              <h2 className="text-xl font-bold mb-2">{t('ctaTitle')}</h2>
+              <h2 className="text-base font-semibold mb-1">{t('ctaTitle')}</h2>
               <p className="text-sm text-[var(--text-secondary)]">{t('ctaDescription')}</p>
             </div>
             <Link href="/markdown-live-preview" className="btn-primary shrink-0">

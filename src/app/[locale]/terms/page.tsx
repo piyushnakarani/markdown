@@ -26,7 +26,7 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
         badgeIcon={Scale}
         title="Simple, Developer-Friendly Terms"
         subtitle="PDFWritter is a free web utility. Read our usage guidelines and disclaimer rules below."
-        accentColor="#3b82f6"
+        accentColor="var(--accent)"
         glowColor="rgba(59, 130, 246, 0.08)"
       />
 

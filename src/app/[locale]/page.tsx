@@ -1,16 +1,12 @@
 import {
-  ArrowRight,
   Code2,
   Eye,
   FileSpreadsheet,
   FileText,
   FileType,
-  Globe,
-  Lock,
-  Monitor,
-  Shield,
+  GitBranch,
+  PenLine,
   Sparkles,
-  Zap,
 } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
@@ -24,7 +20,6 @@ import FAQAccordion from '@/components/FAQAccordion';
 import HowItWorksSection from '@/components/HowItWorksSection';
 import ScrollReveal from '@/components/ScrollReveal';
 import SectionHeading from '@/components/SectionHeading';
-import TrustSection from '@/components/TrustSection';
 import { Link } from '@/i18n/navigation';
 import { buildPageMetadata } from '@/lib/site';
 import { buildSpeakableJsonLd } from '@/lib/structured-data';
@@ -59,66 +54,65 @@ function HomeContent({ locale }: { locale: string }) {
       href: '/markdown-to-pdf',
       icon: FileText,
       color: '#ef4444',
-      bg: 'from-red-500/15 to-orange-500/5',
-      gradient: 'from-red-500 to-orange-500',
       title: t('tools.pdfTitle'),
       desc: t('tools.pdfDescription'),
-      flow: ['MD', 'PDF'],
-      speed: '~12ms',
+    },
+    {
+      href: '/chatgpt-to-pdf',
+      icon: Sparkles,
+      color: '#10a37f',
+      title: t('nav.chatgptToPdf'),
+      desc: t('tools.chatgptDescription'),
+    },
+    {
+      href: '/mermaid-markdown-to-pdf',
+      icon: GitBranch,
+      color: '#8b5cf6',
+      title: t('nav.mermaidToPdf'),
+      desc: t('tools.mermaidDescription'),
+    },
+    {
+      href: '/ai-markdown-to-pdf',
+      icon: Sparkles,
+      color: '#3b82f6',
+      title: t('nav.aiToPdf'),
+      desc: t('tools.aiDescription'),
     },
     {
       href: '/markdown-to-html',
       icon: Code2,
       color: '#f59e0b',
-      bg: 'from-amber-500/15 to-yellow-500/5',
-      gradient: 'from-amber-500 to-yellow-500',
       title: t('tools.htmlTitle'),
       desc: t('tools.htmlDescription'),
-      flow: ['MD', 'HTML'],
-      speed: '~8ms',
     },
     {
       href: '/markdown-to-txt',
       icon: FileType,
       color: '#10b981',
-      bg: 'from-emerald-500/15 to-green-500/5',
-      gradient: 'from-emerald-500 to-green-500',
       title: t('tools.txtTitle'),
       desc: t('tools.txtDescription'),
-      flow: ['MD', 'TXT'],
-      speed: '~5ms',
     },
     {
       href: '/markdown-to-docx',
       icon: FileSpreadsheet,
       color: '#3b82f6',
-      bg: 'from-blue-500/15 to-indigo-500/5',
-      gradient: 'from-blue-500 to-indigo-500',
       title: t('tools.docxTitle'),
       desc: t('tools.docxDescription'),
-      flow: ['MD', 'DOCX'],
-      speed: '~15ms',
     },
     {
       href: '/markdown-live-preview',
       icon: Eye,
       color: '#8b5cf6',
-      bg: 'from-violet-500/15 to-purple-500/5',
-      gradient: 'from-violet-500 to-purple-500',
       title: t('tools.livePreviewTitle'),
       desc: t('tools.livePreviewDescription'),
-      flow: ['MD', 'LIVE'],
-      speed: 'Real-time',
     },
-  ];
-
-  const features = [
-    { icon: Zap, title: t('features.clientSide'), desc: t('features.clientSideDesc'), color: '#3b82f6' },
-    { icon: Sparkles, title: t('features.fast'), desc: t('features.fastDesc'), color: '#f59e0b' },
-    { icon: Shield, title: t('features.free'), desc: t('features.freeDesc'), color: '#10b981' },
-    { icon: Globe, title: t('features.multilingual'), desc: t('features.multilingualDesc'), color: '#06b6d4' },
-    { icon: Monitor, title: t('features.responsive'), desc: t('features.responsiveDesc'), color: '#ec4899' },
-    { icon: Lock, title: t('features.secure'), desc: t('features.secureDesc'), color: '#8b5cf6' },
+    {
+      href: '/editor',
+      icon: PenLine,
+      color: '#6366f1',
+      title: t('tools.editorTitle'),
+      desc: t('tools.editorDescription'),
+    },
   ];
 
   const faqs = [
@@ -134,10 +128,8 @@ function HomeContent({ locale }: { locale: string }) {
   return (
     <>
       {/* ===== HERO + LIVE EDITOR ===== */}
-      <section className="home-hero relative overflow-hidden">
+      <section className="home-hero relative overflow-hidden border-b border-[var(--border-color)]">
         <div className="home-hero-bg" aria-hidden />
-        <div className="home-hero-glow" aria-hidden />
-        <div className="absolute inset-0 mesh-grid opacity-25 pointer-events-none" aria-hidden />
 
         <div className="relative home-hero-inner">
           <header className="home-hero-copy">
@@ -165,20 +157,20 @@ function HomeContent({ locale }: { locale: string }) {
             />
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {tools.map((tool, i) => (
-              <ScrollReveal key={tool.href} delay={i * 80}>
-                <Link href={tool.href} className="tool-card group block h-full">
-                  <div className="flex items-center justify-start gap-3 mb-4">
-                    <div className={`w-11 h-11 rounded-xl bg-linear-to-br ${tool.bg} flex items-center justify-center shrink-0`}>
-                      <tool.icon className="w-5 h-5" style={{ color: tool.color }} />
+              <ScrollReveal key={tool.href} delay={i * 60}>
+                <Link href={tool.href} className="tool-card group block h-full cursor-pointer">
+                  <div className="flex items-center justify-start gap-2.5 mb-3">
+                    <div className="w-9 h-9 rounded-md flex items-center justify-center shrink-0 border border-[var(--border-color)] bg-[var(--bg-secondary)]">
+                      <tool.icon className="w-4 h-4" style={{ color: tool.color }} />
                     </div>
-                    <h3 className="text-base font-semibold group-hover:text-[#3b82f6] transition-colors">
+                    <h3 className="text-sm font-semibold group-hover:text-[var(--accent)] transition-colors">
                       {tool.title}
                     </h3>
                   </div>
-                  
-                  <p className="text-sm text-(--text-secondary) leading-relaxed line-clamp-2">
+
+                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed line-clamp-2">
                     {tool.desc}
                   </p>
                 </Link>
@@ -243,21 +235,21 @@ function HomeContent({ locale }: { locale: string }) {
               <p>{th('aboutParagraph2')}</p>
               <p>
                 {th('aboutParagraph3')}{' '}
-                <Link href="/blog/how-to-convert-markdown-to-pdf-online" locale="en" className="text-[#3b82f6] hover:underline">
+                <Link href="/blog/how-to-convert-markdown-to-pdf-online" locale="en" className="text-[var(--accent)] hover:underline">
                   {th('aboutLinkPdf')}
                 </Link>
                 {', '}
-                <Link href="/blog/render-mermaid-diagrams-markdown" locale="en" className="text-[#3b82f6] hover:underline">
+                <Link href="/blog/render-mermaid-diagrams-markdown" locale="en" className="text-[var(--accent)] hover:underline">
                   {th('aboutLinkMermaid')}
                 </Link>
                 {', and '}
-                <Link href="/blog/beginner-guide-markdown" locale="en" className="text-[#3b82f6] hover:underline">
+                <Link href="/blog/beginner-guide-markdown" locale="en" className="text-[var(--accent)] hover:underline">
                   {th('aboutLinkBeginner')}
                 </Link>
                 .
               </p>
               <p>
-                PDFWritter builds upon open standards. We fully support the <a href="https://github.github.com/gfm/" target="_blank" rel="noopener noreferrer" className="text-[#3b82f6] hover:underline">GitHub Flavored Markdown (GFM)</a> specification for core formatting and integrate <a href="https://mermaid.js.org/" target="_blank" rel="noopener noreferrer" className="text-[#3b82f6] hover:underline">Mermaid.js</a> for native diagram generation. For command-line desktop alternatives, consider <a href="https://pandoc.org/" target="_blank" rel="noopener noreferrer" className="text-[#3b82f6] hover:underline">Pandoc</a>.
+                PDFWritter builds upon open standards. We fully support the <a href="https://github.github.com/gfm/" target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] hover:underline">GitHub Flavored Markdown (GFM)</a> specification for core formatting and integrate <a href="https://mermaid.js.org/" target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] hover:underline">Mermaid.js</a> for native diagram generation. For command-line desktop alternatives, consider <a href="https://pandoc.org/" target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] hover:underline">Pandoc</a>.
               </p>
             </div>
           </ScrollReveal>
@@ -275,17 +267,17 @@ function HomeContent({ locale }: { locale: string }) {
             />
           </ScrollReveal>
           <ScrollReveal delay={80}>
-            <div className="overflow-x-auto rounded-2xl border border-(--border-color) bg-(--bg-secondary)/40">
+            <div className="overflow-x-auto rounded-lg border border-[var(--border-color)] bg-[var(--bg-primary)]">
               <table className="w-full min-w-[640px] text-left text-sm">
                 <thead>
-                  <tr className="border-b border-(--border-color) text-(--text-secondary)">
-                    <th className="px-4 py-3 font-semibold">{th('compareColFeature')}</th>
-                    <th className="px-4 py-3 font-semibold text-[#3b82f6]">{th('compareColPdfwritter')}</th>
-                    <th className="px-4 py-3 font-semibold">{th('compareColUpload')}</th>
-                    <th className="px-4 py-3 font-semibold">{th('compareColDesktop')}</th>
+                  <tr className="border-b border-[var(--border-color)] text-[var(--text-secondary)]">
+                    <th className="px-3 py-2.5 font-semibold">{th('compareColFeature')}</th>
+                    <th className="px-3 py-2.5 font-semibold text-[var(--accent)]">{th('compareColPdfwritter')}</th>
+                    <th className="px-3 py-2.5 font-semibold">{th('compareColUpload')}</th>
+                    <th className="px-3 py-2.5 font-semibold">{th('compareColDesktop')}</th>
                   </tr>
                 </thead>
-                <tbody className="text-(--text-secondary)">
+                <tbody className="text-[var(--text-secondary)]">
                   {(
                     [
                       ['compareRowAccount', 'compareRowAccountPw', 'compareRowAccountUpload', 'compareRowAccountDesktop'],
@@ -296,13 +288,13 @@ function HomeContent({ locale }: { locale: string }) {
                       ['compareRowInstall', 'compareRowInstallPw', 'compareRowInstallUpload', 'compareRowInstallDesktop'],
                     ] as const
                   ).map((row) => (
-                    <tr key={row[0]} className="border-b border-(--border-color)/70 last:border-0">
-                      <th scope="row" className="px-4 py-3 font-medium text-(--text-primary)">
+                    <tr key={row[0]} className="border-b border-[var(--border-color)] last:border-0">
+                      <th scope="row" className="px-3 py-2.5 font-medium text-[var(--text-primary)]">
                         {th(row[0])}
                       </th>
-                      <td className="px-4 py-3">{th(row[1])}</td>
-                      <td className="px-4 py-3">{th(row[2])}</td>
-                      <td className="px-4 py-3">{th(row[3])}</td>
+                      <td className="px-3 py-2.5">{th(row[1])}</td>
+                      <td className="px-3 py-2.5">{th(row[2])}</td>
+                      <td className="px-3 py-2.5">{th(row[3])}</td>
                     </tr>
                   ))}
                 </tbody>

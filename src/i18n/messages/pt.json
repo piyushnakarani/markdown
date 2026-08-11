@@ -472,7 +472,10 @@
     "txtTitle": "Markdown para TXT",
     "docxTitle": "Markdown para DOCX",
     "docxDescription": "Converta Markdown em documentos Word (.docx) editáveis com títulos, listas, tabelas e diagramas Mermaid.",
-    "docxBadge": "Exportação Word"
+    "docxBadge": "Exportação Word",
+    "chatgptDescription": "Cole respostas do ChatGPT e baixe um PDF limpo — grátis e privado.",
+    "mermaidDescription": "Exporte Markdown com fluxogramas e diagramas Mermaid para PDF.",
+    "aiDescription": "Converta Markdown do ChatGPT, Claude ou Gemini em PDF no navegador."
   },
   "trust": {
     "fast": "Conversão rápida",

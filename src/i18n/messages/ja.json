@@ -472,7 +472,10 @@
     "txtTitle": "MarkdownからTXT",
     "docxTitle": "MarkdownからDOCX",
     "docxDescription": "Markdownを編集可能なWord（.docx）に変換 — 見出し、リスト、表、Mermaid図に対応。",
-    "docxBadge": "Word書き出し"
+    "docxBadge": "Word書き出し",
+    "chatgptDescription": "ChatGPTの回答を貼り付けてきれいなPDFをダウンロード — 無料・プライベート。",
+    "mermaidDescription": "Mermaidのフローチャートや図を含むMarkdownをPDFに書き出します。",
+    "aiDescription": "ChatGPT・Claude・GeminiのMarkdownをブラウザでPDFに変換。"
   },
   "trust": {
     "fast": "高速変換",

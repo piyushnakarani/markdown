@@ -32,7 +32,7 @@ function AboutContent() {
         badgeIcon={Sparkles}
         title={t('title')}
         subtitle={t('subtitle')}
-        accentColor="#3b82f6"
+        accentColor="var(--accent)"
         glowColor="rgba(59, 130, 246, 0.08)"
       />
 

@@ -31,9 +31,9 @@ function FreeConverterContent({ locale }: { locale: string }) {
 
   const converters = [
     { href: '/markdown-to-pdf', icon: FileText, color: '#ef4444', title: t('tools.pdfTitle'), desc: t('tools.pdfDescription') },
-    { href: '/chatgpt-to-pdf', icon: Sparkles, color: '#10a37f', title: t('nav.chatgptToPdf'), desc: 'Paste ChatGPT answers and download a clean PDF — free and private.' },
-    { href: '/mermaid-markdown-to-pdf', icon: GitBranch, color: '#8b5cf6', title: t('nav.mermaidToPdf'), desc: 'Export Markdown with Mermaid flowcharts and diagrams to PDF.' },
-    { href: '/ai-markdown-to-pdf', icon: Sparkles, color: '#3b82f6', title: t('nav.aiToPdf'), desc: 'Convert ChatGPT, Claude, or Gemini Markdown to PDF in your browser.' },
+    { href: '/chatgpt-to-pdf', icon: Sparkles, color: '#10a37f', title: t('nav.chatgptToPdf'), desc: t('tools.chatgptDescription') },
+    { href: '/mermaid-markdown-to-pdf', icon: GitBranch, color: '#8b5cf6', title: t('nav.mermaidToPdf'), desc: t('tools.mermaidDescription') },
+    { href: '/ai-markdown-to-pdf', icon: Sparkles, color: '#3b82f6', title: t('nav.aiToPdf'), desc: t('tools.aiDescription') },
     { href: '/markdown-to-html', icon: Code2, color: '#f59e0b', title: t('tools.htmlTitle'), desc: t('tools.htmlDescription') },
     { href: '/markdown-to-txt', icon: FileType, color: '#10b981', title: t('tools.txtTitle'), desc: t('tools.txtDescription') },
     { href: '/markdown-to-docx', icon: FileSpreadsheet, color: '#3b82f6', title: t('tools.docxTitle'), desc: t('tools.docxDescription') },
@@ -54,17 +54,16 @@ function FreeConverterContent({ locale }: { locale: string }) {
 
   return (
     <>
-      <section className="relative overflow-hidden py-16 sm:py-24">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#6366f1]/5 via-transparent to-[#ec4899]/5" />
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[#6366f1]/10 to-[#8b5cf6]/5 mb-6">
-            <Sparkles className="w-8 h-8 text-[#6366f1]" />
+      <section className="relative border-b border-[var(--border-color)] py-10 sm:py-14">
+        <div className="relative page-container max-w-3xl text-center">
+          <div className="inline-flex items-center justify-center w-10 h-10 rounded-md border border-[var(--border-color)] bg-[var(--accent-muted)] mb-4">
+            <Sparkles className="w-5 h-5 text-[var(--accent)]" />
           </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">{t('freeConverter.title')}</h1>
-          <p className="text-[var(--text-secondary)] text-lg max-w-xl mx-auto">{t('freeConverter.subtitle')}</p>
-          <p className="text-sm text-[var(--text-tertiary)] max-w-xl mx-auto mt-4">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight mb-3">{t('freeConverter.title')}</h1>
+          <p className="text-[var(--text-secondary)] text-sm sm:text-base max-w-xl mx-auto">{t('freeConverter.subtitle')}</p>
+          <p className="text-sm text-[var(--text-tertiary)] max-w-xl mx-auto mt-3">
             {t('freeConverter.pdfHintBefore')}{' '}
-            <Link href="/markdown-to-pdf" className="text-[#ef4444] font-medium hover:underline">
+            <Link href="/markdown-to-pdf" className="text-[var(--accent)] font-medium hover:underline">
               {t('freeConverter.pdfHintLink')}
             </Link>
             {t('freeConverter.pdfHintAfter')}
@@ -72,33 +71,31 @@ function FreeConverterContent({ locale }: { locale: string }) {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 space-y-16">
-        {/* Converter Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <section className="page-container py-10 space-y-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {converters.map((c) => (
-            <Link key={c.href} href={c.href} className="group card-glass flex items-start gap-4">
-              <div className="w-14 h-14 shrink-0 rounded-2xl flex items-center justify-center" style={{ background: `${c.color}15` }}>
-                <c.icon className="w-7 h-7" style={{ color: c.color }} />
+            <Link key={c.href} href={c.href} className="group card-glass flex items-start gap-3.5 cursor-pointer">
+              <div className="w-9 h-9 shrink-0 rounded-md flex items-center justify-center border border-[var(--border-color)] bg-[var(--bg-secondary)]">
+                <c.icon className="w-4 h-4" style={{ color: c.color }} />
               </div>
               <div>
-                <h3 className="text-lg font-bold mb-1 group-hover:text-[#6366f1] transition-colors">{c.title}</h3>
-                <p className="text-sm text-[var(--text-secondary)]">{c.desc}</p>
-                <span className="inline-flex items-center gap-1 text-sm font-medium text-[#6366f1] mt-2">
-                  {t('tools.tryNow')} <ArrowRight className="w-4 h-4" />
+                <h3 className="text-sm font-semibold mb-1 group-hover:text-[var(--accent)] transition-colors">{c.title}</h3>
+                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{c.desc}</p>
+                <span className="inline-flex items-center gap-1 text-xs font-medium text-[var(--accent)] mt-2">
+                  {t('tools.tryNow')} <ArrowRight className="w-3.5 h-3.5" />
                 </span>
               </div>
             </Link>
           ))}
         </div>
 
-        {/* Benefits */}
-        <div className="card-glass p-8 sm:p-12">
-          <h2 className="text-2xl font-bold mb-8 text-center">{t('freeConverter.whyTitle')}</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="card-glass p-5 sm:p-6">
+          <h2 className="text-base font-semibold mb-5 text-center">{t('freeConverter.whyTitle')}</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {benefits.map((b, i) => (
-              <div key={i} className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-[#10b981]/10 flex items-center justify-center shrink-0">
-                  <Check className="w-3.5 h-3.5 text-[#10b981]" />
+              <div key={i} className="flex items-center gap-2.5">
+                <div className="w-5 h-5 rounded-full bg-[var(--accent-muted)] flex items-center justify-center shrink-0">
+                  <Check className="w-3 h-3 text-[var(--accent)]" />
                 </div>
                 <span className="text-sm text-[var(--text-secondary)]">{b}</span>
               </div>
@@ -107,7 +104,7 @@ function FreeConverterContent({ locale }: { locale: string }) {
         </div>
       </section>
 
-      <RelatedBlogGuides toolKey="free-markdown-converter" accentColor="#3b82f6" />
+      <RelatedBlogGuides toolKey="free-markdown-converter" accentColor="var(--accent)" />
 
       <script
         type="application/ld+json"

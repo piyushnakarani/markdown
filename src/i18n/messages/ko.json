@@ -472,7 +472,10 @@
     "txtTitle": "마크다운→TXT",
     "docxTitle": "마크다운→DOCX",
     "docxDescription": "Markdown을 편집 가능한 Word(.docx) 문서로 변환 — 제목, 목록, 표, Mermaid 다이어그램 지원.",
-    "docxBadge": "Word 내보내기"
+    "docxBadge": "Word 내보내기",
+    "chatgptDescription": "ChatGPT 답변을 붙여넣고 깔끔한 PDF를 다운로드 — 무료·비공개.",
+    "mermaidDescription": "Mermaid 순서도와 다이어그램이 포함된 Markdown을 PDF로보냅니다.",
+    "aiDescription": "ChatGPT, Claude, Gemini Markdown을 브라우저에서 PDF로 변환."
   },
   "trust": {
     "fast": "빠른 변환",

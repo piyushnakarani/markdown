@@ -330,7 +330,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
             onClick={() => fileInputRef.current?.click()}
             className="btn-secondary px-3 py-2 text-sm h-10"
           >
-            <Upload className="w-4 h-4 text-[#3b82f6]" />
+            <Upload className="w-4 h-4 text-[var(--accent)]" />
             {te('upload')}
           </button>
 
@@ -371,7 +371,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
               event('change_tab', { tab: 'editor', tool: 'converter', type });
             }}
             className={`flex items-center gap-1 px-2.5 py-1.5 rounded-md text-xs font-semibold transition-colors ${
-              activeTab === 'editor' ? 'bg-[#3b82f6] text-white' : 'text-[var(--text-secondary)]'
+              activeTab === 'editor' ? 'bg-[var(--accent)] text-white' : 'text-[var(--text-secondary)]'
             }`}
           >
             <PenLine className="w-3.5 h-3.5" />
@@ -384,7 +384,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
               event('change_tab', { tab: 'preview', tool: 'converter', type });
             }}
             className={`flex items-center gap-1 px-2.5 py-1.5 rounded-md text-xs font-semibold transition-colors ${
-              activeTab === 'preview' ? 'bg-[#3b82f6] text-white' : 'text-[var(--text-secondary)]'
+              activeTab === 'preview' ? 'bg-[var(--accent)] text-white' : 'text-[var(--text-secondary)]'
             }`}
           >
             <Eye className="w-3.5 h-3.5" />
@@ -403,8 +403,8 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
         {/* Editor panel */}
         <div className={`flex flex-col relative min-h-0 border-r border-[var(--border-color)] ${activeTab !== 'editor' ? 'hidden md:flex' : 'flex'}`}>
           {isDragging && (
-            <div className="absolute inset-0 z-20 bg-[var(--bg-secondary)]/95 backdrop-blur-sm border-2 border-dashed border-[#3b82f6] m-3 rounded-xl flex flex-col items-center justify-center">
-              <FileUp className="w-10 h-10 text-[#3b82f6] mb-3" />
+            <div className="absolute inset-0 z-20 bg-[var(--bg-secondary)]/95 backdrop-blur-sm border-2 border-dashed border-[var(--accent)] m-3 rounded-xl flex flex-col items-center justify-center">
+              <FileUp className="w-10 h-10 text-[var(--accent)] mb-3" />
               <p className="font-semibold text-[var(--text-primary)]">{t('dragDrop')}</p>
             </div>
           )}
@@ -416,7 +416,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
                 <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
                 <span className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
               </div>
-              <PenLine className="w-4 h-4 text-[#3b82f6]" />
+              <PenLine className="w-4 h-4 text-[var(--accent)]" />
               {te('editorTab')}
             </div>
             <span className="text-[10px] font-mono font-bold text-[var(--text-tertiary)] uppercase">{markdown.length} chars</span>
@@ -460,7 +460,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
                     event('change_html_view', { view: 'preview', tool: 'converter' });
                   }}
                   className={`flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-semibold transition-colors ${
-                    htmlView === 'preview' ? 'bg-[#3b82f6] text-white' : 'text-[var(--text-secondary)]'
+                    htmlView === 'preview' ? 'bg-[var(--accent)] text-white' : 'text-[var(--text-secondary)]'
                   }`}
                 >
                   <Eye className="w-3 h-3" />
@@ -473,7 +473,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
                     event('change_html_view', { view: 'code', tool: 'converter' });
                   }}
                   className={`flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-semibold transition-colors ${
-                    htmlView === 'code' ? 'bg-[#3b82f6] text-white' : 'text-[var(--text-secondary)]'
+                    htmlView === 'code' ? 'bg-[var(--accent)] text-white' : 'text-[var(--text-secondary)]'
                   }`}
                 >
                   <Code2 className="w-3 h-3" />

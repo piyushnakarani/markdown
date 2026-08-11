@@ -63,15 +63,11 @@ function MarkdownToDocxContent({ locale }: { locale: string }) {
         badgeIcon={Sparkles}
         title={
           <>
-            Convert Markdown to{' '}
-            <span className="bg-linear-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent">
-              DOCX
-            </span>
+            Convert Markdown to <span style={{ color: '#3b82f6' }}>DOCX</span>
           </>
         }
         subtitle={t('tools.docxDescription')}
-        accentColor="#60a5fa"
-        glowColor="rgba(59,130,246,0.08)"
+        accentColor="#3b82f6"
       />
       <ConverterTool type="docx" />
       <ToolSeoSections
@@ -135,7 +131,7 @@ function MarkdownToDocxContent({ locale }: { locale: string }) {
         faqTitle="Markdown to DOCX FAQ"
         faqs={faqs}
         relatedGuidesToolKey="markdown-to-docx"
-        accentColor="#3b82f6"
+        accentColor="var(--accent)"
       />
       <script
         type="application/ld+json"

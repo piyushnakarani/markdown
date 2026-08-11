@@ -52,6 +52,9 @@
     "editorDescription": "Split-pane Markdown editor with live preview, sync scroll, Mermaid diagrams, and instant PDF export.",
     "livePreviewTitle": "Markdown Live Preview",
     "livePreviewDescription": "Write Markdown and see a live rendered preview side by side — free, private, and instant in your browser.",
+    "chatgptDescription": "Paste ChatGPT answers and download a clean PDF — free and private.",
+    "mermaidDescription": "Export Markdown with Mermaid flowcharts and diagrams to PDF.",
+    "aiDescription": "Convert ChatGPT, Claude, or Gemini Markdown to PDF in your browser.",
     "tryNow": "Try Now"
   },
   "features": {

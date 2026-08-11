@@ -472,7 +472,10 @@
     "txtTitle": "ماركداون إلى TXT",
     "docxTitle": "ماركداون إلى DOCX",
     "docxDescription": "حوّل Markdown إلى مستندات Word قابلة للتحرير (.docx) مع العناوين والقوائم والجداول ومخططات Mermaid.",
-    "docxBadge": "تصدير Word"
+    "docxBadge": "تصدير Word",
+    "chatgptDescription": "الصق إجابات ChatGPT وحمّل PDF نظيفًا — مجاني وخاص.",
+    "mermaidDescription": "صدّر Markdown مع مخططات Mermaid إلى PDF.",
+    "aiDescription": "حوّل Markdown من ChatGPT أو Claude أو Gemini إلى PDF في المتصفح."
   },
   "trust": {
     "fast": "تحويل سريع",

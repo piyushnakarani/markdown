@@ -482,9 +482,9 @@ export default function EditorClient({
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
-            className="btn-secondary px-3 py-2 text-xs h-9 font-semibold hover:border-[#3b82f6]"
+            className="btn-secondary px-3 py-2 text-xs h-9 font-semibold hover:border-[var(--accent)]"
           >
-            <Upload className="w-4 h-4 text-[#3b82f6]" />
+            <Upload className="w-4 h-4 text-[var(--accent)]" />
             <span className="hidden sm:inline">{t('upload')}</span>
           </button>
           <button
@@ -510,7 +510,7 @@ export default function EditorClient({
               event('change_tab', { tab: 'editor', tool: 'editor', variant });
             }}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 ${
-              activeTab === 'editor' ? 'bg-[#3b82f6] text-white shadow-md' : 'text-[var(--text-secondary)]'
+              activeTab === 'editor' ? 'bg-[var(--accent)] text-white shadow-md' : 'text-[var(--text-secondary)]'
             }`}
           >
             <PenLine className="w-3.5 h-3.5" />
@@ -523,7 +523,7 @@ export default function EditorClient({
               event('change_tab', { tab: 'preview', tool: 'editor', variant });
             }}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 ${
-              activeTab === 'preview' ? 'bg-[#3b82f6] text-white shadow-md' : 'text-[var(--text-secondary)]'
+              activeTab === 'preview' ? 'bg-[var(--accent)] text-white shadow-md' : 'text-[var(--text-secondary)]'
             }`}
           >
             <Eye className="w-3.5 h-3.5" />
@@ -544,8 +544,8 @@ export default function EditorClient({
         >
           {/* File drag-and-drop active overlay */}
           {isDragging && (
-            <div className="absolute inset-0 bg-[var(--bg-secondary)]/95 backdrop-blur-md border-2 border-dashed border-[#3b82f6] m-3 rounded-xl flex flex-col items-center justify-center z-30 animate-fade-in">
-              <FileUp className="w-12 h-12 text-[#3b82f6] mb-4 animate-float" />
+            <div className="absolute inset-0 bg-[var(--bg-secondary)]/95 backdrop-blur-md border-2 border-dashed border-[var(--accent)] m-3 rounded-xl flex flex-col items-center justify-center z-30 animate-fade-in">
+              <FileUp className="w-12 h-12 text-[var(--accent)] mb-4 animate-float" />
               <p className="font-extrabold text-[var(--text-primary)]">Drop your Markdown file here</p>
               <p className="text-xs text-[var(--text-tertiary)] mt-1">Supports .md, .markdown, .txt</p>
             </div>
@@ -561,7 +561,7 @@ export default function EditorClient({
                   <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
                 </div>
                 <span className="w-[1px] h-3.5 bg-[var(--border-color)] mx-1" />
-                <PenLine className="w-4 h-4 text-[#3b82f6]" />
+                <PenLine className="w-4 h-4 text-[var(--accent)]" />
                 <span className="text-xs font-bold text-[var(--text-secondary)]">{t('editorTab')}</span>
               </div>
               <span className="text-[10px] font-mono font-bold text-[var(--text-tertiary)] uppercase">
