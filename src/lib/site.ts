@@ -47,6 +47,7 @@ export const TOOL_BRAND_KEYWORDS = {
   pdf: ['pdfwritter markdown to pdf'],
   html: ['pdfwritter markdown to html'],
   txt: ['pdfwritter markdown to txt'],
+  docx: ['pdfwritter markdown to docx'],
   editor: ['pdfwritter markdown editor'],
   preview: ['pdfwritter markdown live preview'],
   converter: ['pdfwritter free markdown converter'],
@@ -74,6 +75,8 @@ export const DEFAULT_KEYWORDS = [
   'markdown live preview',
   'markdown to html',
   'markdown to txt',
+  'markdown to docx',
+  'markdown to word',
   'online markdown editor',
   'pdfwritter',
 ];
@@ -335,7 +338,7 @@ export async function buildLocalizedPageMetadata({
     else if (descriptionKey === 'help.subtitle') description = 'Everything you need to know about using PDFWritter.';
     else if (descriptionKey === 'help.metaDescription') {
       description =
-        'PDFWritter help: convert Markdown to PDF, HTML, and TXT in your browser. Getting started guide, syntax reference, keyboard shortcuts, Mermaid diagrams, and FAQs.';
+        'PDFWritter help: convert Markdown to PDF, HTML, TXT, and DOCX in your browser. Getting started guide, syntax reference, keyboard shortcuts, Mermaid diagrams, and FAQs.';
     }
     else if (descriptionKey === 'freeConverter.subtitle') description = 'Convert Markdown to any format in your browser.';
     else if (descriptionKey === 'livePreview.description') {
@@ -377,7 +380,7 @@ export function buildWebApplicationJsonLd(locale: string) {
     name: SITE_NAME,
     alternateName: SITE_TAGLINE,
     description:
-      'Free online Markdown converter with diagram support. Convert Markdown with Mermaid flowcharts, sequence diagrams, and charts to PDF, HTML, and TXT at pdfwritter.com.',
+      'Free online Markdown converter with diagram support. Convert Markdown with Mermaid flowcharts, sequence diagrams, and charts to PDF, HTML, TXT, and DOCX at pdfwritter.com.',
     url,
     image: {
       '@type': 'ImageObject',
@@ -399,6 +402,7 @@ export function buildWebApplicationJsonLd(locale: string) {
       'Markdown to PDF conversion',
       'Markdown to HTML conversion',
       'Markdown to TXT conversion',
+      'Markdown to DOCX conversion',
       'Online Markdown editor with live preview',
       'Syntax highlighting',
     ],

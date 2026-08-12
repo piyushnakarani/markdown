@@ -16,7 +16,7 @@ import { buildHomeBlogJsonLd, formatBlogDate } from '@/lib/blog-seo';
 import ScrollReveal from './ScrollReveal';
 
 const CATEGORY_STYLE: Record<string, { color: string; bg: string }> = {
-  Tutorial: { color: '#3b82f6', bg: 'from-blue-500/15 to-indigo-500/5' },
+  Tutorial: { color: 'var(--accent)', bg: '' },
   Guide: { color: '#8b5cf6', bg: 'from-violet-500/15 to-purple-500/5' },
   Tools: { color: '#f59e0b', bg: 'from-amber-500/15 to-yellow-500/5' },
   Productivity: { color: '#10b981', bg: 'from-emerald-500/15 to-green-500/5' },
@@ -74,7 +74,7 @@ function FeaturedPost({ post, readTimeLabel, ctaLabel }: { post: BlogPost; readT
 
         <BlogMeta post={post} readTimeLabel={readTimeLabel} />
 
-        <h3 className="blog-card-title blog-card-title-lg mt-4 mb-3 group-hover:text-[var(--blog-accent,#3b82f6)] transition-colors">
+        <h3 className="blog-card-title blog-card-title-lg mt-4 mb-3 group-hover:text-[var(--blog-accent,var(--accent))] transition-colors">
           {post.titleKey}
         </h3>
         <p className="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed flex-1 line-clamp-3">
@@ -94,14 +94,14 @@ function CompactPost({ post, readTimeLabel, ctaLabel, index }: { post: BlogPost;
       className="blog-card blog-card-compact group h-full"
       style={{ '--blog-accent': style.color } as React.CSSProperties}
     >
-      <div className="flex gap-4 h-full">
-        <div className={`blog-card-thumb bg-gradient-to-br ${style.bg} shrink-0`}>
-          <BookOpen className="w-5 h-5" style={{ color: style.color }} />
+      <div className="flex gap-3 h-full">
+        <div className="blog-card-thumb shrink-0">
+          <BookOpen className="w-4 h-4" style={{ color: style.color }} />
           <span className="blog-card-index">{String(index + 2).padStart(2, '0')}</span>
         </div>
         <div className="flex flex-col min-w-0 flex-1">
           <BlogMeta post={post} readTimeLabel={readTimeLabel} />
-          <h3 className="blog-card-title mt-2 mb-2 line-clamp-2 group-hover:text-[var(--blog-accent,#3b82f6)] transition-colors">
+          <h3 className="blog-card-title mt-2 mb-2 line-clamp-2 group-hover:text-[var(--blog-accent,var(--accent))] transition-colors">
             {post.titleKey}
           </h3>
           <p className="text-xs text-[var(--text-secondary)] line-clamp-2 leading-relaxed mb-3 flex-1">
@@ -126,21 +126,19 @@ export default function BlogInsightsSection({ jsonLd: jsonLdProp }: BlogInsights
   const jsonLd = jsonLdProp ?? buildHomeBlogJsonLd(latestPosts, locale);
 
   return (
-    <section className="section-py section-divider relative overflow-hidden" aria-labelledby="blog-section-title">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(139,92,246,0.05),transparent_55%)] pointer-events-none" />
-
+    <section className="section-py section-divider relative" aria-labelledby="blog-section-title">
       <div className="relative page-container">
         <ScrollReveal>
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10 sm:mb-12">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-6 sm:mb-8">
             <div className="max-w-2xl">
-              <span className="section-badge mb-3 inline-flex">
-                <BookOpen className="w-3.5 h-3.5 text-[#8b5cf6]" />
+              <span className="section-badge mb-2.5 inline-flex">
+                <BookOpen className="w-3 h-3" />
                 {th('blogBadge')}
               </span>
-              <h2 id="blog-section-title" className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight leading-tight mb-3">
+              <h2 id="blog-section-title" className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight leading-tight mb-1.5">
                 {th('blogTitle')}
               </h2>
-              <p className="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
+              <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
                 {th('blogSubtitle')}
               </p>
             </div>

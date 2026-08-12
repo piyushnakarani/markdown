@@ -62,7 +62,7 @@ export default function BlogClient({ posts }: BlogClientProps) {
                   onClick={() => setSelectedCategory(cat)}
                   className={`px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 ${
                     isActive
-                      ? 'bg-[#3b82f6] text-white shadow-md shadow-[#3b82f6]/25'
+                      ? 'bg-[var(--accent)] text-white shadow-md shadow-[#3b82f6]/25'
                       : 'text-[var(--text-secondary)] hover:bg-white/[0.04] hover:text-[var(--text-primary)]'
                   }`}
                 >
@@ -82,7 +82,7 @@ export default function BlogClient({ posts }: BlogClientProps) {
               placeholder="Search articles..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 text-xs font-medium rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)]/60 text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:outline-none focus:border-[#3b82f6]/50 focus:bg-[var(--bg-primary)] transition-all"
+              className="w-full pl-9 pr-4 py-2 text-xs font-medium rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)]/60 text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:outline-none focus:border-[var(--accent)]/50 focus:bg-[var(--bg-primary)] transition-all"
             />
           </div>
 
@@ -105,12 +105,12 @@ export default function BlogClient({ posts }: BlogClientProps) {
                 <Link
                   href={`/blog/${featuredPost.slug}`}
                   locale="en"
-                  className="group blog-card blog-card-featured block relative overflow-hidden rounded-3xl border border-[var(--border-color)] bg-gradient-to-br from-[var(--bg-secondary)] to-[var(--bg-primary)] p-6 sm:p-8 hover:border-[#3b82f6]/40 transition-all duration-500"
+                  className="group blog-card blog-card-featured block relative overflow-hidden rounded-3xl border border-[var(--border-color)] bg-gradient-to-br from-[var(--bg-secondary)] to-[var(--bg-primary)] p-6 sm:p-8 hover:border-[var(--accent)]/40 transition-all duration-500"
                 >
                   {/* Decorative glowing accent */}
                   <div
                     className={`absolute top-0 left-0 w-full h-[3px] transition-all ${
-                      CATEGORY_COLORS[featuredPost.category]?.accent || 'bg-gradient-to-r from-[#3b82f6] to-[#8b5cf6]'
+                      CATEGORY_COLORS[featuredPost.category]?.accent || 'bg-gradient-to-r bg-[var(--accent)]'
                     }`}
                   />
                   <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-[#3b82f6]/5 via-[#8b5cf6]/2 to-transparent blur-3xl rounded-full pointer-events-none" />
@@ -140,7 +140,7 @@ export default function BlogClient({ posts }: BlogClientProps) {
                       </div>
 
                       {/* Header */}
-                      <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-primary)] mb-3 group-hover:text-[#3b82f6] transition-colors leading-tight">
+                      <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-primary)] mb-3 group-hover:text-[var(--accent)] transition-colors leading-tight">
                         {featuredPost.titleKey}
                       </h2>
 
@@ -151,7 +151,7 @@ export default function BlogClient({ posts }: BlogClientProps) {
                     </div>
 
                     {/* CTA link */}
-                    <div className="inline-flex items-center gap-2 text-sm font-bold text-[#3b82f6]">
+                    <div className="inline-flex items-center gap-2 text-sm font-bold text-[var(--accent)]">
                       <span>Read Full Article</span>
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
                     </div>
@@ -168,7 +168,7 @@ export default function BlogClient({ posts }: BlogClientProps) {
                     <Link
                       href={`/blog/${post.slug}`}
                       locale="en"
-                      className="group blog-card flex flex-col h-full rounded-2xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/40 p-5 hover:bg-[var(--bg-secondary)]/80 hover:border-[#3b82f6]/20 transition-all duration-300"
+                      className="group blog-card flex flex-col h-full rounded-2xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/40 p-5 hover:bg-[var(--bg-secondary)]/80 hover:border-[var(--accent)]/20 transition-all duration-300"
                     >
                       <div className="flex-1">
                         {/* Tag/Category */}
@@ -184,7 +184,7 @@ export default function BlogClient({ posts }: BlogClientProps) {
                         </span>
 
                         {/* Title */}
-                        <h3 className="blog-card-title text-base font-extrabold text-[var(--text-primary)] mb-2 group-hover:text-[#3b82f6] transition-colors line-clamp-2 leading-snug">
+                        <h3 className="blog-card-title text-base font-extrabold text-[var(--text-primary)] mb-2 group-hover:text-[var(--accent)] transition-colors line-clamp-2 leading-snug">
                           {post.titleKey}
                         </h3>
 
@@ -206,7 +206,7 @@ export default function BlogClient({ posts }: BlogClientProps) {
                             {post.readTime} min
                           </span>
                         </div>
-                        <ArrowRight className="w-4 h-4 text-[#3b82f6] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-300" />
+                        <ArrowRight className="w-4 h-4 text-[var(--accent)] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-300" />
                       </div>
                     </Link>
                   </ScrollReveal>

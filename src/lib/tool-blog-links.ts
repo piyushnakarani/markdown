@@ -17,6 +17,11 @@ export const TOOL_BLOG_LINKS: Record<string, string[]> = {
     'developers-use-markdown',
     'beginner-guide-markdown',
   ],
+  'markdown-to-docx': [
+    'best-markdown-to-pdf-tools-for-resumes',
+    'make-beautiful-pdf-from-markdown',
+    'free-markdown-converter-online-complete-guide',
+  ],
   'markdown-live-preview': [
     'markdown-live-preview-complete-guide',
     'best-online-markdown-editor-with-preview',

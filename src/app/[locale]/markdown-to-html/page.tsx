@@ -59,15 +59,11 @@ function MarkdownToHtmlContent({ locale }: { locale: string }) {
         badgeIcon={Sparkles}
         title={
           <>
-            Convert Markdown to{' '}
-            <span className="bg-linear-to-r from-amber-500 to-yellow-500 bg-clip-text text-transparent">
-              HTML
-            </span>
+            Convert Markdown to <span style={{ color: '#f59e0b' }}>HTML</span>
           </>
         }
         subtitle={t('tools.htmlDescription')}
-        accentColor="#fbbf24"
-        glowColor="rgba(245,158,11,0.08)"
+        accentColor="#f59e0b"
       />
       <ConverterTool type="html" />
       <ToolSeoSections

@@ -180,11 +180,6 @@ function BlogArticleContent({
       {/* Hero */}
       <header className="blog-article-hero">
         <div className="blog-article-hero-bg" aria-hidden />
-        <div className="blog-article-hero-glow" aria-hidden />
-        <div
-          className="absolute inset-0 mesh-grid opacity-15 pointer-events-none"
-          aria-hidden
-        />
 
         <div className="blog-article-hero-inner">
           <nav aria-label="Breadcrumb" className="blog-article-breadcrumb">
@@ -226,13 +221,7 @@ function BlogArticleContent({
 
           <div className="blog-article-meta">
             <div className="blog-article-author">
-              <div
-                className="blog-article-author-avatar"
-                style={{
-                  background: `linear-gradient(135deg, ${colors.accent}, #8b5cf6)`,
-                }}
-                aria-hidden
-              >
+              <div className="blog-article-author-avatar" aria-hidden>
                 PW
               </div>
               <div>
@@ -397,7 +386,7 @@ function BlogArticleContent({
                       >
                         {rp.category}
                       </span>
-                      <h3 className="blog-card-title mb-2 group-hover:text-[#3b82f6] transition-colors line-clamp-2">
+                      <h3 className="blog-card-title mb-2 group-hover:text-[var(--accent)] transition-colors line-clamp-2">
                         {rp.titleKey}
                       </h3>
                       <p className="text-sm text-[var(--text-secondary)] line-clamp-3 leading-relaxed flex-1">

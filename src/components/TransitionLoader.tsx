@@ -12,7 +12,6 @@ export default function TransitionLoader() {
   const [loading, setLoading] = useState(false);
   const { theme } = useTheme();
 
-  // Reset loader when pathname or search params change (meaning navigation completed)
   useEffect(() => {
     setLoading(false);
   }, [pathname, searchParams]);
@@ -27,7 +26,6 @@ export default function TransitionLoader() {
       const href = anchor.getAttribute('href');
       const targetAttr = anchor.getAttribute('target');
 
-      // Intercept left clicks on same-domain paths that are not targeted to new tabs
       if (
         href &&
         (href.startsWith('/') || href.startsWith(window.location.origin)) &&
@@ -43,7 +41,6 @@ export default function TransitionLoader() {
           const currentUrl = new URL(window.location.href);
           const targetUrl = new URL(href, window.location.href);
 
-          // Only show loader if we are navigating to a different page or different query parameters
           if (
             currentUrl.pathname !== targetUrl.pathname ||
             currentUrl.search !== targetUrl.search
@@ -67,21 +64,19 @@ export default function TransitionLoader() {
   const iconSrc = theme === 'dark' ? '/logo-icon-dark-192.webp' : '/logo-icon-192.webp';
 
   return (
-    <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[var(--bg-primary)]/75 backdrop-blur-sm animate-fade-in select-none">
+    <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[var(--bg-primary)]/80 backdrop-blur-sm animate-fade-in select-none">
       <div className="relative flex items-center justify-center">
-        {/* Spinning outer loader ring */}
-        <div className="absolute w-20 h-20 rounded-full border-2 border-t-[#3b82f6] border-r-transparent border-b-[#8b5cf6] border-l-transparent animate-spin duration-700" />
-        <div className="absolute w-16 h-16 rounded-full bg-[#3b82f6]/5 blur-md" />
+        <div className="absolute w-14 h-14 rounded-full border-2 border-[var(--border-color)] border-t-[var(--accent)] animate-spin" />
         <Image
           src={iconSrc}
           alt="PDFWritter"
           width={96}
           height={96}
-          className="relative h-10 w-10 object-contain animate-pulse"
+          className="relative h-8 w-8 object-contain"
         />
       </div>
-      <p className="mt-5 text-[9px] font-extrabold uppercase tracking-widest text-[var(--text-secondary)] animate-pulse">
-        PDFWritter
+      <p className="mt-4 text-[10px] font-semibold uppercase tracking-wider text-[var(--text-tertiary)]">
+        Loading
       </p>
     </div>
   );

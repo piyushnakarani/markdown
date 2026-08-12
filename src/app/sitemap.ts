@@ -16,6 +16,7 @@ const LOCALIZED_PAGES = [
   '/markdown-to-pdf',
   '/markdown-to-html',
   '/markdown-to-txt',
+  '/markdown-to-docx',
   '/markdown-live-preview',
   '/editor',
   '/about',

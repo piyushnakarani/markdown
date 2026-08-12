@@ -4,7 +4,7 @@ import 'highlight.js/styles/github-dark.css';
 
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { GeistMono } from 'geist/font/mono';
-import { GeistSans } from 'geist/font/sans';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import type { Viewport } from 'next';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
@@ -26,6 +26,12 @@ import {
 } from '@/lib/site';
 import { buildSiteJsonLdGraph } from '@/lib/structured-data';
 
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-jakarta',
+  display: 'swap',
+});
+
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
@@ -33,7 +39,7 @@ export function generateStaticParams() {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#0B0D12',
+  themeColor: '#09090B',
 };
 
 export async function generateMetadata() {
@@ -66,7 +72,7 @@ export default async function LocaleLayout({
       dir={rtl ? 'rtl' : 'ltr'}
       data-theme="dark"
       suppressHydrationWarning
-      className={`${GeistSans.variable} ${GeistMono.variable}`}
+      className={`${jakarta.variable} ${GeistMono.variable}`}
     >
       <head>
         <GoogleTagManagerHead />
@@ -101,7 +107,7 @@ export default async function LocaleLayout({
         />
       </head>
       <body
-        className={`${GeistSans.className} min-h-screen flex flex-col antialiased`}
+        className={`${jakarta.className} min-h-screen flex flex-col antialiased`}
         suppressHydrationWarning
       >
         <GoogleTagManagerNoScript />
@@ -116,7 +122,7 @@ export default async function LocaleLayout({
                 Skip to content
               </a>
               <Header />
-              <main id="main-content" className="flex-1 w-full pt-[72px]">
+              <main id="main-content" className="flex-1 w-full pt-[var(--header-height)]">
                 {children}
               </main>
               <Footer />

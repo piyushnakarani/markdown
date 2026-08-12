@@ -13,6 +13,7 @@ export {
   getHtmlExportStages,
   getPdfExportStages,
   getTxtExportStages,
+  getDocxExportStages,
   markdownHasMermaid,
   stageIndex,
 } from './export-progress';

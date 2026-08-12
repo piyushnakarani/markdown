@@ -3,14 +3,13 @@ export type ExportProgressStage =
   | 'buildingDiagrams'
   | 'generatingPdf'
   | 'generatingHtml'
+  | 'generatingDocx'
   | 'preparingDownload'
   | 'finalizing';
 
 export type ExportProgressCallback = (stage: ExportProgressStage) => void;
 
-export function markdownHasMermaid(markdown: string): boolean {
-  return /```\s*mermaid\b/i.test(markdown);
-}
+export { markdownHasMermaidContent as markdownHasMermaid } from './mermaid-normalize';
 
 export function getPdfExportStages(hasMermaid: boolean): ExportProgressStage[] {
   if (hasMermaid) {
@@ -30,6 +29,13 @@ export function getTxtExportStages(): ExportProgressStage[] {
   return ['preparing', 'preparingDownload', 'finalizing'];
 }
 
+export function getDocxExportStages(hasMermaid: boolean): ExportProgressStage[] {
+  if (hasMermaid) {
+    return ['preparing', 'buildingDiagrams', 'generatingDocx', 'finalizing'];
+  }
+  return ['preparing', 'generatingDocx', 'finalizing'];
+}
+
 export type ExportStageLabels = Record<ExportProgressStage, string>;
 
 export function stageIndex(stages: ExportProgressStage[], stage: ExportProgressStage): number {
@@ -42,6 +48,7 @@ const STAGE_MESSAGE_KEYS: Record<ExportProgressStage, string> = {
   buildingDiagrams: 'exportBuildingDiagrams',
   generatingPdf: 'exportGeneratingPdf',
   generatingHtml: 'exportGeneratingHtml',
+  generatingDocx: 'exportGeneratingDocx',
   preparingDownload: 'exportPreparingDownload',
   finalizing: 'exportFinalizing',
 };

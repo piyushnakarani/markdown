@@ -1,6 +1,6 @@
 'use client';
 
-import { Minus,Plus } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 
 interface FAQItem {
@@ -22,52 +22,36 @@ export default function FAQAccordion({
   };
 
   return (
-    <div className="space-y-3">
+    <div className="faq-list">
       {items.map((faq, i) => {
         const isOpen = activeIndex === i;
         return (
-          <div
-            key={i}
-            className="faq-item"
-            data-open={isOpen}
-          >
+          <div key={i} className="faq-row" data-open={isOpen}>
             <button
               id={`faq-button-${i}`}
-              className="flex items-center justify-between gap-4 w-full p-5 sm:p-5 text-left select-none"
+              className="faq-row-trigger"
               onClick={() => toggleAccordion(i)}
               aria-expanded={isOpen}
               aria-controls={`faq-content-${i}`}
             >
-              <span className="font-medium text-sm sm:text-base text-[var(--text-primary)] pr-4">
-                {faq.q}
+              <span className="faq-row-index" aria-hidden>
+                {String(i + 1).padStart(2, '0')}
               </span>
-              <div
-                className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 border transition-all duration-300 ${
-                  isOpen
-                    ? 'bg-[#3b82f6]/10 border-[#3b82f6]/30 text-[#3b82f6] rotate-0'
-                    : 'bg-[var(--bg-primary)] border-[var(--border-color)] text-[var(--text-secondary)]'
-                }`}
-                aria-hidden
-              >
-                {isOpen ? (
-                  <Minus className="w-4 h-4" />
-                ) : (
-                  <Plus className="w-4 h-4" />
-                )}
-              </div>
+              <span className="faq-row-question">{faq.q}</span>
+              <ChevronDown className="faq-row-chevron" aria-hidden />
             </button>
 
             <div
               id={`faq-content-${i}`}
               role="region"
               aria-labelledby={`faq-button-${i}`}
-              className={`grid transition-all duration-350 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              className={`grid transition-all duration-200 ease-out ${
                 isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
               }`}
             >
               <div className="overflow-hidden">
-                <div
-                  className={`px-5 sm:px-5 pb-5 text-sm text-[var(--text-secondary)] leading-relaxed border-t border-[var(--border-color)] pt-4 mx-5${
+                <p
+                  className={`faq-row-answer${
                     speakableAnswerIndex !== undefined &&
                     (Array.isArray(speakableAnswerIndex)
                       ? speakableAnswerIndex.includes(i)
@@ -77,7 +61,7 @@ export default function FAQAccordion({
                   }`}
                 >
                   {faq.a}
-                </div>
+                </p>
               </div>
             </div>
           </div>

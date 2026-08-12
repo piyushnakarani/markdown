@@ -8,6 +8,7 @@ import {
   Download,
   Eye,
   FileCode,
+  FileSpreadsheet,
   FileText,
   FileType,
   FileUp,
@@ -42,12 +43,19 @@ import {
   getHtmlExportStages,
   getPdfExportStages,
   getTxtExportStages,
+  getDocxExportStages,
   markdownHasMermaid,
   readFileAsText,
 } from '@/lib/converters';
+import { buildDocxDocument, downloadDocxBlob } from '@/lib/docx-export';
 import { syncProportionalScroll } from '@/lib/editor-scroll-sync';
+import {
+  applyMarkdownPaste,
+  normalizeMermaidInMarkdown,
+  pastedTextHasRawMermaid,
+} from '@/lib/mermaid-normalize';
 
-export type ConvertType = 'pdf' | 'html' | 'txt';
+export type ConvertType = 'pdf' | 'html' | 'txt' | 'docx';
 
 const DEFAULT_MD = `# My Document
 
@@ -70,6 +78,7 @@ const FORMAT: Record<
   pdf: { label: 'PDF', gradient: 'from-red-600 to-orange-500', icon: FileText, ext: 'pdf' },
   html: { label: 'HTML', gradient: 'from-amber-600 to-yellow-500', icon: FileCode, ext: 'html' },
   txt: { label: 'TXT', gradient: 'from-emerald-600 to-green-500', icon: FileType, ext: 'txt' },
+  docx: { label: 'DOCX', gradient: 'from-blue-600 to-indigo-500', icon: FileSpreadsheet, ext: 'docx' },
 };
 
 export default function ConverterTool({ type }: { type: ConvertType }) {
@@ -79,7 +88,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
 
   const [markdown, setMarkdown] = useState(DEFAULT_MD);
   const [fileName, setFileName] = useState('');
-  const [exporting, setExporting] = useState<'pdf' | 'html' | 'txt' | null>(null);
+  const [exporting, setExporting] = useState<'pdf' | 'html' | 'txt' | 'docx' | null>(null);
   const [exportStage, setExportStage] = useState<ExportProgressStage>('preparing');
   const [exportStages, setExportStages] = useState<ExportProgressStage[]>([]);
   const [copied, setCopied] = useState(false);
@@ -122,7 +131,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
       return;
     }
     try {
-      const text = await readFileAsText(file);
+      const text = normalizeMermaidInMarkdown(await readFileAsText(file));
       setMarkdown(text);
       setFileName(file.name);
       showToast(t('fileLoaded'));
@@ -152,7 +161,9 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
         ? getPdfExportStages(hasMermaid)
         : type === 'html'
           ? getHtmlExportStages(hasMermaid)
-          : getTxtExportStages();
+          : type === 'docx'
+            ? getDocxExportStages(hasMermaid)
+            : getTxtExportStages();
     setExportStages(stages);
     setExportStage(stages[0]);
     setExporting(type);
@@ -171,6 +182,10 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
         const fullHtml = await buildHtmlDocument(markdown, name, onProgress);
         onProgress('finalizing');
         downloadFile(fullHtml, `${name}.html`, 'text/html');
+      } else if (type === 'docx') {
+        const blob = await buildDocxDocument(markdown, `${name}.docx`, onProgress);
+        onProgress('finalizing');
+        downloadDocxBlob(blob, `${name}.docx`);
       } else {
         const txt = await buildTxtDocument(markdown, `${name}.txt`, onProgress);
         onProgress('finalizing');
@@ -244,10 +259,24 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
     });
   };
 
+  const handlePaste = (e: React.ClipboardEvent<HTMLTextAreaElement>) => {
+    const pasted = e.clipboardData.getData('text/plain');
+    if (!pastedTextHasRawMermaid(pasted)) return;
+
+    e.preventDefault();
+    const ta = e.currentTarget;
+    const { text, cursor } = applyMarkdownPaste(markdown, pasted, ta.selectionStart, ta.selectionEnd);
+    setMarkdown(text);
+    requestAnimationFrame(() => {
+      ta.focus();
+      ta.setSelectionRange(cursor, cursor);
+    });
+  };
+
   const ExportIcon = fmt.icon;
 
   const exportVariant: EditorToolbarActionVariant =
-    type === 'pdf' ? 'pdf' : type === 'html' ? 'html' : 'txt';
+    type === 'pdf' ? 'pdf' : type === 'html' ? 'html' : type === 'docx' ? 'docx' : 'txt';
 
   const toolbarActions: EditorToolbarAction[] = [
     ...(type !== 'pdf'
@@ -301,7 +330,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
             onClick={() => fileInputRef.current?.click()}
             className="btn-secondary px-3 py-2 text-sm h-10"
           >
-            <Upload className="w-4 h-4 text-[#3b82f6]" />
+            <Upload className="w-4 h-4 text-[var(--accent)]" />
             {te('upload')}
           </button>
 
@@ -342,7 +371,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
               event('change_tab', { tab: 'editor', tool: 'converter', type });
             }}
             className={`flex items-center gap-1 px-2.5 py-1.5 rounded-md text-xs font-semibold transition-colors ${
-              activeTab === 'editor' ? 'bg-[#3b82f6] text-white' : 'text-[var(--text-secondary)]'
+              activeTab === 'editor' ? 'bg-[var(--accent)] text-white' : 'text-[var(--text-secondary)]'
             }`}
           >
             <PenLine className="w-3.5 h-3.5" />
@@ -355,7 +384,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
               event('change_tab', { tab: 'preview', tool: 'converter', type });
             }}
             className={`flex items-center gap-1 px-2.5 py-1.5 rounded-md text-xs font-semibold transition-colors ${
-              activeTab === 'preview' ? 'bg-[#3b82f6] text-white' : 'text-[var(--text-secondary)]'
+              activeTab === 'preview' ? 'bg-[var(--accent)] text-white' : 'text-[var(--text-secondary)]'
             }`}
           >
             <Eye className="w-3.5 h-3.5" />
@@ -374,8 +403,8 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
         {/* Editor panel */}
         <div className={`flex flex-col relative min-h-0 border-r border-[var(--border-color)] ${activeTab !== 'editor' ? 'hidden md:flex' : 'flex'}`}>
           {isDragging && (
-            <div className="absolute inset-0 z-20 bg-[var(--bg-secondary)]/95 backdrop-blur-sm border-2 border-dashed border-[#3b82f6] m-3 rounded-xl flex flex-col items-center justify-center">
-              <FileUp className="w-10 h-10 text-[#3b82f6] mb-3" />
+            <div className="absolute inset-0 z-20 bg-[var(--bg-secondary)]/95 backdrop-blur-sm border-2 border-dashed border-[var(--accent)] m-3 rounded-xl flex flex-col items-center justify-center">
+              <FileUp className="w-10 h-10 text-[var(--accent)] mb-3" />
               <p className="font-semibold text-[var(--text-primary)]">{t('dragDrop')}</p>
             </div>
           )}
@@ -387,7 +416,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
                 <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
                 <span className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
               </div>
-              <PenLine className="w-4 h-4 text-[#3b82f6]" />
+              <PenLine className="w-4 h-4 text-[var(--accent)]" />
               {te('editorTab')}
             </div>
             <span className="text-[10px] font-mono font-bold text-[var(--text-tertiary)] uppercase">{markdown.length} chars</span>
@@ -403,6 +432,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
               ref={textareaRef}
               value={markdown}
               onChange={(e) => setMarkdown(e.target.value)}
+              onPaste={handlePaste}
               onScroll={handleTextareaScroll}
               placeholder={t('pasteHere')}
               className="editor-textarea"
@@ -417,7 +447,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
         <div className={`flex flex-col min-h-0 bg-[var(--bg-primary)] ${activeTab !== 'preview' ? 'hidden md:flex' : 'flex'}`}>
           <div className="editor-pane-header">
             <div className="flex items-center gap-2 text-xs font-bold text-[var(--text-secondary)]">
-              <ExportIcon className="w-4 h-4" style={{ color: type === 'pdf' ? '#8b5cf6' : type === 'html' ? '#f59e0b' : '#10b981' }} />
+              <ExportIcon className="w-4 h-4" style={{ color: type === 'pdf' ? '#8b5cf6' : type === 'html' ? '#f59e0b' : type === 'docx' ? '#3b82f6' : '#10b981' }} />
               {type === 'txt' ? t('outputTitle') : te('previewTab')}
             </div>
 
@@ -430,7 +460,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
                     event('change_html_view', { view: 'preview', tool: 'converter' });
                   }}
                   className={`flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-semibold transition-colors ${
-                    htmlView === 'preview' ? 'bg-[#3b82f6] text-white' : 'text-[var(--text-secondary)]'
+                    htmlView === 'preview' ? 'bg-[var(--accent)] text-white' : 'text-[var(--text-secondary)]'
                   }`}
                 >
                   <Eye className="w-3 h-3" />
@@ -443,7 +473,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
                     event('change_html_view', { view: 'code', tool: 'converter' });
                   }}
                   className={`flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-semibold transition-colors ${
-                    htmlView === 'code' ? 'bg-[#3b82f6] text-white' : 'text-[var(--text-secondary)]'
+                    htmlView === 'code' ? 'bg-[var(--accent)] text-white' : 'text-[var(--text-secondary)]'
                   }`}
                 >
                   <Code2 className="w-3 h-3" />

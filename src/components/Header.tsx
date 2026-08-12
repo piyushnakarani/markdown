@@ -5,6 +5,7 @@ import {
   ChevronDown,
   Code2,
   Eye,
+  FileSpreadsheet,
   FileText,
   FileType,
   Menu,
@@ -14,7 +15,7 @@ import {
   X,
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useEffect, useRef,useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { Link, usePathname } from '@/i18n/navigation';
 
@@ -32,7 +33,7 @@ export default function Header() {
   const toolsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 24);
+    const handleScroll = () => setScrolled(window.scrollY > 8);
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
@@ -64,171 +65,156 @@ export default function Header() {
   };
 
   const navLinkClass = (path: string) =>
-    `relative px-4 py-2 text-sm font-medium rounded-xl transition-all duration-300 ${
+    `relative px-3 py-1.5 text-sm font-medium rounded-md transition-colors duration-150 cursor-pointer ${
       isActive(path)
-        ? 'text-[#3b82f6] bg-[#3b82f6]/10 font-semibold'
-        : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-white/[0.04]'
+        ? 'text-[var(--accent)] bg-[var(--accent-muted)]'
+        : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)]'
     }`;
 
   const tools = [
-    { href: '/markdown-to-pdf', label: t('markdownToPdf'), icon: FileText, color: '#ef4444', bg: 'from-red-500/10 to-orange-500/5' },
-    { href: '/markdown-to-html', label: t('markdownToHtml'), icon: Code2, color: '#f59e0b', bg: 'from-amber-500/10 to-yellow-500/5' },
-    { href: '/markdown-to-txt', label: t('markdownToTxt'), icon: FileType, color: '#10b981', bg: 'from-emerald-500/10 to-green-500/5' },
-    { href: '/markdown-live-preview', label: t('markdownLivePreview'), icon: Eye, color: '#8b5cf6', bg: 'from-violet-500/10 to-purple-500/5' },
-    { href: '/editor', label: t('editor'), icon: PenLine, color: '#3b82f6', bg: 'from-blue-500/10 to-indigo-500/5' },
+    { href: '/markdown-to-pdf', label: t('markdownToPdf'), icon: FileText, color: '#ef4444' },
+    { href: '/markdown-to-html', label: t('markdownToHtml'), icon: Code2, color: '#f59e0b' },
+    { href: '/markdown-to-txt', label: t('markdownToTxt'), icon: FileType, color: '#10b981' },
+    { href: '/markdown-to-docx', label: t('markdownToDocx'), icon: FileSpreadsheet, color: '#2563eb' },
+    { href: '/markdown-live-preview', label: t('markdownLivePreview'), icon: Eye, color: '#8b5cf6' },
+    { href: '/editor', label: t('editor'), icon: PenLine, color: 'var(--accent)' },
   ];
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          scrolled ? 'glass nav-glow border-b border-[var(--border-color)] bg-[var(--bg-primary)]/80 backdrop-blur-md' : 'px-4 sm:px-6 lg:px-8'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 h-[var(--header-height)] transition-colors duration-200 ${
+          scrolled ? 'glass nav-glow bg-[var(--bg-primary)]/90 backdrop-blur-md' : 'bg-[var(--bg-primary)]'
+        } border-b border-[var(--border-color)]`}
       >
-        <div
-          className={`mx-auto transition-all duration-500 page-container ${
-            scrolled
-              ? 'px-4 sm:px-6 lg:px-8 py-3'
-              : 'bg-transparent py-5'
-          }`}
-        >
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <SiteLogo variant="header" />
+        <div className="mx-auto h-full page-container flex items-center justify-between gap-4">
+          <SiteLogo variant="header" />
 
-            {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
-              <Link href="/" className={navLinkClass('/')}>
-                {t('home')}
-              </Link>
+          <nav className="hidden lg:flex items-center gap-0.5" aria-label="Main navigation">
+            <Link href="/" className={navLinkClass('/')}>
+              {t('home')}
+            </Link>
 
-              <div ref={toolsRef} className="relative">
-                <button
-                  onClick={() => setToolsOpen(!toolsOpen)}
-                  className={`flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-xl transition-all duration-300 ${
-                    toolsOpen
-                      ? 'bg-white/[0.04] text-[var(--text-primary)]'
-                      : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-white/[0.04]'
-                  }`}
-                  aria-expanded={toolsOpen}
-                  aria-haspopup="true"
-                >
-                  {t('tools')}
-                  <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${toolsOpen ? 'rotate-180' : ''}`} />
-                </button>
+            <div ref={toolsRef} className="relative">
+              <button
+                onClick={() => setToolsOpen(!toolsOpen)}
+                className={`flex items-center gap-1 px-3 py-1.5 text-sm font-medium rounded-md transition-colors duration-150 cursor-pointer ${
+                  toolsOpen
+                    ? 'bg-[var(--bg-tertiary)] text-[var(--text-primary)]'
+                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)]'
+                }`}
+                aria-expanded={toolsOpen}
+                aria-haspopup="true"
+              >
+                {t('tools')}
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${toolsOpen ? 'rotate-180' : ''}`} />
+              </button>
 
-                {toolsOpen && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-80 rounded-2xl border border-[var(--border-color)] bg-[var(--bg-primary)]/95 backdrop-blur-xl shadow-2xl p-2 animate-fade-in z-50">
-                    <div className="grid gap-0.5">
-                      {tools.map((tool) => (
-                        <Link
-                          key={tool.href}
-                          href={tool.href}
-                          onClick={() => setToolsOpen(false)}
-                          className="flex items-center gap-3.5 px-4 py-3 rounded-xl transition-all hover:bg-white/[0.04] group"
+              {toolsOpen && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 rounded-lg border border-[var(--border-color)] bg-[var(--bg-primary)] shadow-[var(--shadow-md)] p-1.5 animate-fade-in z-50">
+                  <div className="grid gap-0.5">
+                    {tools.map((tool) => (
+                      <Link
+                        key={tool.href}
+                        href={tool.href}
+                        onClick={() => setToolsOpen(false)}
+                        className="flex items-center gap-3 px-3 py-2 rounded-md transition-colors hover:bg-[var(--bg-tertiary)] group cursor-pointer"
+                      >
+                        <div
+                          className="w-8 h-8 rounded-md flex items-center justify-center shrink-0 border border-[var(--border-color)] bg-[var(--bg-secondary)]"
                         >
-                          <div
-                            className={`w-10 h-10 rounded-xl bg-gradient-to-br ${tool.bg} flex items-center justify-center transition-transform duration-300 group-hover:scale-110`}
-                          >
-                            <tool.icon className="w-5 h-5" style={{ color: tool.color }} />
-                          </div>
-                          <div className="flex flex-col flex-1">
-                            <span className="font-semibold text-sm text-[var(--text-primary)]">{tool.label}</span>
-                            <span className="text-[11px] text-[var(--text-tertiary)]">Instant conversion</span>
-                          </div>
-                          <ArrowRight className="w-4 h-4 text-[var(--text-tertiary)] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
-                        </Link>
-                      ))}
-                    </div>
+                          <tool.icon className="w-4 h-4" style={{ color: tool.color }} />
+                        </div>
+                        <span className="font-medium text-sm text-[var(--text-primary)] flex-1">{tool.label}</span>
+                        <ArrowRight className="w-3.5 h-3.5 text-[var(--text-tertiary)] opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </Link>
+                    ))}
                   </div>
-                )}
-              </div>
-
-              <Link href="/blog" locale="en" className={navLinkClass('/blog')}>
-                {t('blog')}
-              </Link>
-              <Link href="/about" className={navLinkClass('/about')}>
-                {t('about')}
-              </Link>
-            </nav>
-
-            {/* Right controls */}
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              <LanguageSwitcher />
-
-              <button
-                onClick={toggleTheme}
-                className="p-2.5 rounded-xl text-[var(--text-secondary)] hover:bg-white/[0.04] hover:text-[var(--text-primary)] transition-all duration-300 active:scale-95"
-                aria-label={t('theme')}
-              >
-                {theme === 'dark' ? <Sun className="w-[18px] h-[18px]" /> : <Moon className="w-[18px] h-[18px]" />}
-              </button>
-
-              <Link
-                href="/editor"
-                className="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white rounded-xl bg-gradient-to-r from-[#3b82f6] to-[#8b5cf6] hover:shadow-lg hover:shadow-[#3b82f6]/25 transition-all duration-300 hover:-translate-y-0.5"
-              >
-                <PenLine className="w-4 h-4" />
-                <span className="hidden md:inline">{t('editor')}</span>
-              </Link>
-
-              <button
-                onClick={() => setMobileOpen(!mobileOpen)}
-                className="lg:hidden p-2.5 rounded-xl text-[var(--text-secondary)] hover:bg-white/[0.04] transition-all duration-300"
-                aria-label="Toggle menu"
-                aria-expanded={mobileOpen}
-              >
-                {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-              </button>
+                </div>
+              )}
             </div>
+
+            <Link href="/blog" locale="en" className={navLinkClass('/blog')}>
+              {t('blog')}
+            </Link>
+            <Link href="/about" className={navLinkClass('/about')}>
+              {t('about')}
+            </Link>
+          </nav>
+
+          <div className="flex items-center gap-1">
+            <LanguageSwitcher />
+
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-md text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)] hover:text-[var(--text-primary)] transition-colors duration-150 cursor-pointer"
+              aria-label={t('theme')}
+            >
+              {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            </button>
+
+            <Link
+              href="/editor"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-semibold text-[var(--accent-foreground)] rounded-md bg-[var(--accent)] hover:bg-[var(--accent-hover)] transition-colors duration-150 cursor-pointer"
+            >
+              <PenLine className="w-3.5 h-3.5" />
+              <span className="hidden md:inline">{t('editor')}</span>
+            </Link>
+
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="lg:hidden p-2 rounded-md text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)] transition-colors cursor-pointer"
+              aria-label="Toggle menu"
+              aria-expanded={mobileOpen}
+            >
+              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile drawer */}
       {mobileOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
           <div
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm animate-fade-in"
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm animate-fade-in"
             onClick={() => setMobileOpen(false)}
           />
           <nav
-            className="absolute top-0 right-0 h-full w-[min(320px,88vw)] bg-[var(--bg-primary)] shadow-2xl border-l border-[var(--border-color)] p-6 pt-24 overflow-y-auto"
-            style={{ animation: 'slideInRight 0.35s cubic-bezier(0.16,1,0.3,1) forwards' }}
+            className="absolute top-0 right-0 h-full w-[min(300px,88vw)] bg-[var(--bg-primary)] shadow-[var(--shadow-md)] border-l border-[var(--border-color)] p-4 pt-[calc(var(--header-height)+1rem)] overflow-y-auto"
+            style={{ animation: 'slideInRight 0.25s ease forwards' }}
             aria-label="Mobile navigation"
           >
-            <div className="space-y-1">
+            <div className="space-y-0.5">
               <Link
                 href="/"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-3 px-4 py-3.5 rounded-xl text-[var(--text-primary)] font-semibold hover:bg-white/[0.04] transition-all"
+                className="flex items-center gap-3 px-3 py-2.5 rounded-md text-[var(--text-primary)] font-medium hover:bg-[var(--bg-tertiary)] transition-colors cursor-pointer"
               >
                 {t('home')}
               </Link>
 
-              <div className="px-4 py-2 text-[10px] font-bold text-[var(--text-tertiary)] uppercase tracking-widest">
+              <div className="px-3 py-2 text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-wider">
                 {t('tools')}
               </div>
-              <div className="grid gap-0.5 pl-1">
+              <div className="grid gap-0.5">
                 {tools.map((tool) => (
                   <Link
                     key={tool.href}
                     href={tool.href}
                     onClick={() => setMobileOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/[0.04] transition-all"
+                    className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-[var(--bg-tertiary)] transition-colors cursor-pointer"
                   >
                     <div
-                      className="w-9 h-9 rounded-lg flex items-center justify-center"
-                      style={{ background: `${tool.color}15` }}
+                      className="w-7 h-7 rounded-md flex items-center justify-center border border-[var(--border-color)] bg-[var(--bg-secondary)]"
                     >
-                      <tool.icon className="w-4 h-4" style={{ color: tool.color }} />
+                      <tool.icon className="w-3.5 h-3.5" style={{ color: tool.color }} />
                     </div>
                     <span className="text-sm font-medium text-[var(--text-primary)]">{tool.label}</span>
                   </Link>
                 ))}
               </div>
 
-              <div className="border-t border-[var(--border-color)] my-4" />
+              <div className="border-t border-[var(--border-color)] my-3" />
 
               {['/blog', '/about', '/contact', '/help'].map((href) => {
                 const key = href.slice(1) as 'blog' | 'about' | 'contact' | 'help';
@@ -237,7 +223,7 @@ export default function Header() {
                     key={href}
                     href={href}
                     onClick={() => setMobileOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3.5 rounded-xl text-[var(--text-primary)] font-medium hover:bg-white/[0.04] transition-all"
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-md text-[var(--text-primary)] font-medium hover:bg-[var(--bg-tertiary)] transition-colors cursor-pointer"
                   >
                     {t(key)}
                   </Link>
@@ -245,11 +231,11 @@ export default function Header() {
               })}
             </div>
 
-            <div className="mt-8">
+            <div className="mt-6">
               <Link
                 href="/editor"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center gap-2.5 w-full py-3.5 text-sm font-semibold text-white rounded-xl bg-gradient-to-r from-[#3b82f6] to-[#8b5cf6] hover:shadow-xl transition-all"
+                className="flex items-center justify-center gap-2 w-full py-2.5 text-sm font-semibold text-[var(--accent-foreground)] rounded-md bg-[var(--accent)] hover:bg-[var(--accent-hover)] transition-colors cursor-pointer"
               >
                 <PenLine className="w-4 h-4" />
                 {t('editor')}

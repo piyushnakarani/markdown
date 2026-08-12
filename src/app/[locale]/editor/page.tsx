@@ -60,7 +60,7 @@ function EditorPageContent({ locale }: { locale: string }) {
         badgeIcon={PenLine}
         title={<span className="gradient-text">{t('title')}</span>}
         subtitle={t('description')}
-        accentColor="#3b82f6"
+        accentColor="var(--accent)"
         glowColor="rgba(59,130,246,0.08)"
       />
       <EditorClient />
@@ -125,7 +125,7 @@ function EditorPageContent({ locale }: { locale: string }) {
         faqTitle="Online Markdown Editor FAQ"
         faqs={faqs}
         relatedGuidesToolKey="editor"
-        accentColor="#3b82f6"
+        accentColor="var(--accent)"
       />
       <script
         type="application/ld+json"

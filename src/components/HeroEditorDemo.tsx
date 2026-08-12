@@ -154,7 +154,7 @@ export default function HeroEditorDemo() {
                 <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
               </div>
               <span className="w-px h-3.5 bg-[var(--border-color)] mx-1" />
-              <PenLine className="w-4 h-4 text-[#3b82f6]" />
+              <PenLine className="w-4 h-4 text-[var(--accent)]" />
               <span className="text-xs font-bold text-[var(--text-secondary)]">Editor</span>
             </div>
           </div>

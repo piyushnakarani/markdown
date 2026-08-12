@@ -31,8 +31,7 @@ export default function AboutClient() {
       icon: FileText,
       title: 'High-Fidelity PDF Compiler',
       desc: 'Convert Markdown to pixel-perfect A4-formatted PDFs. Features automatic page-break avoidance for elements, code blocks, tables, and diagrams, quote formatting, and syntax highlighting.',
-      color: '#f43f5e',
-      bg: 'from-rose-500/10 to-orange-500/5',
+      color: '#ef4444',
       badge: 'Print Ready',
     },
     {
@@ -40,7 +39,6 @@ export default function AboutClient() {
       title: 'Semantic HTML Engine',
       desc: 'Compile Markdown to clean, W3C-compliant, semantic HTML markup. Ideal for copy-pasting directly into your CMS (WordPress, Webflow, Ghost), blogs, or static site templates.',
       color: '#f59e0b',
-      bg: 'from-amber-500/10 to-yellow-500/5',
       badge: 'SEO Friendly',
     },
     {
@@ -48,15 +46,13 @@ export default function AboutClient() {
       title: 'Plain Text Stripper',
       desc: 'Quickly strip all Markdown syntax, formatting symbols, headings, images, links, and code blocks to produce clean, plain plain-text files (.txt) for templates or data feeds.',
       color: '#10b981',
-      bg: 'from-emerald-500/10 to-green-500/5',
       badge: 'Unformatted',
     },
     {
       icon: PenLine,
       title: 'Interactive Live Editor',
       desc: 'Full-featured Markdown workspace featuring side-by-side split screen editing, synchronized scrolling, instant rendering, real-time word counters, and quick format tools.',
-      color: '#3b82f6',
-      bg: 'from-blue-500/10 to-indigo-500/5',
+      color: 'var(--accent)',
       badge: 'Real-time',
     },
     {
@@ -64,7 +60,6 @@ export default function AboutClient() {
       title: 'Mermaid.js Integrations',
       desc: 'Native support for code-defined diagrams. Render flowcharts, sequence diagrams, state diagrams, class relationships, and charts directly from markdown to high-resolution print SVGs.',
       color: '#8b5cf6',
-      bg: 'from-purple-500/10 to-pink-500/5',
       badge: 'Vector Graphics',
     },
     {
@@ -72,7 +67,6 @@ export default function AboutClient() {
       title: 'Strict Local Sandbox',
       desc: 'Your files are processed with absolute privacy. All rendering and conversions take place client-side in the browser. Zero data transmission, zero tracking, zero logs.',
       color: '#06b6d4',
-      bg: 'from-cyan-500/10 to-blue-500/5',
       badge: 'Private',
     },
   ];
@@ -82,19 +76,16 @@ export default function AboutClient() {
       icon: Zap,
       title: 'Zero Latency & Fee-Free',
       desc: 'Engineered for developers who value performance. Unlimited exports, zero subscriptions, no hidden limits.',
-      color: '#f59e0b',
     },
     {
       icon: Globe,
       title: 'Localization First',
       desc: 'Full compatibility with 12 major languages and Right-to-Left (RTL) reading layouts for global developers.',
-      color: '#06b6d4',
     },
     {
       icon: GitBranch,
       title: 'Optimized DX',
       desc: 'Keyboards shortcuts, clean typography, standard GFM compatibility, and search engine optimization.',
-      color: '#a855f7',
     },
   ];
 
@@ -182,40 +173,53 @@ Markdown Source -> Parser -> Print Document`,
     },
   };
 
-  return (
-    <div className="relative overflow-hidden w-full pb-24">
-      {/* Background glow meshes */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.03),transparent_60%)] pointer-events-none" />
-      <div className="absolute top-96 left-1/4 w-[600px] h-[600px] bg-gradient-to-tr from-[#3b82f6]/5 to-[#8b5cf6]/3 blur-[150px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-40 right-1/4 w-[400px] h-[400px] bg-gradient-to-br from-[#ec4899]/3 to-[#06b6d4]/4 blur-[130px] rounded-full pointer-events-none" />
+  const pipelineTabs: {
+    key: 'input' | 'pdf' | 'html' | 'txt' | 'mermaid';
+    icon: typeof Terminal;
+    label: string;
+    hint: string;
+    color: string;
+  }[] = [
+    { key: 'input', icon: Terminal, label: '1. Source Markdown', hint: 'Input standard GFM text & Mermaid blocks.', color: 'var(--accent)' },
+    { key: 'pdf', icon: FileText, label: '2. PDF Print Compilation', hint: 'Custom margin spacing & page dividers.', color: '#ef4444' },
+    { key: 'html', icon: FileCode, label: '3. Clean HTML Markup', hint: 'CMS-ready semantic tag generation.', color: '#f59e0b' },
+    { key: 'txt', icon: FileType, label: '4. Plain Text Export', hint: 'Clean reset stripping all markdown tags.', color: '#10b981' },
+    { key: 'mermaid', icon: Activity, label: '5. Mermaid Vectors', hint: 'Fully scalable rasterized inline charts.', color: '#8b5cf6' },
+  ];
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-28">
-        
-        {/* Core Mission Spotlight */}
-        <div className="relative group">
-          <div className="absolute -inset-px bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-3xl blur-md opacity-75 group-hover:opacity-100 transition duration-1000" />
-          <div className="relative card-glass p-8 sm:p-12 text-center rounded-3xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/50 backdrop-blur-xl">
-            <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-pink-500/10 border border-pink-500/20 mb-6 text-pink-500">
-              <Layers className="w-6 h-6" />
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold mb-4 tracking-tight text-[var(--text-primary)]">
-              Developer-First Conversion Philosophy
-            </h2>
-            <p className="text-[var(--text-secondary)] text-sm sm:text-base leading-relaxed max-w-3xl mx-auto">
-              Our tools are constructed with one core goal: to provide zero-friction, accessible, and absolute client-side privacy. PDFWritter supports full GitHub Flavored Markdown (GFM) specs, handles complex Mermaid.js code blocks directly, and exports clean compiled files instantly—all without needing servers, user accounts, or paywalls.
-            </p>
+  const architectureSteps = [
+    { icon: Terminal, title: '1. MD Document Input', desc: 'Markdown strings, GFM tables, metadata, and Mermaid blocks.' },
+    { icon: Cpu, title: '2. AST Syntax Engine', desc: 'Lexical analysis parsing markdown blocks & building charts.' },
+    { icon: Layers, title: '3. Compilation Drivers', desc: 'WASM engines & render APIs formatting pages & vectors.' },
+    { icon: CheckCircle, title: '4. Output Formats', desc: 'Clean A4 PDFs, parsed HTML files, and pure raw text.' },
+  ];
+
+  return (
+    <div className="relative w-full pb-16">
+      <div className="page-container space-y-14">
+
+        {/* Core Mission */}
+        <div className="card-glass p-5 sm:p-7 text-center">
+          <div className="inline-flex items-center justify-center w-10 h-10 rounded-md border border-[var(--border-color)] bg-[var(--accent-muted)] mb-4">
+            <Layers className="w-5 h-5 text-[var(--accent)]" />
           </div>
+          <h2 className="text-xl sm:text-2xl font-semibold mb-3 tracking-tight text-[var(--text-primary)]">
+            Developer-First Conversion Philosophy
+          </h2>
+          <p className="text-sm text-[var(--text-secondary)] leading-relaxed max-w-2xl mx-auto">
+            Our tools are constructed with one core goal: to provide zero-friction, accessible, and absolute client-side privacy. PDFWritter supports full GitHub Flavored Markdown (GFM) specs, handles complex Mermaid.js code blocks directly, and exports clean compiled files instantly—all without needing servers, user accounts, or paywalls.
+          </p>
         </div>
 
         {/* Brand disambiguation — helps users (and search) separate us from pdfwriter.com */}
-        <section className="relative card-glass p-6 sm:p-8 rounded-2xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/40">
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[var(--text-primary)] mb-3">
+        <section className="card-glass p-5 sm:p-6">
+          <h2 className="text-lg font-semibold tracking-tight text-[var(--text-primary)] mb-2">
             {t('disambiguationTitle')}
           </h2>
-          <p className="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed max-w-3xl">
+          <p className="text-sm text-[var(--text-secondary)] leading-relaxed max-w-3xl">
             {t('disambiguationText')}
           </p>
-          <div className="mt-5 flex flex-wrap gap-3">
+          <div className="mt-4 flex flex-wrap gap-2.5">
             <Link href="/markdown-to-pdf" className="btn-primary text-sm">
               Markdown to PDF
               <ArrowRight className="w-4 h-4" />
@@ -227,131 +231,68 @@ Markdown Source -> Parser -> Print Document`,
         </section>
 
         {/* Interactive Simulator: The Conversion Pipeline */}
-        <section className="space-y-10">
-          <div className="text-center max-w-2xl mx-auto">
-            <div className="section-badge mb-3">Interactive Showcase</div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-primary)] tracking-tight">
-              Instant Multi-Format Compilation
+        <section className="space-y-6">
+          <div className="max-w-2xl">
+            <span className="section-badge mb-2.5 inline-flex">Interactive showcase</span>
+            <h2 className="text-lg sm:text-xl font-semibold text-[var(--text-primary)] tracking-tight mb-1.5">
+              Instant multi-format compilation
             </h2>
-            <p className="text-xs sm:text-sm text-[var(--text-secondary)] mt-2">
+            <p className="text-sm text-[var(--text-secondary)]">
               Select a stage below to simulate how the PDFWritter pipeline processes code and handles formatting inputs.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-            {/* Step Controls */}
-            <div className="lg:col-span-4 flex flex-col justify-center space-y-3.5">
-              <button
-                onClick={() => setActiveStep('input')}
-                className={`w-full text-left p-4 rounded-xl border transition-all duration-300 flex items-start gap-4 ${
-                  activeStep === 'input'
-                    ? 'bg-blue-500/10 border-blue-500/40 text-[var(--text-primary)] shadow-lg shadow-blue-500/5'
-                    : 'bg-[var(--bg-secondary)]/40 border-[var(--border-color)] text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)]/80 hover:border-[var(--border-hover)]'
-                }`}
-              >
-                <div className={`p-2 rounded-lg ${activeStep === 'input' ? 'bg-blue-500 text-white' : 'bg-[var(--bg-tertiary)]'}`}>
-                  <Terminal className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold tracking-tight">1. Source Markdown</h4>
-                  <p className="text-[11px] text-[var(--text-tertiary)] mt-0.5">Input standard GFM text & Mermaid blocks.</p>
-                </div>
-              </button>
-
-              <button
-                onClick={() => setActiveStep('pdf')}
-                className={`w-full text-left p-4 rounded-xl border transition-all duration-300 flex items-start gap-4 ${
-                  activeStep === 'pdf'
-                    ? 'bg-rose-500/10 border-rose-500/40 text-[var(--text-primary)] shadow-lg shadow-rose-500/5'
-                    : 'bg-[var(--bg-secondary)]/40 border-[var(--border-color)] text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)]/80 hover:border-[var(--border-hover)]'
-                }`}
-              >
-                <div className={`p-2 rounded-lg ${activeStep === 'pdf' ? 'bg-rose-500 text-white' : 'bg-[var(--bg-tertiary)]'}`}>
-                  <FileText className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold tracking-tight">2. PDF Print Compilation</h4>
-                  <p className="text-[11px] text-[var(--text-tertiary)] mt-0.5">Custom margin spacing & page dividers.</p>
-                </div>
-              </button>
-
-              <button
-                onClick={() => setActiveStep('html')}
-                className={`w-full text-left p-4 rounded-xl border transition-all duration-300 flex items-start gap-4 ${
-                  activeStep === 'html'
-                    ? 'bg-amber-500/10 border-amber-500/40 text-[var(--text-primary)] shadow-lg shadow-amber-500/5'
-                    : 'bg-[var(--bg-secondary)]/40 border-[var(--border-color)] text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)]/80 hover:border-[var(--border-hover)]'
-                }`}
-              >
-                <div className={`p-2 rounded-lg ${activeStep === 'html' ? 'bg-amber-500 text-white' : 'bg-[var(--bg-tertiary)]'}`}>
-                  <FileCode className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold tracking-tight">3. Clean HTML Markup</h4>
-                  <p className="text-[11px] text-[var(--text-tertiary)] mt-0.5">CMS-ready semantic tag generation.</p>
-                </div>
-              </button>
-
-              <button
-                onClick={() => setActiveStep('txt')}
-                className={`w-full text-left p-4 rounded-xl border transition-all duration-300 flex items-start gap-4 ${
-                  activeStep === 'txt'
-                    ? 'bg-emerald-500/10 border-emerald-500/40 text-[var(--text-primary)] shadow-lg shadow-emerald-500/5'
-                    : 'bg-[var(--bg-secondary)]/40 border-[var(--border-color)] text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)]/80 hover:border-[var(--border-hover)]'
-                }`}
-              >
-                <div className={`p-2 rounded-lg ${activeStep === 'txt' ? 'bg-emerald-500 text-white' : 'bg-[var(--bg-tertiary)]'}`}>
-                  <FileType className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold tracking-tight">4. Plain Text Export</h4>
-                  <p className="text-[11px] text-[var(--text-tertiary)] mt-0.5">Clean reset stripping all markdown tags.</p>
-                </div>
-              </button>
-
-              <button
-                onClick={() => setActiveStep('mermaid')}
-                className={`w-full text-left p-4 rounded-xl border transition-all duration-300 flex items-start gap-4 ${
-                  activeStep === 'mermaid'
-                    ? 'bg-purple-500/10 border-purple-500/40 text-[var(--text-primary)] shadow-lg shadow-purple-500/5'
-                    : 'bg-[var(--bg-secondary)]/40 border-[var(--border-color)] text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)]/80 hover:border-[var(--border-hover)]'
-                }`}
-              >
-                <div className={`p-2 rounded-lg ${activeStep === 'mermaid' ? 'bg-purple-500 text-white' : 'bg-[var(--bg-tertiary)]'}`}>
-                  <Activity className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold tracking-tight">5. Mermaid Vectors</h4>
-                  <p className="text-[11px] text-[var(--text-tertiary)] mt-0.5">Fully scalable rasterized inline charts.</p>
-                </div>
-              </button>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
+            <div className="lg:col-span-4 flex flex-col justify-center gap-2">
+              {pipelineTabs.map((tab) => {
+                const isActive = activeStep === tab.key;
+                return (
+                  <button
+                    key={tab.key}
+                    onClick={() => setActiveStep(tab.key)}
+                    className={`w-full text-left p-3 rounded-md border transition-colors duration-150 flex items-start gap-3 cursor-pointer ${
+                      isActive
+                        ? 'border-[var(--accent)] bg-[var(--accent-muted)]'
+                        : 'border-[var(--border-color)] bg-[var(--bg-primary)] hover:bg-[var(--bg-tertiary)]'
+                    }`}
+                  >
+                    <div
+                      className="w-7 h-7 rounded-md flex items-center justify-center shrink-0 border border-[var(--border-color)]"
+                      style={{ background: isActive ? `color-mix(in srgb, ${tab.color} 16%, transparent)` : 'var(--bg-tertiary)' }}
+                    >
+                      <tab.icon className="w-3.5 h-3.5" style={{ color: isActive ? tab.color : 'var(--text-secondary)' }} />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-semibold tracking-tight text-[var(--text-primary)]">{tab.label}</h4>
+                      <p className="text-xs text-[var(--text-tertiary)] mt-0.5">{tab.hint}</p>
+                    </div>
+                  </button>
+                );
+              })}
             </div>
 
             {/* Simulated Visual Sandbox */}
             <div className="lg:col-span-8 flex flex-col">
-              <div className="relative w-full h-full flex flex-col rounded-2xl border border-[var(--border-color)] bg-[var(--bg-primary)] overflow-hidden shadow-2xl">
-                {/* macOS styled header */}
-                <div className="flex items-center justify-between px-4 py-3 bg-[var(--bg-secondary)] border-b border-[var(--border-color)] select-none">
+              <div className="relative w-full h-full flex flex-col rounded-lg border border-[var(--border-color)] bg-[var(--bg-primary)] overflow-hidden">
+                <div className="flex items-center justify-between px-4 py-2.5 bg-[var(--bg-tertiary)] border-b border-[var(--border-color)] select-none">
                   <div className="flex gap-1.5 items-center">
-                    <span className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-                    <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-                    <span className="w-3 h-3 rounded-full bg-[#27c93f]" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
                   </div>
-                  <div className="text-[11px] font-mono font-medium text-[var(--text-secondary)] bg-[var(--bg-tertiary)] px-3 py-1 rounded-md border border-[var(--border-color)] flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                  <div className="text-[11px] font-mono font-medium text-[var(--text-secondary)]">
                     {pipelineSteps[activeStep].title}
                   </div>
                   <div className="w-12" />
                 </div>
 
-                {/* Content Box */}
                 <div className="flex-1 overflow-auto max-h-[360px] min-h-[320px] font-mono text-xs leading-relaxed text-[var(--text-secondary)] p-0">
                   {typeof pipelineSteps[activeStep].content === 'string' ? (
-                    <pre className="p-6 h-full w-full overflow-x-auto select-all">
+                    <pre className="p-5 h-full w-full overflow-x-auto select-all">
                       <code>{pipelineSteps[activeStep].content}</code>
                     </pre>
                   ) : (
-                    <div className="h-full w-full bg-slate-100/50">
+                    <div className="h-full w-full">
                       {pipelineSteps[activeStep].content}
                     </div>
                   )}
@@ -362,201 +303,112 @@ Markdown Source -> Parser -> Print Document`,
         </section>
 
         {/* Detailed Core Functionalities Grid */}
-        <section className="space-y-10">
-          <div className="text-center max-w-2xl mx-auto">
-            <div className="section-badge mb-3">Feature Catalogue</div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-primary)] tracking-tight">
-              Provided Functionalities & Services
+        <section className="space-y-6">
+          <div className="max-w-2xl">
+            <span className="section-badge mb-2.5 inline-flex">Feature catalogue</span>
+            <h2 className="text-lg sm:text-xl font-semibold text-[var(--text-primary)] tracking-tight mb-1.5">
+              Provided functionalities & services
             </h2>
-            <p className="text-xs sm:text-sm text-[var(--text-secondary)] mt-2">
+            <p className="text-sm text-[var(--text-secondary)]">
               Built to optimize your markdown documentation workflow. Explore what you can perform instantly.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {functionalities.map((func, i) => (
-              <div
-                key={i}
-                className="group relative card-glass p-6 rounded-2xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/40 hover:bg-[var(--bg-secondary)]/80 hover:border-blue-500/20 hover:shadow-lg hover:shadow-blue-500/2 transition-all duration-300 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-5">
-                    <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${func.bg} flex items-center justify-center border border-white/[0.03] group-hover:scale-105 transition-transform`}>
-                      <func.icon className="w-5 h-5 animate-pulse-glow" style={{ color: func.color }} />
-                    </div>
-                    <span className="text-[9px] font-bold uppercase tracking-wider text-[var(--text-tertiary)] bg-[var(--bg-tertiary)] px-2 py-0.5 rounded border border-[var(--border-color)]">
-                      {func.badge}
-                    </span>
+              <div key={i} className="card-glass group h-full flex flex-col">
+                <div className="flex items-center justify-between mb-3">
+                  <div
+                    className="w-8 h-8 rounded-md flex items-center justify-center border border-[var(--border-color)]"
+                    style={{ background: `color-mix(in srgb, ${func.color} 10%, transparent)` }}
+                  >
+                    <func.icon className="w-4 h-4" style={{ color: func.color }} />
                   </div>
-                  <h3 className="text-base font-extrabold text-[var(--text-primary)] mb-2 group-hover:text-blue-500 transition-colors">
-                    {func.title}
-                  </h3>
-                  <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
-                    {func.desc}
-                  </p>
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-tertiary)] bg-[var(--bg-tertiary)] px-2 py-0.5 rounded border border-[var(--border-color)]">
+                    {func.badge}
+                  </span>
                 </div>
+                <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-1.5">
+                  {func.title}
+                </h3>
+                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                  {func.desc}
+                </p>
               </div>
             ))}
           </div>
         </section>
 
         {/* Custom Data Flow / Architecture Visualization */}
-        <section className="space-y-10">
-          <div className="text-center max-w-2xl mx-auto">
-            <div className="section-badge mb-3">System Architecture</div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-primary)] tracking-tight">
-              Data Rendering Engine Pipeline
+        <section className="space-y-6">
+          <div className="max-w-2xl">
+            <span className="section-badge mb-2.5 inline-flex">System architecture</span>
+            <h2 className="text-lg sm:text-xl font-semibold text-[var(--text-primary)] tracking-tight mb-1.5">
+              Data rendering engine pipeline
             </h2>
-            <p className="text-xs sm:text-sm text-[var(--text-secondary)] mt-2">
+            <p className="text-sm text-[var(--text-secondary)]">
               A high-level view of how markdown text is processed and compiled securely into target files.
             </p>
           </div>
 
-          <div className="relative card-glass p-8 rounded-3xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/20 overflow-hidden">
-            {/* Marching dashed animated lines - desktop layout */}
-            <div className="hidden lg:grid grid-cols-4 gap-6 items-center relative z-10">
-              
-              {/* Box 1 */}
-              <div className="flex flex-col items-center text-center p-5 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-color)] relative">
-                <div className="w-9 h-9 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center border border-blue-500/20 mb-3 shadow-inner">
-                  <Terminal className="w-4 h-4" />
+          <div className="card-glass p-5 sm:p-6">
+            <div className="hidden lg:grid grid-cols-4 gap-3">
+              {architectureSteps.map((step) => (
+                <div key={step.title} className="flex flex-col items-center text-center p-4 rounded-md bg-[var(--bg-tertiary)] border border-[var(--border-color)]">
+                  <div className="w-8 h-8 rounded-md bg-[var(--accent-muted)] text-[var(--accent)] flex items-center justify-center border border-[var(--border-color)] mb-2.5">
+                    <step.icon className="w-4 h-4" />
+                  </div>
+                  <h4 className="text-xs font-semibold text-[var(--text-primary)] mb-1">{step.title}</h4>
+                  <p className="text-[11px] text-[var(--text-secondary)] leading-relaxed">{step.desc}</p>
                 </div>
-                <h4 className="text-xs font-extrabold text-[var(--text-primary)] mb-1">1. MD Document Input</h4>
-                <p className="text-[10px] text-[var(--text-secondary)] leading-relaxed">
-                  Markdown strings, GFM tables, metadata, and Mermaid blocks.
-                </p>
-              </div>
-
-              {/* Box 2 */}
-              <div className="flex flex-col items-center text-center p-5 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-color)]">
-                <div className="w-9 h-9 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center border border-purple-500/20 mb-3 shadow-inner">
-                  <Cpu className="w-4 h-4" />
-                </div>
-                <h4 className="text-xs font-extrabold text-[var(--text-primary)] mb-1">2. AST Syntax Engine</h4>
-                <p className="text-[10px] text-[var(--text-secondary)] leading-relaxed">
-                  Lexical analysis parsing markdown blocks & building charts.
-                </p>
-              </div>
-
-              {/* Box 3 */}
-              <div className="flex flex-col items-center text-center p-5 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-color)]">
-                <div className="w-9 h-9 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center border border-amber-500/20 mb-3 shadow-inner">
-                  <Layers className="w-4 h-4" />
-                </div>
-                <h4 className="text-xs font-extrabold text-[var(--text-primary)] mb-1">3. Compilation Drivers</h4>
-                <p className="text-[10px] text-[var(--text-secondary)] leading-relaxed">
-                  WASM engines & render APIs formatting pages & vectors.
-                </p>
-              </div>
-
-              {/* Box 4 */}
-              <div className="flex flex-col items-center text-center p-5 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-color)]">
-                <div className="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center border border-emerald-500/20 mb-3 shadow-inner">
-                  <CheckCircle className="w-4 h-4" />
-                </div>
-                <h4 className="text-xs font-extrabold text-[var(--text-primary)] mb-1">4. Output Formats</h4>
-                <p className="text-[10px] text-[var(--text-secondary)] leading-relaxed">
-                  Clean A4 PDFs, parsed HTML files, and pure raw text.
-                </p>
-              </div>
-
+              ))}
             </div>
 
-            {/* Vertical Flow Timeline - mobile/tablet layout */}
-            <div className="lg:hidden flex flex-col gap-6 relative z-10 pl-6 border-l-2 border-dashed border-slate-700/60 ml-3">
-              
-              {/* Item 1 */}
-              <div className="relative">
-                <div className="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-blue-500 border-4 border-[var(--bg-secondary)]" />
-                <h4 className="text-xs font-extrabold text-[var(--text-primary)] mb-1 flex items-center gap-2">
-                  <Terminal className="w-3.5 h-3.5 text-blue-400" />
-                  1. MD Document Input
-                </h4>
-                <p className="text-[11px] text-[var(--text-secondary)] leading-relaxed pl-5">
-                  Markdown content with tables, styling metadata, and Mermaid blocks.
-                </p>
-              </div>
-
-              {/* Item 2 */}
-              <div className="relative">
-                <div className="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-purple-500 border-4 border-[var(--bg-secondary)]" />
-                <h4 className="text-xs font-extrabold text-[var(--text-primary)] mb-1 flex items-center gap-2">
-                  <Cpu className="w-3.5 h-3.5 text-purple-400" />
-                  2. AST Syntax Engine
-                </h4>
-                <p className="text-[11px] text-[var(--text-secondary)] leading-relaxed pl-5">
-                  Lexical compiler translating codes & generating diagram layouts.
-                </p>
-              </div>
-
-              {/* Item 3 */}
-              <div className="relative">
-                <div className="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-amber-500 border-4 border-[var(--bg-secondary)]" />
-                <h4 className="text-xs font-extrabold text-[var(--text-primary)] mb-1 flex items-center gap-2">
-                  <Layers className="w-3.5 h-3.5 text-amber-400" />
-                  3. Compilation Drivers
-                </h4>
-                <p className="text-[11px] text-[var(--text-secondary)] leading-relaxed pl-5">
-                  WASM packages & PDF render APIs mapping content bounds.
-                </p>
-              </div>
-
-              {/* Item 4 */}
-              <div className="relative">
-                <div className="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-emerald-500 border-4 border-[var(--bg-secondary)]" />
-                <h4 className="text-xs font-extrabold text-[var(--text-primary)] mb-1 flex items-center gap-2">
-                  <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
-                  4. Converted Output
-                </h4>
-                <p className="text-[11px] text-[var(--text-secondary)] leading-relaxed pl-5">
-                  Finished files downloaded locally (.pdf, .html, .txt).
-                </p>
-              </div>
-
+            <div className="lg:hidden flex flex-col gap-5 pl-5 border-l border-[var(--border-color)] ml-2">
+              {architectureSteps.map((step) => (
+                <div key={step.title} className="relative">
+                  <div className="absolute -left-[27px] top-1 w-3 h-3 rounded-full bg-[var(--accent)] border-2 border-[var(--bg-primary)]" />
+                  <h4 className="text-xs font-semibold text-[var(--text-primary)] mb-1 flex items-center gap-2">
+                    <step.icon className="w-3.5 h-3.5 text-[var(--accent)]" />
+                    {step.title}
+                  </h4>
+                  <p className="text-xs text-[var(--text-secondary)] leading-relaxed pl-5">
+                    {step.desc}
+                  </p>
+                </div>
+              ))}
             </div>
-
-            {/* Background design elements */}
-            <div className="absolute top-0 right-0 w-80 h-80 bg-blue-500/5 blur-3xl rounded-full pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-purple-500/5 blur-3xl rounded-full pointer-events-none" />
           </div>
         </section>
 
         {/* Design & Core Values */}
-        <section className="space-y-10">
-          <div className="text-center max-w-2xl mx-auto">
-            <div className="section-badge mb-3">Core Ethics</div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-primary)] tracking-tight">
-              Design & Operations Values
+        <section className="space-y-6">
+          <div className="max-w-2xl">
+            <span className="section-badge mb-2.5 inline-flex">Core ethics</span>
+            <h2 className="text-lg sm:text-xl font-semibold text-[var(--text-primary)] tracking-tight mb-1.5">
+              Design & operations values
             </h2>
-            <p className="text-xs sm:text-sm text-[var(--text-secondary)] mt-2">
+            <p className="text-sm text-[var(--text-secondary)]">
               The fundamental engineering guidelines behind PDFWritter.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {values.map((v, i) => (
-              <div key={i} className="card-glass p-6 rounded-2xl border border-[var(--border-color)] text-center relative overflow-hidden bg-[var(--bg-secondary)]/30">
-                <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center mx-auto mb-4 border border-white/[0.02]"
-                  style={{ background: `${v.color}15` }}
-                >
-                  <v.icon className="w-5 h-5 animate-pulse-glow" style={{ color: v.color }} />
+              <div key={i} className="card-glass text-center">
+                <div className="w-9 h-9 rounded-md flex items-center justify-center mx-auto mb-3 border border-[var(--border-color)] bg-[var(--accent-muted)]">
+                  <v.icon className="w-4 h-4 text-[var(--accent)]" />
                 </div>
-                <h3 className="text-sm font-extrabold mb-2 text-[var(--text-primary)]">{v.title}</h3>
-                <p className="text-xs text-[var(--text-secondary)] leading-relaxed">{v.desc}</p>
+                <h3 className="text-sm font-semibold mb-1.5 text-[var(--text-primary)]">{v.title}</h3>
+                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{v.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
-
-
-        {/* CTA Panel */}
-        <div className="text-center pt-4 relative z-10">
-          <Link
-            href="/editor"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 text-sm font-bold text-white rounded-xl bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 hover:shadow-xl hover:shadow-indigo-500/20 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-300 cursor-pointer"
-          >
+        {/* CTA */}
+        <div className="text-center pt-2">
+          <Link href="/editor" className="btn-primary">
             Launch Interactive Editor
             <ArrowRight className="w-4 h-4" />
           </Link>

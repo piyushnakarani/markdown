@@ -59,15 +59,11 @@ function MarkdownToTxtContent({ locale }: { locale: string }) {
         badgeIcon={Sparkles}
         title={
           <>
-            Convert Markdown to{' '}
-            <span className="bg-linear-to-r from-emerald-500 to-green-500 bg-clip-text text-transparent">
-              TXT
-            </span>
+            Convert Markdown to <span style={{ color: '#10b981' }}>TXT</span>
           </>
         }
         subtitle={t('tools.txtDescription')}
-        accentColor="#34d399"
-        glowColor="rgba(16,185,129,0.08)"
+        accentColor="#10b981"
       />
       <ConverterTool type="txt" />
       <ToolSeoSections

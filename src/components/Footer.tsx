@@ -6,7 +6,7 @@ import { Link } from '@/i18n/navigation';
 import { SITE_EMAIL, SITE_REDDIT_URL } from '@/lib/site';
 
 const socialLinkClass =
-  'flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-secondary)] transition-colors duration-200 hover:border-[#3b82f6]/40 hover:text-[#3b82f6]';
+  'flex h-9 w-9 items-center justify-center rounded-md border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-secondary)] transition-colors duration-150 hover:border-[var(--border-hover)] hover:text-[var(--accent)] cursor-pointer';
 
 import LanguageSwitcher from './LanguageSwitcher';
 import SiteLogo from './SiteLogo';
@@ -22,6 +22,7 @@ export default function Footer() {
     { href: '/ai-markdown-to-pdf', label: 'aiToPdf' },
     { href: '/markdown-to-html', label: 'markdownToHtml' },
     { href: '/markdown-to-txt', label: 'markdownToTxt' },
+    { href: '/markdown-to-docx', label: 'markdownToDocx' },
     { href: '/markdown-live-preview', label: 'markdownLivePreview' },
     { href: '/editor', label: 'editor' },
     { href: '/free-markdown-converter', label: 'freeConverter' },
@@ -34,26 +35,27 @@ export default function Footer() {
     { href: '/contact', label: 'contact' },
   ] as const;
 
-  return (
-    <footer className="border-t border-[var(--border-color)] bg-[var(--bg-secondary)] relative">
-      <div className="page-container py-16 sm:py-20 relative">
+  const linkClass =
+    'text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-150 inline-flex items-center gap-1 group cursor-pointer';
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
-          {/* Brand */}
+  return (
+    <footer className="border-t border-[var(--border-color)] bg-[var(--bg-primary)]">
+      <div className="page-container py-10 sm:py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-6">
           <div className="sm:col-span-2 lg:col-span-4">
-            <SiteLogo variant="footer" className="mb-6" />
-            <p className="text-sm text-[var(--text-secondary)] leading-relaxed max-w-sm mb-6">
+            <SiteLogo variant="footer" className="mb-4" />
+            <p className="text-sm text-[var(--text-secondary)] leading-relaxed max-w-sm mb-4">
               {t('description')}
             </p>
 
-            <div className="mb-8 flex items-center gap-2.5">
+            <div className="mb-6 flex items-center gap-2">
               <a
                 href={`mailto:${SITE_EMAIL}`}
                 className={socialLinkClass}
                 aria-label={`Email ${SITE_EMAIL}`}
                 title={SITE_EMAIL}
               >
-                <Mail className="h-5 w-5" aria-hidden />
+                <Mail className="h-4 w-4" aria-hidden />
               </a>
               <a
                 href={SITE_REDDIT_URL}
@@ -63,30 +65,26 @@ export default function Footer() {
                 aria-label="PDFWritter on Reddit"
                 title="u/pdfwritter"
               >
-                <RedditIcon className="h-5 w-5" />
+                <RedditIcon className="h-4 w-4" />
               </a>
             </div>
 
-            <div className="mb-6 max-w-[200px]">
-              <p className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-3">
+            <div className="max-w-[200px]">
+              <p className="text-xs font-semibold text-[var(--text-tertiary)] uppercase tracking-wider mb-2">
                 {tNav('language')}
               </p>
               <LanguageSwitcher variant="footer" />
             </div>
           </div>
 
-          {/* Tools */}
           <div className="lg:col-span-2 lg:col-start-6">
-            <h3 className="text-xs font-semibold text-[var(--text-secondary)] mb-4 tracking-wider uppercase">
+            <h3 className="text-xs font-semibold text-[var(--text-tertiary)] mb-3 tracking-wider uppercase">
               {t('tools')}
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               {toolLinks.map(({ href, label }) => (
                 <li key={href}>
-                  <Link
-                    href={href}
-                    className="text-sm text-[var(--text-secondary)] hover:text-[#3b82f6] transition-colors duration-200 inline-flex items-center gap-1 group"
-                  >
+                  <Link href={href} className={linkClass}>
                     {tNav(label)}
                     <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </Link>
@@ -95,18 +93,17 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Resources */}
           <div className="lg:col-span-2">
-            <h3 className="text-xs font-semibold text-[var(--text-secondary)] mb-4 tracking-wider uppercase">
+            <h3 className="text-xs font-semibold text-[var(--text-tertiary)] mb-3 tracking-wider uppercase">
               {t('resources')}
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               {resourceLinks.map(({ href, label }) => (
                 <li key={href}>
                   <Link
                     href={href}
                     locale={href === '/blog' ? 'en' : undefined}
-                    className="text-sm text-[var(--text-secondary)] hover:text-[#3b82f6] transition-colors duration-200 inline-flex items-center gap-1 group"
+                    className={linkClass}
                   >
                     {tNav(label)}
                     <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -116,19 +113,18 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Legal */}
           <div className="lg:col-span-2">
-            <h3 className="text-xs font-semibold text-[var(--text-secondary)] mb-4 tracking-wider uppercase">
+            <h3 className="text-xs font-semibold text-[var(--text-tertiary)] mb-3 tracking-wider uppercase">
               {t('legal')}
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               <li>
-                <Link href="/privacy" className="text-sm text-[var(--text-secondary)] hover:text-[#3b82f6] transition-colors duration-200">
+                <Link href="/privacy" className={linkClass}>
                   {t('privacy')}
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="text-sm text-[var(--text-secondary)] hover:text-[#3b82f6] transition-colors duration-200">
+                <Link href="/terms" className={linkClass}>
                   {t('terms')}
                 </Link>
               </li>
@@ -136,13 +132,10 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-[var(--border-color)] text-center gap-4">
-          <p className="text-sm text-[var(--text-secondary)]">
+        <div className="mt-8 pt-6 border-t border-[var(--border-color)] text-center">
+          <p className="text-sm text-[var(--text-tertiary)]">
             © {new Date().getFullYear()} PDFWritter. {t('copyright')}
           </p>
-          {/* <p className="text-sm text-[var(--text-secondary)]">
-            {t('madeWith')}
-          </p> */}
         </div>
       </div>
     </footer>
