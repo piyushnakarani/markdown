@@ -39,11 +39,11 @@ import {
   convertMarkdownToTxt,
   downloadFile,
   type ExportProgressStage,
+  getDocxExportStages,
   getExportOverlayProps,
   getHtmlExportStages,
   getPdfExportStages,
   getTxtExportStages,
-  getDocxExportStages,
   markdownHasMermaid,
   readFileAsText,
 } from '@/lib/converters';
@@ -127,7 +127,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
 
   const handleFile = useCallback(async (file: File) => {
     if (!file.name.match(/\.(md|markdown|txt)$/i)) {
-      showToast('Please upload a .md or .txt file');
+      showToast(t('invalidFileToast'));
       return;
     }
     try {
@@ -342,7 +342,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
                 type="button"
                 onClick={() => { setFileName(''); setMarkdown(DEFAULT_MD); }}
                 className="ml-1 text-[var(--text-tertiary)] hover:text-red-500"
-                aria-label="Clear file"
+                aria-label={t('clearFileAria')}
               >
                 <X className="w-3.5 h-3.5" />
               </button>
@@ -419,7 +419,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
               <PenLine className="w-4 h-4 text-[var(--accent)]" />
               {te('editorTab')}
             </div>
-            <span className="text-[10px] font-mono font-bold text-[var(--text-tertiary)] uppercase">{markdown.length} chars</span>
+            <span className="text-[10px] font-mono font-bold text-[var(--text-tertiary)] uppercase">{markdown.length} {t('chars')}</span>
           </div>
 
           <div className="editor-pane-body flex font-mono text-sm">
@@ -438,7 +438,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
               className="editor-textarea"
               spellCheck={false}
               dir="auto"
-              aria-label="Markdown editor"
+              aria-label={t('editorAria')}
             />
           </div>
         </div>

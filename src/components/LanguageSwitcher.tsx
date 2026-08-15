@@ -1,7 +1,7 @@
 'use client';
 
 import { Check, ChevronDown } from 'lucide-react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
 
 import { Locale, localeFlags, localeNames, locales } from '@/i18n/locales';
@@ -10,6 +10,7 @@ import { event } from '@/lib/analytics';
 
 export default function LanguageSwitcher({ variant = 'default' }: { variant?: 'default' | 'footer' }) {
   const locale = useLocale() as Locale;
+  const t = useTranslations('common');
   const pathname = usePathname();
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -41,7 +42,7 @@ export default function LanguageSwitcher({ variant = 'default' }: { variant?: 'd
       <button
         onClick={() => setOpen(!open)}
         className={buttonClass}
-        aria-label="Change language"
+        aria-label={t('changeLanguageAria')}
         aria-expanded={open}
       >
         <span className="font-bold flex items-center gap-1 leading-none">
@@ -66,7 +67,7 @@ export default function LanguageSwitcher({ variant = 'default' }: { variant?: 'd
         >
           <div className="px-2.5 py-1.5 mb-1 border-b border-[var(--border-color)]">
             <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-tertiary)]">
-              Select Language
+              {t('selectLanguage')}
             </span>
           </div>
 

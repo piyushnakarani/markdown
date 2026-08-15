@@ -2,6 +2,7 @@
 
 import type { LucideIcon } from 'lucide-react';
 import { Loader2 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import type { ReactNode } from 'react';
 
 export type EditorToolbarActionVariant =
@@ -54,11 +55,13 @@ export function EditorToolbarStart({ children }: { children: ReactNode }) {
 }
 
 export function EditorToolbarEnd({ actions }: { actions: EditorToolbarAction[] }) {
+  const t = useTranslations('common');
+
   if (actions.length === 0) return null;
 
   return (
     <div className="editor-toolbar-end">
-      <div className="editor-toolbar-actions" role="toolbar" aria-label="Export and copy">
+      <div className="editor-toolbar-actions" role="toolbar" aria-label={t('toolbarAria')}>
         {actions.map((action) => (
           <EditorToolbarIconButton key={action.id} {...action} />
         ))}

@@ -7,6 +7,7 @@ import {
   Shield,
   Sparkles,
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import type { CSSProperties } from 'react';
 
 import FAQAccordion from '@/components/FAQAccordion';
@@ -77,6 +78,7 @@ export default function ToolSeoSections({
   relatedGuidesTitle,
   accentColor,
 }: ToolSeoSectionsProps) {
+  const t = useTranslations('common');
   return (
     <>
       <section className="section-py relative">
@@ -199,9 +201,9 @@ export default function ToolSeoSections({
             <ScrollReveal>
               <div className="card-glass h-full">
                 <Shield className="w-6 h-6 text-[var(--accent)] mb-3" />
-                <h2 className="text-sm font-semibold mb-1.5">Privacy: files stay in your browser</h2>
+                <h2 className="text-sm font-semibold mb-1.5">{t('privacyCardTitle')}</h2>
                 <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                  Your Markdown content is processed locally in the browser. There is no account, no email step, and no need to upload private documents to a third-party converter.
+                  {t('privacyCardDesc')}
                 </p>
               </div>
             </ScrollReveal>
@@ -215,9 +217,9 @@ export default function ToolSeoSections({
             <ScrollReveal delay={160}>
               <div className="card-glass h-full">
                 <Lock className="w-6 h-6 text-[var(--accent)] mb-3" />
-                <h2 className="text-sm font-semibold mb-1.5">No signup, free online</h2>
+                <h2 className="text-sm font-semibold mb-1.5">{t('noSignupCardTitle')}</h2>
                 <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                  Open the tool, paste or upload Markdown, and download the result instantly. PDFWritter is free to use without watermarks, registration, or installation.
+                  {t('noSignupCardDesc')}
                 </p>
               </div>
             </ScrollReveal>

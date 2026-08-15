@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 import { useTheme } from '@/components/ThemeProvider';
 import { Link } from '@/i18n/navigation';
@@ -27,6 +28,7 @@ export default function SiteLogo({
   linked = true,
 }: SiteLogoProps) {
   const { theme } = useTheme();
+  const t = useTranslations('common');
   const height = HEIGHTS[variant];
   const width = Math.round(height * LOGO_ASPECT);
   const src = theme === 'dark' ? '/logo-dark.webp' : '/logo.webp';
@@ -35,7 +37,7 @@ export default function SiteLogo({
     <Image
       key={src}
       src={src}
-      alt="PDFWritter — Markdown converter with diagram"
+      alt={t('logoAlt')}
       width={LOGO_WIDTH}
       height={LOGO_HEIGHT}
       priority={variant === 'header'}
@@ -53,7 +55,7 @@ export default function SiteLogo({
     <Link
       href="/"
       className="inline-flex shrink-0 items-center transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-primary)] rounded-sm cursor-pointer"
-      aria-label="PDFWritter Home"
+      aria-label={t('logoHomeAria')}
     >
       {image}
     </Link>

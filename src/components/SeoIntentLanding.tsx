@@ -1,6 +1,7 @@
 'use client';
 
 import { ArrowRight, Check, Sparkles } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 import ConverterTool from '@/components/ConverterTool';
 import FAQAccordion from '@/components/FAQAccordion';
@@ -16,6 +17,7 @@ type Props = {
 };
 
 export default function SeoIntentLanding({ content }: Props) {
+  const t = useTranslations('common');
   return (
     <>
       <PageHero
@@ -93,7 +95,7 @@ export default function SeoIntentLanding({ content }: Props) {
       <section className="section-py section-divider relative">
         <div className="page-container max-w-3xl">
           <ScrollReveal>
-            <SectionHeading size="compact" title="Frequently asked questions" />
+            <SectionHeading size="compact" title={t('faqSectionTitle')} />
           </ScrollReveal>
           <ScrollReveal delay={80}>
             <FAQAccordion items={content.faqs} />
@@ -119,7 +121,7 @@ export default function SeoIntentLanding({ content }: Props) {
       <section className="pb-16">
         <div className="page-container max-w-4xl">
           <h2 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-tertiary)] mb-3">
-            Related tools & guides
+            {t('relatedToolsGuides')}
           </h2>
           <ul className="flex flex-wrap gap-2">
             {content.related.map((item) => (

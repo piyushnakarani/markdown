@@ -546,8 +546,8 @@ export default function EditorClient({
           {isDragging && (
             <div className="absolute inset-0 bg-[var(--bg-secondary)]/95 backdrop-blur-md border-2 border-dashed border-[var(--accent)] m-3 rounded-xl flex flex-col items-center justify-center z-30 animate-fade-in">
               <FileUp className="w-12 h-12 text-[var(--accent)] mb-4 animate-float" />
-              <p className="font-extrabold text-[var(--text-primary)]">Drop your Markdown file here</p>
-              <p className="text-xs text-[var(--text-tertiary)] mt-1">Supports .md, .markdown, .txt</p>
+              <p className="font-extrabold text-[var(--text-primary)]">{t('dropTitle')}</p>
+              <p className="text-xs text-[var(--text-tertiary)] mt-1">{t('dropSubtitle')}</p>
             </div>
           )}
 
@@ -565,7 +565,7 @@ export default function EditorClient({
                 <span className="text-xs font-bold text-[var(--text-secondary)]">{t('editorTab')}</span>
               </div>
               <span className="text-[10px] font-mono font-bold text-[var(--text-tertiary)] uppercase">
-                {markdown.length} chars
+                {markdown.length} {t('chars')}
               </span>
             </div>
           )}
@@ -585,7 +585,7 @@ export default function EditorClient({
               className="editor-textarea"
               spellCheck={false}
               dir="auto"
-              aria-label="Markdown editor"
+              aria-label={t('editorAria')}
             />
           </div>
         </div>

@@ -2,11 +2,13 @@
 
 import Image from 'next/image';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
 import { useTheme } from '@/components/ThemeProvider';
 
 export default function TransitionLoader() {
+  const t = useTranslations('common');
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
@@ -76,7 +78,7 @@ export default function TransitionLoader() {
         />
       </div>
       <p className="mt-4 text-[10px] font-semibold uppercase tracking-wider text-[var(--text-tertiary)]">
-        Loading
+        {t('loading')}
       </p>
     </div>
   );
