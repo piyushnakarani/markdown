@@ -1,6 +1,7 @@
 'use client';
 
 import { AlertCircle,Check, Loader2, Mail, Send } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import RedditIcon from '@/components/icons/RedditIcon';
@@ -25,6 +26,7 @@ const EMPTY_FORM: ContactFormData = {
 };
 
 export default function ContactContent() {
+  const tc = useTranslations('common');
   const [form, setForm] = useState<ContactFormData>(EMPTY_FORM);
   const [fieldErrors, setFieldErrors] = useState<ContactFieldErrors>({});
   const [formError, setFormError] = useState('');
@@ -100,7 +102,7 @@ export default function ContactContent() {
             <a
               href={`mailto:${SITE_EMAIL}`}
               className="flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--border-color)] text-[var(--text-secondary)] transition-colors hover:border-[#6366f1]/40 hover:text-[#6366f1]"
-              aria-label={`Email ${SITE_EMAIL}`}
+              aria-label={`${tc('emailAria')} ${SITE_EMAIL}`}
               title={SITE_EMAIL}
             >
               <Mail className="h-5 w-5" aria-hidden />
@@ -110,7 +112,7 @@ export default function ContactContent() {
               target="_blank"
               rel="noopener noreferrer me"
               className="flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--border-color)] transition-colors hover:border-[#FC471E]/50"
-              aria-label="PDFWritter on Reddit"
+              aria-label={tc('redditAria')}
               title="u/pdfwritter"
             >
               <RedditIcon className="h-5 w-5" />

@@ -1,40 +1,9 @@
+import { useTranslations } from 'next-intl';
+
 type MermaidFlowchartPreviewProps = {
   variant?: 'dark' | 'light';
   className?: string;
 };
-
-const nodes = [
-  {
-    id: 'md',
-    label: 'Markdown Source',
-    x: 4,
-    stroke: '#3b82f6',
-    fillDark: '#1e3a5f',
-    fillLight: '#eff6ff',
-    textDark: '#38adf8',
-    glow: 'rgba(59,130,246,0.35)',
-  },
-  {
-    id: 'engine',
-    label: 'Parser Engine',
-    x: 168,
-    stroke: '#a855f7',
-    fillDark: '#2e1a47',
-    fillLight: '#faf5ff',
-    textDark: '#c084fc',
-    glow: 'rgba(168,85,247,0.35)',
-  },
-  {
-    id: 'pdf',
-    label: 'Print Document',
-    x: 332,
-    stroke: '#10b981',
-    fillDark: '#0f2e26',
-    fillLight: '#ecfdf5',
-    textDark: '#34d399',
-    glow: 'rgba(16,185,129,0.35)',
-  },
-] as const;
 
 const NODE_W = 144;
 const NODE_H = 44;
@@ -44,9 +13,43 @@ export default function MermaidFlowchartPreview({
   variant = 'dark',
   className = '',
 }: MermaidFlowchartPreviewProps) {
+  const t = useTranslations('common');
   const isDark = variant === 'dark';
   const arrowColor = isDark ? '#94a3b8' : '#64748b';
   const bg = isDark ? 'transparent' : '#f8fafc';
+
+  const nodes = [
+    {
+      id: 'md',
+      label: t('flowNodeMd'),
+      x: 4,
+      stroke: '#3b82f6',
+      fillDark: '#1e3a5f',
+      fillLight: '#eff6ff',
+      textDark: '#38adf8',
+      glow: 'rgba(59,130,246,0.35)',
+    },
+    {
+      id: 'engine',
+      label: t('flowNodeEngine'),
+      x: 168,
+      stroke: '#a855f7',
+      fillDark: '#2e1a47',
+      fillLight: '#faf5ff',
+      textDark: '#c084fc',
+      glow: 'rgba(168,85,247,0.35)',
+    },
+    {
+      id: 'pdf',
+      label: t('flowNodePdf'),
+      x: 332,
+      stroke: '#10b981',
+      fillDark: '#0f2e26',
+      fillLight: '#ecfdf5',
+      textDark: '#34d399',
+      glow: 'rgba(16,185,129,0.35)',
+    },
+  ] as const;
 
   return (
     <div className={`flex flex-col items-center ${className}`}>
@@ -64,14 +67,14 @@ export default function MermaidFlowchartPreview({
               : 'text-blue-600 bg-blue-50 border-blue-200'
           }`}
         >
-          Vectors
+          {t('flowVectors')}
         </span>
 
         <svg
           viewBox="0 0 480 96"
           className="w-full h-auto mt-2"
           role="img"
-          aria-label="Flowchart: Markdown Source to Parser Engine to Print Document"
+          aria-label={t('flowAria')}
         >
           <rect width="480" height="96" fill={bg} rx="8" />
           <defs>
@@ -136,7 +139,7 @@ export default function MermaidFlowchartPreview({
             isDark ? 'text-[var(--text-tertiary)]' : 'text-slate-500'
           }`}
         >
-          &ldquo;Interactive SVG vector output — scalable to print formats.&rdquo;
+          {t('flowCaption')}
         </p>
       </div>
     </div>

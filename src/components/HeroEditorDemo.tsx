@@ -14,6 +14,7 @@ import {
   List,
   PenLine,
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useEffect, useMemo, useState } from 'react';
 
 import MarkdownPreview from '@/components/MarkdownPreview';
@@ -97,6 +98,7 @@ function highlightDemoLine(line: string) {
 }
 
 export default function HeroEditorDemo() {
+  const t = useTranslations('editor');
   const typed = useTypingAnimation(DEMO_MARKDOWN);
   const lines = typed.split('\n');
   const lineCount = Math.max(lines.length, 8);
@@ -155,7 +157,7 @@ export default function HeroEditorDemo() {
               </div>
               <span className="w-px h-3.5 bg-[var(--border-color)] mx-1" />
               <PenLine className="w-4 h-4 text-[var(--accent)]" />
-              <span className="text-xs font-bold text-[var(--text-secondary)]">Editor</span>
+              <span className="text-xs font-bold text-[var(--text-secondary)]">{t('editorTab')}</span>
             </div>
           </div>
 
@@ -180,7 +182,7 @@ export default function HeroEditorDemo() {
           <div className="editor-pane-header">
             <div className="flex items-center gap-2">
               <Eye className="w-4 h-4 text-[#8b5cf6]" />
-              <span className="text-xs font-bold text-[var(--text-secondary)]">Preview</span>
+              <span className="text-xs font-bold text-[var(--text-secondary)]">{t('previewTab')}</span>
             </div>
             <div className="flex items-center gap-1">
               <FileText className="w-3 h-3 text-red-400" />

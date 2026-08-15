@@ -14,6 +14,7 @@ import SiteLogo from './SiteLogo';
 export default function Footer() {
   const t = useTranslations('footer');
   const tNav = useTranslations('nav');
+  const tc = useTranslations('common');
 
   const toolLinks = [
     { href: '/markdown-to-pdf', label: 'markdownToPdf' },
@@ -52,7 +53,7 @@ export default function Footer() {
               <a
                 href={`mailto:${SITE_EMAIL}`}
                 className={socialLinkClass}
-                aria-label={`Email ${SITE_EMAIL}`}
+                aria-label={`${tc('emailAria')} ${SITE_EMAIL}`}
                 title={SITE_EMAIL}
               >
                 <Mail className="h-4 w-4" aria-hidden />
@@ -62,7 +63,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer me"
                 className={socialLinkClass}
-                aria-label="PDFWritter on Reddit"
+                aria-label={tc('redditAria')}
                 title="u/pdfwritter"
               >
                 <RedditIcon className="h-4 w-4" />

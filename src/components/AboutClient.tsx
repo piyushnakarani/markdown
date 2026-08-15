@@ -29,63 +29,63 @@ export default function AboutClient() {
   const functionalities = [
     {
       icon: FileText,
-      title: 'High-Fidelity PDF Compiler',
-      desc: 'Convert Markdown to pixel-perfect A4-formatted PDFs. Features automatic page-break avoidance for elements, code blocks, tables, and diagrams, quote formatting, and syntax highlighting.',
+      title: t('func1Title'),
+      desc: t('func1Desc'),
       color: '#ef4444',
-      badge: 'Print Ready',
+      badge: t('func1Badge'),
     },
     {
       icon: FileCode,
-      title: 'Semantic HTML Engine',
-      desc: 'Compile Markdown to clean, W3C-compliant, semantic HTML markup. Ideal for copy-pasting directly into your CMS (WordPress, Webflow, Ghost), blogs, or static site templates.',
+      title: t('func2Title'),
+      desc: t('func2Desc'),
       color: '#f59e0b',
-      badge: 'SEO Friendly',
+      badge: t('func2Badge'),
     },
     {
       icon: FileType,
-      title: 'Plain Text Stripper',
-      desc: 'Quickly strip all Markdown syntax, formatting symbols, headings, images, links, and code blocks to produce clean, plain plain-text files (.txt) for templates or data feeds.',
+      title: t('func3Title'),
+      desc: t('func3Desc'),
       color: '#10b981',
-      badge: 'Unformatted',
+      badge: t('func3Badge'),
     },
     {
       icon: PenLine,
-      title: 'Interactive Live Editor',
-      desc: 'Full-featured Markdown workspace featuring side-by-side split screen editing, synchronized scrolling, instant rendering, real-time word counters, and quick format tools.',
+      title: t('func4Title'),
+      desc: t('func4Desc'),
       color: 'var(--accent)',
-      badge: 'Real-time',
+      badge: t('func4Badge'),
     },
     {
       icon: Activity,
-      title: 'Mermaid.js Integrations',
-      desc: 'Native support for code-defined diagrams. Render flowcharts, sequence diagrams, state diagrams, class relationships, and charts directly from markdown to high-resolution print SVGs.',
+      title: t('func5Title'),
+      desc: t('func5Desc'),
       color: '#8b5cf6',
-      badge: 'Vector Graphics',
+      badge: t('func5Badge'),
     },
     {
       icon: Shield,
-      title: 'Strict Local Sandbox',
-      desc: 'Your files are processed with absolute privacy. All rendering and conversions take place client-side in the browser. Zero data transmission, zero tracking, zero logs.',
+      title: t('func6Title'),
+      desc: t('func6Desc'),
       color: '#06b6d4',
-      badge: 'Private',
+      badge: t('func6Badge'),
     },
   ];
 
   const values = [
     {
       icon: Zap,
-      title: 'Zero Latency & Fee-Free',
-      desc: 'Engineered for developers who value performance. Unlimited exports, zero subscriptions, no hidden limits.',
+      title: t('value1Title'),
+      desc: t('value1Desc'),
     },
     {
       icon: Globe,
-      title: 'Localization First',
-      desc: 'Full compatibility with 12 major languages and Right-to-Left (RTL) reading layouts for global developers.',
+      title: t('value2Title'),
+      desc: t('value2Desc'),
     },
     {
       icon: GitBranch,
-      title: 'Optimized DX',
-      desc: 'Keyboards shortcuts, clean typography, standard GFM compatibility, and search engine optimization.',
+      title: t('value3Title'),
+      desc: t('value3Desc'),
     },
   ];
 
@@ -107,7 +107,7 @@ flowchart LR
 \`\`\``,
     },
     pdf: {
-      title: 'preview.pdf (A4 Preview)',
+      title: t('previewPdfTitle'),
       lang: 'pdf',
       content: (
         <div className="p-6 bg-white text-gray-900 h-full font-serif flex flex-col justify-between text-xs select-none">
@@ -163,7 +163,7 @@ Progress Graph
 Markdown Source -> Parser -> Print Document`,
     },
     mermaid: {
-      title: 'flowchart.svg (Mermaid Output)',
+      title: t('flowchartSvgTitle'),
       lang: 'svg',
       content: (
         <div className="p-8 h-full flex flex-col justify-center items-center select-none bg-slate-950/20">
@@ -180,18 +180,18 @@ Markdown Source -> Parser -> Print Document`,
     hint: string;
     color: string;
   }[] = [
-    { key: 'input', icon: Terminal, label: '1. Source Markdown', hint: 'Input standard GFM text & Mermaid blocks.', color: 'var(--accent)' },
-    { key: 'pdf', icon: FileText, label: '2. PDF Print Compilation', hint: 'Custom margin spacing & page dividers.', color: '#ef4444' },
-    { key: 'html', icon: FileCode, label: '3. Clean HTML Markup', hint: 'CMS-ready semantic tag generation.', color: '#f59e0b' },
-    { key: 'txt', icon: FileType, label: '4. Plain Text Export', hint: 'Clean reset stripping all markdown tags.', color: '#10b981' },
-    { key: 'mermaid', icon: Activity, label: '5. Mermaid Vectors', hint: 'Fully scalable rasterized inline charts.', color: '#8b5cf6' },
+    { key: 'input', icon: Terminal, label: t('tab1Label'), hint: t('tab1Hint'), color: 'var(--accent)' },
+    { key: 'pdf', icon: FileText, label: t('tab2Label'), hint: t('tab2Hint'), color: '#ef4444' },
+    { key: 'html', icon: FileCode, label: t('tab3Label'), hint: t('tab3Hint'), color: '#f59e0b' },
+    { key: 'txt', icon: FileType, label: t('tab4Label'), hint: t('tab4Hint'), color: '#10b981' },
+    { key: 'mermaid', icon: Activity, label: t('tab5Label'), hint: t('tab5Hint'), color: '#8b5cf6' },
   ];
 
   const architectureSteps = [
-    { icon: Terminal, title: '1. MD Document Input', desc: 'Markdown strings, GFM tables, metadata, and Mermaid blocks.' },
-    { icon: Cpu, title: '2. AST Syntax Engine', desc: 'Lexical analysis parsing markdown blocks & building charts.' },
-    { icon: Layers, title: '3. Compilation Drivers', desc: 'WASM engines & render APIs formatting pages & vectors.' },
-    { icon: CheckCircle, title: '4. Output Formats', desc: 'Clean A4 PDFs, parsed HTML files, and pure raw text.' },
+    { icon: Terminal, title: t('arch1Title'), desc: t('arch1Desc') },
+    { icon: Cpu, title: t('arch2Title'), desc: t('arch2Desc') },
+    { icon: Layers, title: t('arch3Title'), desc: t('arch3Desc') },
+    { icon: CheckCircle, title: t('arch4Title'), desc: t('arch4Desc') },
   ];
 
   return (
@@ -204,10 +204,10 @@ Markdown Source -> Parser -> Print Document`,
             <Layers className="w-5 h-5 text-[var(--accent)]" />
           </div>
           <h2 className="text-xl sm:text-2xl font-semibold mb-3 tracking-tight text-[var(--text-primary)]">
-            Developer-First Conversion Philosophy
+            {t('philosophyTitle')}
           </h2>
           <p className="text-sm text-[var(--text-secondary)] leading-relaxed max-w-2xl mx-auto">
-            Our tools are constructed with one core goal: to provide zero-friction, accessible, and absolute client-side privacy. PDFWritter supports full GitHub Flavored Markdown (GFM) specs, handles complex Mermaid.js code blocks directly, and exports clean compiled files instantly—all without needing servers, user accounts, or paywalls.
+            {t('philosophyText')}
           </p>
         </div>
 
@@ -221,11 +221,11 @@ Markdown Source -> Parser -> Print Document`,
           </p>
           <div className="mt-4 flex flex-wrap gap-2.5">
             <Link href="/markdown-to-pdf" className="btn-primary text-sm">
-              Markdown to PDF
+              {t('linkMarkdownToPdf')}
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link href="/contact" className="btn-secondary text-sm">
-              Contact
+              {t('linkContact')}
             </Link>
           </div>
         </section>
@@ -233,12 +233,12 @@ Markdown Source -> Parser -> Print Document`,
         {/* Interactive Simulator: The Conversion Pipeline */}
         <section className="space-y-6">
           <div className="max-w-2xl">
-            <span className="section-badge mb-2.5 inline-flex">Interactive showcase</span>
+            <span className="section-badge mb-2.5 inline-flex">{t('showcaseBadge')}</span>
             <h2 className="text-lg sm:text-xl font-semibold text-[var(--text-primary)] tracking-tight mb-1.5">
-              Instant multi-format compilation
+              {t('showcaseTitle')}
             </h2>
             <p className="text-sm text-[var(--text-secondary)]">
-              Select a stage below to simulate how the PDFWritter pipeline processes code and handles formatting inputs.
+              {t('showcaseSubtitle')}
             </p>
           </div>
 
@@ -305,12 +305,12 @@ Markdown Source -> Parser -> Print Document`,
         {/* Detailed Core Functionalities Grid */}
         <section className="space-y-6">
           <div className="max-w-2xl">
-            <span className="section-badge mb-2.5 inline-flex">Feature catalogue</span>
+            <span className="section-badge mb-2.5 inline-flex">{t('featureBadge')}</span>
             <h2 className="text-lg sm:text-xl font-semibold text-[var(--text-primary)] tracking-tight mb-1.5">
-              Provided functionalities & services
+              {t('featureTitle')}
             </h2>
             <p className="text-sm text-[var(--text-secondary)]">
-              Built to optimize your markdown documentation workflow. Explore what you can perform instantly.
+              {t('featureSubtitle')}
             </p>
           </div>
 
@@ -342,12 +342,12 @@ Markdown Source -> Parser -> Print Document`,
         {/* Custom Data Flow / Architecture Visualization */}
         <section className="space-y-6">
           <div className="max-w-2xl">
-            <span className="section-badge mb-2.5 inline-flex">System architecture</span>
+            <span className="section-badge mb-2.5 inline-flex">{t('architectureBadge')}</span>
             <h2 className="text-lg sm:text-xl font-semibold text-[var(--text-primary)] tracking-tight mb-1.5">
-              Data rendering engine pipeline
+              {t('architectureTitle')}
             </h2>
             <p className="text-sm text-[var(--text-secondary)]">
-              A high-level view of how markdown text is processed and compiled securely into target files.
+              {t('architectureSubtitle')}
             </p>
           </div>
 
@@ -384,12 +384,12 @@ Markdown Source -> Parser -> Print Document`,
         {/* Design & Core Values */}
         <section className="space-y-6">
           <div className="max-w-2xl">
-            <span className="section-badge mb-2.5 inline-flex">Core ethics</span>
+            <span className="section-badge mb-2.5 inline-flex">{t('ethicsBadge')}</span>
             <h2 className="text-lg sm:text-xl font-semibold text-[var(--text-primary)] tracking-tight mb-1.5">
-              Design & operations values
+              {t('ethicsTitle')}
             </h2>
             <p className="text-sm text-[var(--text-secondary)]">
-              The fundamental engineering guidelines behind PDFWritter.
+              {t('ethicsSubtitle')}
             </p>
           </div>
 
@@ -409,7 +409,7 @@ Markdown Source -> Parser -> Print Document`,
         {/* CTA */}
         <div className="text-center pt-2">
           <Link href="/editor" className="btn-primary">
-            Launch Interactive Editor
+            {t('ctaLaunch')}
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

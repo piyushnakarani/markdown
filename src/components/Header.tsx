@@ -90,7 +90,7 @@ export default function Header() {
         <div className="mx-auto h-full page-container flex items-center justify-between gap-4">
           <SiteLogo variant="header" />
 
-          <nav className="hidden lg:flex items-center gap-0.5" aria-label="Main navigation">
+          <nav className="hidden lg:flex items-center gap-0.5" aria-label={t('mainNavAria')}>
             <Link href="/" className={navLinkClass('/')}>
               {t('home')}
             </Link>
@@ -164,7 +164,7 @@ export default function Header() {
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="lg:hidden p-2 rounded-md text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)] transition-colors cursor-pointer"
-              aria-label="Toggle menu"
+              aria-label={t('toggleMenuAria')}
               aria-expanded={mobileOpen}
             >
               {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -182,7 +182,7 @@ export default function Header() {
           <nav
             className="absolute top-0 right-0 h-full w-[min(300px,88vw)] bg-[var(--bg-primary)] shadow-[var(--shadow-md)] border-l border-[var(--border-color)] p-4 pt-[calc(var(--header-height)+1rem)] overflow-y-auto"
             style={{ animation: 'slideInRight 0.25s ease forwards' }}
-            aria-label="Mobile navigation"
+            aria-label={t('mobileNavAria')}
           >
             <div className="space-y-0.5">
               <Link

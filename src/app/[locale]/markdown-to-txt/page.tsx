@@ -28,103 +28,64 @@ export default async function MarkdownToTxtPage({ params }: { params: Promise<{ 
 }
 
 function MarkdownToTxtContent({ locale }: { locale: string }) {
-  const t = useTranslations();
+  const t = useTranslations('markdownToTxt');
+  const tools = useTranslations('tools');
   const faqs = [
-    {
-      q: 'What is the Markdown to TXT tool?',
-      a: 'It is a free online converter that strips Markdown formatting and exports clean plain text for notes, emails, support replies, and content reuse.',
-    },
-    {
-      q: 'How do I convert Markdown to TXT?',
-      a: 'Paste Markdown or upload a .md file, preview the stripped plain-text output, then download the result as a .txt file.',
-    },
-    {
-      q: 'Does it remove Markdown syntax?',
-      a: 'Yes. The converter removes formatting markers such as heading symbols, links, emphasis syntax, and code fences where plain text is more useful.',
-    },
-    {
-      q: 'Does Mermaid content work in TXT export?',
-      a: 'Mermaid diagrams are text-based code blocks, so the source remains available as plain text even though TXT cannot visually render diagrams.',
-    },
-    {
-      q: 'Is the Markdown to TXT converter private?',
-      a: 'Yes. Conversion happens in your browser, so your file content stays on your device.',
-    },
+    { q: t('faq1Q'), a: t('faq1A') },
+    { q: t('faq2Q'), a: t('faq2A') },
+    { q: t('faq3Q'), a: t('faq3A') },
+    { q: t('faq4Q'), a: t('faq4A') },
+    { q: t('faq5Q'), a: t('faq5A') },
   ];
 
   return (
     <>
       <PageHero
-        badge={t('tools.txtBadge')}
+        badge={tools('txtBadge')}
         badgeIcon={Sparkles}
         title={
           <>
-            Convert Markdown to <span style={{ color: '#10b981' }}>TXT</span>
+            {t('heroBefore')}
+            <span style={{ color: '#10b981' }}>{t('heroHighlight')}</span>
+            {t('heroAfter')}
           </>
         }
-        subtitle={t('tools.txtDescription')}
+        subtitle={tools('txtDescription')}
         accentColor="#10b981"
       />
       <ConverterTool type="txt" />
       <ToolSeoSections
-        whatTitle="What is this Markdown to TXT tool?"
-        whatDescription="PDFWritter converts Markdown into clean plain text when you need readable content without Markdown syntax. It is useful for emails, support docs, content migration, notes, AI prompts, and any workflow where formatting markers get in the way."
-        howTitle="How to convert Markdown to TXT"
-        howSubtitle="Strip Markdown formatting and download a plain-text file in seconds."
+        whatTitle={t('whatTitle')}
+        whatDescription={t('whatDescription')}
+        howTitle={t('howTitle')}
+        howSubtitle={t('howSubtitle')}
         steps={[
-          {
-            title: 'Paste or upload Markdown',
-            description: 'Add Markdown directly to the editor or upload a .md, .markdown, or .txt file.',
-          },
-          {
-            title: 'Review plain-text output',
-            description: 'Check the converted text for headings, lists, links, and code content before saving.',
-          },
-          {
-            title: 'Download TXT instantly',
-            description: 'Export the result as a .txt file or copy it for email, notes, documentation, or publishing workflows.',
-          },
+          { title: t('step1Title'), description: t('step1Desc') },
+          { title: t('step2Title'), description: t('step2Desc') },
+          { title: t('step3Title'), description: t('step3Desc') },
         ]}
-        featuresTitle="Features of the Markdown to TXT converter"
-        featuresSubtitle="Simple plain-text export for Markdown content."
+        featuresTitle={t('featuresTitle')}
+        featuresSubtitle={t('featuresSubtitle')}
         features={[
-          {
-            title: 'Clean plain text',
-            description: 'Remove Markdown formatting syntax while keeping the readable document content.',
-          },
-          {
-            title: 'Fast browser conversion',
-            description: 'See TXT output instantly without waiting for an upload or server queue.',
-          },
-          {
-            title: 'Useful for content reuse',
-            description: 'Prepare Markdown content for email, support replies, text editors, CMS fields, and AI prompts.',
-          },
-          {
-            title: 'File upload support',
-            description: 'Drag and drop Markdown files and convert them directly in the browser.',
-          },
-          {
-            title: 'Copy or download',
-            description: 'Copy the plain text or download a .txt file with one click.',
-          },
-          {
-            title: 'No account required',
-            description: 'Use the converter free online with no signup, watermarks, or installation.',
-          },
+          { title: t('feature1Title'), description: t('feature1Desc') },
+          { title: t('feature2Title'), description: t('feature2Desc') },
+          { title: t('feature3Title'), description: t('feature3Desc') },
+          { title: t('feature4Title'), description: t('feature4Desc') },
+          { title: t('feature5Title'), description: t('feature5Desc') },
+          { title: t('feature6Title'), description: t('feature6Desc') },
         ]}
-        compareTitle="PDFWritter vs other Markdown to TXT converters"
-        compareUs="PDFWritter"
-        compareThem="Typical upload converters"
+        compareTitle={t('compareTitle')}
+        compareUs={t('compareUs')}
+        compareThem={t('compareThem')}
         comparisons={[
-          { ours: 'Instant editor and output preview', theirs: 'Often only returns a download' },
-          { ours: 'Browser-side conversion for privacy', theirs: 'May upload files to a server' },
-          { ours: 'Copy and download workflows', theirs: 'Limited export options' },
-          { ours: 'Free online with no signup', theirs: 'May add usage limits or account gates' },
+          { ours: t('compare1Us'), theirs: t('compare1Them') },
+          { ours: t('compare2Us'), theirs: t('compare2Them') },
+          { ours: t('compare3Us'), theirs: t('compare3Them') },
+          { ours: t('compare4Us'), theirs: t('compare4Them') },
         ]}
-        mermaidTitle="Supports Mermaid source text"
-        mermaidDescription="TXT files cannot display diagrams visually, but Mermaid code blocks remain available as plain text so technical documentation can still be copied, searched, and reused."
-        faqTitle="Markdown to TXT FAQ"
+        mermaidTitle={t('mermaidTitle')}
+        mermaidDescription={t('mermaidDescription')}
+        faqTitle={t('faqTitle')}
         faqs={faqs}
         relatedGuidesToolKey="markdown-to-txt"
         accentColor="#10b981"
@@ -134,8 +95,8 @@ function MarkdownToTxtContent({ locale }: { locale: string }) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             buildToolPageJsonLd(
-              'Markdown to TXT Converter',
-              'Convert Markdown to plain text online for free — strip formatting instantly.',
+              t('jsonLdTitle'),
+              t('jsonLdDescription'),
               locale,
               '/markdown-to-txt',
             ),
