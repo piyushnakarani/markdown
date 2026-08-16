@@ -1,88 +1,42 @@
 import {
   ArrowRight,
   Check,
-  Copy,
   Download,
   Eye,
   FileText,
   GitBranch,
   Monitor,
   MousePointerClick,
-  RefreshCw,
   Shield,
   Sparkles,
+  Upload,
 } from 'lucide-react';
-import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
-import { getMessages, setRequestLocale } from 'next-intl/server';
 import type { CSSProperties } from 'react';
 import { Fragment } from 'react';
 
-const EditorClient = dynamic(() => import('@/components/EditorClient'));
+import ConverterTool from '@/components/ConverterTool';
 import FAQAccordion from '@/components/FAQAccordion';
 import PageHero from '@/components/PageHero';
 import RelatedBlogGuides from '@/components/RelatedBlogGuides';
 import ScrollReveal from '@/components/ScrollReveal';
 import SectionHeading from '@/components/SectionHeading';
-import { LIVE_PREVIEW_DEFAULT_MARKDOWN } from '@/content/live-preview-default';
 import { Link } from '@/i18n/navigation';
-import { previewKeywordsForLocale } from '@/lib/locale-keywords';
-import { absoluteUrl, buildLocalizedPageMetadata, withToolBrandKeywords } from '@/lib/site';
-import { buildFaqPageJsonLd, buildToolPageJsonLd } from '@/lib/structured-data';
+import { buildFaqPageJsonLd, buildHowToJsonLd, buildToolPageJsonLd } from '@/lib/structured-data';
 
-const LIVE_PREVIEW_OG_IMAGE = {
-  url: '/markdown-live-preview-og.webp',
-  width: 1200,
-  height: 630,
-} as const;
+type MarkdownToPdfContentProps = {
+  locale: string;
+  path: string;
+};
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  setRequestLocale(locale);
+export default function MarkdownToPdfContent({ locale, path }: MarkdownToPdfContentProps) {
+  const t = useTranslations('markdownToPdf');
 
-  let ogImageAlt = 'Free online Markdown live preview editor with sync scroll and PDF export';
-  try {
-    const messages = await getMessages();
-    const value = (messages as Record<string, Record<string, string>>).livePreview?.ogImageAlt;
-    if (value) ogImageAlt = value;
-  } catch {
-    // use default alt
-  }
-
-  return buildLocalizedPageMetadata({
-    locale,
-    path: '/markdown-live-preview',
-    titleKey: 'livePreview.title',
-    descriptionKey: 'livePreview.description',
-    titleSuffix: ' — Free Live Preview Online',
-    keywords: withToolBrandKeywords(previewKeywordsForLocale(locale), 'preview'),
-    image: {
-      url: absoluteUrl(LIVE_PREVIEW_OG_IMAGE.url),
-      width: LIVE_PREVIEW_OG_IMAGE.width,
-      height: LIVE_PREVIEW_OG_IMAGE.height,
-      alt: ogImageAlt,
-    },
-  });
-}
-
-export default async function MarkdownLivePreviewPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-  return <MarkdownLivePreviewContent locale={locale} />;
-}
-
-function MarkdownLivePreviewContent({ locale }: { locale: string }) {
-  const t = useTranslations('livePreview');
-
-  const accent = '#8b5cf6';
+  const accent = '#ef4444';
 
   const howSteps = [
     {
-      icon: FileText,
+      icon: Upload,
       num: '01',
       title: t('howStep1Title'),
       desc: t('howStep1Desc'),
@@ -103,10 +57,10 @@ function MarkdownLivePreviewContent({ locale }: { locale: string }) {
 
   const features = [
     { icon: Monitor, title: t('feature1Title'), desc: t('feature1Desc') },
-    { icon: RefreshCw, title: t('feature2Title'), desc: t('feature2Desc') },
+    { icon: GitBranch, title: t('feature2Title'), desc: t('feature2Desc') },
     { icon: Shield, title: t('feature3Title'), desc: t('feature3Desc') },
-    { icon: Copy, title: t('feature4Title'), desc: t('feature4Desc') },
-    { icon: GitBranch, title: t('feature5Title'), desc: t('feature5Desc') },
+    { icon: Upload, title: t('feature4Title'), desc: t('feature4Desc') },
+    { icon: FileText, title: t('feature5Title'), desc: t('feature5Desc') },
     { icon: Sparkles, title: t('feature6Title'), desc: t('feature6Desc') },
   ];
 
@@ -115,7 +69,6 @@ function MarkdownLivePreviewContent({ locale }: { locale: string }) {
     { us: t('compare2Us'), them: t('compare2Them') },
     { us: t('compare3Us'), them: t('compare3Them') },
     { us: t('compare4Us'), them: t('compare4Them') },
-    { us: t('compare5Us'), them: t('compare5Them') },
   ];
 
   const faqs = [
@@ -127,13 +80,15 @@ function MarkdownLivePreviewContent({ locale }: { locale: string }) {
     { q: t('faq6Q'), a: t('faq6A') },
     { q: t('faq7Q'), a: t('faq7A') },
     { q: t('faq8Q'), a: t('faq8A') },
+    { q: t('faq9Q'), a: t('faq9A') },
+    { q: t('faq10Q'), a: t('faq10A') },
   ];
 
   return (
     <>
       <PageHero
         badge={t('badge')}
-        badgeIcon={Eye}
+        badgeIcon={Sparkles}
         title={
           <>
             {t('heroBefore')}
@@ -145,10 +100,7 @@ function MarkdownLivePreviewContent({ locale }: { locale: string }) {
         accentColor={accent}
       />
 
-      <EditorClient
-        translationNamespace="livePreview"
-        defaultMarkdown={LIVE_PREVIEW_DEFAULT_MARKDOWN}
-      />
+      <ConverterTool type="pdf" />
 
       <section className="section-py relative">
         <div className="relative page-container">
@@ -254,9 +206,69 @@ function MarkdownLivePreviewContent({ locale }: { locale: string }) {
         </div>
       </section>
 
-      <RelatedBlogGuides toolKey="markdown-live-preview" accentColor={accent} />
-
       <section className="section-py section-divider relative">
+        <div className="page-container max-w-4xl">
+          <ScrollReveal>
+            <SectionHeading
+              size="compact"
+              title="Popular Markdown to PDF workflows"
+              subtitle="Capture the searches competitors rank for — same converter, clearer intent pages."
+            />
+          </ScrollReveal>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {[
+              {
+                href: '/chatgpt-to-pdf',
+                title: 'ChatGPT to PDF',
+                desc: 'Paste ChatGPT answers and export a clean PDF.',
+              },
+              {
+                href: '/ai-markdown-to-pdf',
+                title: 'AI Markdown to PDF',
+                desc: 'ChatGPT, Claude, and Gemini → PDF in one place.',
+              },
+              {
+                href: '/mermaid-markdown-to-pdf',
+                title: 'Mermaid to PDF',
+                desc: 'Keep flowcharts and sequence diagrams in the PDF.',
+              },
+              {
+                href: '/obsidian-to-pdf',
+                title: 'Obsidian to PDF',
+                desc: 'Export Obsidian notes with Mermaid diagrams and math.',
+              },
+              {
+                href: '/notion-to-pdf',
+                title: 'Notion to PDF',
+                desc: 'Convert Notion pages (Markdown export) to PDF.',
+              },
+              {
+                href: '/github-readme-to-pdf',
+                title: 'GitHub README to PDF',
+                desc: 'README.md to PDF with badges, code, and diagrams.',
+              },
+              {
+                href: '/markdown-to-pdf-resume',
+                title: 'Markdown Resume to PDF',
+                desc: 'Turn a Markdown CV into a clean, ATS-friendly PDF.',
+              },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="card-glass block hover:border-[var(--border-hover)] transition-colors cursor-pointer"
+              >
+                <h3 className="text-sm font-semibold mb-1" style={{ color: accent }}>{item.title}</h3>
+                <p className="text-sm text-[var(--text-secondary)]">{item.desc}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <RelatedBlogGuides toolKey="markdown-to-pdf" accentColor={accent} />
+
+      <section className="section-py relative">
         <div className="page-container max-w-3xl">
           <ScrollReveal>
             <SectionHeading size="compact" title={t('faqTitle')} />
@@ -274,7 +286,7 @@ function MarkdownLivePreviewContent({ locale }: { locale: string }) {
               <h2 className="text-base font-semibold mb-1">{t('ctaTitle')}</h2>
               <p className="text-sm text-[var(--text-secondary)]">{t('ctaDescription')}</p>
             </div>
-            <Link href="/markdown-to-pdf" className="btn-primary shrink-0">
+            <Link href="/markdown-live-preview" className="btn-primary shrink-0">
               {t('ctaButton')}
               <ArrowRight className="w-4 h-4" />
             </Link>
@@ -287,10 +299,10 @@ function MarkdownLivePreviewContent({ locale }: { locale: string }) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             buildToolPageJsonLd(
-              'Markdown Live Preview',
-              'Free online Markdown editor with live preview, sync scroll, Mermaid diagrams, syntax highlighting, and instant PDF export. No login required.',
+              'Markdown to PDF Converter',
+              'Free markdown to PDF and md to pdf converter online. Export Markdown with Mermaid diagrams and KaTeX math to PDF in your browser — no sign-up.',
               locale,
-              '/markdown-live-preview',
+              path,
             ),
           ),
         }}
@@ -298,7 +310,13 @@ function MarkdownLivePreviewContent({ locale }: { locale: string }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(buildFaqPageJsonLd(faqs, locale, '/markdown-live-preview')),
+          __html: JSON.stringify(buildFaqPageJsonLd(faqs, locale, path)),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildHowToJsonLd(t('howTitle'), howSteps, locale, path)),
         }}
       />
     </>

@@ -1,11 +1,11 @@
 import { setRequestLocale } from 'next-intl/server';
 
 import SeoIntentLanding from '@/components/SeoIntentLanding';
-import { AI_MARKDOWN_TO_PDF } from '@/content/seo-landings';
+import { RESUME_MARKDOWN_TO_PDF } from '@/content/seo-landings';
 import { absoluteUrl, buildPageMetadata } from '@/lib/site';
 import { buildFaqPageJsonLd, buildHowToJsonLd, buildToolPageJsonLd } from '@/lib/structured-data';
 
-const content = AI_MARKDOWN_TO_PDF;
+const content = RESUME_MARKDOWN_TO_PDF;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -20,12 +20,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       url: absoluteUrl('/convert-markdown-file-to-pdf.webp'),
       width: 1200,
       height: 800,
-      alt: 'Convert AI Markdown from ChatGPT Claude Gemini to PDF',
+      alt: 'Convert a Markdown resume to an ATS-friendly PDF in your browser',
     },
   });
 }
 
-export default async function AiMarkdownToPdfPage({
+export default async function ResumeMarkdownToPdfPage({
   params,
 }: {
   params: Promise<{ locale: string }>;

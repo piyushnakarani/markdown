@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import FAQAccordion from '@/components/FAQAccordion';
 import SectionHeading from '@/components/SectionHeading';
 import { buildLocalizedPageMetadata } from '@/lib/site';
+import { buildFaqPageJsonLd } from '@/lib/structured-data';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -129,6 +130,13 @@ export default async function HelpPage({ params }: { params: Promise<{ locale: s
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildFaqPageJsonLd(faqs, locale, '/help')),
+        }}
+      />
     </>
   );
 }

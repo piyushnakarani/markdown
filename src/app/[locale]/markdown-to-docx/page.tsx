@@ -90,6 +90,8 @@ function MarkdownToDocxContent({ locale }: { locale: string }) {
         faqs={faqs}
         relatedGuidesToolKey="markdown-to-docx"
         accentColor="var(--accent)"
+        locale={locale}
+        path="/markdown-to-docx"
       />
       <script
         type="application/ld+json"

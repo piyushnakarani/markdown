@@ -307,4 +307,390 @@ export const AI_MARKDOWN_TO_PDF: SeoLandingContent = {
   ],
 };
 
-export const SEO_LANDINGS = [CHATGPT_TO_PDF, MERMAID_TO_PDF, AI_MARKDOWN_TO_PDF] as const;
+export const OBSIDIAN_TO_PDF: SeoLandingContent = {
+  path: '/obsidian-to-pdf',
+  title: 'Obsidian to PDF — Export Notes to PDF Free',
+  description:
+    'Convert Obsidian Markdown notes to PDF with Mermaid diagrams and KaTeX math intact. Live preview before export — 100% private, no upload.',
+  keywords: [
+    'obsidian to pdf',
+    'obsidian markdown to pdf',
+    'export obsidian notes to pdf',
+    'obsidian pdf export',
+    'convert obsidian vault to pdf',
+    'obsidian publish pdf',
+    'markdown to pdf',
+    'pdfwritter',
+  ],
+  badge: 'Obsidian → PDF',
+  h1Before: 'Obsidian to ',
+  h1Highlight: 'PDF',
+  h1After: ' Export',
+  accentColor: '#4b3f72',
+  glowColor: 'rgba(75,63,114,0.12)',
+  intro: [
+    'Obsidian stores notes as Markdown, but sharing still needs PDFs. PDFWritter turns your vault into clean PDFs without the Publish subscription, plugins, or server uploads.',
+    'Mermaid code blocks, KaTeX math ($$) , tables, and task lists all render in a live preview first. Export a single note or a merged PDF of many notes in your browser.',
+  ],
+  howTitle: 'How to convert Obsidian notes to PDF',
+  howSubtitle: 'No Publish, no community plugins, no account required',
+  steps: [
+    {
+      title: 'Copy the Markdown from Obsidian',
+      desc: 'Open a note in Edit mode and copy the raw Markdown — including ```mermaid and $$ math blocks — into the editor below.',
+    },
+    {
+      title: 'Check the live preview',
+      desc: 'Diagrams render as SVGs and equations render with KaTeX before you export, so nothing is lost to code-fence printing.',
+    },
+    {
+      title: 'Download the PDF',
+      desc: 'Click Export PDF. The file downloads instantly in your browser — no logins and your notes stay on your device.',
+    },
+  ],
+  featuresTitle: 'Why PDFWritter for Obsidian PDFs?',
+  features: [
+    {
+      title: 'Renders Obsidian-flavored content',
+      desc: 'Mermaid diagrams, KaTeX math, task lists, tables, and embedded callouts all preview before export.',
+    },
+    {
+      title: 'No Obsidian Publish needed',
+      desc: 'Skip the $25/year Publish plan and the export plugin when you just need a private PDF.',
+    },
+    {
+      title: 'Merged export friendly',
+      desc: 'Combine multiple notes into one PDF by concatenating Markdown before export.',
+    },
+    {
+      title: 'Private by design',
+      desc: 'Your notes never leave the browser — ideal for personal journals and internal docs.',
+    },
+  ],
+  faqs: [
+    {
+      q: 'How do I export an Obsidian note to PDF?',
+      a: 'Copy the note Markdown (or drag the .md file into the converter), verify the live preview, then click Export PDF. The download runs in your browser.',
+    },
+    {
+      q: 'Are Mermaid diagrams preserved when exporting Obsidian to PDF?',
+      a: 'Yes. We render Mermaid to SVG in the preview and embed it in the PDF — not as ugly code blocks.',
+    },
+    {
+      q: 'Does this work for an entire vault?',
+      a: 'Concatenate your notes into one Markdown document (or one per file) and export each. We do not crawl your vault for you.',
+    },
+    {
+      q: 'Is Obsidian Publish required to make a PDF?',
+      a: 'No. This is a browser tool. Publish is only for making a public website.',
+    },
+    {
+      q: 'Will my math equations render?',
+      a: 'Yes. KaTeX math ($inline$ and $$block$$) renders in preview and exports into the PDF alongside your text.',
+    },
+  ],
+  ctaTitle: 'Convert any Markdown to PDF',
+  ctaDescription: 'Same engine works for GitHub READMEs, ChatGPT answers, and general Markdown docs.',
+  ctaHref: '/markdown-to-pdf',
+  ctaLabel: 'Open Markdown to PDF',
+  related: [
+    { href: '/markdown-to-pdf', label: 'Markdown to PDF converter' },
+    { href: '/mermaid-markdown-to-pdf', label: 'Mermaid to PDF' },
+    { href: '/markdown-live-preview', label: 'Live Markdown preview' },
+    { href: '/free-markdown-converter', label: 'All free converters' },
+  ],
+};
+
+export const NOTION_TO_PDF: SeoLandingContent = {
+  path: '/notion-to-pdf',
+  title: 'Notion to PDF — Export Notion Pages to PDF Free',
+  description:
+    'Turn Notion pages (exported as Markdown) into clean PDFs with tables, callouts, and Mermaid diagrams. Live preview, private browser export.',
+  keywords: [
+    'notion to pdf',
+    'notion page to pdf',
+    'export notion to pdf',
+    'notion markdown to pdf',
+    'notion page pdf converter',
+    'convert notion page to pdf',
+    'markdown to pdf',
+    'pdfwritter',
+  ],
+  badge: 'Notion → PDF',
+  h1Before: 'Notion to ',
+  h1Highlight: 'PDF',
+  h1After: ' Export',
+  accentColor: '#000000',
+  glowColor: 'rgba(0,0,0,0.06)',
+  intro: [
+    'Notion does not export great PDFs. The cleanest path is Export → Markdown, then PDFWritter converts that Markdown into a real document.',
+    'Tables, toggle lists, callouts, code blocks, and Mermaid diagrams render in a live preview before export. No API keys and no uploads for private pages.',
+  ],
+  howTitle: 'How to convert Notion pages to PDF',
+  howSubtitle: 'From Export to Markdown to PDF in three steps',
+  steps: [
+    {
+      title: 'Export Notion as Markdown',
+      desc: 'In Notion, open the page menu → Export → choose Markdown & CSV. Unzip and open the .md file.',
+    },
+    {
+      title: 'Paste into the converter',
+      desc: 'Paste the Markdown (or drag the .md file) into the editor. The preview confirms tables, callouts, and diagrams render correctly.',
+    },
+    {
+      title: 'Download PDF',
+      desc: 'Click Export PDF. The document downloads to your browser with your Notion formatting intact.',
+    },
+  ],
+  featuresTitle: 'Why PDFWritter for Notion PDFs?',
+  features: [
+    {
+      title: 'Handles Notion-export Markdown',
+      desc: 'Renders toggle lists, callouts, databases-as-tables, and fenced code blocks cleanly.',
+    },
+    {
+      title: 'Mermaid + KaTeX',
+      desc: 'If your Notion has embedded Mermaid or math, it renders in preview and stays in the PDF.',
+    },
+    {
+      title: 'Private export',
+      desc: 'Processing stays in the browser — safe for internal Notion pages you do not want to upload.',
+    },
+    {
+      title: 'No Notion API needed',
+      desc: 'We work with the exported .md file, so no integration or token setup is required.',
+    },
+  ],
+  faqs: [
+    {
+      q: 'How do I convert a Notion page to PDF?',
+      a: 'Export the page from Notion as Markdown, paste it into PDFWritter, preview, then Export PDF. The download is generated in your browser.',
+    },
+    {
+      q: 'Does Notion export tables to PDF?',
+      a: 'Yes — Notion exports tables as Markdown tables, which we render and include in the PDF.',
+    },
+    {
+      q: 'Can Mermaid diagrams from Notion be in the PDF?',
+      a: 'Yes. Any ```mermaid fences you have render as graphics in the preview and are embedded in the PDF.',
+    },
+    {
+      q: 'Is my Notion content uploaded somewhere?',
+      a: 'No. Conversion happens in your browser only. Your content is not sent to our servers.',
+    },
+    {
+      q: 'Do I need the Notion desktop app?',
+      a: 'No. Any device with a browser can convert — desktop, tablet, or phone.',
+    },
+  ],
+  ctaTitle: 'Convert any Markdown to PDF',
+  ctaDescription: 'Same engine for Obsidian notes, GitHub READMEs, and general Markdown docs.',
+  ctaHref: '/markdown-to-pdf',
+  ctaLabel: 'Open Markdown to PDF',
+  related: [
+    { href: '/markdown-to-pdf', label: 'Markdown to PDF converter' },
+    { href: '/mermaid-markdown-to-pdf', label: 'Mermaid to PDF' },
+    { href: '/obsidian-to-pdf', label: 'Obsidian to PDF' },
+    { href: '/free-markdown-converter', label: 'All free converters' },
+  ],
+};
+
+export const GITHUB_README_TO_PDF: SeoLandingContent = {
+  path: '/github-readme-to-pdf',
+  title: 'GitHub README to PDF — Convert Readme.md to PDF Free',
+  description:
+    'Convert a GitHub README.md to PDF with badges, tables, code blocks, Mermaid, and KaTeX math. Live preview, no signup, private browser export.',
+  keywords: [
+    'github readme to pdf',
+    'convert readme to pdf',
+    'readme md to pdf',
+    'github markdown to pdf',
+    'markdown to pdf with badges',
+    'markdown file to pdf',
+    'markdown to pdf',
+    'pdfwritter',
+  ],
+  badge: 'README → PDF',
+  h1Before: 'GitHub README to ',
+  h1Highlight: 'PDF',
+  h1After: '',
+  accentColor: '#6e5494',
+  glowColor: 'rgba(110,84,148,0.12)',
+  intro: [
+    'A GitHub README is Markdown, and Markdown is our thing. PDFWritter takes a README.md and outputs a print-ready PDF that keeps badges, tables, code blocks, Mermaid diagrams, and math.',
+    'Drag the file in or paste the raw README. The live preview shows exactly what the PDF will look like before you download.',
+  ],
+  howTitle: 'How to convert a GitHub README to PDF',
+  howSubtitle: 'From raw README.md to downloadable PDF in three steps',
+  steps: [
+    {
+      title: 'Get the README Markdown',
+      desc: 'Download README.md from GitHub (Raw button) or copy it from the repo page.',
+    },
+    {
+      title: 'Preview in the converter',
+      desc: 'Paste or drag the .md file. Badges, tables, code highlighting, Mermaid, and KaTeX all render before export.',
+    },
+    {
+      title: 'Download PDF',
+      desc: 'Click Export PDF. The file downloads to your browser — no login and your README stays private.',
+    },
+  ],
+  featuresTitle: 'Why PDFWritter for README → PDF?',
+  features: [
+    {
+      title: 'GitHub Flavored Markdown',
+      desc: 'Tables, task lists, badges, mentions, and fenced code blocks render exactly like GitHub.',
+    },
+    {
+      title: 'Badges stay visible',
+      desc: 'Remote badge images render in preview so they appear in the PDF instead of as broken links.',
+    },
+    {
+      title: 'Diagrams & math',
+      desc: 'Mermaid charts and KaTeX equations render and export alongside your README content.',
+    },
+    {
+      title: 'No repo access needed',
+      desc: 'We only process the Markdown text you paste — we do not connect to your GitHub account.',
+    },
+  ],
+  faqs: [
+    {
+      q: 'How do I convert a README.md to PDF?',
+      a: 'Download the raw README.md from GitHub, paste it into PDFWritter, check the live preview, then click Export PDF. The PDF downloads in your browser.',
+    },
+    {
+      q: 'Do GitHub badges render in the PDF?',
+      a: 'Yes. Badge image URLs resolve in the preview and are embedded as images in the exported PDF.',
+    },
+    {
+      q: 'Can I include Mermaid diagrams from the README?',
+      a: 'Yes. ```mermaid fences render as graphics in the live preview and are embedded in the PDF.',
+    },
+    {
+      q: 'Do I need a GitHub account?',
+      a: 'No. Use the raw .md file content only. We never ask for GitHub access tokens.',
+    },
+    {
+      q: 'Is my README uploaded to a server?',
+      a: 'No. All conversion happens in your browser. Your README is not stored or transmitted.',
+    },
+  ],
+  ctaTitle: 'Need Mermaid in the README?',
+  ctaDescription: 'Same converter keeps diagrams and math in the exported PDF.',
+  ctaHref: '/mermaid-markdown-to-pdf',
+  ctaLabel: 'Open Mermaid to PDF',
+  related: [
+    { href: '/markdown-to-pdf', label: 'Markdown to PDF converter' },
+    { href: '/mermaid-markdown-to-pdf', label: 'Mermaid to PDF' },
+    { href: '/markdown-to-html', label: 'Markdown to HTML' },
+    { href: '/free-markdown-converter', label: 'All free converters' },
+  ],
+};
+
+export const RESUME_MARKDOWN_TO_PDF: SeoLandingContent = {
+  path: '/markdown-to-pdf-resume',
+  title: 'Markdown Resume to PDF — Clean Resume PDF Free',
+  description:
+    'Convert Markdown resume/CV files to a clean, ATS-friendly PDF with typography, bullet lists, and links intact. Live preview, private browser export.',
+  keywords: [
+    'markdown resume to pdf',
+    'convert markdown resume to pdf',
+    'markdown cv to pdf',
+    'markdown to pdf resume',
+    'typewritten resume markdown',
+    'markdown resume pdf converter',
+    'markdown to pdf',
+    'pdfwritter',
+  ],
+  badge: 'Resume → PDF',
+  h1Before: 'Markdown Resume to ',
+  h1Highlight: 'PDF',
+  h1After: '',
+  accentColor: '#0f4c3a',
+  glowColor: 'rgba(15,76,58,0.12)',
+  intro: [
+    'A Markdown resume gives you version control and clean diffs. PDFWritter converts it to a professional, ATS-friendly PDF without LaTeX, Word, or a design tool.',
+    'Headings, bullet lists, links, and horizontal rules render in a live preview before export. Your resume never leaves your browser.',
+  ],
+  howTitle: 'How to convert a Markdown resume to PDF',
+  howSubtitle: 'Version-controlled source, print-ready PDF',
+  steps: [
+    {
+      title: 'Paste or upload your Markdown resume',
+      desc: 'Add the .md file via drag-and-drop or paste. Supports YAML front matter, headings, lists, and links.',
+    },
+    {
+      title: 'Proof the live preview',
+      desc: 'Check that sections, bullet points, and links look correct before exporting the final document.',
+    },
+    {
+      title: 'Download the PDF',
+      desc: 'Click Export PDF. A clean, print-ready PDF downloads to your browser with no watermarks or signups.',
+    },
+  ],
+  featuresTitle: 'Why PDFWritter for resume PDFs?',
+  features: [
+    {
+      title: 'ATS-friendly layout',
+      desc: 'Clean typography, real headings, and selectable text keep the PDF readable for both humans and parsing software.',
+    },
+    {
+      title: 'Links stay clickable',
+      desc: 'Email, portfolio, and GitHub links in your resume export as live links in the PDF.',
+    },
+    {
+      title: 'No Word or LaTeX needed',
+      desc: 'Write in Markdown and export a PDF directly — no template, no compilation step.',
+    },
+    {
+      title: 'Private by default',
+      desc: 'Your resume content stays in the browser. Nothing is uploaded or stored on our servers.',
+    },
+  ],
+  faqs: [
+    {
+      q: 'How do I turn a Markdown resume into a PDF?',
+      a: 'Paste or upload your .md resume, check the live preview, then click Export PDF. The download is generated entirely in your browser.',
+    },
+    {
+      q: 'Is the resume PDF ATS-friendly?',
+      a: 'Yes. We export clean headings, lists, and selectable text so parsing software can read your resume.',
+    },
+    {
+      q: 'Do links work in the exported resume?',
+      a: 'Yes. Email, portfolio, and GitHub links export as clickable links in the PDF.',
+    },
+    {
+      q: 'Is my resume uploaded to a server?',
+      a: 'No. All conversion is client-side in your browser. Your resume stays on your device.',
+    },
+    {
+      q: 'Do I need a resume template?',
+      a: 'No. Write Markdown headings and lists and we render a clean, print-ready layout automatically.',
+    },
+  ],
+  ctaTitle: 'Start with Markdown to PDF',
+  ctaDescription: 'Same engine works for READMEs, Obsidian notes, and general Markdown docs.',
+  ctaHref: '/markdown-to-pdf',
+  ctaLabel: 'Open Markdown to PDF',
+  related: [
+    { href: '/markdown-to-pdf', label: 'Markdown to PDF converter' },
+    { href: '/obsidian-to-pdf', label: 'Obsidian to PDF' },
+    { href: '/github-readme-to-pdf', label: 'GitHub README to PDF' },
+    { href: '/markdown-to-docx', label: 'Markdown to DOCX' },
+  ],
+};
+
+export const SECTIONS_LANDINGS = [
+  CHATGPT_TO_PDF,
+  MERMAID_TO_PDF,
+  AI_MARKDOWN_TO_PDF,
+  OBSIDIAN_TO_PDF,
+  NOTION_TO_PDF,
+  GITHUB_README_TO_PDF,
+  RESUME_MARKDOWN_TO_PDF,
+];
+
+export const SEO_LANDINGS = SECTIONS_LANDINGS;
