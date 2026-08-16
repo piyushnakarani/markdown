@@ -78,6 +78,10 @@ export default function Header() {
     { href: '/markdown-to-docx', label: t('markdownToDocx'), icon: FileSpreadsheet, color: '#2563eb' },
     { href: '/markdown-live-preview', label: t('markdownLivePreview'), icon: Eye, color: '#8b5cf6' },
     { href: '/editor', label: t('editor'), icon: PenLine, color: 'var(--accent)' },
+    { href: '/obsidian-to-pdf', label: t('obsidianToPdf'), icon: FileText, color: '#4b3f72' },
+    { href: '/notion-to-pdf', label: t('notionToPdf'), icon: FileText, color: '#000' },
+    { href: '/github-readme-to-pdf', label: t('githubReadmeToPdf'), icon: FileText, color: '#6e5494' },
+    { href: '/markdown-to-pdf-resume', label: t('resumeToPdf'), icon: FileText, color: '#0f4c3a' },
   ];
 
   return (

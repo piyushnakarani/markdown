@@ -113,6 +113,34 @@ function HomeContent({ locale }: { locale: string }) {
       title: t('tools.editorTitle'),
       desc: t('tools.editorDescription'),
     },
+    {
+      href: '/obsidian-to-pdf',
+      icon: FileText,
+      color: '#4b3f72',
+      title: t('nav.obsidianToPdf'),
+      desc: t('tools.obsidianDescription'),
+    },
+    {
+      href: '/notion-to-pdf',
+      icon: GitBranch,
+      color: '#3b82f6',
+      title: t('nav.notionToPdf'),
+      desc: t('tools.notionDescription'),
+    },
+    {
+      href: '/github-readme-to-pdf',
+      icon: FileText,
+      color: '#6e5494',
+      title: t('nav.githubReadmeToPdf'),
+      desc: t('tools.githubReadmeDescription'),
+    },
+    {
+      href: '/markdown-to-pdf-resume',
+      icon: FileText,
+      color: '#0f4c3a',
+      title: t('nav.resumeToPdf'),
+      desc: t('tools.resumeDescription'),
+    },
   ];
 
   const faqs = [

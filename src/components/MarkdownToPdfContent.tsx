@@ -103,6 +103,18 @@ export default function MarkdownToPdfContent({ locale, path }: MarkdownToPdfCont
       <ConverterTool type="pdf" />
 
       <section className="section-py relative">
+        <div className="page-container max-w-3xl space-y-4">
+          <h2 className="text-xl font-bold mb-3">{t('longFormTitle')}</h2>
+          <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+            {t('longFormP1')}
+          </p>
+          <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+            {t('longFormP2')}
+          </p>
+        </div>
+      </section>
+
+      <section className="section-py relative">
         <div className="relative page-container">
           <ScrollReveal>
             <SectionHeading

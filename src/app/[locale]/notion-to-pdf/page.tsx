@@ -1,21 +1,30 @@
-import { setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import SeoIntentLanding from '@/components/SeoIntentLanding';
-import { NOTION_TO_PDF } from '@/content/seo-landings';
 import { absoluteUrl, buildPageMetadata } from '@/lib/site';
 import { buildFaqPageJsonLd, buildHowToJsonLd, buildToolPageJsonLd } from '@/lib/structured-data';
-
-const content = NOTION_TO_PDF;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
+
+  const t = await getTranslations({ locale, namespace: 'notionToPdf' });
+
   return buildPageMetadata({
-    title: content.title,
-    description: content.description,
-    path: content.path,
+    title: t('badge') + ' — ' + t('h1Before') + t('h1Highlight') + t('h1After'),
+    description: 'Turn Notion pages (exported as Markdown) into clean PDFs with tables, callouts, and Mermaid diagrams. Live preview, private browser export.',
+    path: '/notion-to-pdf',
     locale,
-    keywords: content.keywords,
+    keywords: [
+      'notion to pdf',
+      'notion page to pdf',
+      'export notion to pdf',
+      'notion markdown to pdf',
+      'notion page pdf converter',
+      'convert notion page to pdf',
+      'markdown to pdf',
+      'pdfwritter',
+    ],
     image: {
       url: absoluteUrl('/convert-markdown-file-to-pdf.webp'),
       width: 1200,
@@ -32,6 +41,63 @@ export default async function NotionToPdfPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+
+  const t = await getTranslations({ locale, namespace: 'notionToPdf' });
+
+  const content = {
+    path: '/notion-to-pdf',
+    title: t('badge') + ' — ' + t('h1Before') + t('h1Highlight') + t('h1After'),
+    description: 'Turn Notion pages (exported as Markdown) into clean PDFs with tables, callouts, and Mermaid diagrams. Live preview, private browser export.',
+    keywords: [
+      'notion to pdf',
+      'notion page to pdf',
+      'export notion to pdf',
+      'notion markdown to pdf',
+      'notion page pdf converter',
+      'convert notion page to pdf',
+      'markdown to pdf',
+      'pdfwritter',
+    ],
+    badge: t('badge'),
+    h1Before: t('h1Before'),
+    h1Highlight: t('h1Highlight'),
+    h1After: t('h1After'),
+    accentColor: '#000000',
+    glowColor: 'rgba(0,0,0,0.06)',
+    intro: [t('intro.0'), t('intro.1')],
+    howTitle: t('howTitle'),
+    howSubtitle: t('howSubtitle'),
+    steps: [
+      { title: t('step1Title'), desc: t('step1Desc') },
+      { title: t('step2Title'), desc: t('step2Desc') },
+      { title: t('step3Title'), desc: t('step3Desc') },
+    ],
+    featuresTitle: t('featuresTitle'),
+    features: [
+      { title: t('feature1Title'), desc: t('feature1Desc') },
+      { title: t('feature2Title'), desc: t('feature2Desc') },
+      { title: t('feature3Title'), desc: t('feature3Desc') },
+      { title: t('feature4Title'), desc: t('feature4Desc') },
+    ],
+    faqs: [
+      { q: t('faq1Q'), a: t('faq1A') },
+      { q: t('faq2Q'), a: t('faq2A') },
+      { q: t('faq3Q'), a: t('faq3A') },
+      { q: t('faq4Q'), a: t('faq4A') },
+      { q: t('faq5Q'), a: t('faq5A') },
+    ],
+    ctaTitle: t('ctaTitle'),
+    ctaDescription: t('ctaDescription'),
+    ctaHref: '/markdown-to-pdf',
+    ctaLabel: t('ctaLabel'),
+    related: [
+      { href: '/markdown-to-pdf', label: t('related1Label') },
+      { href: '/mermaid-markdown-to-pdf', label: t('related2Label') },
+      { href: '/obsidian-to-pdf', label: t('related3Label') },
+      { href: '/free-markdown-converter', label: t('related4Label') },
+    ],
+  };
+
   return (
     <>
       <SeoIntentLanding content={content} locale={locale} />
