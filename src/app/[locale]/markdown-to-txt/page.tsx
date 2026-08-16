@@ -89,6 +89,8 @@ function MarkdownToTxtContent({ locale }: { locale: string }) {
         faqs={faqs}
         relatedGuidesToolKey="markdown-to-txt"
         accentColor="#10b981"
+        locale={locale}
+        path="/markdown-to-txt"
       />
       <script
         type="application/ld+json"

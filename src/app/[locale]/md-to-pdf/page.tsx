@@ -25,10 +25,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   return buildLocalizedPageMetadata({
     locale,
-    path: '/markdown-to-pdf',
+    path: '/md-to-pdf',
     titleKey: 'markdownToPdf.title',
     descriptionKey: 'markdownToPdf.description',
-    titleSuffix: ' — Mermaid & Math, Free Online',
+    titleSuffix: ' — MD to PDF Free Online',
     keywords: withToolBrandKeywords(pdfKeywordsForLocale(locale), 'pdf'),
     image: {
       url: absoluteUrl(PDF_OG_IMAGE.url),
@@ -39,8 +39,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   });
 }
 
-export default async function MarkdownToPdfPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function MdToPdfPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <MarkdownToPdfContent locale={locale} path="/markdown-to-pdf" />;
+  return <MarkdownToPdfContent locale={locale} path="/md-to-pdf" />;
 }

@@ -22,7 +22,7 @@ import ScrollReveal from '@/components/ScrollReveal';
 import SectionHeading from '@/components/SectionHeading';
 import { Link } from '@/i18n/navigation';
 import { buildPageMetadata } from '@/lib/site';
-import { buildSpeakableJsonLd } from '@/lib/structured-data';
+import { buildFaqPageJsonLd, buildSpeakableJsonLd } from '@/lib/structured-data';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -331,6 +331,12 @@ function HomeContent({ locale }: { locale: string }) {
               '/',
             ),
           ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildFaqPageJsonLd(faqs, locale, '/')),
         }}
       />
     </>

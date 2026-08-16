@@ -26,6 +26,36 @@ const CORE_PAGES: { path: string; title: string; description: string }[] = [
       'Free Markdown to PDF converter with live preview, Mermaid diagram support, and instant browser-side download. No sign-up required.',
   },
   {
+    path: '/md-to-pdf',
+    title: 'MD to PDF',
+    description:
+      'Free md to pdf converter with live preview, Mermaid diagrams, code blocks, and private browser-side download. No sign-up required.',
+  },
+  {
+    path: '/obsidian-to-pdf',
+    title: 'Obsidian to PDF',
+    description:
+      'Export Obsidian Markdown notes to PDF with Mermaid diagrams and KaTeX math. Live preview before download, 100% private and browser-based.',
+  },
+  {
+    path: '/notion-to-pdf',
+    title: 'Notion to PDF',
+    description:
+      'Convert Notion pages exported as Markdown to clean PDFs with tables, callouts, and Mermaid diagrams. Live preview, no signup.',
+  },
+  {
+    path: '/github-readme-to-pdf',
+    title: 'GitHub README to PDF',
+    description:
+      'Convert a GitHub README.md to PDF with badges, tables, code blocks, and Mermaid diagrams. Live preview, no signup.',
+  },
+  {
+    path: '/markdown-to-pdf-resume',
+    title: 'Markdown Resume to PDF',
+    description:
+      'Convert Markdown resume/CV files to a clean, ATS-friendly PDF. Live preview, private browser export, no sign-up.',
+  },
+  {
     path: '/markdown-to-html',
     title: 'Markdown to HTML',
     description: 'Convert Markdown to clean semantic HTML with rendered Mermaid charts.',

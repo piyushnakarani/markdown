@@ -31,9 +31,14 @@ function FreeConverterContent({ locale }: { locale: string }) {
 
   const converters = [
     { href: '/markdown-to-pdf', icon: FileText, color: '#ef4444', title: t('tools.pdfTitle'), desc: t('tools.pdfDescription') },
+    { href: '/md-to-pdf', icon: FileText, color: '#ef4444', title: 'MD to PDF', desc: 'Convert Markdown (.md) to PDF with Mermaid diagrams and live preview.' },
     { href: '/chatgpt-to-pdf', icon: Sparkles, color: '#10a37f', title: t('nav.chatgptToPdf'), desc: t('tools.chatgptDescription') },
-    { href: '/mermaid-markdown-to-pdf', icon: GitBranch, color: '#8b5cf6', title: t('nav.mermaidToPdf'), desc: t('tools.mermaidDescription') },
     { href: '/ai-markdown-to-pdf', icon: Sparkles, color: '#3b82f6', title: t('nav.aiToPdf'), desc: t('tools.aiDescription') },
+    { href: '/mermaid-markdown-to-pdf', icon: GitBranch, color: '#8b5cf6', title: t('nav.mermaidToPdf'), desc: t('tools.mermaidDescription') },
+    { href: '/obsidian-to-pdf', icon: GitBranch, color: '#4b3f72', title: 'Obsidian to PDF', desc: 'Export Obsidian Markdown notes to PDF with Mermaid diagrams.' },
+    { href: '/notion-to-pdf', icon: GitBranch, color: '#000', title: 'Notion to PDF', desc: 'Convert Notion pages (Markdown export) to clean PDF.' },
+    { href: '/github-readme-to-pdf', icon: FileText, color: '#6e5494', title: 'GitHub README to PDF', desc: 'Convert README.md to PDF with badges and code blocks.' },
+    { href: '/markdown-to-pdf-resume', icon: FileText, color: '#0f4c3a', title: 'Markdown Resume to PDF', desc: 'Turn a Markdown CV into a clean, ATS-friendly PDF.' },
     { href: '/markdown-to-html', icon: Code2, color: '#f59e0b', title: t('tools.htmlTitle'), desc: t('tools.htmlDescription') },
     { href: '/markdown-to-txt', icon: FileType, color: '#10b981', title: t('tools.txtTitle'), desc: t('tools.txtDescription') },
     { href: '/markdown-to-docx', icon: FileSpreadsheet, color: '#3b82f6', title: t('tools.docxTitle'), desc: t('tools.docxDescription') },

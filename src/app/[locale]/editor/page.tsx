@@ -85,6 +85,8 @@ function EditorPageContent({ locale }: { locale: string }) {
         faqs={faqs}
         relatedGuidesToolKey="editor"
         accentColor="var(--accent)"
+        locale={locale}
+        path="/editor"
       />
       <script
         type="application/ld+json"

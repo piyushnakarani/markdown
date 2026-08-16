@@ -14,6 +14,7 @@ import FAQAccordion from '@/components/FAQAccordion';
 import RelatedBlogGuides from '@/components/RelatedBlogGuides';
 import ScrollReveal from '@/components/ScrollReveal';
 import SectionHeading from '@/components/SectionHeading';
+import { buildFaqPageJsonLd, buildHowToJsonLd } from '@/lib/structured-data';
 
 type Step = {
   title: string;
@@ -55,6 +56,8 @@ type ToolSeoSectionsProps = {
   relatedGuidesToolKey?: string;
   relatedGuidesTitle?: string;
   accentColor: string;
+  locale: string;
+  path: string;
 };
 
 export default function ToolSeoSections({
@@ -77,6 +80,8 @@ export default function ToolSeoSections({
   relatedGuidesToolKey,
   relatedGuidesTitle,
   accentColor,
+  locale,
+  path,
 }: ToolSeoSectionsProps) {
   const t = useTranslations('common');
   return (
@@ -245,6 +250,19 @@ export default function ToolSeoSections({
           </ScrollReveal>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildFaqPageJsonLd(faqs, locale, path)),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildHowToJsonLd(howTitle, steps, locale, path)),
+        }}
+      />
     </>
   );
 }

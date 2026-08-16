@@ -1,11 +1,11 @@
 import { setRequestLocale } from 'next-intl/server';
 
 import SeoIntentLanding from '@/components/SeoIntentLanding';
-import { AI_MARKDOWN_TO_PDF } from '@/content/seo-landings';
+import { GITHUB_README_TO_PDF } from '@/content/seo-landings';
 import { absoluteUrl, buildPageMetadata } from '@/lib/site';
 import { buildFaqPageJsonLd, buildHowToJsonLd, buildToolPageJsonLd } from '@/lib/structured-data';
 
-const content = AI_MARKDOWN_TO_PDF;
+const content = GITHUB_README_TO_PDF;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -20,12 +20,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       url: absoluteUrl('/convert-markdown-file-to-pdf.webp'),
       width: 1200,
       height: 800,
-      alt: 'Convert AI Markdown from ChatGPT Claude Gemini to PDF',
+      alt: 'Convert a GitHub README.md to PDF with badges, code blocks, and Mermaid diagrams',
     },
   });
 }
 
-export default async function AiMarkdownToPdfPage({
+export default async function GithubReadmeToPdfPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
