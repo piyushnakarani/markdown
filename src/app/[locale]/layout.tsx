@@ -4,8 +4,8 @@ import 'highlight.js/styles/github-dark.css';
 
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { GeistMono } from 'geist/font/mono';
-import { Plus_Jakarta_Sans } from 'next/font/google';
 import type { Viewport } from 'next';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';

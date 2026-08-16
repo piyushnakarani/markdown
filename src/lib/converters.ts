@@ -9,11 +9,11 @@ import {
 
 export type { ExportProgressCallback, ExportProgressStage } from './export-progress';
 export {
+  getDocxExportStages,
   getExportOverlayProps,
   getHtmlExportStages,
   getPdfExportStages,
   getTxtExportStages,
-  getDocxExportStages,
   markdownHasMermaid,
   stageIndex,
 } from './export-progress';

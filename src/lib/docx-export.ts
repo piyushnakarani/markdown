@@ -2,18 +2,18 @@ import {
   BorderStyle,
   Document,
   ExternalHyperlink,
+  type FileChild,
   HeadingLevel,
   ImageRun,
   Packer,
   Paragraph,
+  type ParagraphChild,
   ShadingType,
   Table,
   TableCell,
   TableRow,
   TextRun,
   WidthType,
-  type FileChild,
-  type ParagraphChild,
 } from 'docx';
 
 import { buildRenderedHtmlBody } from './converters';
@@ -233,8 +233,8 @@ async function tableFromElement(table: HTMLTableElement): Promise<Table> {
 
 async function imageParagraph(source: string, alt = 'Image'): Promise<Paragraph | null> {
   let bytes: Uint8Array | null = null;
-  let width = 480;
-  let height = 320;
+  const width = 480;
+  const height = 320;
 
   if (source.startsWith('data:image/')) {
     bytes = dataUrlToUint8Array(source);

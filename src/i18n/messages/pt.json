@@ -852,7 +852,23 @@
     "faq5A": "Yes. KaTeX math ($inline$ and $$block$$) renders in preview and exports into the PDF alongside your text.",
     "ctaTitle": "Convert any Markdown to PDF",
     "ctaDescription": "Same engine works for GitHub READMEs, ChatGPT answers, and general Markdown docs.",
-    "ctaLabel": "Open Markdown to PDF"
+    "ctaLabel": "Open Markdown to PDF",
+    "intro": [
+      "Obsidian stores notes as Markdown, but sharing still needs PDFs. PDFWritter turns your vault into clean PDFs without the Publish subscription, plugins, or server uploads.",
+      "Mermaid code blocks, KaTeX math ($$) , tables, and task lists all render in a live preview first. Export a single note or a merged PDF of many notes in your browser."
+    ],
+    "feature1Title": "Renders Obsidian-flavored content",
+    "feature1Desc": "Mermaid diagrams, KaTeX math, task lists, tables, and embedded callouts all preview before export.",
+    "feature2Title": "No Obsidian Publish needed",
+    "feature2Desc": "Skip the $25/year Publish plan and the export plugin when you just need a private PDF.",
+    "feature3Title": "Merged export friendly",
+    "feature3Desc": "Combine multiple notes into one PDF by concatenating Markdown before export.",
+    "feature4Title": "Private by design",
+    "feature4Desc": "Your notes never leave the browser — ideal for personal journals and internal docs.",
+    "related1Label": "Markdown to PDF",
+    "related2Label": "Mermaid to PDF",
+    "related3Label": "Live Editor",
+    "related4Label": "Free Converter"
   },
   "notionToPdf": {
     "title": "Notion to PDF — Export Notion Pages to PDF Free",
@@ -892,7 +908,23 @@
     "faq5A": "No. Any device with a browser can convert — desktop, tablet, or phone.",
     "ctaTitle": "Convert any Markdown to PDF",
     "ctaDescription": "Same engine for Obsidian notes, GitHub READMEs, and general Markdown docs.",
-    "ctaLabel": "Open Markdown to PDF"
+    "ctaLabel": "Open Markdown to PDF",
+    "intro": [
+      "Notion does not export great PDFs. The cleanest path is Export → Markdown, then PDFWritter converts that Markdown into a real document.",
+      "Tables, toggle lists, callouts, code blocks, and Mermaid diagrams render in a live preview before export. No API keys and no uploads for private pages."
+    ],
+    "feature1Title": "Handles Notion-export Markdown",
+    "feature1Desc": "Renders toggle lists, callouts, databases-as-tables, and fenced code blocks cleanly.",
+    "feature2Title": "Mermaid + KaTeX",
+    "feature2Desc": "If your Notion has embedded Mermaid or math, it renders in preview and stays in the PDF.",
+    "feature3Title": "Private export",
+    "feature3Desc": "Processing stays in the browser — safe for internal Notion pages you do not want to upload.",
+    "feature4Title": "No Notion API needed",
+    "feature4Desc": "We work with the exported .md file, so no integration or token setup is required.",
+    "related1Label": "Markdown to PDF",
+    "related2Label": "Mermaid to PDF",
+    "related3Label": "Live Editor",
+    "related4Label": "Free Converter"
   },
   "githubReadmeToPdf": {
     "title": "GitHub README to PDF — Convert Readme.md to PDF Free",
@@ -932,7 +964,23 @@
     "faq5A": "No. All conversion happens in your browser. Your README is not stored or transmitted.",
     "ctaTitle": "Need Mermaid in the README?",
     "ctaDescription": "Same converter keeps diagrams and math in the exported PDF.",
-    "ctaLabel": "Open Mermaid to PDF"
+    "ctaLabel": "Open Mermaid to PDF",
+    "intro": [
+      "A GitHub README is Markdown, and Markdown is our thing. PDFWritter takes a README.md and outputs a print-ready PDF that keeps badges, tables, code blocks, Mermaid diagrams, and math.",
+      "Drag the file in or paste the raw README. The live preview shows exactly what the PDF will look like before you download."
+    ],
+    "feature1Title": "GitHub Flavored Markdown",
+    "feature1Desc": "Tables, task lists, badges, mentions, and fenced code blocks render exactly like GitHub.",
+    "feature2Title": "Badges stay visible",
+    "feature2Desc": "Remote badge images render in preview so they appear in the PDF instead of as broken links.",
+    "feature3Title": "Diagrams & math",
+    "feature3Desc": "Mermaid charts and KaTeX equations render and export alongside your README content.",
+    "feature4Title": "No repo access needed",
+    "feature4Desc": "We only process the Markdown text you paste — we do not connect to your GitHub account.",
+    "related1Label": "Markdown to PDF",
+    "related2Label": "Mermaid to PDF",
+    "related3Label": "Live Editor",
+    "related4Label": "Free Converter"
   },
   "resumeToPdf": {
     "title": "Markdown Resume to PDF — Clean Resume PDF Free",
@@ -972,7 +1020,23 @@
     "faq5A": "No. Write Markdown headings and lists and we render a clean, print-ready layout automatically.",
     "ctaTitle": "Start with Markdown to PDF",
     "ctaDescription": "Same engine works for READMEs, Obsidian notes, and general Markdown docs.",
-    "ctaLabel": "Open Markdown to PDF"
+    "ctaLabel": "Open Markdown to PDF",
+    "intro": [
+      "A Markdown resume gives you version control and clean diffs. PDFWritter converts it to a professional, ATS-friendly PDF without LaTeX, Word, or a design tool.",
+      "Headings, bullet lists, links, and horizontal rules render in a live preview before export. Your resume never leaves your browser."
+    ],
+    "feature1Title": "ATS-friendly layout",
+    "feature1Desc": "Clean typography, real headings, and selectable text keep the PDF readable for both humans and parsing software.",
+    "feature2Title": "Links stay clickable",
+    "feature2Desc": "Email, portfolio, and GitHub links in your resume export as live links in the PDF.",
+    "feature3Title": "No Word or LaTeX needed",
+    "feature3Desc": "Write in Markdown and export a PDF directly — no template, no compilation step.",
+    "feature4Title": "Private by default",
+    "feature4Desc": "Your resume content stays in the browser. Nothing is uploaded or stored on our servers.",
+    "related1Label": "Markdown to PDF",
+    "related2Label": "Mermaid to PDF",
+    "related3Label": "Live Editor",
+    "related4Label": "Free Converter"
   },
   "chatgptToPdf": {
     "title": "ChatGPT to PDF — Convert ChatGPT Markdown Free",
@@ -1012,7 +1076,23 @@
     "faq5A": "Yes. Use the same editor, or open our AI Markdown to PDF hub for Claude and Gemini workflows.",
     "ctaTitle": "Need Claude or Gemini too?",
     "ctaDescription": "Same private Markdown → PDF workflow for every major AI assistant.",
-    "ctaLabel": "Open AI Markdown to PDF"
+    "ctaLabel": "Open AI Markdown to PDF",
+    "intro": [
+      "ChatGPT replies are usually Markdown. Humans still share PDFs. PDFWritter is the short path: paste the answer, proof the live preview, download a PDF — in your browser.",
+      "No account, no watermark, and normal conversion stays on your device. Code blocks, tables, lists, Mermaid fences, and KaTeX math render before export."
+    ],
+    "feature1Title": "Built for AI Markdown",
+    "feature1Desc": "ChatGPT output is Markdown-first. We render GFM tables, fences, and task lists cleanly.",
+    "feature2Title": "Diagrams & math",
+    "feature2Desc": "If the model returned Mermaid or LaTeX/KaTeX, we render it in preview and keep it in the PDF.",
+    "feature3Title": "Private by default",
+    "feature3Desc": "Paste confidential drafts without sending them to an upload converter.",
+    "feature4Title": "Free forever",
+    "feature4Desc": "No Pro watermark for basic export. Convert as often as you need.",
+    "related1Label": "Markdown to PDF",
+    "related2Label": "Mermaid to PDF",
+    "related3Label": "Live Editor",
+    "related4Label": "Free Converter"
   },
   "mermaidToPdf": {
     "title": "Mermaid Markdown to PDF — Diagrams in PDF Free",
@@ -1052,7 +1132,23 @@
     "faq5A": "Yes. Use Markdown to HTML after you confirm the diagrams look correct in preview.",
     "ctaTitle": "Convert any Markdown to PDF",
     "ctaDescription": "Same engine for READMEs, reports, and docs — with or without diagrams.",
-    "ctaLabel": "Open Markdown to PDF"
+    "ctaLabel": "Open Markdown to PDF",
+    "intro": [
+      "Most Markdown-to-PDF tools print Mermaid source as a code block. PDFWritter renders the diagram first, then exports the PDF — so flowcharts and sequence diagrams actually appear.",
+      "Paste a README or doc with ```mermaid fences, wait for the SVG in preview, then download. No Mermaid CLI, Pandoc filters, or local Chromium setup."
+    ],
+    "feature1Title": "Native Mermaid rendering",
+    "feature1Desc": "Diagrams are part of the same preview pipeline used for PDF — not a separate afterthought.",
+    "feature2Title": "Works with full GFM docs",
+    "feature2Desc": "Keep the surrounding README: tables, task lists, syntax highlighting, and KaTeX.",
+    "feature3Title": "No local toolchain",
+    "feature3Desc": "Skip Puppeteer scripts and VS Code extension tweaks when you need one clean PDF now.",
+    "feature4Title": "Private browser export",
+    "feature4Desc": "Ideal for internal architecture diagrams you do not want uploaded to a third-party server.",
+    "related1Label": "Markdown to PDF",
+    "related2Label": "Mermaid to PDF",
+    "related3Label": "Live Editor",
+    "related4Label": "Free Converter"
   },
   "aiMarkdownToPdf": {
     "title": "AI Markdown to PDF — ChatGPT, Claude, Gemini Free",
