@@ -76,10 +76,10 @@ export default async function HelpPage({ params }: { params: Promise<{ locale: s
             <h2 className="text-xl font-bold">{t('gettingStarted')}</h2>
           </div>
           <ol className="space-y-4 text-[var(--text-secondary)]">
-            <li className="flex gap-3"><span className="font-bold text-[#6366f1]">1.</span> Navigate to any converter tool or the editor</li>
-            <li className="flex gap-3"><span className="font-bold text-[#6366f1]">2.</span> Paste your Markdown content or upload a .md file</li>
-            <li className="flex gap-3"><span className="font-bold text-[#6366f1]">3.</span> Click Convert to process your document</li>
-            <li className="flex gap-3"><span className="font-bold text-[#6366f1]">4.</span> Download or copy the converted output</li>
+            <li className="flex gap-3"><span className="font-bold text-[#6366f1]">1.</span> {t('step1')}</li>
+            <li className="flex gap-3"><span className="font-bold text-[#6366f1]">2.</span> {t('step2')}</li>
+            <li className="flex gap-3"><span className="font-bold text-[#6366f1]">3.</span> {t('step3')}</li>
+            <li className="flex gap-3"><span className="font-bold text-[#6366f1]">4.</span> {t('step4')}</li>
           </ol>
         </div>
 
@@ -99,8 +99,8 @@ export default async function HelpPage({ params }: { params: Promise<{ locale: s
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-[var(--border-color)]">
-                  <th className="text-left py-3 px-4 font-semibold">Markdown</th>
-                  <th className="text-left py-3 px-4 font-semibold">Result</th>
+                  <th className="text-left py-3 px-4 font-semibold">{t('tableHeaderMarkdown')}</th>
+                  <th className="text-left py-3 px-4 font-semibold">{t('tableHeaderResult')}</th>
                 </tr>
               </thead>
               <tbody>
