@@ -2,10 +2,12 @@
 
 import Image from 'next/image';
 
+import { useTranslations } from 'next-intl';
 import { useTheme } from '@/components/ThemeProvider';
 
 export default function Loading() {
   const { theme } = useTheme();
+  const t = useTranslations('common');
   const iconSrc = theme === 'dark' ? '/logo-icon-dark-192.webp' : '/logo-icon-192.webp';
 
   return (
@@ -23,7 +25,7 @@ export default function Loading() {
       </div>
 
       <p className="mt-4 text-[10px] font-semibold uppercase tracking-wider text-[var(--text-tertiary)]">
-        Loading
+        {t('loading')}
       </p>
     </div>
   );

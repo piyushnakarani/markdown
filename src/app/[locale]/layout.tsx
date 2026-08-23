@@ -8,7 +8,7 @@ import type { Viewport } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, setRequestLocale } from 'next-intl/server';
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { Suspense } from 'react';
 
 import Footer from '@/components/Footer';
@@ -56,6 +56,7 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const t = await getTranslations('common');
 
   if (!routing.locales.includes(locale as Locale)) {
     notFound();
@@ -119,7 +120,7 @@ export default async function LocaleLayout({
                 <TransitionLoader />
               </Suspense>
               <a href="#main-content" className="skip-to-content">
-                Skip to content
+                {t('skipToContent')}
               </a>
               <Header />
               <main id="main-content" className="flex-1 w-full pt-[var(--header-height)]">

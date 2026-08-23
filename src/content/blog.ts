@@ -1,13 +1,18 @@
-import { content as bestMarkdownResumeToolsContent } from './blog-posts/best-markdown-to-pdf-tools-for-resumes';
-import { content as bestOnlineMarkdownEditorContent } from './blog-posts/best-online-markdown-editor-with-preview';
-import { content as convertMarkdownToHtmlContent } from './blog-posts/convert-markdown-to-html-online';
-import { content as preserveMarkdownFormattingContent } from './blog-posts/convert-markdown-to-pdf-without-losing-formatting';
-import { content as freeMarkdownConverterContent } from './blog-posts/free-markdown-converter-online-complete-guide';
-import { content as githubMathContent } from './blog-posts/github-markdown-math-latex-support';
-import { content as howToConvertMarkdownToTxtContent } from './blog-posts/how-to-convert-markdown-to-txt-online';
-import { content as beautifulMarkdownPdfContent } from './blog-posts/make-beautiful-pdf-from-markdown';
-import { content as mathRenderingContent } from './blog-posts/markdown-latex-math-katex-rendering-guide';
-import { content as markdownLivePreviewContent } from './blog-posts/markdown-live-preview-complete-guide';
+import { content as bestMarkdownToPdfConverterContent } from "./blog-posts/best-markdown-to-pdf-converter";
+import { content as batchConvertContent } from "./blog-posts/batch-convert-markdown-to-pdf-online";
+import { content as bestMarkdownResumeToolsContent } from "./blog-posts/best-markdown-to-pdf-tools-for-resumes";
+import { content as bestOnlineMarkdownEditorContent } from "./blog-posts/best-online-markdown-editor-with-preview";
+import { content as convertMarkdownToHtmlContent } from "./blog-posts/convert-markdown-to-html-online";
+import { content as convertMarkdownReportContent } from "./blog-posts/convert-markdown-report-to-pdf";
+import { content as exportChatgptDataContent } from "./blog-posts/export-chatgpt-data-to-pdf";
+import { content as preserveMarkdownFormattingContent } from "./blog-posts/convert-markdown-to-pdf-without-losing-formatting";
+import { content as freeMarkdownConverterContent } from "./blog-posts/free-markdown-converter-online-complete-guide";
+import { content as githubMathContent } from "./blog-posts/github-markdown-math-latex-support";
+import { content as howToConvertMarkdownToTxtContent } from "./blog-posts/how-to-convert-markdown-to-txt-online";
+import { content as beautifulMarkdownPdfContent } from "./blog-posts/make-beautiful-pdf-from-markdown";
+import { content as mathRenderingContent } from "./blog-posts/markdown-latex-math-katex-rendering-guide";
+import { content as markdownLivePreviewContent } from "./blog-posts/markdown-live-preview-complete-guide";
+import { content as markdownNoRegistrationContent } from "./blog-posts/markdown-to-pdf-no-registration";
 
 export interface BlogPost {
   slug: string;
@@ -31,147 +36,241 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
-    slug: 'github-markdown-math-latex-support',
-    titleKey: 'How to Use LaTeX and Math Expressions in GitHub Flavored Markdown',
+    slug: "best-markdown-to-pdf-converter",
+    titleKey: "The Best Markdown to PDF Converter for Professional Docs",
     excerptKey:
-      'Learn how to write math equations using LaTeX and KaTeX in GitHub Flavored Markdown, and how to export them to professional PDFs.',
-    metaTitle: 'GitHub Markdown Math & LaTeX Support Guide | PDFWritter',
+      "Compare the best Markdown to PDF converters of 2026 — PDFWritter, Pandoc, Typora, and VS Code — on fidelity, privacy, Mermaid, and LaTeX support.",
+    metaTitle: "Best Markdown to PDF Converter (2026 Comparison) | PDFWritter",
     metaDescription:
-      'A complete guide to writing math expressions in GitHub Markdown using LaTeX and KaTeX. Export your mathematical formulas natively to PDF.',
+      "Find the best Markdown to PDF converter for professional docs. We compare fidelity, privacy, code highlighting, Mermaid diagrams, and LaTeX support.",
     keywords: [
-      'github markdown math',
-      'markdown latex',
-      'katex markdown',
-      'export markdown math to pdf',
-      'github flavored markdown equations',
-      'pdfwritter',
+      "best markdown to pdf converter",
+      "markdown to pdf converter",
+      "markdown converter online",
+      "convert md to pdf",
+      "professional pdf from markdown",
     ],
-    category: 'Guide',
+    category: "Tools",
+    readTime: 11,
+    date: "2026-08-23",
+    dateModified: "2026-08-23",
+    content: bestMarkdownToPdfConverterContent,
+  },
+  {
+    slug: "markdown-to-pdf-no-registration",
+    titleKey: "How to Convert Markdown to PDF Online Without Signup",
+    excerptKey:
+      "Convert Markdown to PDF with no registration required. Free client-side conversion in three steps — no account, no email, no watermarks.",
+    metaTitle: "Markdown to PDF Online — No Registration Needed | PDFWritter",
+    metaDescription:
+      "Get Markdown to PDF with no registration. Free browser-based conversion with live preview, Mermaid, and math — private, unlimited, and watermark-free.",
+    keywords: [
+      "markdown to pdf no registration",
+      "convert markdown to pdf without signup",
+      "free markdown to pdf converter no account",
+      "no signup pdf converter",
+      "markdown to pdf online free",
+    ],
+    category: "Tutorial",
+    readTime: 10,
+    date: "2026-08-24",
+    dateModified: "2026-08-24",
+    content: markdownNoRegistrationContent,
+  },
+  {
+    slug: "batch-convert-markdown-to-pdf-online",
+    titleKey: "Batch Convert Markdown to PDF Online Efficiently",
+    excerptKey:
+      "Batch convert Markdown files to PDF without style drift: browser workflow for small batches, Pandoc scripts and CI pipelines for scale.",
+    metaTitle: "Batch Convert Markdown to PDF Online Efficiently | PDFWritter",
+    metaDescription:
+      "Learn to batch convert Markdown to PDF online: a fast browser workflow, Pandoc loop scripts, CI automation, and consistency checks for whole doc sets.",
+    keywords: [
+      "batch convert markdown to pdf online",
+      "bulk markdown to pdf",
+      "convert multiple markdown files to pdf",
+      "pandoc batch conversion",
+      "automate markdown pdf export",
+    ],
+    category: "Guide",
+    readTime: 12,
+    date: "2026-08-25",
+    dateModified: "2026-08-25",
+    content: batchConvertContent,
+  },
+  {
+    slug: "convert-markdown-report-to-pdf",
+    titleKey: "Formatting Markdown Reports for Professional PDF Output",
+    excerptKey:
+      "Convert Markdown reports to PDF with professional formatting — heading structure, clean tables, Mermaid figures, KaTeX equations, and page-flow tips.",
+    metaTitle: "Convert Markdown Report to PDF (Formatting Guide) | PDFWritter",
+    metaDescription:
+      "Turn a Markdown report into a professional PDF: structure, tables that survive export, Mermaid diagrams, LaTeX metrics, layout fixes, and QA checklist.",
+    keywords: [
+      "convert markdown report to pdf",
+      "markdown report formatting",
+      "professional pdf reports from markdown",
+      "markdown report template",
+      "markdown tables in pdf reports",
+    ],
+    category: "Guide",
+    readTime: 12,
+    date: "2026-08-26",
+    dateModified: "2026-08-26",
+    content: convertMarkdownReportContent,
+  },
+  {
+    slug: "export-chatgpt-data-to-pdf",
+    titleKey: "Why PDFWritter Is the Best Export Tool for AI Users",
+    excerptKey:
+      "Export ChatGPT data to PDF properly: why JSON dumps fail, how the Markdown bridge preserves code, math, and tables, and the two-minute workflow.",
+    metaTitle:
+      "Export ChatGPT Data to PDF — Best Tool for AI Users | PDFWritter",
+    metaDescription:
+      "Export ChatGPT data to PDF cleanly: compare screenshots, JSON exports, copy-paste, and the Markdown bridge that keeps code, math, and tables intact.",
+    keywords: [
+      "export chatgpt data to pdf",
+      "save chatgpt conversation as pdf",
+      "chatgpt to pdf converter",
+      "ai chat export pdf",
+      "archive ai conversations",
+    ],
+    category: "Tools",
+    readTime: 10,
+    date: "2026-09-01",
+    dateModified: "2026-09-01",
+    content: exportChatgptDataContent,
+  },
+  {
+    slug: "github-markdown-math-latex-support",
+    titleKey:
+      "How to Use LaTeX and Math Expressions in GitHub Flavored Markdown",
+    excerptKey:
+      "Learn how to write math equations using LaTeX and KaTeX in GitHub Flavored Markdown, and how to export them to professional PDFs.",
+    metaTitle: "GitHub Markdown Math & LaTeX Support Guide | PDFWritter",
+    metaDescription:
+      "A complete guide to writing math expressions in GitHub Markdown using LaTeX and KaTeX. Export your mathematical formulas natively to PDF.",
+    keywords: [
+      "github markdown math",
+      "markdown latex",
+      "katex markdown",
+      "export markdown math to pdf",
+      "github flavored markdown equations",
+    ],
+    category: "Guide",
     readTime: 6,
-    date: '2026-07-28',
-    dateModified: '2026-07-28',
+    date: "2026-07-28",
+    dateModified: "2026-07-28",
     content: githubMathContent,
   },
   {
-    slug: 'markdown-latex-math-katex-rendering-guide',
-    titleKey: 'Markdown Math Guide: Rendering LaTeX and KaTeX to HTML and PDF',
+    slug: "markdown-latex-math-katex-rendering-guide",
+    titleKey: "Markdown Math Guide: Rendering LaTeX and KaTeX to HTML and PDF",
     excerptKey:
       "A comprehensive guide on writing mathematical equations in Markdown and exporting them to PDF using PDFWritter's KaTeX support.",
-    metaTitle: 'Markdown LaTeX & KaTeX Rendering Guide | PDFWritter',
+    metaTitle: "Markdown LaTeX & KaTeX Rendering Guide | PDFWritter",
     metaDescription:
-      'Learn the difference between LaTeX and KaTeX in Markdown, how to write math blocks, and export beautiful PDF documents from your equations.',
+      "Learn the difference between LaTeX and KaTeX in Markdown, how to write math blocks, and export beautiful PDF documents from your equations.",
     keywords: [
-      'markdown latex',
-      'markdown katex',
-      'render markdown math to pdf',
-      'latex math equations markdown',
-      'pdfwritter',
+      "markdown latex",
+      "markdown katex",
+      "render markdown math to pdf",
+      "latex math equations markdown",
+      "pdfwritter",
     ],
-    category: 'Tutorial',
+    category: "Tutorial",
     readTime: 7,
-    date: '2026-07-28',
-    dateModified: '2026-07-28',
+    date: "2026-07-28",
+    dateModified: "2026-07-28",
     content: mathRenderingContent,
   },
   {
-    slug: 'how-to-convert-markdown-to-pdf-without-losing-formatting',
-    titleKey: 'How to Convert Markdown to PDF Without Losing Formatting',
+    slug: "how-to-convert-markdown-to-pdf-without-losing-formatting",
+    titleKey: "How to Convert Markdown to PDF Without Losing Formatting",
     excerptKey:
-      'Preserve headings, tables, code blocks, images, and Mermaid diagrams when converting Markdown to PDF with this reliable preview-first workflow.',
-    metaTitle: 'Markdown to PDF Without Losing Formatting | PDFWritter',
+      "Preserve headings, tables, code blocks, images, and Mermaid diagrams when converting Markdown to PDF with this reliable preview-first workflow.",
+    metaTitle: "Markdown to PDF Without Losing Formatting | PDFWritter",
     metaDescription:
-      'Convert Markdown to PDF without losing headings, tables, code, images, or Mermaid diagrams. Follow this reliable preview and export checklist.',
+      "Convert Markdown to PDF without losing headings, tables, code, images, or Mermaid diagrams. Follow this reliable preview and export checklist.",
     keywords: [
-      'convert markdown to pdf without losing formatting',
-      'preserve markdown formatting in pdf',
-      'markdown to pdf formatting',
-      'markdown tables to pdf',
-      'markdown code blocks pdf',
-      'mermaid markdown to pdf',
-      'md to pdf converter',
-      'pdfwritter',
-      'pdfwritter markdown to pdf',
+      "convert markdown to pdf without losing formatting",
+      "preserve markdown formatting in pdf",
+      "markdown to pdf formatting",
+      "markdown tables to pdf",
+      "markdown code blocks pdf",
     ],
-    category: 'Tutorial',
+    category: "Tutorial",
     readTime: 12,
-    date: '2026-07-26',
-    dateModified: '2026-07-26',
+    date: "2026-07-26",
+    dateModified: "2026-07-26",
     content: preserveMarkdownFormattingContent,
   },
   {
-    slug: 'best-markdown-to-pdf-tools-for-resumes',
-    titleKey: 'Best Markdown to PDF Tools for Creating Professional Resumes',
+    slug: "best-markdown-to-pdf-tools-for-resumes",
+    titleKey: "Best Markdown to PDF Tools for Creating Professional Resumes",
     excerptKey:
-      'Compare PDFWritter, Pandoc, Typora, VS Code, JSON Resume, and Obsidian for creating polished, searchable, and recruiter-ready resume PDFs.',
-    metaTitle: 'Best Markdown to PDF Resume Tools (2026) | PDFWritter',
+      "Compare PDFWritter, Pandoc, Typora, VS Code, JSON Resume, and Obsidian for creating polished, searchable, and recruiter-ready resume PDFs.",
+    metaTitle: "Best Markdown to PDF Resume Tools (2026) | PDFWritter",
     metaDescription:
-      'Compare the best Markdown to PDF tools for professional resumes, from browser converters to Pandoc templates. Choose the right resume workflow.',
+      "Compare the best Markdown to PDF tools for professional resumes, from browser converters to Pandoc templates. Choose the right resume workflow.",
     keywords: [
-      'best markdown to pdf tools for resumes',
-      'markdown resume pdf',
-      'create resume with markdown',
-      'markdown cv generator',
-      'pandoc resume',
-      'professional resume pdf',
-      'developer resume markdown',
-      'pdfwritter',
-      'pdfwritter markdown to pdf',
+      "best markdown to pdf tools for resumes",
+      "markdown resume pdf",
+      "create resume with markdown",
+      "markdown cv generator",
+      "pandoc resume",
     ],
-    category: 'Tools',
+    category: "Tools",
     readTime: 13,
-    date: '2026-07-26',
-    dateModified: '2026-07-26',
+    date: "2026-07-26",
+    dateModified: "2026-07-26",
     content: bestMarkdownResumeToolsContent,
   },
   {
-    slug: 'make-beautiful-pdf-from-markdown',
-    titleKey: 'Can You Make a Beautiful PDF from Markdown?',
+    slug: "make-beautiful-pdf-from-markdown",
+    titleKey: "Can You Make a Beautiful PDF from Markdown?",
     excerptKey:
-      'Learn how structure, typography, spacing, images, Mermaid diagrams, and a consistent theme turn plain Markdown into a polished PDF.',
-    metaTitle: 'How to Make a Beautiful PDF from Markdown | PDFWritter',
+      "Learn how structure, typography, spacing, images, Mermaid diagrams, and a consistent theme turn plain Markdown into a polished PDF.",
+    metaTitle: "How to Make a Beautiful PDF from Markdown | PDFWritter",
     metaDescription:
-      'Yes, Markdown can create beautiful PDFs. Learn how to improve typography, spacing, images, diagrams, tables, code, and page layout before export.',
+      "Yes, Markdown can create beautiful PDFs. Learn how to improve typography, spacing, images, diagrams, tables, code, and page layout before export.",
     keywords: [
-      'beautiful pdf from markdown',
-      'make markdown look good in pdf',
-      'markdown pdf design',
-      'styled markdown to pdf',
-      'professional markdown pdf',
-      'markdown pdf template',
-      'pretty markdown export',
-      'pdfwritter',
-      'pdfwritter markdown to pdf',
+      "beautiful pdf from markdown",
+      "make markdown look good in pdf",
+      "markdown pdf design",
+      "styled markdown to pdf",
+      "professional markdown pdf",
     ],
-    category: 'Guide',
+    category: "Guide",
     readTime: 12,
-    date: '2026-07-26',
-    dateModified: '2026-07-26',
+    date: "2026-07-26",
+    dateModified: "2026-07-26",
     content: beautifulMarkdownPdfContent,
   },
   {
-    slug: 'how-to-convert-markdown-to-pdf-online',
-    titleKey: 'How to Convert Markdown to PDF Online (Complete Guide for Developers in 2026)',
+    slug: "how-to-convert-markdown-to-pdf-online",
+    titleKey:
+      "How to Convert Markdown to PDF Online (Complete Guide for Developers in 2026)",
     excerptKey:
-      'Learn how to convert markdown to PDF online instantly. Complete guide for developers, students, and technical writers with best conversion methods.',
-    metaTitle: 'How to Convert Markdown to PDF Online (Fast & Free Guide 2026) | PDFWritter',
+      "Learn how to convert markdown to PDF online instantly. Complete guide for developers, students, and technical writers with best conversion methods.",
+    metaTitle:
+      "How to Convert Markdown to PDF Online (Fast & Free Guide 2026) | PDFWritter",
     metaDescription:
-      'Learn how to convert markdown to PDF online instantly. Complete guide for developers, students, and technical writers with best conversion methods.',
+      "Learn how to convert markdown to PDF online instantly. Complete guide for developers, students, and technical writers with best conversion methods.",
     keywords: [
-      'markdown to pdf',
-      'convert markdown to pdf',
-      'online markdown converter',
-      'markdown pdf converter',
-      'markdown export pdf',
-      'md to pdf converter',
-      'markdown editor pdf export',
+      "markdown to pdf",
+      "convert markdown to pdf",
+      "online markdown converter",
+      "markdown pdf converter",
+      "markdown export pdf",
     ],
-    category: 'Guide',
+    category: "Guide",
     readTime: 10,
-    date: '2026-06-25',
-    dateModified: '2026-06-28',
+    date: "2026-06-25",
+    dateModified: "2026-06-28",
     coverImage: {
-      src: '/convert-markdown-file-to-pdf.webp',
-      alt: 'Convert markdown documents instantly into PDF online',
+      src: "/convert-markdown-file-to-pdf.webp",
+      alt: "Convert markdown documents instantly into PDF online",
       width: 1200,
       height: 800,
     },
@@ -431,18 +530,24 @@ Yes, most modern tools support large documentation files.
 - [How to convert Markdown to PDF](/blog/convert-markdown-to-pdf) — quick step-by-step tutorial`,
   },
   {
-    slug: 'best-markdown-editors',
-    titleKey: 'Best Markdown Editors for Developers',
+    slug: "best-markdown-editors",
+    titleKey: "Best Markdown Editors for Developers",
     excerptKey:
-      'Compare the top Markdown editors for developers — from VS Code and Obsidian to free online editors with live preview and export.',
-    metaTitle: 'Best Markdown Editors for Developers (2026 Guide) | PDFWritter',
+      "Compare the top Markdown editors for developers — from VS Code and Obsidian to free online editors with live preview and export.",
+    metaTitle: "Best Markdown Editors for Developers (2026 Guide) | PDFWritter",
     metaDescription:
-      'Best markdown apps and editors for developers: VS Code, Typora, Obsidian, and free online md editor with live preview and PDF export.',
-    keywords: ['markdown editor', 'best markdown editor', 'best editor for markdown', 'best markdown apps', 'md editor', 'markdown writer', 'developer tools', 'markdown preview', 'online markdown editor'],
-    category: 'Tools',
+      "Best markdown apps and editors for developers: VS Code, Typora, Obsidian, and free online md editor with live preview and PDF export.",
+    keywords: [
+      "markdown editor",
+      "best markdown editor",
+      "best editor for markdown",
+      "best markdown apps",
+      "md editor",
+    ],
+    category: "Tools",
     readTime: 8,
-    date: '2026-06-25',
-    dateModified: '2026-06-28',
+    date: "2026-06-25",
+    dateModified: "2026-06-28",
     content: `# Best Markdown Editors for Developers
 
 Choosing the right **Markdown editor** saves time on README files, documentation, and blog drafts. If you are searching for the **best markdown apps** or the **best editor for markdown**, this guide compares the most popular options for developers in 2026.
@@ -481,18 +586,24 @@ StackEdit is a capable browser-based editor with cloud sync options and GitHub i
 The best Markdown editor depends on your workflow. For fast browser-based editing and export, try our [free online editor](/editor) or [Markdown to PDF converter](/markdown-to-pdf).`,
   },
   {
-    slug: 'convert-markdown-to-pdf',
-    titleKey: 'How to Convert Markdown to PDF Online',
+    slug: "convert-markdown-to-pdf",
+    titleKey: "How to Convert Markdown to PDF Online",
     excerptKey:
-      'Step-by-step guide to convert Markdown to PDF in your browser — free, private, and no software installation required.',
-    metaTitle: 'How to Convert Markdown to PDF Online (Free) | PDFWritter',
+      "Step-by-step guide to convert Markdown to PDF in your browser — free, private, and no software installation required.",
+    metaTitle: "How to Convert Markdown to PDF Online (Free) | PDFWritter",
     metaDescription:
-      'Convert Markdown to PDF online in 3 steps. Free browser-based tool — paste or upload .md files, preview live, and download a formatted PDF instantly.',
-    keywords: ['markdown to pdf', 'convert markdown to pdf', 'md to pdf', 'markdown pdf converter', 'online pdf converter'],
-    category: 'Tutorial',
+      "Convert Markdown to PDF online in 3 steps. Free browser-based tool — paste or upload .md files, preview live, and download a formatted PDF instantly.",
+    keywords: [
+      "markdown to pdf",
+      "convert markdown to pdf",
+      "md to pdf",
+      "markdown pdf converter",
+      "online pdf converter",
+    ],
+    category: "Tutorial",
     readTime: 5,
-    date: '2026-06-25',
-    dateModified: '2026-06-28',
+    date: "2026-06-25",
+    dateModified: "2026-06-28",
     content: `# How to Convert Markdown to PDF Online
 
 Need to turn a **Markdown file into a PDF**? You do not need desktop software. This tutorial shows how to convert Markdown to PDF entirely in your browser.
@@ -530,18 +641,24 @@ Click **Download PDF**. Your formatted document saves instantly — no email, no
 - [Markdown to TXT](/markdown-to-txt) — plain-text export`,
   },
   {
-    slug: 'markdown-vs-html',
-    titleKey: 'Markdown vs HTML Explained',
+    slug: "markdown-vs-html",
+    titleKey: "Markdown vs HTML Explained",
     excerptKey:
-      'Learn when to use Markdown vs HTML for documentation, blogs, and web content — with a comparison table and conversion tips.',
-    metaTitle: 'Markdown vs HTML: Differences & When to Use Each | PDFWritter',
+      "Learn when to use Markdown vs HTML for documentation, blogs, and web content — with a comparison table and conversion tips.",
+    metaTitle: "Markdown vs HTML: Differences & When to Use Each | PDFWritter",
     metaDescription:
-      'Markdown as HTML explained: when to write Markdown vs HTML, conversion tips, and free tools to export semantic HTML from Markdown online.',
-    keywords: ['markdown vs html', 'markdown to html', 'markdown as html', 'markdown comparison', 'semantic html', 'documentation formats'],
-    category: 'Guide',
+      "Markdown as HTML explained: when to write Markdown vs HTML, conversion tips, and free tools to export semantic HTML from Markdown online.",
+    keywords: [
+      "markdown vs html",
+      "markdown to html",
+      "markdown as html",
+      "markdown comparison",
+      "semantic html",
+    ],
+    category: "Guide",
     readTime: 6,
-    date: '2026-06-25',
-    dateModified: '2026-06-28',
+    date: "2026-06-25",
+    dateModified: "2026-06-28",
     content: `# Markdown vs HTML Explained
 
 Developers often ask: should I write in **Markdown** or **HTML**? Others search for **markdown as html** — how Markdown becomes HTML during publishing. Both questions have the same answer: Markdown is for writing, HTML is for rendering. This guide explains the trade-offs.
@@ -581,18 +698,24 @@ HTML (HyperText Markup Language) is the standard for web pages. It offers full l
 Use our [Markdown to HTML converter](/markdown-to-html) to generate clean, semantic HTML from Markdown — ready for blogs, static sites, or CMS paste-in.`,
   },
   {
-    slug: 'beginner-guide-markdown',
-    titleKey: 'Beginner Guide to Markdown',
+    slug: "beginner-guide-markdown",
+    titleKey: "Beginner Guide to Markdown",
     excerptKey:
-      'Learn Markdown syntax from scratch: headings, lists, links, code blocks, and tables — with examples you can try in our free editor.',
-    metaTitle: 'Beginner Guide to Markdown Syntax (2025) | PDFWritter',
+      "Learn Markdown syntax from scratch: headings, lists, links, code blocks, and tables — with examples you can try in our free editor.",
+    metaTitle: "Beginner Guide to Markdown Syntax (2025) | PDFWritter",
     metaDescription:
-      'Complete beginner guide to Markdown syntax. Learn headings, bold, lists, links, code blocks, and tables — then practice free in our online editor.',
-    keywords: ['markdown guide', 'markdown syntax', 'markdown tutorial', 'learn markdown', 'markdown for beginners', 'markdown cheat sheet'],
-    category: 'Tutorial',
+      "Complete beginner guide to Markdown syntax. Learn headings, bold, lists, links, code blocks, and tables — then practice free in our online editor.",
+    keywords: [
+      "markdown guide",
+      "markdown syntax",
+      "markdown tutorial",
+      "learn markdown",
+      "markdown for beginners",
+    ],
+    category: "Tutorial",
     readTime: 10,
-    date: '2026-06-25',
-    dateModified: '2026-06-28',
+    date: "2026-06-25",
+    dateModified: "2026-06-28",
     content: `# Beginner Guide to Markdown
 
 **Markdown** lets you format text without leaving your keyboard. This beginner guide covers every essential syntax you need.
@@ -633,18 +756,24 @@ Tables use pipes and dashes — great for comparisons and reference data.
 Open our [online Markdown editor](/editor) to write, preview, and export your first document to [PDF](/markdown-to-pdf) or [HTML](/markdown-to-html).`,
   },
   {
-    slug: 'documentation-tools-developers',
-    titleKey: 'Best Documentation Tools for Developers',
+    slug: "documentation-tools-developers",
+    titleKey: "Best Documentation Tools for Developers",
     excerptKey:
-      'Compare the best documentation tools for developers — Markdown on GitHub, Docusaurus, MkDocs, GitBook, and free export options.',
-    metaTitle: 'Best Documentation Tools for Developers | PDFWritter',
+      "Compare the best documentation tools for developers — Markdown on GitHub, Docusaurus, MkDocs, GitBook, and free export options.",
+    metaTitle: "Best Documentation Tools for Developers | PDFWritter",
     metaDescription:
-      'Top documentation tools for developers plus MkDocs alternatives. Markdown on GitHub, Docusaurus, GitBook, and free PDF/HTML export.',
-    keywords: ['documentation tools', 'developer documentation', 'mkdocs alternative', 'technical writing', 'markdown documentation', 'docs as code'],
-    category: 'Tools',
+      "Top documentation tools for developers plus MkDocs alternatives. Markdown on GitHub, Docusaurus, GitBook, and free PDF/HTML export.",
+    keywords: [
+      "documentation tools",
+      "developer documentation",
+      "mkdocs alternative",
+      "technical writing",
+      "markdown documentation",
+    ],
+    category: "Tools",
     readTime: 7,
-    date: '2026-06-25',
-    dateModified: '2026-06-28',
+    date: "2026-06-25",
+    dateModified: "2026-06-28",
     content: `# Best Documentation Tools for Developers
 
 Great **developer documentation** reduces support tickets and speeds onboarding. Here are the tools teams use most in 2025.
@@ -684,18 +813,24 @@ Convert Markdown docs to **PDF** for stakeholders or **HTML** for quick publishi
 5. Export PDFs for offline sharing when needed`,
   },
   {
-    slug: 'markdown-tutorial-beginners',
-    titleKey: 'Markdown Tutorial for Beginners',
+    slug: "markdown-tutorial-beginners",
+    titleKey: "Markdown Tutorial for Beginners",
     excerptKey:
-      'Hands-on Markdown tutorial with exercises for headings, formatting, lists, code, tables, and links — practice free in your browser.',
-    metaTitle: 'Markdown Tutorial for Beginners (Hands-On) | PDFWritter',
+      "Hands-on Markdown tutorial with exercises for headings, formatting, lists, code, tables, and links — practice free in your browser.",
+    metaTitle: "Markdown Tutorial for Beginners (Hands-On) | PDFWritter",
     metaDescription:
-      'Hands-on markdown tutorial for beginners. Practice headings, lists, code blocks, and tables — export to PDF with our free online tools.',
-    keywords: ['markdown tutorial', 'learn markdown', 'markdown exercises', 'markdown practice', 'markdown for beginners', 'markdown writer'],
-    category: 'Tutorial',
+      "Hands-on markdown tutorial for beginners. Practice headings, lists, code blocks, and tables — export to PDF with our free online tools.",
+    keywords: [
+      "markdown tutorial",
+      "learn markdown",
+      "markdown exercises",
+      "markdown practice",
+      "markdown for beginners",
+    ],
+    category: "Tutorial",
     readTime: 12,
-    date: '2026-06-25',
-    dateModified: '2026-06-28',
+    date: "2026-06-25",
+    dateModified: "2026-06-28",
     content: `# Markdown Tutorial for Beginners
 
 Learn Markdown by doing. Complete these short exercises, then paste your work into our [online editor](/editor).
@@ -739,18 +874,24 @@ Link to [PDFWritter home](/), the [editor](/editor), and [PDF converter](/markdo
 - Read our [beginner syntax guide](/blog/beginner-guide-markdown)`,
   },
   {
-    slug: 'free-markdown-tools',
-    titleKey: 'Best Free Markdown Tools Online',
+    slug: "free-markdown-tools",
+    titleKey: "Best Free Markdown Tools Online",
     excerptKey:
-      'Curated list of the best free online Markdown tools for editing, converting to PDF/HTML, and publishing documentation.',
-    metaTitle: 'Best Free Markdown Tools Online (2025 List) | PDFWritter',
+      "Curated list of the best free online Markdown tools for editing, converting to PDF/HTML, and publishing documentation.",
+    metaTitle: "Best Free Markdown Tools Online (2025 List) | PDFWritter",
     metaDescription:
-      'Best free markdown apps online: editors, PDF/HTML converters, and MkDocs alternatives. Compare PDFWritter, Dillinger, StackEdit, and Pandoc.',
-    keywords: ['free markdown tools', 'best markdown apps', 'online markdown converter', 'mkdocs alternative', 'markdown tools online', 'free md to pdf', 'markdown utilities'],
-    category: 'Tools',
+      "Best free markdown apps online: editors, PDF/HTML converters, and MkDocs alternatives. Compare PDFWritter, Dillinger, StackEdit, and Pandoc.",
+    keywords: [
+      "free markdown tools",
+      "best markdown apps",
+      "online markdown converter",
+      "mkdocs alternative",
+      "markdown tools online",
+    ],
+    category: "Tools",
     readTime: 6,
-    date: '2026-06-25',
-    dateModified: '2026-06-28',
+    date: "2026-06-25",
+    dateModified: "2026-06-28",
     content: `# Best Free Markdown Tools Online
 
 Looking for **free Markdown tools** or the **best markdown apps** that work in the browser? This curated list covers editors, converters, and doc platforms — including lightweight options when you need a **MkDocs alternative** for quick exports.
@@ -781,19 +922,26 @@ Looking for **free Markdown tools** or the **best markdown apps** that work in t
 - No sign-up required`,
   },
   {
-    slug: 'developers-use-markdown',
-    titleKey: 'How Developers Use Markdown Efficiently',
+    slug: "developers-use-markdown",
+    titleKey: "How Developers Use Markdown Efficiently",
     excerptKey:
-      'Productivity workflows for developers using Markdown: README files, PR templates, docs, blog posts, and fast export to PDF.',
-    metaTitle: 'How Developers Use Markdown Efficiently | PDFWritter',
+      "Productivity workflows for developers using Markdown: README files, PR templates, docs, blog posts, and fast export to PDF.",
+    metaTitle: "How Developers Use Markdown Efficiently | PDFWritter",
     metaDescription:
-      'Learn how developers use Markdown for READMEs, PR descriptions, docs, and blogs. Productivity tips plus free export to PDF and HTML.',
-    keywords: ['markdown workflow', 'developer productivity', 'markdown readme', 'readme git', 'markdown writer', 'technical writing', 'markdown tips'],
-    category: 'Productivity',
+      "Learn how developers use Markdown for READMEs, PR descriptions, docs, and blogs. Productivity tips plus free export to PDF and HTML.",
+    keywords: [
+      "markdown workflow",
+      "developer productivity",
+      "markdown readme",
+      "readme git",
+      "markdown writer",
+    ],
+    category: "Productivity",
     readTime: 7,
-    date: '2026-06-25',
-    dateModified: '2026-06-28',
-    content: `# How Developers Use Markdown Efficiently
+    date: "2026-06-25",
+    dateModified: "2026-06-28",
+    content:
+      `# How Developers Use Markdown Efficiently
 
 **Markdown** is more than README syntax — it is a daily productivity tool across the software lifecycle. Whether you are a developer, technical writer, or **markdown writer** on a docs team, these workflows save hours every week.
 
@@ -815,7 +963,9 @@ Static site generators (Next.js, Hugo, Jekyll) consume Markdown — write once, 
 
 ## 5. Notes & Knowledge Bases
 
-` + "Tools like Obsidian and Notion use Markdown under the hood for portable, future-proof notes." + `
+` +
+      "Tools like Obsidian and Notion use Markdown under the hood for portable, future-proof notes." +
+      `
 
 ## Productivity Tips
 
@@ -826,18 +976,24 @@ Static site generators (Next.js, Hugo, Jekyll) consume Markdown — write once, 
 5. Batch-convert docs with our [free converter tools](/free-markdown-converter)`,
   },
   {
-    slug: 'render-mermaid-diagrams-markdown',
-    titleKey: 'How to Render Mermaid Diagrams in Markdown',
+    slug: "render-mermaid-diagrams-markdown",
+    titleKey: "How to Render Mermaid Diagrams in Markdown",
     excerptKey:
-      'Learn how to embed flowcharts, sequence diagrams, and class diagrams in your Markdown documents using Mermaid.js syntax.',
-    metaTitle: 'How to Render Mermaid Diagrams in Markdown | PDFWritter',
+      "Learn how to embed flowcharts, sequence diagrams, and class diagrams in your Markdown documents using Mermaid.js syntax.",
+    metaTitle: "How to Render Mermaid Diagrams in Markdown | PDFWritter",
     metaDescription:
-      'Markdown flowchart guide: create flowcharts, sequence diagrams, and Gantt charts in Markdown with Mermaid.js syntax and live PDF export.',
-    keywords: ['mermaid diagrams', 'markdown mermaid', 'markdown flowchart', 'flowcharts in markdown', 'mermaid js syntax', 'render diagrams'],
-    category: 'Tutorial',
+      "Markdown flowchart guide: create flowcharts, sequence diagrams, and Gantt charts in Markdown with Mermaid.js syntax and live PDF export.",
+    keywords: [
+      "mermaid diagrams",
+      "markdown mermaid",
+      "markdown flowchart",
+      "flowcharts in markdown",
+      "mermaid js syntax",
+    ],
+    category: "Tutorial",
     readTime: 9,
-    date: '2026-06-25',
-    dateModified: '2026-06-28',
+    date: "2026-06-25",
+    dateModified: "2026-06-28",
     content: `# How to Render Mermaid Diagrams in Markdown
 
 Visualizing complex flows with diagrams keeps documentation clear. Whether you need a **markdown flowchart**, sequence diagram, or Gantt chart, **Mermaid.js** lets you render diagrams directly inside Markdown files using simple text.
@@ -898,18 +1054,24 @@ gantt
 Our [online Markdown editor](/editor) and [Markdown to PDF converter](/markdown-to-pdf) support full Mermaid.js parsing. Type your code block and preview the rendered diagram live.`,
   },
   {
-    slug: 'github-readme-best-practices',
-    titleKey: 'GitHub README Best Practices for Developers',
+    slug: "github-readme-best-practices",
+    titleKey: "GitHub README Best Practices for Developers",
     excerptKey:
-      'A complete guide to writing high-impact GitHub README files that attract users and contributors to your open-source projects.',
-    metaTitle: 'GitHub README Best Practices & Templates | PDFWritter',
+      "A complete guide to writing high-impact GitHub README files that attract users and contributors to your open-source projects.",
+    metaTitle: "GitHub README Best Practices & Templates | PDFWritter",
     metaDescription:
-      'GitHub README best practices for readme git projects. Structure, badges, install guides, Mermaid diagrams, and PDF export for open source.',
-    keywords: ['github readme', 'readme git', 'best readme template', 'open source documentation', 'markdown readme guide', 'developer experience'],
-    category: 'Guide',
+      "GitHub README best practices for readme git projects. Structure, badges, install guides, Mermaid diagrams, and PDF export for open source.",
+    keywords: [
+      "github readme",
+      "readme git",
+      "best readme template",
+      "open source documentation",
+      "markdown readme guide",
+    ],
+    category: "Guide",
     readTime: 7,
-    date: '2026-06-25',
-    dateModified: '2026-06-28',
+    date: "2026-06-25",
+    dateModified: "2026-06-28",
     content: `# GitHub README Best Practices for Developers
 
 A repository's **README** file is its front door — and the centerpiece of every **readme git** project on GitHub. A clear, well-structured README drives open-source adoption, helps team members onboard, and serves as your project's main documentation.
@@ -946,143 +1108,138 @@ Always specify the programming language on your fenced code blocks to trigger co
 Sometimes stakeholders or enterprise clients require documentation offline. You can copy your README and convert it to a beautifully formatted document instantly using our [Markdown to PDF converter](/markdown-to-pdf).`,
   },
   {
-    slug: 'free-markdown-converter-online-complete-guide',
-    titleKey: 'Free Markdown Converter Online — Complete Toolkit Guide for 2026',
+    slug: "free-markdown-converter-online-complete-guide",
+    titleKey:
+      "Free Markdown Converter Online — Complete Toolkit Guide for 2026",
     excerptKey:
-      'Complete guide to free online Markdown conversion: PDF, HTML, TXT export, live preview, and Mermaid diagrams — all in your browser with no sign-up.',
-    metaTitle: 'Free Markdown Converter Online (2026 Guide) | PDFWritter',
+      "Complete guide to free online Markdown conversion: PDF, HTML, TXT export, live preview, and Mermaid diagrams — all in your browser with no sign-up.",
+    metaTitle: "Free Markdown Converter Online (2026 Guide) | PDFWritter",
     metaDescription:
-      'Free markdown converter online: convert MD to PDF, HTML, and TXT with live preview and Mermaid support. Client-side, no sign-up. Complete toolkit guide.',
+      "Free markdown converter online: convert MD to PDF, HTML, and TXT with live preview and Mermaid support. Client-side, no sign-up. Complete toolkit guide.",
     keywords: [
-      'free markdown converter',
-      'online markdown converter',
-      'mkdocs alternative',
-      'markdown converter with diagram',
-      'md to pdf html txt',
-      'browser markdown tools',
-      'markdown conversion toolkit',
+      "free markdown converter",
+      "online markdown converter",
+      "mkdocs alternative",
+      "markdown converter with diagram",
+      "md to pdf html txt",
     ],
-    category: 'Guide',
+    category: "Guide",
     readTime: 14,
-    date: '2026-06-28',
-    dateModified: '2026-06-28',
+    date: "2026-06-28",
+    dateModified: "2026-06-28",
     coverImage: {
-      src: '/free-markdown-converter-toolkit.webp',
-      alt: 'Free online markdown converter toolkit with PDF HTML and TXT export',
+      src: "/free-markdown-converter-toolkit.webp",
+      alt: "Free online markdown converter toolkit with PDF HTML and TXT export",
       width: 1200,
       height: 800,
     },
     content: freeMarkdownConverterContent,
   },
   {
-    slug: 'how-to-convert-markdown-to-txt-online',
-    titleKey: 'How to Convert Markdown to TXT Online — Complete Guide for Developers in 2026',
+    slug: "how-to-convert-markdown-to-txt-online",
+    titleKey:
+      "How to Convert Markdown to TXT Online — Complete Guide for Developers in 2026",
     excerptKey:
-      'Learn how to convert Markdown to plain text online. Strip formatting for email, LLM prompts, and legacy systems with a free client-side TXT converter.',
-    metaTitle: 'Markdown to TXT Converter Online (Free Guide 2026) | PDFWritter',
+      "Learn how to convert Markdown to plain text online. Strip formatting for email, LLM prompts, and legacy systems with a free client-side TXT converter.",
+    metaTitle:
+      "Markdown to TXT Converter Online (Free Guide 2026) | PDFWritter",
     metaDescription:
-      'Convert markdown to TXT online instantly. Strip formatting for email, AI prompts, and plain-text systems. Free client-side md to txt converter guide.',
+      "Convert markdown to TXT online instantly. Strip formatting for email, AI prompts, and plain-text systems. Free client-side md to txt converter guide.",
     keywords: [
-      'markdown to txt',
-      'convert markdown to plain text',
-      'md to txt converter',
-      'strip markdown formatting',
-      'markdown text export',
-      'plain text from markdown',
+      "markdown to txt",
+      "convert markdown to plain text",
+      "md to txt converter",
+      "strip markdown formatting",
+      "markdown text export",
     ],
-    category: 'Guide',
+    category: "Guide",
     readTime: 13,
-    date: '2026-06-28',
-    dateModified: '2026-06-28',
+    date: "2026-06-28",
+    dateModified: "2026-06-28",
     coverImage: {
-      src: '/convert-markdown-to-txt.webp',
-      alt: 'Convert markdown documents to plain text online',
+      src: "/convert-markdown-to-txt.webp",
+      alt: "Convert markdown documents to plain text online",
       width: 1200,
       height: 800,
     },
     content: howToConvertMarkdownToTxtContent,
   },
   {
-    slug: 'markdown-live-preview-complete-guide',
-    titleKey: 'Markdown Live Preview — Complete Guide to Real-Time Editing in 2026',
+    slug: "markdown-live-preview-complete-guide",
+    titleKey:
+      "Markdown Live Preview — Complete Guide to Real-Time Editing in 2026",
     excerptKey:
-      'Master markdown live preview: real-time side-by-side rendering, Mermaid diagrams, and error-free export to PDF, HTML, and TXT.',
-    metaTitle: 'Markdown Live Preview Guide (Free Online 2026) | PDFWritter',
+      "Master markdown live preview: real-time side-by-side rendering, Mermaid diagrams, and error-free export to PDF, HTML, and TXT.",
+    metaTitle: "Markdown Live Preview Guide (Free Online 2026) | PDFWritter",
     metaDescription:
-      'Markdown live preview guide: real-time side-by-side editing, Mermaid diagrams, and export to PDF/HTML. Free online preview tool for developers.',
+      "Markdown live preview guide: real-time side-by-side editing, Mermaid diagrams, and export to PDF/HTML. Free online preview tool for developers.",
     keywords: [
-      'markdown live preview',
-      'online markdown preview',
-      'real-time markdown editor',
-      'markdown side by side preview',
-      'markdown preview tool',
-      'live md preview',
+      "markdown live preview",
+      "online markdown preview",
+      "real-time markdown editor",
+      "markdown side by side preview",
+      "markdown preview tool",
     ],
-    category: 'Guide',
+    category: "Guide",
     readTime: 13,
-    date: '2026-06-28',
-    dateModified: '2026-06-28',
+    date: "2026-06-28",
+    dateModified: "2026-06-28",
     coverImage: {
-      src: '/markdown-live-preview-guide.webp',
-      alt: 'Markdown live preview with side-by-side editing and rendering',
+      src: "/markdown-live-preview-guide.webp",
+      alt: "Markdown live preview with side-by-side editing and rendering",
       width: 1200,
       height: 800,
     },
     content: markdownLivePreviewContent,
   },
   {
-    slug: 'best-online-markdown-editor-with-preview',
-    titleKey: 'Best Online Markdown Editor with Live Preview — Free Guide for 2026',
+    slug: "best-online-markdown-editor-with-preview",
+    titleKey:
+      "Best Online Markdown Editor with Live Preview — Free Guide for 2026",
     excerptKey:
-      'Compare the best free online Markdown editors with live preview, Mermaid support, and PDF/HTML/TXT export. No install, no sign-up required.',
-    metaTitle: 'Best Online Markdown Editor with Preview (2026) | PDFWritter',
+      "Compare the best free online Markdown editors with live preview, Mermaid support, and PDF/HTML/TXT export. No install, no sign-up required.",
+    metaTitle: "Best Online Markdown Editor with Preview (2026) | PDFWritter",
     metaDescription:
-      'Best online markdown editor and md editor with live preview. Free markdown writer tool with PDF/HTML/TXT export. No install, no sign-up.',
+      "Best online markdown editor and md editor with live preview. Free markdown writer tool with PDF/HTML/TXT export. No install, no sign-up.",
     keywords: [
-      'online markdown editor',
-      'free markdown editor online',
-      'best editor for markdown',
-      'best markdown apps',
-      'md editor',
-      'markdown writer',
-      'markdown editor with preview',
-      'browser markdown editor',
-      'markdown editor no signup',
-      'write markdown online',
+      "online markdown editor",
+      "free markdown editor online",
+      "best editor for markdown",
+      "best markdown apps",
+      "md editor",
     ],
-    category: 'Guide',
+    category: "Guide",
     readTime: 13,
-    date: '2026-06-28',
-    dateModified: '2026-06-28',
+    date: "2026-06-28",
+    dateModified: "2026-06-28",
     coverImage: {
-      src: '/online-markdown-editor-guide.webp',
-      alt: 'Online markdown editor with live preview and export options',
+      src: "/online-markdown-editor-guide.webp",
+      alt: "Online markdown editor with live preview and export options",
       width: 1200,
       height: 800,
     },
     content: bestOnlineMarkdownEditorContent,
   },
   {
-    slug: 'convert-markdown-to-html-online',
-    titleKey: 'How to Convert Markdown to HTML Online — Complete Guide for 2026',
+    slug: "convert-markdown-to-html-online",
+    titleKey:
+      "How to Convert Markdown to HTML Online — Complete Guide for 2026",
     excerptKey:
-      'Complete guide to converting Markdown to semantic HTML online. Compare browser tools, Pandoc CLI, and JavaScript libraries with live preview.',
-    metaTitle: 'Markdown to HTML Converter Online (2026 Guide) | PDFWritter',
+      "Complete guide to converting Markdown to semantic HTML online. Compare browser tools, Pandoc CLI, and JavaScript libraries with live preview.",
+    metaTitle: "Markdown to HTML Converter Online (2026 Guide) | PDFWritter",
     metaDescription:
-      'Convert markdown to HTML online — markdown as html made simple. Semantic output, Pandoc comparison, free client-side guide with live preview.',
+      "Convert markdown to HTML online — markdown as html made simple. Semantic output, Pandoc comparison, free client-side guide with live preview.",
     keywords: [
-      'markdown to html',
-      'markdown as html',
-      'convert md to html',
-      'online md to html',
-      'semantic html generator',
-      'pandoc html',
-      'markdown html converter',
+      "markdown to html",
+      "markdown as html",
+      "convert md to html",
+      "online md to html",
+      "semantic html generator",
     ],
-    category: 'Guide',
+    category: "Guide",
     readTime: 13,
-    date: '2026-06-25',
-    dateModified: '2026-06-28',
+    date: "2026-06-25",
+    dateModified: "2026-06-28",
     content: convertMarkdownToHtmlContent,
   },
 ];
@@ -1095,8 +1252,12 @@ export function getRelatedPosts(slug: string, limit = 3): BlogPost[] {
   const current = getBlogPost(slug);
   if (!current) return blogPosts.slice(0, limit);
 
-  const sameCategory = blogPosts.filter((p) => p.slug !== slug && p.category === current.category);
-  const others = blogPosts.filter((p) => p.slug !== slug && p.category !== current.category);
+  const sameCategory = blogPosts.filter(
+    (p) => p.slug !== slug && p.category === current.category,
+  );
+  const others = blogPosts.filter(
+    (p) => p.slug !== slug && p.category !== current.category,
+  );
   return [...sameCategory, ...others].slice(0, limit);
 }
 
@@ -1124,27 +1285,27 @@ export const BLOG_CATEGORY_STYLES: Record<
   { text: string; bg: string; border: string; accent: string }
 > = {
   Tools: {
-    text: '#ef4444',
-    bg: 'rgba(239, 68, 68, 0.08)',
-    border: 'rgba(239, 68, 68, 0.15)',
-    accent: '#ef4444',
+    text: "#ef4444",
+    bg: "rgba(239, 68, 68, 0.08)",
+    border: "rgba(239, 68, 68, 0.15)",
+    accent: "#ef4444",
   },
   Tutorial: {
-    text: '#f59e0b',
-    bg: 'rgba(245, 158, 11, 0.08)',
-    border: 'rgba(245, 158, 11, 0.15)',
-    accent: '#f59e0b',
+    text: "#f59e0b",
+    bg: "rgba(245, 158, 11, 0.08)",
+    border: "rgba(245, 158, 11, 0.15)",
+    accent: "#f59e0b",
   },
   Guide: {
-    text: '#3b82f6',
-    bg: 'rgba(59, 130, 246, 0.08)',
-    border: 'rgba(59, 130, 246, 0.15)',
-    accent: '#3b82f6',
+    text: "#3b82f6",
+    bg: "rgba(59, 130, 246, 0.08)",
+    border: "rgba(59, 130, 246, 0.15)",
+    accent: "#3b82f6",
   },
   Productivity: {
-    text: '#10b981',
-    bg: 'rgba(16, 185, 129, 0.08)',
-    border: 'rgba(16, 185, 129, 0.15)',
-    accent: '#10b981',
+    text: "#10b981",
+    bg: "rgba(16, 185, 129, 0.08)",
+    border: "rgba(16, 185, 129, 0.15)",
+    accent: "#10b981",
   },
 };
