@@ -1,7 +1,7 @@
 import { getMessages, setRequestLocale } from 'next-intl/server';
 
 import MarkdownToPdfContent from '@/components/MarkdownToPdfContent';
-import { pdfKeywordsForLocale } from '@/lib/locale-keywords';
+import { mdToPdfKeywordsForLocale } from '@/lib/locale-keywords';
 import { absoluteUrl, buildLocalizedPageMetadata, withToolBrandKeywords } from '@/lib/site';
 
 const PDF_OG_IMAGE = {
@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   setRequestLocale(locale);
 
-  let ogImageAlt = 'Convert markdown documents instantly into PDF online';
+  let ogImageAlt = 'Convert MD file to PDF online free';
   try {
     const messages = await getMessages();
     const value = (messages as Record<string, Record<string, string>>).markdownToPdf?.ogImageAlt;
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     titleKey: 'markdownToPdf.title',
     descriptionKey: 'markdownToPdf.description',
     titleSuffix: ' — MD to PDF Free Online',
-    keywords: withToolBrandKeywords(pdfKeywordsForLocale(locale), 'pdf'),
+    keywords: withToolBrandKeywords(mdToPdfKeywordsForLocale(locale), 'pdf'),
     image: {
       url: absoluteUrl(PDF_OG_IMAGE.url),
       width: PDF_OG_IMAGE.width,

@@ -1,8 +1,12 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import SeoIntentLanding from '@/components/SeoIntentLanding';
-import { absoluteUrl, buildPageMetadata } from '@/lib/site';
+import { RESUME_TO_PDF_KEYWORDS } from '@/lib/locale-keywords';
+import { absoluteUrl, buildPageMetadata, withToolBrandKeywords } from '@/lib/site';
 import { buildFaqPageJsonLd, buildHowToJsonLd, buildToolPageJsonLd } from '@/lib/structured-data';
+
+const META_DESCRIPTION =
+  'Convert Markdown resume to PDF free. Clean ATS-friendly CV from Markdown — typography, lists, and links intact. Private, no sign-up.';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -11,20 +15,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'resumeToPdf' });
 
   return buildPageMetadata({
-    title: t('badge') + ' — ' + t('h1Before') + t('h1Highlight') + t('h1After'),
-    description: 'Convert Markdown resume/CV files to a clean, ATS-friendly PDF with typography, bullet lists, and links intact. Live preview, private browser export.',
+    title: t('title'),
+    description: META_DESCRIPTION,
     path: '/markdown-to-pdf-resume',
     locale,
-    keywords: [
-      'markdown resume to pdf',
-      'convert markdown resume to pdf',
-      'markdown cv to pdf',
-      'markdown to pdf resume',
-      'typewritten resume markdown',
-      'markdown resume pdf converter',
-      'markdown to pdf',
-      'pdfwritter',
-    ],
+    keywords: withToolBrandKeywords([...RESUME_TO_PDF_KEYWORDS], 'pdf'),
     image: {
       url: absoluteUrl('/convert-markdown-file-to-pdf.webp'),
       width: 1200,
@@ -46,18 +41,9 @@ export default async function ResumeMarkdownToPdfPage({
 
   const content = {
     path: '/markdown-to-pdf-resume',
-    title: t('badge') + ' — ' + t('h1Before') + t('h1Highlight') + t('h1After'),
-    description: 'Convert Markdown resume/CV files to a clean, ATS-friendly PDF with typography, bullet lists, and links intact. Live preview, private browser export.',
-    keywords: [
-      'markdown resume to pdf',
-      'convert markdown resume to pdf',
-      'markdown cv to pdf',
-      'markdown to pdf resume',
-      'typewritten resume markdown',
-      'markdown resume pdf converter',
-      'markdown to pdf',
-      'pdfwritter',
-    ],
+    title: t('title'),
+    description: META_DESCRIPTION,
+    keywords: [...RESUME_TO_PDF_KEYWORDS],
     badge: t('badge'),
     h1Before: t('h1Before'),
     h1Highlight: t('h1Highlight'),

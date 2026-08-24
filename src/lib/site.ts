@@ -47,7 +47,7 @@ export const TOOL_BRAND_KEYWORDS = {
   pdf: ['pdfwritter markdown to pdf'],
   html: ['pdfwritter markdown to html'],
   txt: ['pdfwritter markdown to txt'],
-  docx: ['pdfwritter markdown to docx'],
+  docx: ['pdfwritter markdown to word'],
   editor: ['pdfwritter markdown editor'],
   preview: ['pdfwritter markdown live preview'],
   converter: ['pdfwritter free markdown converter'],
@@ -55,7 +55,7 @@ export const TOOL_BRAND_KEYWORDS = {
 
 export type ToolBrandKey = keyof typeof TOOL_BRAND_KEYWORDS;
 
-const META_KEYWORDS_MAX = 16;
+const META_KEYWORDS_MAX = 22;
 
 /** Merge page keywords with a single brand hint; cap length for quality. */
 export function withToolBrandKeywords(
@@ -67,17 +67,17 @@ export function withToolBrandKeywords(
 }
 
 export const DEFAULT_KEYWORDS = [
-  'markdown to pdf',
+  'markdown to pdf online free',
   'md to pdf',
   'markdown to pdf with mermaid',
+  'markdown to pdf with latex',
+  'mermaid flowchart to pdf',
+  'mermaid sequence diagram to pdf',
+  'katex markdown to pdf',
+  'chatgpt to pdf',
   'mermaid to pdf',
-  'free markdown converter online',
-  'markdown live preview',
-  'markdown to html',
-  'markdown to txt',
-  'markdown to docx',
   'markdown to word',
-  'online markdown editor',
+  'markdown live preview',
   'pdfwritter',
 ];
 
@@ -194,11 +194,15 @@ export function buildPageMetadata({
   const pageTitle = normalizePageTitle(title);
   const fullTitle = `${pageTitle} | ${SITE_NAME}`;
   const normalizedPath = localizedPath(locale, path);
-  const url = absoluteUrl(normalizedPath);
+  const indexable = isIndexableLocale(locale);
+  // Noindex locales must canonicalize to the English URL so crawl signals consolidate.
+  const canonicalPath = indexable
+    ? normalizedPath
+    : localizedPath(defaultLocale, path);
+  const url = absoluteUrl(canonicalPath);
   const ogLocale = OG_LOCALE_MAP[locale as Locale] || 'en_US';
   const ogImage = image ?? getDefaultOgImage();
   const ogTitle = truncateOgTitle(fullTitle);
-  const indexable = isIndexableLocale(locale);
   const finalKeywords = [
     ...new Set([...keywords, ...languageKeywordsForLocale(locale)]),
   ].slice(0, META_KEYWORDS_MAX);
@@ -221,8 +225,8 @@ export function buildPageMetadata({
       apple: '/apple-touch-icon.png',
     },
     alternates: {
-      canonical: absoluteUrl(normalizedPath),
-      languages: buildAlternateLanguages(normalizedPath),
+      canonical: url,
+      languages: buildAlternateLanguages(path),
     },
     openGraph: {
       title: ogTitle,

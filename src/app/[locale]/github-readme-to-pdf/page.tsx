@@ -1,8 +1,12 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import SeoIntentLanding from '@/components/SeoIntentLanding';
-import { absoluteUrl, buildPageMetadata } from '@/lib/site';
+import { GITHUB_README_TO_PDF_KEYWORDS } from '@/lib/locale-keywords';
+import { absoluteUrl, buildPageMetadata, withToolBrandKeywords } from '@/lib/site';
 import { buildFaqPageJsonLd, buildHowToJsonLd, buildToolPageJsonLd } from '@/lib/structured-data';
+
+const META_DESCRIPTION =
+  'Convert GitHub README to PDF free. README.md with badges, code, Mermaid, and math — live preview, no signup, private browser export.';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -11,20 +15,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'githubReadmeToPdf' });
 
   return buildPageMetadata({
-    title: t('badge') + ' — ' + t('h1Before') + t('h1Highlight') + t('h1After'),
-    description: 'Convert a GitHub README.md to PDF with badges, tables, code blocks, Mermaid, and KaTeX math. Live preview, no signup, private browser export.',
+    title: t('title'),
+    description: META_DESCRIPTION,
     path: '/github-readme-to-pdf',
     locale,
-    keywords: [
-      'github readme to pdf',
-      'convert readme to pdf',
-      'readme md to pdf',
-      'github markdown to pdf',
-      'markdown to pdf with badges',
-      'markdown file to pdf',
-      'markdown to pdf',
-      'pdfwritter',
-    ],
+    keywords: withToolBrandKeywords([...GITHUB_README_TO_PDF_KEYWORDS], 'pdf'),
     image: {
       url: absoluteUrl('/convert-markdown-file-to-pdf.webp'),
       width: 1200,
@@ -46,18 +41,9 @@ export default async function GithubReadmeToPdfPage({
 
   const content = {
     path: '/github-readme-to-pdf',
-    title: t('badge') + ' — ' + t('h1Before') + t('h1Highlight') + t('h1After'),
-    description: 'Convert a GitHub README.md to PDF with badges, tables, code blocks, Mermaid, and KaTeX math. Live preview, no signup, private browser export.',
-    keywords: [
-      'github readme to pdf',
-      'convert readme to pdf',
-      'readme md to pdf',
-      'github markdown to pdf',
-      'markdown to pdf with badges',
-      'markdown file to pdf',
-      'markdown to pdf',
-      'pdfwritter',
-    ],
+    title: t('title'),
+    description: META_DESCRIPTION,
+    keywords: [...GITHUB_README_TO_PDF_KEYWORDS],
     badge: t('badge'),
     h1Before: t('h1Before'),
     h1Highlight: t('h1Highlight'),

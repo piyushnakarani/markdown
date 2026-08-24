@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "Free Markdown to PDF Converter",
-    "description": "Convert Markdown to PDF online free with Mermaid diagrams, KaTeX math, and live preview. Private browser export to PDF, HTML, TXT, and DOCX — no sign-up.",
-    "keywords": "markdown to pdf, free markdown to pdf, md to pdf, markdown to pdf with mermaid, mermaid to pdf, markdown converter online, markdown to html, markdown to docx, markdown to word, markdown live preview, pdfwritter"
+    "title": "Markdown to PDF Online Free",
+    "description": "Convert Markdown to PDF online free with Mermaid diagrams, KaTeX math, and live preview. Private browser export — no sign-up, no upload.",
+    "keywords": "markdown to pdf online free, markdown to pdf with mermaid, markdown to pdf with latex, mermaid flowchart to pdf, mermaid sequence diagram to pdf, katex markdown to pdf, chatgpt to pdf, mermaid to pdf, markdown live preview, pdfwritter"
   },
   "nav": {
     "home": "Home",
@@ -32,8 +32,8 @@
     "resumeToPdf": "Markdown Resume to PDF"
   },
   "hero": {
-    "badge": "Free Markdown to PDF · Mermaid & Math",
-    "title": "Free Markdown to PDF",
+    "badge": "Markdown to PDF Online Free · Mermaid & Math",
+    "title": "Markdown to PDF Online Free",
     "titleHighlight": "with Mermaid Diagrams",
     "subtitle": "Convert Markdown to PDF, HTML, TXT & DOCX online — live preview, KaTeX math, private browser export. Free, no sign-up.",
     "cta": "Start Converting",
@@ -43,30 +43,30 @@
   "tools": {
     "sectionTitle": "Powerful Conversion Tools",
     "sectionSubtitle": "Everything you need to work with Markdown, all in your browser",
-    "pdfTitle": "Markdown to PDF",
-    "pdfDescription": "Convert Markdown documents into beautifully formatted PDF files with Mermaid diagram support. Perfect for reports, documentation, and sharing.",
+    "pdfTitle": "Markdown to PDF Online Free",
+    "pdfDescription": "Convert Markdown to PDF online free with Mermaid diagrams, KaTeX math, and live preview. Private browser export.",
     "pdfBadge": "Instant Browser Compiler",
-    "htmlTitle": "Markdown to HTML",
-    "htmlDescription": "Transform Markdown into clean, semantic HTML ready for your website, blog, or email newsletter.",
+    "htmlTitle": "Markdown to HTML Online Free",
+    "htmlDescription": "Convert Markdown to HTML online free — clean GFM HTML with Mermaid. No signup, private browser export.",
     "htmlBadge": "Semantic Engine Compiler",
-    "txtTitle": "Markdown to TXT",
-    "txtDescription": "Strip all formatting and export clean plain text. Perfect for emails, notes, or any plain-text context.",
+    "txtTitle": "Markdown to Plain Text / TXT",
+    "txtDescription": "Convert Markdown to plain text free — strip Markdown formatting online. MD to TXT for prompts and clean copy.",
     "txtBadge": "Plain Text Stripper",
-    "docxTitle": "Markdown to DOCX",
-    "docxDescription": "Convert Markdown into an editable Word (.docx) document with headings, lists, tables, and Mermaid diagram support.",
+    "docxTitle": "Markdown to Word (DOCX) Free",
+    "docxDescription": "Convert Markdown to Word online free — Markdown to DOCX with headings, tables, and Mermaid. No signup.",
     "docxBadge": "Word Document Export",
-    "editorTitle": "Online Editor",
-    "editorDescription": "Split-pane Markdown editor with live preview, sync scroll, Mermaid diagrams, and instant PDF export.",
-    "livePreviewTitle": "Markdown Live Preview",
-    "livePreviewDescription": "Write Markdown and see a live rendered preview side by side — free, private, and instant in your browser.",
-    "chatgptDescription": "Paste ChatGPT answers and download a clean PDF — free and private.",
-    "mermaidDescription": "Export Markdown with Mermaid flowcharts and diagrams to PDF.",
-    "aiDescription": "Convert ChatGPT, Claude, or Gemini Markdown to PDF in your browser.",
+    "editorTitle": "Online Markdown Editor Free",
+    "editorDescription": "Free online Markdown editor with live preview, Mermaid diagrams, and PDF export. No signup.",
+    "livePreviewTitle": "Markdown Live Preview Free",
+    "livePreviewDescription": "Markdown live preview online free — sync scroll, Mermaid, and PDF export. No login required.",
+    "chatgptDescription": "Convert ChatGPT to PDF free — paste answers and download a clean PDF.",
+    "mermaidDescription": "Convert Mermaid to PDF — export Markdown flowcharts and diagrams free.",
+    "aiDescription": "Convert AI Markdown to PDF from Claude, Gemini, or ChatGPT — free and private.",
     "tryNow": "Try Now",
-    "obsidianDescription": "Export Obsidian Markdown notes to PDF with Mermaid diagrams and math.",
-    "notionDescription": "Convert Notion pages (Markdown export) to clean PDF.",
-    "githubReadmeDescription": "Convert README.md to PDF with badges, code, and Mermaid diagrams.",
-    "resumeDescription": "Turn a Markdown CV into a clean, ATS-friendly PDF."
+    "obsidianDescription": "Export Obsidian to PDF free with Mermaid diagrams and math.",
+    "notionDescription": "Convert Notion to PDF free via Markdown export.",
+    "githubReadmeDescription": "Convert GitHub README to PDF with badges, code, and Mermaid.",
+    "resumeDescription": "Convert Markdown resume to PDF — clean ATS-friendly CV."
   },
   "features": {
     "sectionTitle": "Why Developers Love PDFWritter",
@@ -99,8 +99,8 @@
   },
   "editor": {
     "badge": "Split-Pane Live Preview",
-    "title": "Online Markdown Editor",
-    "description": "Write Markdown on the left and see a live preview on the right. Sync scroll, syntax highlighting, Mermaid diagrams, and one-click PDF export.",
+    "title": "Online Markdown Editor Free",
+    "description": "Free online Markdown editor with live preview, Mermaid diagrams, and PDF export. No signup — write on the left, preview on the right.",
     "placeholder": "# Premium Markdown\n\nConvert markdown to **PDF**, **HTML**, and **TXT** instantly.\n\n- Client-side processing\n- Fast & secure browser engine\n- Live preview as you type\n\n## Quick Start\n\n1. Type or paste Markdown here\n2. Pick an export format\n3. Click **Download PDF** \n\n### Checklist\n\n- [x] Headings, lists, and tables\n- [x] Syntax-highlighted code\n- [x] Mermaid diagrams\n- [x] LaTeX / KaTeX math\n\n## Code Example\n\n```javascript\nfunction hello(name) {\n  return `Hello, ${name}!`;\n}\n```\n\n## Tables\n\n| Use case | Why Markdown |\n|----------|--------------|\n| AI chats | Copy → paste → PDF |\n| Resumes | Plain text you can version |\n| Reports | Fast structure, clean export |\n\n## Diagram (Mermaid)\n\n```mermaid\nflowchart LR\n  A[Paste Markdown] --> B[Live preview]\n  B --> C[Download PDF]\n  C --> D[Share]\n```\n\n## Math (LaTeX / KaTeX)\n\nInline math looks like this: $E = mc^2$\n\nBlock math equations:\n\n$\n\\int_0^1 x^2 \\, dx = \\frac{1}{3}\n$$\n\n## Nested list\n\n- Structure\n  - Headings and paragraphs\n  - Bullet, numbered, and task lists\n- Media\n  - Images and links\n  - Blockquotes\n\n> Tip: This editor supports full GitHub Flavored Markdown and renders instantly in your browser!",
     "editorTab": "Editor",
     "previewTab": "Preview",
@@ -140,8 +140,8 @@
   },
   "livePreview": {
     "badge": "Free Online Editor",
-    "title": "Markdown Live Preview",
-    "description": "Free online Markdown editor with live preview — write on the left, see rendered output on the right. Sync scroll, Mermaid diagrams, syntax highlighting, and instant PDF export. No login required.",
+    "title": "Markdown Live Preview Online Free",
+    "description": "Markdown live preview online free — write on the left, see rendered output on the right. Sync scroll, Mermaid, syntax highlighting, PDF export. No login.",
     "heroBefore": "Markdown ",
     "heroHighlight": "Live Preview",
     "heroAfter": "",
@@ -240,8 +240,8 @@
   },
   "markdownToPdf": {
     "badge": "Free Online Converter",
-    "title": "Free Markdown to PDF Converter",
-    "description": "Convert Markdown to PDF online free — md to PDF with live preview, Mermaid diagrams, and KaTeX math. Private browser export, no sign-up.",
+    "title": "Markdown to PDF Online Free",
+    "description": "Convert Markdown to PDF online free — md file to PDF with Mermaid diagrams (flowchart, sequence, Gantt) and KaTeX/LaTeX math. Private browser export, no sign-up.",
     "heroBefore": "Convert ",
     "heroHighlight": "Markdown to PDF",
     "heroAfter": " (.md to pdf)",
@@ -451,7 +451,7 @@
   "freeConverter": {
     "badge": "Converter Hub",
     "title": "Free Markdown Converter Online",
-    "subtitle": "One free hub for Markdown conversion — export to PDF, HTML, TXT, or DOCX in your browser. No sign-up, private by default.",
+    "subtitle": "Free Markdown converter online — export to PDF, HTML, TXT, or Word (DOCX) in your browser. No sign-up, private by default.",
     "whyTitle": "Why Choose PDFWritter?",
     "comparisonTitle": "Format Comparison",
     "benefit1": "100% free, no limits",
@@ -855,8 +855,8 @@
     "jsonLdDescription": "Convert Markdown to plain text online for free — strip formatting instantly."
   },
   "obsidianToPdf": {
-    "title": "Obsidian to PDF — Export Notes to PDF Free",
-    "description": "Convert Obsidian Markdown notes to PDF with Mermaid diagrams and KaTeX math intact. Live preview before export — 100% private, no upload.",
+    "title": "Obsidian to PDF — Export Notes Free Online",
+    "description": "Export Obsidian to PDF free with Mermaid and KaTeX intact. Convert Obsidian Markdown notes in your browser — private, no Publish plan.",
     "badge": "Obsidian → PDF",
     "h1Before": "Obsidian to ",
     "h1Highlight": "PDF",
@@ -901,8 +901,8 @@
     ]
   },
   "notionToPdf": {
-    "title": "Notion to PDF — Export Notion Pages to PDF Free",
-    "description": "Turn Notion pages (exported as Markdown) into clean PDFs with tables, callouts, and Mermaid diagrams. Live preview, private browser export.",
+    "title": "Notion to PDF — Export Pages Free Online",
+    "description": "Convert Notion to PDF free via Markdown export. Tables, callouts, and Mermaid in live preview — private browser export, no API.",
     "badge": "Notion → PDF",
     "h1Before": "Notion to ",
     "h1Highlight": "PDF",
@@ -947,8 +947,8 @@
     ]
   },
   "githubReadmeToPdf": {
-    "title": "GitHub README to PDF — Convert Readme.md to PDF Free",
-    "description": "Convert a GitHub README.md to PDF with badges, tables, code blocks, Mermaid, and KaTeX math. Live preview, no signup, private browser export.",
+    "title": "GitHub README to PDF — Convert Readme.md Free",
+    "description": "Convert GitHub README to PDF free. README.md with badges, code, Mermaid, and math — live preview, no signup, private browser export.",
     "badge": "README → PDF",
     "h1Before": "GitHub README to ",
     "h1Highlight": "PDF",
@@ -993,8 +993,8 @@
     ]
   },
   "resumeToPdf": {
-    "title": "Markdown Resume to PDF — Clean Resume PDF Free",
-    "description": "Convert Markdown resume/CV files to a clean, ATS-friendly PDF with typography, bullet lists, and links intact. Live preview, private browser export.",
+    "title": "Markdown Resume to PDF — Free CV Converter",
+    "description": "Convert Markdown resume to PDF free. Clean ATS-friendly CV from Markdown — typography, lists, and links intact. Private, no sign-up.",
     "badge": "Resume → PDF",
     "h1Before": "Markdown Resume to ",
     "h1Highlight": "PDF",
@@ -1039,8 +1039,8 @@
     ]
   },
   "chatgptToPdf": {
-    "title": "ChatGPT to PDF — Convert ChatGPT Markdown Free",
-    "description": "Paste ChatGPT answers (Markdown) and download a clean PDF. Live preview, code, tables, Mermaid diagrams — free, private, no sign-up.",
+    "title": "ChatGPT to PDF — Free Converter, No Sign-Up",
+    "description": "Convert ChatGPT to PDF free: paste Markdown answers and download a clean PDF. Live preview, code, tables, Mermaid — private, no sign-up.",
     "badge": "AI → PDF",
     "h1Before": "ChatGPT to ",
     "h1Highlight": "PDF",
@@ -1085,8 +1085,8 @@
     ]
   },
   "mermaidToPdf": {
-    "title": "Mermaid Markdown to PDF — Diagrams in PDF Free",
-    "description": "Convert Markdown with Mermaid diagrams to PDF online. Flowcharts, sequence diagrams, and charts render in live preview — free, private, no CLI.",
+    "title": "Mermaid to PDF — Flowchart, Sequence & More",
+    "description": "Convert Mermaid to PDF online free. Flowcharts, sequence, Gantt, class, state, and pie charts render in live preview — no CLI, private browser export.",
     "badge": "Mermaid → PDF",
     "h1Before": "Mermaid Markdown to ",
     "h1Highlight": "PDF",
@@ -1131,8 +1131,8 @@
     ]
   },
   "aiMarkdownToPdf": {
-    "title": "AI Markdown to PDF — ChatGPT, Claude, Gemini Free",
-    "description": "Convert AI Markdown from ChatGPT, Claude, or Gemini to PDF online. Live preview, Mermaid, KaTeX — free and private in your browser.",
+    "title": "AI Markdown to PDF — Claude, Gemini & ChatGPT",
+    "description": "Convert AI Markdown to PDF free from Claude, Gemini, or ChatGPT. Live preview with Mermaid and KaTeX — private browser export, no sign-up.",
     "badge": "ChatGPT · Claude · Gemini",
     "h1Before": "AI Markdown to ",
     "h1Highlight": "PDF",

@@ -1,8 +1,12 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import SeoIntentLanding from '@/components/SeoIntentLanding';
-import { absoluteUrl, buildPageMetadata } from '@/lib/site';
+import { OBSIDIAN_TO_PDF_KEYWORDS } from '@/lib/locale-keywords';
+import { absoluteUrl, buildPageMetadata, withToolBrandKeywords } from '@/lib/site';
 import { buildFaqPageJsonLd, buildHowToJsonLd, buildToolPageJsonLd } from '@/lib/structured-data';
+
+const META_DESCRIPTION =
+  'Export Obsidian to PDF free with Mermaid and KaTeX intact. Convert Obsidian Markdown notes in your browser — private, no Publish plan.';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -11,20 +15,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'obsidianToPdf' });
 
   return buildPageMetadata({
-    title: t('badge') + ' — ' + t('h1Before') + t('h1Highlight') + t('h1After'),
-    description: 'Convert Obsidian Markdown notes to PDF with Mermaid diagrams and KaTeX math intact. Live preview before export — 100% private, no upload.',
+    title: t('title'),
+    description: META_DESCRIPTION,
     path: '/obsidian-to-pdf',
     locale,
-    keywords: [
-      'obsidian to pdf',
-      'obsidian markdown to pdf',
-      'export obsidian notes to pdf',
-      'obsidian pdf export',
-      'convert obsidian vault to pdf',
-      'obsidian publish pdf',
-      'markdown to pdf',
-      'pdfwritter',
-    ],
+    keywords: withToolBrandKeywords([...OBSIDIAN_TO_PDF_KEYWORDS], 'pdf'),
     image: {
       url: absoluteUrl('/convert-markdown-file-to-pdf.webp'),
       width: 1200,
@@ -46,18 +41,9 @@ export default async function ObsidianToPdfPage({
 
   const content = {
     path: '/obsidian-to-pdf',
-    title: t('badge') + ' — ' + t('h1Before') + t('h1Highlight') + t('h1After'),
-    description: 'Convert Obsidian Markdown notes to PDF with Mermaid diagrams and KaTeX math intact. Live preview before export — 100% private, no upload.',
-    keywords: [
-      'obsidian to pdf',
-      'obsidian markdown to pdf',
-      'export obsidian notes to pdf',
-      'obsidian pdf export',
-      'convert obsidian vault to pdf',
-      'obsidian publish pdf',
-      'markdown to pdf',
-      'pdfwritter',
-    ],
+    title: t('title'),
+    description: META_DESCRIPTION,
+    keywords: [...OBSIDIAN_TO_PDF_KEYWORDS],
     badge: t('badge'),
     h1Before: t('h1Before'),
     h1Highlight: t('h1Highlight'),

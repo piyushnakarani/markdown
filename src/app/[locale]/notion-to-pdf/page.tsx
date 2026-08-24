@@ -1,8 +1,12 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import SeoIntentLanding from '@/components/SeoIntentLanding';
-import { absoluteUrl, buildPageMetadata } from '@/lib/site';
+import { NOTION_TO_PDF_KEYWORDS } from '@/lib/locale-keywords';
+import { absoluteUrl, buildPageMetadata, withToolBrandKeywords } from '@/lib/site';
 import { buildFaqPageJsonLd, buildHowToJsonLd, buildToolPageJsonLd } from '@/lib/structured-data';
+
+const META_DESCRIPTION =
+  'Convert Notion to PDF free via Markdown export. Tables, callouts, and Mermaid in live preview — private browser export, no API.';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -11,20 +15,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'notionToPdf' });
 
   return buildPageMetadata({
-    title: t('badge') + ' — ' + t('h1Before') + t('h1Highlight') + t('h1After'),
-    description: 'Turn Notion pages (exported as Markdown) into clean PDFs with tables, callouts, and Mermaid diagrams. Live preview, private browser export.',
+    title: t('title'),
+    description: META_DESCRIPTION,
     path: '/notion-to-pdf',
     locale,
-    keywords: [
-      'notion to pdf',
-      'notion page to pdf',
-      'export notion to pdf',
-      'notion markdown to pdf',
-      'notion page pdf converter',
-      'convert notion page to pdf',
-      'markdown to pdf',
-      'pdfwritter',
-    ],
+    keywords: withToolBrandKeywords([...NOTION_TO_PDF_KEYWORDS], 'pdf'),
     image: {
       url: absoluteUrl('/convert-markdown-file-to-pdf.webp'),
       width: 1200,
@@ -46,18 +41,9 @@ export default async function NotionToPdfPage({
 
   const content = {
     path: '/notion-to-pdf',
-    title: t('badge') + ' — ' + t('h1Before') + t('h1Highlight') + t('h1After'),
-    description: 'Turn Notion pages (exported as Markdown) into clean PDFs with tables, callouts, and Mermaid diagrams. Live preview, private browser export.',
-    keywords: [
-      'notion to pdf',
-      'notion page to pdf',
-      'export notion to pdf',
-      'notion markdown to pdf',
-      'notion page pdf converter',
-      'convert notion page to pdf',
-      'markdown to pdf',
-      'pdfwritter',
-    ],
+    title: t('title'),
+    description: META_DESCRIPTION,
+    keywords: [...NOTION_TO_PDF_KEYWORDS],
     badge: t('badge'),
     h1Before: t('h1Before'),
     h1Highlight: t('h1Highlight'),
