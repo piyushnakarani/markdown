@@ -3,15 +3,14 @@ import { type Locale, locales } from '@/i18n/locales';
 export type LocaleKeywordMap = Record<Locale, readonly string[]>;
 
 /**
- * SEO keyword strategy (tool pages)
- * ---------------------------------
- * 1. Own a clear cluster per URL — no cross-tool / cross-locale dumps.
- * 2. Lead with low-competition moat terms (Mermaid, free+online, privacy,
- *    Obsidian/GitHub README, formatting) before generic head terms.
- * 3. Keep lists lean (~12–20 phrases). Meta keywords are a weak signal;
- *    titles, H1s, FAQs, and hreflang do the real ranking work.
- * 4. Shared EN product anchors stay short; native long-tails live only
- *    on that locale’s URL.
+ * SEO keyword strategy (tool pages) — English-first ranking focus
+ * ---------------------------------------------------------------
+ * 1. One primary intent per URL (no cannibalization across tools).
+ * 2. Lead with low-KD / rising long-tails (md file to pdf, chatgpt to pdf,
+ *    mermaid to pdf, no signup, private browser) before head terms.
+ * 3. Cap ~12–20 phrases. Include feature intents we support (LaTeX/KaTeX,
+ *    Mermaid flowchart/sequence/Gantt/class/state/pie) as related terms.
+ * 4. Non-EN locale arrays stay for UI locales (noindex) only.
  */
 export function keywordsForLocale(
   locale: string,
@@ -60,30 +59,81 @@ export function languageKeywordsForLocale(locale: string): string[] {
 export const ALL_LANGUAGE_KEYWORDS: readonly string[] = [];
 
 /* -------------------------------------------------------------------------- */
-/* Markdown → PDF — primary money page                                         */
-/* Low-comp moats first (saved KD ≈ 0–3 for Mermaid / free variants).         */
+/* Feature intents we support — LaTeX/KaTeX math + Mermaid diagram types       */
+/* Use on tools that render these; keep lists lean for meta caps.              */
+/* -------------------------------------------------------------------------- */
+
+/** KaTeX / LaTeX math in Markdown → PDF/HTML (user-helpful related searches). */
+export const FEATURE_MATH_KEYWORDS = [
+  'markdown to pdf with latex',
+  'markdown latex to pdf',
+  'katex markdown to pdf',
+  'markdown math equations to pdf',
+  'latex formula in markdown pdf',
+  'markdown with katex to pdf',
+] as const;
+
+/**
+ * Mermaid diagram types we render (flowcharts, sequence, class, state,
+ * Gantt, pie) — matches product FAQs / about copy.
+ */
+export const FEATURE_DIAGRAM_KEYWORDS = [
+  'mermaid flowchart to pdf',
+  'mermaid sequence diagram to pdf',
+  'mermaid gantt chart to pdf',
+  'mermaid class diagram to pdf',
+  'mermaid state diagram to pdf',
+  'mermaid pie chart to pdf',
+  'markdown diagram to pdf',
+  'export mermaid flowchart to pdf',
+  'mermaid charts in markdown pdf',
+] as const;
+
+/** Lean feature subset for general converter / editor / preview pages. */
+export const FEATURE_SUPPORT_KEYWORDS = [
+  'markdown to pdf with mermaid',
+  'markdown to pdf with latex',
+  'mermaid flowchart to pdf',
+  'mermaid sequence diagram to pdf',
+  'katex markdown to pdf',
+  'markdown diagram to pdf',
+] as const;
+
+export function withFeatureSupportKeywords(
+  keywords: readonly string[],
+  extras: readonly string[] = FEATURE_SUPPORT_KEYWORDS,
+): string[] {
+  return [...new Set([...keywords, ...extras])];
+}
+
+/* -------------------------------------------------------------------------- */
+/* Markdown → PDF — /markdown-to-pdf (primary money page)                      */
+/* Primary: "markdown to pdf online free" — moat before bare head term.        */
 /* -------------------------------------------------------------------------- */
 
 export const SHARED_PDF_KEYWORDS = [
-  'markdown to pdf with mermaid',
-  'mermaid to pdf',
-  'markdown diagram to pdf',
-  'markdown to pdf with latex',
-  'markdown to pdf',
-  'md to pdf',
-  'free markdown to pdf',
   'markdown to pdf online free',
+  'free markdown to pdf converter',
+  'markdown to pdf no signup',
+  'md file to pdf',
+  'markdown to pdf with mermaid',
+  'markdown to pdf with latex',
+  'convert markdown to pdf free',
+  'markdown to pdf',
+  'mermaid flowchart to pdf',
+  'katex markdown to pdf',
 ] as const;
 
 export const LOCALE_PDF_KEYWORDS: LocaleKeywordMap = {
   en: [
-    'markdown with mermaid to pdf',
-    'mermaid markdown to pdf',
-    'convert markdown to pdf free',
-    'markdown to pdf in browser',
-    'github readme to pdf',
+    'markdown to pdf online',
+    'browser markdown to pdf',
     'markdown latex to pdf',
+    'mermaid sequence diagram to pdf',
     'convert markdown to pdf without losing formatting',
+    'markdown pdf converter no upload',
+    'github flavored markdown to pdf',
+    'markdown diagram to pdf',
   ],
   es: [
     'convertir markdown a pdf con mermaid',
@@ -197,26 +247,68 @@ export function pdfKeywordsForLocale(locale: string): string[] {
 }
 
 /* -------------------------------------------------------------------------- */
+/* MD → PDF — /md-to-pdf (owns "md to pdf" / "md file to pdf" cluster)         */
+/* -------------------------------------------------------------------------- */
+
+export const SHARED_MD_TO_PDF_KEYWORDS = [
+  'md to pdf',
+  'md file to pdf',
+  'convert md to pdf',
+  'md to pdf online free',
+  '.md to pdf',
+  'md to pdf converter',
+  'convert md file to pdf',
+  'md to pdf with mermaid',
+  'md to pdf with latex',
+] as const;
+
+export const LOCALE_MD_TO_PDF_KEYWORDS: LocaleKeywordMap = {
+  en: [
+    'md to pdf free',
+    'md to pdf no signup',
+    'online md to pdf',
+    'markdown md to pdf',
+  ],
+  es: ['md a pdf', 'convertir md a pdf', 'archivo md a pdf'],
+  fr: ['md en pdf', 'convertir md en pdf', 'fichier md en pdf'],
+  de: ['md zu pdf', 'md datei zu pdf', 'md in pdf umwandeln'],
+  pt: ['md para pdf', 'converter md em pdf', 'arquivo md para pdf'],
+  ar: ['md إلى pdf', 'تحويل md إلى pdf'],
+  'zh-Hans': ['md转pdf', 'md文件转pdf', '免费 md 转 pdf'],
+  ja: ['md pdf 変換', 'mdファイルをpdfに', 'md to pdf 無料'],
+  ko: ['md to pdf', 'md 파일 pdf 변환', 'md pdf 변환 무료'],
+  bn: ['md to pdf', 'md ফাইল থেকে pdf'],
+  ru: ['md в pdf', 'конвертировать md в pdf', 'md файл в pdf'],
+};
+
+export function mdToPdfKeywordsForLocale(locale: string): string[] {
+  return keywordsForLocale(locale, LOCALE_MD_TO_PDF_KEYWORDS, SHARED_MD_TO_PDF_KEYWORDS);
+}
+
+/* -------------------------------------------------------------------------- */
 /* Editor — avoid competing with live-preview head terms                       */
+/* Primary: "online markdown editor free"                                      */
 /* -------------------------------------------------------------------------- */
 
 export const SHARED_EDITOR_KEYWORDS = [
-  'mermaid markdown editor',
+  'online markdown editor free',
+  'markdown editor no signup',
+  'markdown editor with mermaid',
+  'markdown editor with latex',
   'split pane markdown editor',
   'markdown editor with preview',
-  'free markdown editor no signup',
-  'online markdown editor',
+  'free markdown editor online',
+  'mermaid flowchart editor online',
 ] as const;
 
 export const LOCALE_EDITOR_KEYWORDS: LocaleKeywordMap = {
   en: [
-    'markdown editor with mermaid diagrams',
-    'github flavored markdown editor online',
     'browser markdown editor free',
+    'github flavored markdown editor online',
     'markdown editor export to pdf',
-    'wysiwyg markdown editor online free',
-    'markdown editor no login',
+    'katex markdown editor online',
     'privacy friendly markdown editor',
+    'wysiwyg markdown editor online free',
   ],
   es: [
     'editor markdown con mermaid',
@@ -284,26 +376,29 @@ export function editorKeywordsForLocale(locale: string): string[] {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Live preview — own preview intent; differentiate from /editor               */
+/* Live preview — /markdown-live-preview                                       */
+/* Primary: "markdown live preview" + free / no signup moats                   */
 /* -------------------------------------------------------------------------- */
 
 export const SHARED_PREVIEW_KEYWORDS = [
   'markdown live preview',
-  'real-time markdown preview',
   'markdown preview online free',
+  'real-time markdown preview',
+  'markdown preview no signup',
+  'md previewer online',
   'sync scroll markdown preview',
+  'mermaid live preview markdown',
+  'latex markdown preview online',
 ] as const;
 
 export const LOCALE_PREVIEW_KEYWORDS: LocaleKeywordMap = {
   en: [
     'markdown live preview with mermaid',
-    'markdown preview no signup',
     'free markdown previewer online',
-    'md viewer online free',
     'live markdown preview in browser',
+    'katex live preview markdown',
     'markdown preview export pdf',
     'dillinger alternative free',
-    'stackedit alternative online',
   ],
   es: [
     'vista previa markdown en vivo gratis',
@@ -371,23 +466,26 @@ export function previewKeywordsForLocale(locale: string): string[] {
 
 /* -------------------------------------------------------------------------- */
 /* Markdown → HTML                                                              */
+/* Primary: "markdown to html online free"                                     */
 /* -------------------------------------------------------------------------- */
 
 export const SHARED_HTML_KEYWORDS = [
-  'free markdown to html converter',
   'markdown to html online free',
+  'free markdown to html converter',
   'md to html',
+  'markdown to html no signup',
+  'convert markdown to html free',
   'markdown to html',
+  'markdown to html with mermaid',
+  'markdown to html with latex',
 ] as const;
 
 export const LOCALE_HTML_KEYWORDS: LocaleKeywordMap = {
   en: [
-    'convert markdown to html free',
     'markdown to clean html online',
-    'markdown to html no signup',
-    'export markdown to html in browser',
     'github flavored markdown to html',
-    'markdown to html with mermaid',
+    'mermaid flowchart to html',
+    'export markdown to html in browser',
     'md to html online free',
   ],
   es: [
@@ -457,19 +555,20 @@ export function htmlKeywordsForLocale(locale: string): string[] {
 
 /* -------------------------------------------------------------------------- */
 /* Markdown → TXT                                                               */
+/* Primary: "markdown to plain text" / strip formatting                        */
 /* -------------------------------------------------------------------------- */
 
 export const SHARED_TXT_KEYWORDS = [
-  'markdown to plain text converter',
-  'strip markdown formatting',
+  'markdown to plain text',
   'markdown to txt',
+  'strip markdown formatting',
   'md to txt',
+  'convert markdown to plain text free',
+  'remove markdown formatting online',
 ] as const;
 
 export const LOCALE_TXT_KEYWORDS: LocaleKeywordMap = {
   en: [
-    'convert markdown to plain text free',
-    'remove markdown formatting online',
     'markdown to txt online free',
     'markdown to txt no signup',
     'strip markdown for llm prompt',
@@ -540,24 +639,28 @@ export function txtKeywordsForLocale(locale: string): string[] {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Markdown → DOCX                                                              */
+/* Markdown → DOCX / Word                                                       */
+/* Primary: "markdown to word" + "markdown to docx online free"                */
 /* -------------------------------------------------------------------------- */
 
 export const SHARED_DOCX_KEYWORDS = [
-  'markdown to docx',
   'markdown to word',
+  'markdown to docx online free',
+  'markdown to docx',
   'md to docx',
-  'convert markdown to docx online',
+  'convert markdown to word free',
+  'export markdown to word',
+  'markdown to docx with mermaid',
+  'markdown to word with diagrams',
 ] as const;
 
 export const LOCALE_DOCX_KEYWORDS: LocaleKeywordMap = {
   en: [
-    'convert markdown to docx free',
     'markdown to word document online',
     'markdown to docx no signup',
     'md to docx converter',
-    'export markdown to word',
-    'markdown to docx with mermaid',
+    'mermaid diagram to word docx',
+    'convert markdown to docx free',
   ],
   es: [
     'convertir markdown a docx gratis',
@@ -616,25 +719,25 @@ export function docxKeywordsForLocale(locale: string): string[] {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Free converter hub — multi-format, not PDF-head cannibalization             */
+/* Free converter hub — multi-format (not PDF-head cannibalization)            */
+/* Primary: "free markdown converter online"                                   */
 /* -------------------------------------------------------------------------- */
 
 export const SHARED_CONVERTER_KEYWORDS = [
   'free markdown converter online',
   'markdown converter no signup',
-  'convert markdown to pdf html txt docx',
   'online markdown converter',
+  'convert markdown to pdf html txt docx',
+  'markdown multi format converter',
+  'free markdown tools online',
 ] as const;
 
 export const LOCALE_CONVERTER_KEYWORDS: LocaleKeywordMap = {
   en: [
-    'free markdown tools online',
-    'markdown multi format converter',
     'browser markdown converter private',
     'markdown file converter free',
     'convert markdown file online free',
     'best free markdown converter 2026',
-    'convert markdown to docx online free',
   ],
   es: [
     'convertidor markdown gratis online',
@@ -693,10 +796,112 @@ export function converterKeywordsForLocale(locale: string): string[] {
   return keywordsForLocale(locale, LOCALE_CONVERTER_KEYWORDS, SHARED_CONVERTER_KEYWORDS);
 }
 
+/* -------------------------------------------------------------------------- */
+/* Niche intent pages — each owns one rising / low-KD cluster                  */
+/* -------------------------------------------------------------------------- */
+
+/** /chatgpt-to-pdf — primary: chatgpt to pdf */
+export const CHATGPT_TO_PDF_KEYWORDS = [
+  'chatgpt to pdf',
+  'chatgpt markdown to pdf',
+  'export chatgpt to pdf',
+  'convert chatgpt to pdf',
+  'chatgpt answer to pdf',
+  'chatgpt response to pdf',
+  'paste chatgpt to pdf',
+  'chatgpt to pdf free',
+  'chatgpt mermaid to pdf',
+  'chatgpt latex to pdf',
+] as const;
+
+/** /ai-markdown-to-pdf — primary: ai markdown to pdf / claude to pdf */
+export const AI_MARKDOWN_TO_PDF_KEYWORDS = [
+  'ai markdown to pdf',
+  'claude to pdf',
+  'gemini to pdf',
+  'llm markdown to pdf',
+  'convert ai answer to pdf',
+  'ai chat to pdf',
+  'claude markdown to pdf',
+  'gemini markdown to pdf',
+  'ai mermaid diagram to pdf',
+  'ai latex markdown to pdf',
+] as const;
+
+/** /mermaid-markdown-to-pdf — primary: mermaid to pdf + all diagram types */
+export const MERMAID_TO_PDF_KEYWORDS = [
+  'mermaid to pdf',
+  'mermaid markdown to pdf',
+  'mermaid diagram to pdf',
+  'convert mermaid to pdf',
+  'mermaid pdf online free',
+  'export mermaid diagram to pdf',
+  'mermaid flowchart to pdf',
+  'mermaid sequence diagram to pdf',
+  'mermaid gantt chart to pdf',
+  'mermaid class diagram to pdf',
+  'mermaid state diagram to pdf',
+  'mermaid pie chart to pdf',
+  'markdown to pdf with mermaid diagrams',
+  'flowchart to pdf mermaid',
+] as const;
+
+/** /obsidian-to-pdf — primary: obsidian to pdf */
+export const OBSIDIAN_TO_PDF_KEYWORDS = [
+  'obsidian to pdf',
+  'export obsidian notes to pdf',
+  'obsidian markdown to pdf',
+  'obsidian pdf export',
+  'obsidian to pdf free',
+  'convert obsidian note to pdf',
+  'obsidian pdf without publish',
+  'obsidian mermaid to pdf',
+  'obsidian latex to pdf',
+  'obsidian katex to pdf',
+] as const;
+
+/** /notion-to-pdf — primary: notion to pdf */
+export const NOTION_TO_PDF_KEYWORDS = [
+  'notion to pdf',
+  'export notion to pdf',
+  'notion markdown to pdf',
+  'convert notion page to pdf',
+  'notion page to pdf',
+  'notion to pdf free',
+  'notion export markdown to pdf',
+  'notion mermaid to pdf',
+] as const;
+
+/** /github-readme-to-pdf — primary: github readme to pdf */
+export const GITHUB_README_TO_PDF_KEYWORDS = [
+  'github readme to pdf',
+  'readme.md to pdf',
+  'convert readme to pdf',
+  'github markdown to pdf',
+  'readme to pdf online free',
+  'convert github readme to pdf',
+  'readme md to pdf',
+  'github readme mermaid to pdf',
+  'readme latex math to pdf',
+] as const;
+
+/** /markdown-to-pdf-resume — primary: markdown resume to pdf */
+export const RESUME_TO_PDF_KEYWORDS = [
+  'markdown resume to pdf',
+  'markdown cv to pdf',
+  'convert markdown resume to pdf',
+  'markdown resume pdf',
+  'markdown to pdf resume',
+  'markdown cv pdf converter',
+  'resume markdown to pdf free',
+] as const;
+
 assertAllLocales(LOCALE_PDF_KEYWORDS, 'LOCALE_PDF_KEYWORDS');
+assertAllLocales(LOCALE_MD_TO_PDF_KEYWORDS, 'LOCALE_MD_TO_PDF_KEYWORDS');
 assertAllLocales(LOCALE_EDITOR_KEYWORDS, 'LOCALE_EDITOR_KEYWORDS');
 assertAllLocales(LOCALE_PREVIEW_KEYWORDS, 'LOCALE_PREVIEW_KEYWORDS');
 assertAllLocales(LOCALE_HTML_KEYWORDS, 'LOCALE_HTML_KEYWORDS');
 assertAllLocales(LOCALE_TXT_KEYWORDS, 'LOCALE_TXT_KEYWORDS');
+assertAllLocales(LOCALE_DOCX_KEYWORDS, 'LOCALE_DOCX_KEYWORDS');
 assertAllLocales(LOCALE_CONVERTER_KEYWORDS, 'LOCALE_CONVERTER_KEYWORDS');
 assertAllLocales(LOCALE_LANGUAGE_KEYWORDS, 'LOCALE_LANGUAGE_KEYWORDS');

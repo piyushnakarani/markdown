@@ -1,5 +1,15 @@
 import type { LucideIcon } from 'lucide-react';
 
+import {
+  AI_MARKDOWN_TO_PDF_KEYWORDS,
+  CHATGPT_TO_PDF_KEYWORDS,
+  GITHUB_README_TO_PDF_KEYWORDS,
+  MERMAID_TO_PDF_KEYWORDS,
+  NOTION_TO_PDF_KEYWORDS,
+  OBSIDIAN_TO_PDF_KEYWORDS,
+  RESUME_TO_PDF_KEYWORDS,
+} from '@/lib/locale-keywords';
+
 export type SeoLandingContent = {
   path: string;
   title: string;
@@ -27,19 +37,10 @@ export type SeoLandingContent = {
 
 export const CHATGPT_TO_PDF: SeoLandingContent = {
   path: '/chatgpt-to-pdf',
-  title: 'ChatGPT to PDF — Convert ChatGPT Markdown Free',
+  title: 'ChatGPT to PDF — Free Converter, No Sign-Up',
   description:
-    'Paste ChatGPT answers (Markdown) and download a clean PDF. Live preview, code, tables, Mermaid diagrams — free, private, no sign-up.',
-  keywords: [
-    'chatgpt to pdf',
-    'chatgpt markdown to pdf',
-    'convert chatgpt to pdf',
-    'chatgpt answer to pdf',
-    'export chatgpt to pdf',
-    'ai markdown to pdf',
-    'paste chatgpt pdf',
-    'pdfwritter',
-  ],
+    'Convert ChatGPT to PDF free: paste Markdown answers and download a clean PDF. Live preview, code, tables, Mermaid — private, no sign-up.',
+  keywords: [...CHATGPT_TO_PDF_KEYWORDS],
   badge: 'AI → PDF',
   h1Before: 'ChatGPT to ',
   h1Highlight: 'PDF',
@@ -121,19 +122,10 @@ export const CHATGPT_TO_PDF: SeoLandingContent = {
 
 export const MERMAID_TO_PDF: SeoLandingContent = {
   path: '/mermaid-markdown-to-pdf',
-  title: 'Mermaid Markdown to PDF — Diagrams in PDF Free',
+  title: 'Mermaid to PDF — Flowchart, Sequence & More',
   description:
-    'Convert Markdown with Mermaid diagrams to PDF online. Flowcharts, sequence diagrams, and charts render in live preview — free, private, no CLI.',
-  keywords: [
-    'mermaid markdown to pdf',
-    'markdown to pdf mermaid',
-    'mermaid to pdf',
-    'mermaid diagram to pdf',
-    'convert mermaid to pdf',
-    'flowchart markdown pdf',
-    'mermaid pdf online',
-    'pdfwritter',
-  ],
+    'Convert Mermaid to PDF online free. Flowcharts, sequence, Gantt, class, state, and pie charts render in live preview — no CLI, private browser export.',
+  keywords: [...MERMAID_TO_PDF_KEYWORDS],
   badge: 'Mermaid → PDF',
   h1Before: 'Mermaid Markdown to ',
   h1Highlight: 'PDF',
@@ -215,19 +207,10 @@ export const MERMAID_TO_PDF: SeoLandingContent = {
 
 export const AI_MARKDOWN_TO_PDF: SeoLandingContent = {
   path: '/ai-markdown-to-pdf',
-  title: 'AI Markdown to PDF — ChatGPT, Claude, Gemini Free',
+  title: 'AI Markdown to PDF — Claude, Gemini & ChatGPT',
   description:
-    'Convert AI Markdown from ChatGPT, Claude, or Gemini to PDF online. Live preview, Mermaid, KaTeX — free and private in your browser.',
-  keywords: [
-    'ai markdown to pdf',
-    'chatgpt to pdf',
-    'claude to pdf',
-    'gemini to pdf',
-    'convert ai answer to pdf',
-    'llm markdown to pdf',
-    'ai chat to pdf',
-    'pdfwritter',
-  ],
+    'Convert AI Markdown to PDF free from Claude, Gemini, or ChatGPT. Live preview with Mermaid and KaTeX — private browser export, no sign-up.',
+  keywords: [...AI_MARKDOWN_TO_PDF_KEYWORDS],
   badge: 'ChatGPT · Claude · Gemini',
   h1Before: 'AI Markdown to ',
   h1Highlight: 'PDF',
@@ -309,19 +292,10 @@ export const AI_MARKDOWN_TO_PDF: SeoLandingContent = {
 
 export const OBSIDIAN_TO_PDF: SeoLandingContent = {
   path: '/obsidian-to-pdf',
-  title: 'Obsidian to PDF — Export Notes to PDF Free',
+  title: 'Obsidian to PDF — Export Notes Free Online',
   description:
-    'Convert Obsidian Markdown notes to PDF with Mermaid diagrams and KaTeX math intact. Live preview before export — 100% private, no upload.',
-  keywords: [
-    'obsidian to pdf',
-    'obsidian markdown to pdf',
-    'export obsidian notes to pdf',
-    'obsidian pdf export',
-    'convert obsidian vault to pdf',
-    'obsidian publish pdf',
-    'markdown to pdf',
-    'pdfwritter',
-  ],
+    'Export Obsidian to PDF free with Mermaid and KaTeX intact. Convert Obsidian Markdown notes in your browser — private, no Publish plan.',
+  keywords: [...OBSIDIAN_TO_PDF_KEYWORDS],
   badge: 'Obsidian → PDF',
   h1Before: 'Obsidian to ',
   h1Highlight: 'PDF',
@@ -403,19 +377,10 @@ export const OBSIDIAN_TO_PDF: SeoLandingContent = {
 
 export const NOTION_TO_PDF: SeoLandingContent = {
   path: '/notion-to-pdf',
-  title: 'Notion to PDF — Export Notion Pages to PDF Free',
+  title: 'Notion to PDF — Export Pages Free Online',
   description:
-    'Turn Notion pages (exported as Markdown) into clean PDFs with tables, callouts, and Mermaid diagrams. Live preview, private browser export.',
-  keywords: [
-    'notion to pdf',
-    'notion page to pdf',
-    'export notion to pdf',
-    'notion markdown to pdf',
-    'notion page pdf converter',
-    'convert notion page to pdf',
-    'markdown to pdf',
-    'pdfwritter',
-  ],
+    'Convert Notion to PDF free via Markdown export. Tables, callouts, and Mermaid in live preview — private browser export, no API.',
+  keywords: [...NOTION_TO_PDF_KEYWORDS],
   badge: 'Notion → PDF',
   h1Before: 'Notion to ',
   h1Highlight: 'PDF',
@@ -497,19 +462,10 @@ export const NOTION_TO_PDF: SeoLandingContent = {
 
 export const GITHUB_README_TO_PDF: SeoLandingContent = {
   path: '/github-readme-to-pdf',
-  title: 'GitHub README to PDF — Convert Readme.md to PDF Free',
+  title: 'GitHub README to PDF — Convert Readme.md Free',
   description:
-    'Convert a GitHub README.md to PDF with badges, tables, code blocks, Mermaid, and KaTeX math. Live preview, no signup, private browser export.',
-  keywords: [
-    'github readme to pdf',
-    'convert readme to pdf',
-    'readme md to pdf',
-    'github markdown to pdf',
-    'markdown to pdf with badges',
-    'markdown file to pdf',
-    'markdown to pdf',
-    'pdfwritter',
-  ],
+    'Convert GitHub README to PDF free. README.md with badges, code, Mermaid, and math — live preview, no signup, private browser export.',
+  keywords: [...GITHUB_README_TO_PDF_KEYWORDS],
   badge: 'README → PDF',
   h1Before: 'GitHub README to ',
   h1Highlight: 'PDF',
@@ -591,19 +547,10 @@ export const GITHUB_README_TO_PDF: SeoLandingContent = {
 
 export const RESUME_MARKDOWN_TO_PDF: SeoLandingContent = {
   path: '/markdown-to-pdf-resume',
-  title: 'Markdown Resume to PDF — Clean Resume PDF Free',
+  title: 'Markdown Resume to PDF — Free CV Converter',
   description:
-    'Convert Markdown resume/CV files to a clean, ATS-friendly PDF with typography, bullet lists, and links intact. Live preview, private browser export.',
-  keywords: [
-    'markdown resume to pdf',
-    'convert markdown resume to pdf',
-    'markdown cv to pdf',
-    'markdown to pdf resume',
-    'typewritten resume markdown',
-    'markdown resume pdf converter',
-    'markdown to pdf',
-    'pdfwritter',
-  ],
+    'Convert Markdown resume to PDF free. Clean ATS-friendly CV from Markdown — typography, lists, and links intact. Private, no sign-up.',
+  keywords: [...RESUME_TO_PDF_KEYWORDS],
   badge: 'Resume → PDF',
   h1Before: 'Markdown Resume to ',
   h1Highlight: 'PDF',

@@ -44,6 +44,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: [...DISALLOW],
       })),
     ],
-    sitemap: `${SITE_URL}/sitemap-index.xml`,
+    // Point at the working Next.js MetadataRoute sitemap (not the broken index).
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }
