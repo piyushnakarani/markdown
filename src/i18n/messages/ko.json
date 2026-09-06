@@ -430,7 +430,15 @@
     "arch4Title": "4. 출력 형식",
     "arch4Desc": "깨끗한 A4 PDF, 파싱된 HTML 파일 및 순수 원시 텍스트.",
     "previewPdfTitle": "preview.pdf (A4 미리보기)",
-    "flowchartSvgTitle": "flowchart.svg (Mermaid 출력)"
+    "flowchartSvgTitle": "flowchart.svg (Mermaid 출력)",
+    "editorialBadge": "Editorial Standards",
+    "editorialTitle": "How we write and review content",
+    "editorialSubtitle": "Our guides prioritize first-hand product testing, clear sourcing, and corrections when facts change.",
+    "editorialBody": "Tool comparisons and tutorials are based on hands-on use of PDFWritter and publicly documented standards such as GitHub Flavored Markdown, Mermaid, and Pandoc. We cite primary sources when making factual claims, link related guides for context, and update articles when workflows or product behavior change. Report an error via the contact form or pdfwritter@gmail.com.",
+    "editorialSourcesTitle": "Primary references",
+    "editorialSourceGfm": "GitHub Flavored Markdown",
+    "editorialSourceMermaid": "Mermaid documentation",
+    "editorialSourcePandoc": "Pandoc"
   },
   "help": {
     "badge": "도움말 및 지원",

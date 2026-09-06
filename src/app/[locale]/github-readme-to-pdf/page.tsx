@@ -1,9 +1,9 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import SeoIntentLanding from '@/components/SeoIntentLanding';
-import { GITHUB_README_TO_PDF_KEYWORDS } from '@/lib/locale-keywords';
+import { githubReadmeToPdfKeywordsForLocale } from '@/lib/keywords';
 import { absoluteUrl, buildPageMetadata, withToolBrandKeywords } from '@/lib/site';
-import { buildFaqPageJsonLd, buildHowToJsonLd, buildToolPageJsonLd } from '@/lib/structured-data';
+import { buildToolPageJsonLd } from '@/lib/structured-data';
 
 const META_DESCRIPTION =
   'Convert GitHub README to PDF free. README.md with badges, code, Mermaid, and math — live preview, no signup, private browser export.';
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: META_DESCRIPTION,
     path: '/github-readme-to-pdf',
     locale,
-    keywords: withToolBrandKeywords([...GITHUB_README_TO_PDF_KEYWORDS], 'pdf'),
+    keywords: withToolBrandKeywords(githubReadmeToPdfKeywordsForLocale(locale), 'pdf'),
     image: {
       url: absoluteUrl('/convert-markdown-file-to-pdf.webp'),
       width: 1200,
@@ -43,7 +43,7 @@ export default async function GithubReadmeToPdfPage({
     path: '/github-readme-to-pdf',
     title: t('title'),
     description: META_DESCRIPTION,
-    keywords: [...GITHUB_README_TO_PDF_KEYWORDS],
+    keywords: githubReadmeToPdfKeywordsForLocale(locale),
     badge: t('badge'),
     h1Before: t('h1Before'),
     h1Highlight: t('h1Highlight'),
@@ -93,18 +93,6 @@ export default async function GithubReadmeToPdfPage({
           __html: JSON.stringify(
             buildToolPageJsonLd(content.title, content.description, locale, content.path),
           ),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(buildFaqPageJsonLd(content.faqs, locale, content.path)),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(buildHowToJsonLd(content.howTitle, content.steps, locale, content.path)),
         }}
       />
     </>

@@ -22,7 +22,7 @@ import RelatedBlogGuides from '@/components/RelatedBlogGuides';
 import ScrollReveal from '@/components/ScrollReveal';
 import SectionHeading from '@/components/SectionHeading';
 import { Link } from '@/i18n/navigation';
-import { buildFaqPageJsonLd, buildHowToJsonLd, buildToolPageJsonLd } from '@/lib/structured-data';
+import { buildToolPageJsonLd } from '@/lib/structured-data';
 
 type MarkdownToPdfContentProps = {
   locale: string;
@@ -278,7 +278,7 @@ export default function MarkdownToPdfContent({ locale, path }: MarkdownToPdfCont
         </div>
       </section>
 
-      <RelatedBlogGuides toolKey="markdown-to-pdf" accentColor={accent} />
+      <RelatedBlogGuides toolKey={path === '/md-to-pdf' ? 'md-to-pdf' : 'markdown-to-pdf'} accentColor={accent} />
 
       <section className="section-py relative">
         <div className="page-container max-w-3xl">
@@ -317,18 +317,6 @@ export default function MarkdownToPdfContent({ locale, path }: MarkdownToPdfCont
               path,
             ),
           ),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(buildFaqPageJsonLd(faqs, locale, path)),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(buildHowToJsonLd(t('howTitle'), howSteps, locale, path)),
         }}
       />
     </>

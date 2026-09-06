@@ -1,8 +1,23 @@
 import type { Metadata } from 'next';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 
-import { defaultLocale, type Locale,locales } from '@/i18n/locales';
-import { ALL_LANGUAGE_KEYWORDS, languageKeywordsForLocale } from '@/lib/locale-keywords';
+import { defaultLocale, type Locale, locales } from '@/i18n/locales';
+import {
+  ALL_LANGUAGE_KEYWORDS,
+  DEFAULT_KEYWORDS,
+  languageKeywordsForLocale,
+  META_KEYWORDS_MAX,
+} from '@/lib/keywords';
+
+// Re-export keyword helpers — canonical definitions live in `@/lib/keywords` only.
+export {
+  BRAND_KEYWORDS,
+  DEFAULT_KEYWORDS,
+  META_KEYWORDS_MAX,
+  TOOL_BRAND_KEYWORDS,
+  withToolBrandKeywords,
+  type ToolBrandKey,
+} from '@/lib/keywords';
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') || 'https://www.pdfwritter.com';
@@ -37,55 +52,11 @@ const OG_LOCALE_MAP: Record<Locale, string> = {
 };
 
 /**
- * Keep meta keywords lean. Google does not use them for ranking; long stuffed
- * lists are a spam/quality risk for small sites.
+ * All product/tool locales are indexable (en + es/fr/de/pt/ar/zh-Hans/ja/ko/bn/ru).
+ * Each locale self-canonicalizes; sitemap + hreflang cover every tool URL.
+ * Blog stays English-only in sitemap (no per-locale blog content yet).
  */
-export const BRAND_KEYWORDS = ['pdfwritter', 'pdfwritter.com'] as const;
-
-/** Optional brand hint per tool — one short phrase max, not keyword dumps. */
-export const TOOL_BRAND_KEYWORDS = {
-  pdf: ['pdfwritter markdown to pdf'],
-  html: ['pdfwritter markdown to html'],
-  txt: ['pdfwritter markdown to txt'],
-  docx: ['pdfwritter markdown to word'],
-  editor: ['pdfwritter markdown editor'],
-  preview: ['pdfwritter markdown live preview'],
-  converter: ['pdfwritter free markdown converter'],
-} as const;
-
-export type ToolBrandKey = keyof typeof TOOL_BRAND_KEYWORDS;
-
-const META_KEYWORDS_MAX = 22;
-
-/** Merge page keywords with a single brand hint; cap length for quality. */
-export function withToolBrandKeywords(
-  keywords: string[],
-  tool?: ToolBrandKey,
-): string[] {
-  const toolKeywords = tool ? [...TOOL_BRAND_KEYWORDS[tool]] : ['pdfwritter'];
-  return [...new Set([...toolKeywords, ...keywords])].slice(0, META_KEYWORDS_MAX);
-}
-
-export const DEFAULT_KEYWORDS = [
-  'markdown to pdf online free',
-  'md to pdf',
-  'markdown to pdf with mermaid',
-  'markdown to pdf with latex',
-  'mermaid flowchart to pdf',
-  'mermaid sequence diagram to pdf',
-  'katex markdown to pdf',
-  'chatgpt to pdf',
-  'mermaid to pdf',
-  'markdown to word',
-  'markdown live preview',
-  'pdfwritter',
-];
-
-/**
- * Small-site ranking focus: index English first. Other locales stay usable in
- * the UI but are noindex until demand and unique content justify them.
- */
-export const INDEXABLE_LOCALES: readonly Locale[] = [defaultLocale];
+export const INDEXABLE_LOCALES: readonly Locale[] = locales;
 
 export function isIndexableLocale(locale: string): boolean {
   return INDEXABLE_LOCALES.includes(locale as Locale);
@@ -143,7 +114,7 @@ export function swapLocaleInPath(path: string, locale: string): string {
   return localizedPath(locale, path);
 }
 
-/** Hreflang alternate URLs — only for indexable locales (avoids pointing at noindex URLs). */
+/** Hreflang alternate URLs for every indexable locale (+ x-default → English). */
 export function buildAlternateLanguages(path: string): Record<string, string> {
   return {
     ...Object.fromEntries(
@@ -195,7 +166,7 @@ export function buildPageMetadata({
   const fullTitle = `${pageTitle} | ${SITE_NAME}`;
   const normalizedPath = localizedPath(locale, path);
   const indexable = isIndexableLocale(locale);
-  // Noindex locales must canonicalize to the English URL so crawl signals consolidate.
+  // Each locale self-canonicalizes; non-indexable locales (if any) consolidate to EN.
   const canonicalPath = indexable
     ? normalizedPath
     : localizedPath(defaultLocale, path);
@@ -336,13 +307,16 @@ export async function buildLocalizedPageMetadata({
   }
 
   if (!description) {
-    if (descriptionKey === 'about.subtitle') description = 'Free Markdown converter with diagram support for developers.';
+    if (descriptionKey === 'about.subtitle') {
+      description =
+        'Learn about PDFWritter — a free Markdown to PDF converter with Mermaid diagrams, KaTeX math, and private browser export for developers.';
+    }
     else if (descriptionKey === 'contact.subtitle') description = 'Get in touch with the PDFWritter team.';
     else if (descriptionKey === 'editor.description') description = 'Write Markdown with live preview and diagram rendering.';
     else if (descriptionKey === 'help.subtitle') description = 'Everything you need to know about using PDFWritter.';
     else if (descriptionKey === 'help.metaDescription') {
       description =
-        'PDFWritter help: convert Markdown to PDF, HTML, TXT, and DOCX in your browser. Getting started guide, syntax reference, keyboard shortcuts, Mermaid diagrams, and FAQs.';
+        'PDFWritter help: convert Markdown to PDF, HTML, TXT, and DOCX in your browser. Syntax reference, shortcuts, Mermaid, and FAQs.';
     }
     else if (descriptionKey === 'freeConverter.subtitle') description = 'Convert Markdown to any format in your browser.';
     else if (descriptionKey === 'livePreview.description') {
@@ -354,8 +328,14 @@ export async function buildLocalizedPageMetadata({
     } else if (descriptionKey === 'tools.pdfDescription') description = 'Convert Markdown to PDF online for free.';
     else if (descriptionKey === 'tools.htmlDescription') description = 'Convert Markdown to HTML online for free.';
     else if (descriptionKey === 'tools.txtDescription') description = 'Convert Markdown to plain text online for free.';
-    else if (descriptionKey === 'privacy.subtitle') description = 'Read the PDFWritter privacy policy. Your file privacy is guaranteed.';
-    else if (descriptionKey === 'terms.subtitle') description = 'Review the terms of service and conditions for using PDFWritter.';
+    else if (descriptionKey === 'privacy.subtitle') {
+      description =
+        'PDFWritter privacy policy: browser-side Markdown conversion by default, what data we access, and how we protect your documents.';
+    }
+    else if (descriptionKey === 'terms.subtitle') {
+      description =
+        'PDFWritter terms of service: free use rules, content ownership, disclaimers, and guidelines for the Markdown converter.';
+    }
     else description = 'Free online Markdown editor and converter.';
   }
 

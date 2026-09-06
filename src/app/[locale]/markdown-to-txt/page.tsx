@@ -5,7 +5,7 @@ import { setRequestLocale } from 'next-intl/server';
 import ConverterTool from '@/components/ConverterTool';
 import PageHero from '@/components/PageHero';
 import ToolSeoSections from '@/components/ToolSeoSections';
-import { txtKeywordsForLocale } from '@/lib/locale-keywords';
+import { txtKeywordsForLocale } from '@/lib/keywords';
 import { buildLocalizedPageMetadata, withToolBrandKeywords } from '@/lib/site';
 import { buildToolPageJsonLd } from '@/lib/structured-data';
 
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     path: '/markdown-to-txt',
     titleKey: 'tools.txtTitle',
     descriptionKey: 'tools.txtDescription',
-    titleSuffix: ' — Free Plain Text Online',
+    titleSuffix: ' — Plain Text',
     keywords: withToolBrandKeywords(txtKeywordsForLocale(locale), 'txt'),
   });
 }

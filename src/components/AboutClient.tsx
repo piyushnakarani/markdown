@@ -406,6 +406,52 @@ Markdown Source -> Parser -> Print Document`,
           </div>
         </section>
 
+        {/* Editorial standards — E-E-A-T */}
+        <section className="space-y-4">
+          <div className="max-w-2xl">
+            <span className="section-badge mb-2.5 inline-flex">{t('editorialBadge')}</span>
+            <h2 className="text-lg sm:text-xl font-semibold text-[var(--text-primary)] tracking-tight mb-1.5">
+              {t('editorialTitle')}
+            </h2>
+            <p className="text-sm text-[var(--text-secondary)] mb-3">
+              {t('editorialSubtitle')}
+            </p>
+            <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+              {t('editorialBody')}
+            </p>
+          </div>
+          <p className="text-xs text-[var(--text-tertiary)]">
+            {t('editorialSourcesTitle')}:{' '}
+            <a
+              href="https://github.github.com/gfm/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--accent)] hover:underline"
+            >
+              {t('editorialSourceGfm')}
+            </a>
+            {', '}
+            <a
+              href="https://mermaid.js.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--accent)] hover:underline"
+            >
+              {t('editorialSourceMermaid')}
+            </a>
+            {', '}
+            <a
+              href="https://pandoc.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--accent)] hover:underline"
+            >
+              {t('editorialSourcePandoc')}
+            </a>
+            .
+          </p>
+        </section>
+
         {/* CTA */}
         <div className="text-center pt-2">
           <Link href="/editor" className="btn-primary">

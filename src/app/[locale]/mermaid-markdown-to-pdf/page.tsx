@@ -2,8 +2,9 @@ import { setRequestLocale } from 'next-intl/server';
 
 import SeoIntentLanding from '@/components/SeoIntentLanding';
 import { MERMAID_TO_PDF } from '@/content/seo-landings';
-import { absoluteUrl, buildPageMetadata } from '@/lib/site';
-import { buildFaqPageJsonLd, buildHowToJsonLd, buildToolPageJsonLd } from '@/lib/structured-data';
+import { mermaidToPdfKeywordsForLocale } from '@/lib/keywords';
+import { absoluteUrl, buildPageMetadata, withToolBrandKeywords } from '@/lib/site';
+import { buildToolPageJsonLd } from '@/lib/structured-data';
 
 const content = MERMAID_TO_PDF;
 
@@ -15,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: content.description,
     path: content.path,
     locale,
-    keywords: content.keywords,
+    keywords: withToolBrandKeywords(mermaidToPdfKeywordsForLocale(locale), 'pdf'),
     image: {
       url: absoluteUrl('/convert-markdown-file-to-pdf.webp'),
       width: 1200,
@@ -41,18 +42,6 @@ export default async function MermaidMarkdownToPdfPage({
           __html: JSON.stringify(
             buildToolPageJsonLd(content.title, content.description, locale, content.path),
           ),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(buildFaqPageJsonLd(content.faqs, locale, content.path)),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(buildHowToJsonLd(content.howTitle, content.steps, locale, content.path)),
         }}
       />
     </>

@@ -217,8 +217,6 @@ export async function buildBlogIndexMetadata(
 
 export function buildArticleJsonLd(post: BlogPost, _locale?: string) {
   const url = getPostUrl(defaultLocale, post.slug);
-  const faqs = extractArticleFaqs(post.content);
-
   const blogPostingSchema = {
     "@type": "BlogPosting",
     "@id": `${url}#article`,
@@ -262,31 +260,11 @@ export function buildArticleJsonLd(post: BlogPost, _locale?: string) {
     inLanguage: "en",
   };
 
-  if (faqs && faqs.length > 0) {
-    const mainEntity = faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.a,
-      },
-    }));
-    return {
-      "@context": "https://schema.org",
-      "@graph": [
-        blogPostingSchema,
-        {
-          "@type": "FAQPage",
-          mainEntity: mainEntity,
-        },
-      ],
-    };
-  } else {
-    return {
-      "@context": "https://schema.org",
-      ...blogPostingSchema,
-    };
-  }
+  // FAQ visible in article HTML; FAQPage JSON-LD omitted (commercial sites ineligible).
+  return {
+    "@context": "https://schema.org",
+    ...blogPostingSchema,
+  };
 }
 
 export function buildBreadcrumbJsonLd(post: BlogPost, _locale?: string) {

@@ -8,7 +8,7 @@ import {
   NOTION_TO_PDF_KEYWORDS,
   OBSIDIAN_TO_PDF_KEYWORDS,
   RESUME_TO_PDF_KEYWORDS,
-} from '@/lib/locale-keywords';
+} from '@/lib/keywords';
 
 export type SeoLandingContent = {
   path: string;
@@ -207,7 +207,7 @@ export const MERMAID_TO_PDF: SeoLandingContent = {
 
 export const AI_MARKDOWN_TO_PDF: SeoLandingContent = {
   path: '/ai-markdown-to-pdf',
-  title: 'AI Markdown to PDF — Claude, Gemini & ChatGPT',
+  title: 'AI Markdown to PDF — Claude & ChatGPT',
   description:
     'Convert AI Markdown to PDF free from Claude, Gemini, or ChatGPT. Live preview with Mermaid and KaTeX — private browser export, no sign-up.',
   keywords: [...AI_MARKDOWN_TO_PDF_KEYWORDS],
@@ -292,7 +292,7 @@ export const AI_MARKDOWN_TO_PDF: SeoLandingContent = {
 
 export const OBSIDIAN_TO_PDF: SeoLandingContent = {
   path: '/obsidian-to-pdf',
-  title: 'Obsidian to PDF — Export Notes Free Online',
+  title: 'Obsidian to PDF — Export Notes Free',
   description:
     'Export Obsidian to PDF free with Mermaid and KaTeX intact. Convert Obsidian Markdown notes in your browser — private, no Publish plan.',
   keywords: [...OBSIDIAN_TO_PDF_KEYWORDS],
@@ -377,7 +377,7 @@ export const OBSIDIAN_TO_PDF: SeoLandingContent = {
 
 export const NOTION_TO_PDF: SeoLandingContent = {
   path: '/notion-to-pdf',
-  title: 'Notion to PDF — Export Pages Free Online',
+  title: 'Notion to PDF — Export Pages Free',
   description:
     'Convert Notion to PDF free via Markdown export. Tables, callouts, and Mermaid in live preview — private browser export, no API.',
   keywords: [...NOTION_TO_PDF_KEYWORDS],
@@ -462,7 +462,7 @@ export const NOTION_TO_PDF: SeoLandingContent = {
 
 export const GITHUB_README_TO_PDF: SeoLandingContent = {
   path: '/github-readme-to-pdf',
-  title: 'GitHub README to PDF — Convert Readme.md Free',
+  title: 'GitHub README to PDF — Convert Free',
   description:
     'Convert GitHub README to PDF free. README.md with badges, code, Mermaid, and math — live preview, no signup, private browser export.',
   keywords: [...GITHUB_README_TO_PDF_KEYWORDS],

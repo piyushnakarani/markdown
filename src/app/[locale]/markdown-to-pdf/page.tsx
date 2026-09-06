@@ -1,7 +1,7 @@
 import { getMessages, setRequestLocale } from 'next-intl/server';
 
 import MarkdownToPdfContent from '@/components/MarkdownToPdfContent';
-import { pdfKeywordsForLocale } from '@/lib/locale-keywords';
+import { pdfKeywordsForLocale } from '@/lib/keywords';
 import { absoluteUrl, buildLocalizedPageMetadata, withToolBrandKeywords } from '@/lib/site';
 
 const PDF_OG_IMAGE = {
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     path: '/markdown-to-pdf',
     titleKey: 'markdownToPdf.title',
     descriptionKey: 'markdownToPdf.description',
-    titleSuffix: ' — Mermaid & Math, Free Online',
+    titleSuffix: ' — Mermaid & Math',
     keywords: withToolBrandKeywords(pdfKeywordsForLocale(locale), 'pdf'),
     image: {
       url: absoluteUrl(PDF_OG_IMAGE.url),

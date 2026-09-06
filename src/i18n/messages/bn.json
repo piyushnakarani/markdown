@@ -430,7 +430,15 @@
     "arch4Title": "4. আউটপুট ফরম্যাট",
     "arch4Desc": "পরিষ্কার A4 PDF, পার্স করা HTML ফাইল এবং বিশুদ্ধ র ক টেক্সট।",
     "previewPdfTitle": "preview.pdf (A4 প্রিভিউ)",
-    "flowchartSvgTitle": "flowchart.svg (Mermaid আউটপুট)"
+    "flowchartSvgTitle": "flowchart.svg (Mermaid আউটপুট)",
+    "editorialBadge": "Editorial Standards",
+    "editorialTitle": "How we write and review content",
+    "editorialSubtitle": "Our guides prioritize first-hand product testing, clear sourcing, and corrections when facts change.",
+    "editorialBody": "Tool comparisons and tutorials are based on hands-on use of PDFWritter and publicly documented standards such as GitHub Flavored Markdown, Mermaid, and Pandoc. We cite primary sources when making factual claims, link related guides for context, and update articles when workflows or product behavior change. Report an error via the contact form or pdfwritter@gmail.com.",
+    "editorialSourcesTitle": "Primary references",
+    "editorialSourceGfm": "GitHub Flavored Markdown",
+    "editorialSourceMermaid": "Mermaid documentation",
+    "editorialSourcePandoc": "Pandoc"
   },
   "help": {
     "badge": "সাহায্য এবং সমর্থন",

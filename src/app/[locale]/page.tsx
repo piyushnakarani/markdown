@@ -22,7 +22,7 @@ import ScrollReveal from '@/components/ScrollReveal';
 import SectionHeading from '@/components/SectionHeading';
 import { Link } from '@/i18n/navigation';
 import { buildPageMetadata } from '@/lib/site';
-import { buildFaqPageJsonLd, buildSpeakableJsonLd } from '@/lib/structured-data';
+import { buildSpeakableJsonLd } from '@/lib/structured-data';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -56,6 +56,13 @@ function HomeContent({ locale }: { locale: string }) {
       color: '#ef4444',
       title: t('tools.pdfTitle'),
       desc: t('tools.pdfDescription'),
+    },
+    {
+      href: '/md-to-pdf',
+      icon: FileText,
+      color: '#dc2626',
+      title: 'MD to PDF',
+      desc: 'Convert Markdown (.md) to PDF with Mermaid diagrams, KaTeX math, and live preview.',
     },
     {
       href: '/chatgpt-to-pdf',
@@ -328,6 +335,21 @@ function HomeContent({ locale }: { locale: string }) {
                 </tbody>
               </table>
             </div>
+            <p className="mt-3 text-xs text-[var(--text-tertiary)] leading-relaxed">
+              First-hand comparison based on PDFWritter workflows versus typical upload converters and desktop tools such as{' '}
+              <a href="https://pandoc.org/" target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] hover:underline">
+                Pandoc
+              </a>
+              . Diagram support references{' '}
+              <a href="https://mermaid.js.org/" target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] hover:underline">
+                Mermaid
+              </a>
+              ; Markdown flavor follows{' '}
+              <a href="https://github.github.com/gfm/" target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] hover:underline">
+                GitHub Flavored Markdown
+              </a>
+              .
+            </p>
           </ScrollReveal>
         </div>
       </section>
@@ -359,12 +381,6 @@ function HomeContent({ locale }: { locale: string }) {
               '/',
             ),
           ),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(buildFaqPageJsonLd(faqs, locale, '/')),
         }}
       />
     </>

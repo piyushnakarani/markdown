@@ -430,7 +430,15 @@
     "arch4Title": "4. 输出格式",
     "arch4Desc": "干净的 A4 PDF、解析后的 HTML 文件和纯原始文本。",
     "previewPdfTitle": "preview.pdf (A4 预览)",
-    "flowchartSvgTitle": "flowchart.svg (Mermaid 输出)"
+    "flowchartSvgTitle": "flowchart.svg (Mermaid 输出)",
+    "editorialBadge": "Editorial Standards",
+    "editorialTitle": "How we write and review content",
+    "editorialSubtitle": "Our guides prioritize first-hand product testing, clear sourcing, and corrections when facts change.",
+    "editorialBody": "Tool comparisons and tutorials are based on hands-on use of PDFWritter and publicly documented standards such as GitHub Flavored Markdown, Mermaid, and Pandoc. We cite primary sources when making factual claims, link related guides for context, and update articles when workflows or product behavior change. Report an error via the contact form or pdfwritter@gmail.com.",
+    "editorialSourcesTitle": "Primary references",
+    "editorialSourceGfm": "GitHub Flavored Markdown",
+    "editorialSourceMermaid": "Mermaid documentation",
+    "editorialSourcePandoc": "Pandoc"
   },
   "help": {
     "badge": "帮助与支持",

@@ -26,9 +26,9 @@ import ScrollReveal from '@/components/ScrollReveal';
 import SectionHeading from '@/components/SectionHeading';
 import { LIVE_PREVIEW_DEFAULT_MARKDOWN } from '@/content/live-preview-default';
 import { Link } from '@/i18n/navigation';
-import { previewKeywordsForLocale } from '@/lib/locale-keywords';
+import { previewKeywordsForLocale } from '@/lib/keywords';
 import { absoluteUrl, buildLocalizedPageMetadata, withToolBrandKeywords } from '@/lib/site';
-import { buildFaqPageJsonLd, buildToolPageJsonLd } from '@/lib/structured-data';
+import { buildToolPageJsonLd } from '@/lib/structured-data';
 
 const LIVE_PREVIEW_OG_IMAGE = {
   url: '/markdown-live-preview-og.webp',
@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     path: '/markdown-live-preview',
     titleKey: 'livePreview.title',
     descriptionKey: 'livePreview.description',
-    titleSuffix: ' — Free Live Preview Online',
+    titleSuffix: ' — Live Preview',
     keywords: withToolBrandKeywords(previewKeywordsForLocale(locale), 'preview'),
     image: {
       url: absoluteUrl(LIVE_PREVIEW_OG_IMAGE.url),
@@ -293,12 +293,6 @@ function MarkdownLivePreviewContent({ locale }: { locale: string }) {
               '/markdown-live-preview',
             ),
           ),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(buildFaqPageJsonLd(faqs, locale, '/markdown-live-preview')),
         }}
       />
     </>

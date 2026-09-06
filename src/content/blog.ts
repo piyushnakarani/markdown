@@ -1,3 +1,4 @@
+import { blogKeywordsForSlug } from '@/lib/keywords';
 import { content as bestMarkdownToPdfConverterContent } from "./blog-posts/best-markdown-to-pdf-converter";
 import { content as batchConvertContent } from "./blog-posts/batch-convert-markdown-to-pdf-online";
 import { content as bestMarkdownResumeToolsContent } from "./blog-posts/best-markdown-to-pdf-tools-for-resumes";
@@ -13,6 +14,12 @@ import { content as beautifulMarkdownPdfContent } from "./blog-posts/make-beauti
 import { content as mathRenderingContent } from "./blog-posts/markdown-latex-math-katex-rendering-guide";
 import { content as markdownLivePreviewContent } from "./blog-posts/markdown-live-preview-complete-guide";
 import { content as markdownNoRegistrationContent } from "./blog-posts/markdown-to-pdf-no-registration";
+import { content as mermaidDiagramsPreviewContent } from "./blog-posts/mermaid-diagrams-in-markdown-preview";
+import { content as printMarkdownWithDiagramsContent } from "./blog-posts/print-markdown-with-diagrams";
+import { content as renderFlowchartsToPdfContent } from "./blog-posts/render-flowcharts-from-markdown-to-pdf";
+import { content as renderMermaidDiagramsMarkdownContent } from "./blog-posts/render-mermaid-diagrams-markdown";
+import { content as renderMermaidDiagramsToPdfContent } from "./blog-posts/render-mermaid-diagrams-to-pdf";
+import { content as technicalDocumentationMarkdownToPdfContent } from "./blog-posts/technical-documentation-markdown-to-pdf";
 
 export interface BlogPost {
   slug: string;
@@ -43,13 +50,7 @@ export const blogPosts: BlogPost[] = [
     metaTitle: "Best Markdown to PDF Converter (2026 Comparison) | PDFWritter",
     metaDescription:
       "Find the best Markdown to PDF converter for professional docs. We compare fidelity, privacy, code highlighting, Mermaid diagrams, and LaTeX support.",
-    keywords: [
-      "best markdown to pdf converter",
-      "markdown to pdf converter",
-      "markdown converter online",
-      "convert md to pdf",
-      "professional pdf from markdown",
-    ],
+    keywords: blogKeywordsForSlug("best-markdown-to-pdf-converter"),
     category: "Tools",
     readTime: 11,
     date: "2026-08-23",
@@ -64,13 +65,7 @@ export const blogPosts: BlogPost[] = [
     metaTitle: "Markdown to PDF Online — No Registration Needed | PDFWritter",
     metaDescription:
       "Get Markdown to PDF with no registration. Free browser-based conversion with live preview, Mermaid, and math — private, unlimited, and watermark-free.",
-    keywords: [
-      "markdown to pdf no registration",
-      "convert markdown to pdf without signup",
-      "free markdown to pdf converter no account",
-      "no signup pdf converter",
-      "markdown to pdf online free",
-    ],
+    keywords: blogKeywordsForSlug("markdown-to-pdf-no-registration"),
     category: "Tutorial",
     readTime: 10,
     date: "2026-08-24",
@@ -85,13 +80,7 @@ export const blogPosts: BlogPost[] = [
     metaTitle: "Batch Convert Markdown to PDF Online Efficiently | PDFWritter",
     metaDescription:
       "Learn to batch convert Markdown to PDF online: a fast browser workflow, Pandoc loop scripts, CI automation, and consistency checks for whole doc sets.",
-    keywords: [
-      "batch convert markdown to pdf online",
-      "bulk markdown to pdf",
-      "convert multiple markdown files to pdf",
-      "pandoc batch conversion",
-      "automate markdown pdf export",
-    ],
+    keywords: blogKeywordsForSlug("batch-convert-markdown-to-pdf-online"),
     category: "Guide",
     readTime: 12,
     date: "2026-08-25",
@@ -106,18 +95,87 @@ export const blogPosts: BlogPost[] = [
     metaTitle: "Convert Markdown Report to PDF (Formatting Guide) | PDFWritter",
     metaDescription:
       "Turn a Markdown report into a professional PDF: structure, tables that survive export, Mermaid diagrams, LaTeX metrics, layout fixes, and QA checklist.",
-    keywords: [
-      "convert markdown report to pdf",
-      "markdown report formatting",
-      "professional pdf reports from markdown",
-      "markdown report template",
-      "markdown tables in pdf reports",
-    ],
+    keywords: blogKeywordsForSlug("convert-markdown-report-to-pdf"),
     category: "Guide",
     readTime: 12,
     date: "2026-08-26",
     dateModified: "2026-08-26",
     content: convertMarkdownReportContent,
+  },
+  {
+    slug: "render-mermaid-diagrams-to-pdf",
+    titleKey: "Rendering Mermaid Diagrams in Markdown to PDF",
+    excerptKey:
+      "Render Mermaid diagrams to PDF from Markdown — flowcharts, sequence diagrams, and layout rules for printable, versioned technical docs.",
+    metaTitle: "Render Mermaid Diagrams to PDF (Markdown Guide) | PDFWritter",
+    metaDescription:
+      "Learn how to render Mermaid diagrams to PDF from Markdown: fence syntax, printable layouts, preview-first export, and troubleshooting blank figures.",
+    keywords: blogKeywordsForSlug("render-mermaid-diagrams-to-pdf"),
+    category: "Tutorial",
+    readTime: 11,
+    date: "2026-09-02",
+    dateModified: "2026-09-06",
+    content: renderMermaidDiagramsToPdfContent,
+  },
+  {
+    slug: "mermaid-diagrams-in-markdown-preview",
+    titleKey: "Guide to Mermaid Diagrams in Markdown Preview",
+    excerptKey:
+      "Validate Mermaid diagrams in Markdown preview before export — split-pane editing, live error debugging, and sync-scroll workflows.",
+    metaTitle: "Mermaid Diagrams in Markdown Preview | PDFWritter",
+    metaDescription:
+      "Use Mermaid diagrams in Markdown preview the right way: catch syntax errors live, size charts for print, and export PDF without blank figures.",
+    keywords: blogKeywordsForSlug("mermaid-diagrams-in-markdown-preview"),
+    category: "Guide",
+    readTime: 10,
+    date: "2026-09-03",
+    dateModified: "2026-09-06",
+    content: mermaidDiagramsPreviewContent,
+  },
+  {
+    slug: "render-flowcharts-from-markdown-to-pdf",
+    titleKey: "Render Flowcharts from Markdown to PDF Automatically",
+    excerptKey:
+      "Automatically render Markdown flowcharts to PDF with Mermaid — syntax that prints cleanly, portrait layouts, and a preview-to-export workflow.",
+    metaTitle: "Render Flowcharts from Markdown to PDF | PDFWritter",
+    metaDescription:
+      "Render flowcharts from Markdown to PDF automatically with Mermaid fences. Layout patterns, decision nodes, and export troubleshooting for printable charts.",
+    keywords: blogKeywordsForSlug("render-flowcharts-from-markdown-to-pdf"),
+    category: "Tutorial",
+    readTime: 10,
+    date: "2026-09-04",
+    dateModified: "2026-09-06",
+    content: renderFlowchartsToPdfContent,
+  },
+  {
+    slug: "technical-documentation-markdown-to-pdf",
+    titleKey: "Technical Documentation: Markdown to PDF with Mermaid",
+    excerptKey:
+      "Ship technical documentation as Markdown to PDF with Mermaid — structure templates, diagram policy, and a release checklist for ADRs and runbooks.",
+    metaTitle: "Technical Documentation Markdown to PDF + Mermaid | PDFWritter",
+    metaDescription:
+      "Create technical documentation Markdown to PDF with Mermaid diagrams: Git-friendly source, printable architecture figures, and a docs release checklist.",
+    keywords: blogKeywordsForSlug("technical-documentation-markdown-to-pdf"),
+    category: "Guide",
+    readTime: 12,
+    date: "2026-09-05",
+    dateModified: "2026-09-06",
+    content: technicalDocumentationMarkdownToPdfContent,
+  },
+  {
+    slug: "print-markdown-with-diagrams",
+    titleKey: "How to Print Markdown with Complex Diagrams",
+    excerptKey:
+      "Print Markdown with complex Mermaid diagrams without clipped edges — sizing, page breaks, multi-figure chapters, and a print QA checklist.",
+    metaTitle: "Print Markdown with Complex Diagrams | PDFWritter",
+    metaDescription:
+      "How to print Markdown with diagrams: size Mermaid for paper, control pagination, split complex charts, and QA PDFs before stakeholder send.",
+    keywords: blogKeywordsForSlug("print-markdown-with-diagrams"),
+    category: "Guide",
+    readTime: 11,
+    date: "2026-09-06",
+    dateModified: "2026-09-06",
+    content: printMarkdownWithDiagramsContent,
   },
   {
     slug: "export-chatgpt-data-to-pdf",
@@ -128,13 +186,7 @@ export const blogPosts: BlogPost[] = [
       "Export ChatGPT Data to PDF — Best Tool for AI Users | PDFWritter",
     metaDescription:
       "Export ChatGPT data to PDF cleanly: compare screenshots, JSON exports, copy-paste, and the Markdown bridge that keeps code, math, and tables intact.",
-    keywords: [
-      "export chatgpt data to pdf",
-      "save chatgpt conversation as pdf",
-      "chatgpt to pdf converter",
-      "ai chat export pdf",
-      "archive ai conversations",
-    ],
+    keywords: blogKeywordsForSlug("export-chatgpt-data-to-pdf"),
     category: "Tools",
     readTime: 10,
     date: "2026-09-01",
@@ -150,13 +202,7 @@ export const blogPosts: BlogPost[] = [
     metaTitle: "GitHub Markdown Math & LaTeX Support Guide | PDFWritter",
     metaDescription:
       "A complete guide to writing math expressions in GitHub Markdown using LaTeX and KaTeX. Export your mathematical formulas natively to PDF.",
-    keywords: [
-      "github markdown math",
-      "markdown latex",
-      "katex markdown",
-      "export markdown math to pdf",
-      "github flavored markdown equations",
-    ],
+    keywords: blogKeywordsForSlug("github-markdown-math-latex-support"),
     category: "Guide",
     readTime: 6,
     date: "2026-07-28",
@@ -171,13 +217,7 @@ export const blogPosts: BlogPost[] = [
     metaTitle: "Markdown LaTeX & KaTeX Rendering Guide | PDFWritter",
     metaDescription:
       "Learn the difference between LaTeX and KaTeX in Markdown, how to write math blocks, and export beautiful PDF documents from your equations.",
-    keywords: [
-      "markdown latex",
-      "markdown katex",
-      "render markdown math to pdf",
-      "latex math equations markdown",
-      "pdfwritter",
-    ],
+    keywords: blogKeywordsForSlug("markdown-latex-math-katex-rendering-guide"),
     category: "Tutorial",
     readTime: 7,
     date: "2026-07-28",
@@ -192,13 +232,7 @@ export const blogPosts: BlogPost[] = [
     metaTitle: "Markdown to PDF Without Losing Formatting | PDFWritter",
     metaDescription:
       "Convert Markdown to PDF without losing headings, tables, code, images, or Mermaid diagrams. Follow this reliable preview and export checklist.",
-    keywords: [
-      "convert markdown to pdf without losing formatting",
-      "preserve markdown formatting in pdf",
-      "markdown to pdf formatting",
-      "markdown tables to pdf",
-      "markdown code blocks pdf",
-    ],
+    keywords: blogKeywordsForSlug("how-to-convert-markdown-to-pdf-without-losing-formatting"),
     category: "Tutorial",
     readTime: 12,
     date: "2026-07-26",
@@ -213,13 +247,7 @@ export const blogPosts: BlogPost[] = [
     metaTitle: "Best Markdown to PDF Resume Tools (2026) | PDFWritter",
     metaDescription:
       "Compare the best Markdown to PDF tools for professional resumes, from browser converters to Pandoc templates. Choose the right resume workflow.",
-    keywords: [
-      "best markdown to pdf tools for resumes",
-      "markdown resume pdf",
-      "create resume with markdown",
-      "markdown cv generator",
-      "pandoc resume",
-    ],
+    keywords: blogKeywordsForSlug("best-markdown-to-pdf-tools-for-resumes"),
     category: "Tools",
     readTime: 13,
     date: "2026-07-26",
@@ -234,13 +262,7 @@ export const blogPosts: BlogPost[] = [
     metaTitle: "How to Make a Beautiful PDF from Markdown | PDFWritter",
     metaDescription:
       "Yes, Markdown can create beautiful PDFs. Learn how to improve typography, spacing, images, diagrams, tables, code, and page layout before export.",
-    keywords: [
-      "beautiful pdf from markdown",
-      "make markdown look good in pdf",
-      "markdown pdf design",
-      "styled markdown to pdf",
-      "professional markdown pdf",
-    ],
+    keywords: blogKeywordsForSlug("make-beautiful-pdf-from-markdown"),
     category: "Guide",
     readTime: 12,
     date: "2026-07-26",
@@ -257,13 +279,7 @@ export const blogPosts: BlogPost[] = [
       "How to Convert Markdown to PDF Online (Fast & Free Guide 2026) | PDFWritter",
     metaDescription:
       "Learn how to convert markdown to PDF online instantly. Complete guide for developers, students, and technical writers with best conversion methods.",
-    keywords: [
-      "markdown to pdf",
-      "convert markdown to pdf",
-      "online markdown converter",
-      "markdown pdf converter",
-      "markdown export pdf",
-    ],
+    keywords: blogKeywordsForSlug("how-to-convert-markdown-to-pdf-online"),
     category: "Guide",
     readTime: 10,
     date: "2026-06-25",
@@ -537,13 +553,7 @@ Yes, most modern tools support large documentation files.
     metaTitle: "Best Markdown Editors for Developers (2026 Guide) | PDFWritter",
     metaDescription:
       "Best markdown apps and editors for developers: VS Code, Typora, Obsidian, and free online md editor with live preview and PDF export.",
-    keywords: [
-      "markdown editor",
-      "best markdown editor",
-      "best editor for markdown",
-      "best markdown apps",
-      "md editor",
-    ],
+    keywords: blogKeywordsForSlug("best-markdown-editors"),
     category: "Tools",
     readTime: 8,
     date: "2026-06-25",
@@ -593,13 +603,7 @@ The best Markdown editor depends on your workflow. For fast browser-based editin
     metaTitle: "How to Convert Markdown to PDF Online (Free) | PDFWritter",
     metaDescription:
       "Convert Markdown to PDF online in 3 steps. Free browser-based tool — paste or upload .md files, preview live, and download a formatted PDF instantly.",
-    keywords: [
-      "markdown to pdf",
-      "convert markdown to pdf",
-      "md to pdf",
-      "markdown pdf converter",
-      "online pdf converter",
-    ],
+    keywords: blogKeywordsForSlug("convert-markdown-to-pdf"),
     category: "Tutorial",
     readTime: 5,
     date: "2026-06-25",
@@ -648,13 +652,7 @@ Click **Download PDF**. Your formatted document saves instantly — no email, no
     metaTitle: "Markdown vs HTML: Differences & When to Use Each | PDFWritter",
     metaDescription:
       "Markdown as HTML explained: when to write Markdown vs HTML, conversion tips, and free tools to export semantic HTML from Markdown online.",
-    keywords: [
-      "markdown vs html",
-      "markdown to html",
-      "markdown as html",
-      "markdown comparison",
-      "semantic html",
-    ],
+    keywords: blogKeywordsForSlug("markdown-vs-html"),
     category: "Guide",
     readTime: 6,
     date: "2026-06-25",
@@ -705,13 +703,7 @@ Use our [Markdown to HTML converter](/markdown-to-html) to generate clean, seman
     metaTitle: "Beginner Guide to Markdown Syntax (2025) | PDFWritter",
     metaDescription:
       "Complete beginner guide to Markdown syntax. Learn headings, bold, lists, links, code blocks, and tables — then practice free in our online editor.",
-    keywords: [
-      "markdown guide",
-      "markdown syntax",
-      "markdown tutorial",
-      "learn markdown",
-      "markdown for beginners",
-    ],
+    keywords: blogKeywordsForSlug("beginner-guide-markdown"),
     category: "Tutorial",
     readTime: 10,
     date: "2026-06-25",
@@ -763,13 +755,7 @@ Open our [online Markdown editor](/editor) to write, preview, and export your fi
     metaTitle: "Best Documentation Tools for Developers | PDFWritter",
     metaDescription:
       "Top documentation tools for developers plus MkDocs alternatives. Markdown on GitHub, Docusaurus, GitBook, and free PDF/HTML export.",
-    keywords: [
-      "documentation tools",
-      "developer documentation",
-      "mkdocs alternative",
-      "technical writing",
-      "markdown documentation",
-    ],
+    keywords: blogKeywordsForSlug("documentation-tools-developers"),
     category: "Tools",
     readTime: 7,
     date: "2026-06-25",
@@ -820,13 +806,7 @@ Convert Markdown docs to **PDF** for stakeholders or **HTML** for quick publishi
     metaTitle: "Markdown Tutorial for Beginners (Hands-On) | PDFWritter",
     metaDescription:
       "Hands-on markdown tutorial for beginners. Practice headings, lists, code blocks, and tables — export to PDF with our free online tools.",
-    keywords: [
-      "markdown tutorial",
-      "learn markdown",
-      "markdown exercises",
-      "markdown practice",
-      "markdown for beginners",
-    ],
+    keywords: blogKeywordsForSlug("markdown-tutorial-beginners"),
     category: "Tutorial",
     readTime: 12,
     date: "2026-06-25",
@@ -881,13 +861,7 @@ Link to [PDFWritter home](/), the [editor](/editor), and [PDF converter](/markdo
     metaTitle: "Best Free Markdown Tools Online (2025 List) | PDFWritter",
     metaDescription:
       "Best free markdown apps online: editors, PDF/HTML converters, and MkDocs alternatives. Compare PDFWritter, Dillinger, StackEdit, and Pandoc.",
-    keywords: [
-      "free markdown tools",
-      "best markdown apps",
-      "online markdown converter",
-      "mkdocs alternative",
-      "markdown tools online",
-    ],
+    keywords: blogKeywordsForSlug("free-markdown-tools"),
     category: "Tools",
     readTime: 6,
     date: "2026-06-25",
@@ -929,13 +903,7 @@ Looking for **free Markdown tools** or the **best markdown apps** that work in t
     metaTitle: "How Developers Use Markdown Efficiently | PDFWritter",
     metaDescription:
       "Learn how developers use Markdown for READMEs, PR descriptions, docs, and blogs. Productivity tips plus free export to PDF and HTML.",
-    keywords: [
-      "markdown workflow",
-      "developer productivity",
-      "markdown readme",
-      "readme git",
-      "markdown writer",
-    ],
+    keywords: blogKeywordsForSlug("developers-use-markdown"),
     category: "Productivity",
     readTime: 7,
     date: "2026-06-25",
@@ -979,79 +947,16 @@ Static site generators (Next.js, Hugo, Jekyll) consume Markdown — write once, 
     slug: "render-mermaid-diagrams-markdown",
     titleKey: "How to Render Mermaid Diagrams in Markdown",
     excerptKey:
-      "Learn how to embed flowcharts, sequence diagrams, and class diagrams in your Markdown documents using Mermaid.js syntax.",
+      "Embed flowcharts, sequence diagrams, Gantt charts, and more in Markdown with Mermaid.js — syntax tutorial plus preview and PDF next steps.",
     metaTitle: "How to Render Mermaid Diagrams in Markdown | PDFWritter",
     metaDescription:
-      "Markdown flowchart guide: create flowcharts, sequence diagrams, and Gantt charts in Markdown with Mermaid.js syntax and live PDF export.",
-    keywords: [
-      "mermaid diagrams",
-      "markdown mermaid",
-      "markdown flowchart",
-      "flowcharts in markdown",
-      "mermaid js syntax",
-    ],
+      "Mermaid in Markdown tutorial: flowcharts, sequence diagrams, Gantt, state, and class diagrams — with live preview tips and PDF export links.",
+    keywords: blogKeywordsForSlug("render-mermaid-diagrams-markdown"),
     category: "Tutorial",
-    readTime: 9,
+    readTime: 10,
     date: "2026-06-25",
-    dateModified: "2026-06-28",
-    content: `# How to Render Mermaid Diagrams in Markdown
-
-Visualizing complex flows with diagrams keeps documentation clear. Whether you need a **markdown flowchart**, sequence diagram, or Gantt chart, **Mermaid.js** lets you render diagrams directly inside Markdown files using simple text.
-
-## 1. Flowchart Example
-
-To create a flowchart, use a \`mermaid\` code block. Specify the layout direction (\`TD\` for Top-Down, \`LR\` for Left-to-Right) and declare nodes with connections.
-
-\`\`\`mermaid
-graph TD
-    A[Start] --> B(Write Markdown)
-    B --> C{Need Diagram?}
-    C -- Yes --> D[Use Mermaid.js]
-    C -- No --> E[Standard Text]
-    D --> F[Export PDF]
-    E --> F
-\`\`\`
-
-## 2. Sequence Diagram Example
-
-Sequence diagrams represent interactions between different actors or systems over time.
-
-\`\`\`mermaid
-sequenceDiagram
-    participant User
-    participant Browser
-    participant API
-    User->>Browser: Click Export PDF
-    Browser->>API: Send Markdown payload
-    API-->>Browser: Return raw PDF Blob
-    Browser->>User: Trigger download file
-\`\`\`
-
-## 3. Gantt Chart Example
-
-Use Gantt charts inside your Markdown project files to track milestones, tasks, and schedules.
-
-\`\`\`mermaid
-gantt
-    title Documentation Project Roadmap
-    dateFormat  YYYY-MM-DD
-    section Planning
-    Write outline           :a1, 2025-06-01, 3d
-    Review with team        :after a1  , 2d
-    section Writing
-    Draft contents          :2025-06-06  , 5d
-    Render diagrams         :2025-06-09  , 3d
-\`\`\`
-
-## Why Use Text-Based Diagrams?
-
-- **Version Control**: Unlike image files, text diagrams show clear diffs in Git.
-- **Easy Updates**: Change a label or path in text in seconds rather than opening drawing software.
-- **Responsive Styling**: Diagrams adjust automatically to document styling (like light/dark modes).
-
-## Rendering Mermaid Diagrams Instantly
-
-Our [online Markdown editor](/editor) and [Markdown to PDF converter](/markdown-to-pdf) support full Mermaid.js parsing. Type your code block and preview the rendered diagram live.`,
+    dateModified: "2026-09-06",
+    content: renderMermaidDiagramsMarkdownContent,
   },
   {
     slug: "github-readme-best-practices",
@@ -1061,13 +966,7 @@ Our [online Markdown editor](/editor) and [Markdown to PDF converter](/markdown-
     metaTitle: "GitHub README Best Practices & Templates | PDFWritter",
     metaDescription:
       "GitHub README best practices for readme git projects. Structure, badges, install guides, Mermaid diagrams, and PDF export for open source.",
-    keywords: [
-      "github readme",
-      "readme git",
-      "best readme template",
-      "open source documentation",
-      "markdown readme guide",
-    ],
+    keywords: blogKeywordsForSlug("github-readme-best-practices"),
     category: "Guide",
     readTime: 7,
     date: "2026-06-25",
@@ -1116,13 +1015,7 @@ Sometimes stakeholders or enterprise clients require documentation offline. You 
     metaTitle: "Free Markdown Converter Online (2026 Guide) | PDFWritter",
     metaDescription:
       "Free markdown converter online: convert MD to PDF, HTML, and TXT with live preview and Mermaid support. Client-side, no sign-up. Complete toolkit guide.",
-    keywords: [
-      "free markdown converter",
-      "online markdown converter",
-      "mkdocs alternative",
-      "markdown converter with diagram",
-      "md to pdf html txt",
-    ],
+    keywords: blogKeywordsForSlug("free-markdown-converter-online-complete-guide"),
     category: "Guide",
     readTime: 14,
     date: "2026-06-28",
@@ -1145,13 +1038,7 @@ Sometimes stakeholders or enterprise clients require documentation offline. You 
       "Markdown to TXT Converter Online (Free Guide 2026) | PDFWritter",
     metaDescription:
       "Convert markdown to TXT online instantly. Strip formatting for email, AI prompts, and plain-text systems. Free client-side md to txt converter guide.",
-    keywords: [
-      "markdown to txt",
-      "convert markdown to plain text",
-      "md to txt converter",
-      "strip markdown formatting",
-      "markdown text export",
-    ],
+    keywords: blogKeywordsForSlug("how-to-convert-markdown-to-txt-online"),
     category: "Guide",
     readTime: 13,
     date: "2026-06-28",
@@ -1173,13 +1060,7 @@ Sometimes stakeholders or enterprise clients require documentation offline. You 
     metaTitle: "Markdown Live Preview Guide (Free Online 2026) | PDFWritter",
     metaDescription:
       "Markdown live preview guide: real-time side-by-side editing, Mermaid diagrams, and export to PDF/HTML. Free online preview tool for developers.",
-    keywords: [
-      "markdown live preview",
-      "online markdown preview",
-      "real-time markdown editor",
-      "markdown side by side preview",
-      "markdown preview tool",
-    ],
+    keywords: blogKeywordsForSlug("markdown-live-preview-complete-guide"),
     category: "Guide",
     readTime: 13,
     date: "2026-06-28",
@@ -1201,13 +1082,7 @@ Sometimes stakeholders or enterprise clients require documentation offline. You 
     metaTitle: "Best Online Markdown Editor with Preview (2026) | PDFWritter",
     metaDescription:
       "Best online markdown editor and md editor with live preview. Free markdown writer tool with PDF/HTML/TXT export. No install, no sign-up.",
-    keywords: [
-      "online markdown editor",
-      "free markdown editor online",
-      "best editor for markdown",
-      "best markdown apps",
-      "md editor",
-    ],
+    keywords: blogKeywordsForSlug("best-online-markdown-editor-with-preview"),
     category: "Guide",
     readTime: 13,
     date: "2026-06-28",
@@ -1229,13 +1104,7 @@ Sometimes stakeholders or enterprise clients require documentation offline. You 
     metaTitle: "Markdown to HTML Converter Online (2026 Guide) | PDFWritter",
     metaDescription:
       "Convert markdown to HTML online — markdown as html made simple. Semantic output, Pandoc comparison, free client-side guide with live preview.",
-    keywords: [
-      "markdown to html",
-      "markdown as html",
-      "convert md to html",
-      "online md to html",
-      "semantic html generator",
-    ],
+    keywords: blogKeywordsForSlug("convert-markdown-to-html-online"),
     category: "Guide",
     readTime: 13,
     date: "2026-06-25",

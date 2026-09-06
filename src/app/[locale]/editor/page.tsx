@@ -6,7 +6,7 @@ import { setRequestLocale } from 'next-intl/server';
 const EditorClient = dynamic(() => import('@/components/EditorClient'));
 import PageHero from '@/components/PageHero';
 import ToolSeoSections from '@/components/ToolSeoSections';
-import { editorKeywordsForLocale } from '@/lib/locale-keywords';
+import { editorKeywordsForLocale } from '@/lib/keywords';
 import { buildLocalizedPageMetadata, withToolBrandKeywords } from '@/lib/site';
 import { buildToolPageJsonLd } from '@/lib/structured-data';
 
@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     path: '/editor',
     titleKey: 'editor.title',
     descriptionKey: 'editor.description',
-    titleSuffix: ' — Free Split-Pane Mermaid Editor',
+    titleSuffix: ' — Split-Pane Editor',
     keywords: withToolBrandKeywords(editorKeywordsForLocale(locale), 'editor'),
   });
 }
