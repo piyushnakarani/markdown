@@ -10,7 +10,7 @@ import {
 
 const BASE_URL = SITE_URL;
 
-/** Product/static pages — only indexable locales (English-first ranking focus). */
+/** Product/static pages — all indexable locales with hreflang alternates. */
 const LOCALIZED_PAGES = [
   '',
   '/markdown-to-pdf',
@@ -38,8 +38,7 @@ const LOCALIZED_PAGES = [
 /**
  * Blog has no per-locale content. Index only English paths:
  * /blog and /blog/{slug} — never /es/blog/... etc.
- * Non-English product locales stay available in the UI but are omitted here
- * while they are noindex (see INDEXABLE_LOCALES in site.ts).
+ * Product pages include every INDEXABLE_LOCALE (all UI locales).
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];

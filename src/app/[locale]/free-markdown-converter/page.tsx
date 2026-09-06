@@ -4,7 +4,7 @@ import { setRequestLocale } from 'next-intl/server';
 
 import RelatedBlogGuides from '@/components/RelatedBlogGuides';
 import { Link } from '@/i18n/navigation';
-import { converterKeywordsForLocale } from '@/lib/locale-keywords';
+import { converterKeywordsForLocale } from '@/lib/keywords';
 import { buildLocalizedPageMetadata, withToolBrandKeywords } from '@/lib/site';
 import { buildToolPageJsonLd } from '@/lib/structured-data';
 
@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     path: '/free-markdown-converter',
     titleKey: 'freeConverter.title',
     descriptionKey: 'freeConverter.subtitle',
-    titleSuffix: ' — Free PDF, HTML, TXT & DOCX',
+    titleSuffix: ' — PDF, HTML, TXT, DOCX',
     keywords: withToolBrandKeywords(converterKeywordsForLocale(locale), 'converter'),
   });
 }

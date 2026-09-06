@@ -1,9 +1,9 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import SeoIntentLanding from '@/components/SeoIntentLanding';
-import { RESUME_TO_PDF_KEYWORDS } from '@/lib/locale-keywords';
+import { resumeToPdfKeywordsForLocale } from '@/lib/keywords';
 import { absoluteUrl, buildPageMetadata, withToolBrandKeywords } from '@/lib/site';
-import { buildFaqPageJsonLd, buildHowToJsonLd, buildToolPageJsonLd } from '@/lib/structured-data';
+import { buildToolPageJsonLd } from '@/lib/structured-data';
 
 const META_DESCRIPTION =
   'Convert Markdown resume to PDF free. Clean ATS-friendly CV from Markdown — typography, lists, and links intact. Private, no sign-up.';
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: META_DESCRIPTION,
     path: '/markdown-to-pdf-resume',
     locale,
-    keywords: withToolBrandKeywords([...RESUME_TO_PDF_KEYWORDS], 'pdf'),
+    keywords: withToolBrandKeywords(resumeToPdfKeywordsForLocale(locale), 'pdf'),
     image: {
       url: absoluteUrl('/convert-markdown-file-to-pdf.webp'),
       width: 1200,
@@ -43,7 +43,7 @@ export default async function ResumeMarkdownToPdfPage({
     path: '/markdown-to-pdf-resume',
     title: t('title'),
     description: META_DESCRIPTION,
-    keywords: [...RESUME_TO_PDF_KEYWORDS],
+    keywords: resumeToPdfKeywordsForLocale(locale),
     badge: t('badge'),
     h1Before: t('h1Before'),
     h1Highlight: t('h1Highlight'),
@@ -93,18 +93,6 @@ export default async function ResumeMarkdownToPdfPage({
           __html: JSON.stringify(
             buildToolPageJsonLd(content.title, content.description, locale, content.path),
           ),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(buildFaqPageJsonLd(content.faqs, locale, content.path)),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(buildHowToJsonLd(content.howTitle, content.steps, locale, content.path)),
         }}
       />
     </>

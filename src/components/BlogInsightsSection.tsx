@@ -121,7 +121,21 @@ export default function BlogInsightsSection({ jsonLd: jsonLdProp }: BlogInsights
   const th = useTranslations('home');
   const tb = useTranslations('blog');
   const locale = useLocale();
-  const latestPosts = blogPosts.slice(0, 3);
+  const prioritySlugs = [
+    'how-to-convert-markdown-to-pdf-online',
+    'free-markdown-tools',
+    'github-readme-best-practices',
+  ];
+  const selected: BlogPost[] = [];
+  for (const slug of prioritySlugs) {
+    const post = blogPosts.find((p) => p.slug === slug);
+    if (post) selected.push(post);
+  }
+  for (const post of blogPosts) {
+    if (selected.length >= 5) break;
+    if (!selected.some((p) => p.slug === post.slug)) selected.push(post);
+  }
+  const latestPosts = selected;
   const [featured, ...rest] = latestPosts;
   const jsonLd = jsonLdProp ?? buildHomeBlogJsonLd(latestPosts, locale);
 

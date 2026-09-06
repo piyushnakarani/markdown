@@ -1126,11 +1126,24 @@ body {
 
 .blog-article-body blockquote {
   margin: 1.25rem 0;
-  padding: 0.875rem 1.125rem;
+  padding: 1rem 1.15rem;
   border-left: 3px solid var(--accent);
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
-  background: var(--bg-tertiary);
+  background: color-mix(in srgb, var(--accent) 9%, var(--bg-tertiary));
   color: var(--text-secondary);
+}
+
+.blog-article-body blockquote p {
+  margin: 0.45rem 0;
+}
+
+.blog-article-body blockquote p:first-child {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.blog-article-body blockquote strong {
+  color: var(--text-primary);
 }
 
 .blog-article-body pre {

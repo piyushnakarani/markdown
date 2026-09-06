@@ -5,7 +5,7 @@ import { setRequestLocale } from 'next-intl/server';
 import ConverterTool from '@/components/ConverterTool';
 import PageHero from '@/components/PageHero';
 import ToolSeoSections from '@/components/ToolSeoSections';
-import { docxKeywordsForLocale } from '@/lib/locale-keywords';
+import { docxKeywordsForLocale } from '@/lib/keywords';
 import { buildLocalizedPageMetadata, withToolBrandKeywords } from '@/lib/site';
 import { buildToolPageJsonLd } from '@/lib/structured-data';
 
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     path: '/markdown-to-docx',
     titleKey: 'tools.docxTitle',
     descriptionKey: 'tools.docxDescription',
-    titleSuffix: ' — Free Word Export Online',
+    titleSuffix: ' — Word DOCX',
     keywords: withToolBrandKeywords(docxKeywordsForLocale(locale), 'docx'),
   });
 }

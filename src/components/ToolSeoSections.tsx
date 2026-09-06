@@ -14,7 +14,6 @@ import FAQAccordion from '@/components/FAQAccordion';
 import RelatedBlogGuides from '@/components/RelatedBlogGuides';
 import ScrollReveal from '@/components/ScrollReveal';
 import SectionHeading from '@/components/SectionHeading';
-import { buildFaqPageJsonLd, buildHowToJsonLd } from '@/lib/structured-data';
 
 type Step = {
   title: string;
@@ -250,19 +249,6 @@ export default function ToolSeoSections({
           </ScrollReveal>
         </div>
       </section>
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(buildFaqPageJsonLd(faqs, locale, path)),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(buildHowToJsonLd(howTitle, steps, locale, path)),
-        }}
-      />
     </>
   );
 }

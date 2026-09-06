@@ -3,14 +3,19 @@ import { type BlogPost,blogPosts } from '@/content/blog';
 /** Curated blog slugs per tool route — strengthens internal linking from tool pages. */
 export const TOOL_BLOG_LINKS: Record<string, string[]> = {
   'markdown-to-pdf': [
+    'how-to-convert-markdown-to-pdf-online',
     'how-to-convert-markdown-to-pdf-without-losing-formatting',
     'make-beautiful-pdf-from-markdown',
-    'best-markdown-to-pdf-tools-for-resumes',
+  ],
+  'md-to-pdf': [
+    'how-to-convert-markdown-to-pdf-online',
+    'free-markdown-tools',
+    'markdown-to-pdf-no-registration',
   ],
   'markdown-to-html': [
     'convert-markdown-to-html-online',
     'markdown-vs-html',
-    'documentation-tools-developers',
+    'github-readme-best-practices',
   ],
   'markdown-to-txt': [
     'how-to-convert-markdown-to-txt-online',
@@ -23,19 +28,24 @@ export const TOOL_BLOG_LINKS: Record<string, string[]> = {
     'free-markdown-converter-online-complete-guide',
   ],
   'markdown-live-preview': [
+    'mermaid-diagrams-in-markdown-preview',
     'markdown-live-preview-complete-guide',
     'best-online-markdown-editor-with-preview',
-    'markdown-tutorial-beginners',
+  ],
+  'mermaid-markdown-to-pdf': [
+    'render-mermaid-diagrams-to-pdf',
+    'render-flowcharts-from-markdown-to-pdf',
+    'print-markdown-with-diagrams',
   ],
   editor: [
     'best-online-markdown-editor-with-preview',
-    'best-markdown-to-pdf-tools-for-resumes',
-    'markdown-tutorial-beginners',
+    'mermaid-diagrams-in-markdown-preview',
+    'technical-documentation-markdown-to-pdf',
   ],
   'free-markdown-converter': [
+    'free-markdown-tools',
     'free-markdown-converter-online-complete-guide',
-    'how-to-convert-markdown-to-pdf-without-losing-formatting',
-    'make-beautiful-pdf-from-markdown',
+    'how-to-convert-markdown-to-pdf-online',
   ],
 };
 

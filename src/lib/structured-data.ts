@@ -63,7 +63,19 @@ export function buildSiteJsonLdGraph(locale: string) {
         alternateName: SITE_TAGLINE,
         url: SITE_URL,
         description: SITE_SUMMARY,
-        inLanguage: ['en'],
+        inLanguage: [
+          'en',
+          'es',
+          'fr',
+          'de',
+          'pt',
+          'ar',
+          'zh-Hans',
+          'ja',
+          'ko',
+          'bn',
+          'ru',
+        ],
         publisher: { '@id': `${SITE_URL}#organization` },
       },
       {
@@ -162,50 +174,7 @@ export function buildSpeakableJsonLd(
   };
 }
 
-type FaqItem = { q: string; a: string };
-
-export function buildFaqPageJsonLd(faqs: FaqItem[], locale: string, pathSuffix: string) {
-  const path = localizedPath(locale, pathSuffix);
-  const url = absoluteUrl(path);
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    '@id': `${url}#faq`,
-    url,
-    isPartOf: { '@id': `${SITE_URL}#website` },
-    mainEntity: faqs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.q,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.a,
-      },
-    })),
-  };
-}
-
-type HowToStep = { title: string; desc?: string; description?: string };
-
-export function buildHowToJsonLd(
-  name: string,
-  steps: HowToStep[],
-  locale: string,
-  pathSuffix: string,
-) {
-  const path = localizedPath(locale, pathSuffix);
-  const url = absoluteUrl(path);
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
-    '@id': `${url}#howto`,
-    name,
-    url,
-    isPartOf: { '@id': `${SITE_URL}#website` },
-    step: steps.map((step, i) => ({
-      '@type': 'HowToStep',
-      position: i + 1,
-      name: step.title,
-      text: step.desc ?? step.description ?? '',
-    })),
-  };
-}
+// FAQPage / HowTo JSON-LD intentionally omitted:
+// - FAQPage rich results are limited to government/healthcare sites (Aug 2023).
+// - HowTo rich results were removed (Sep 2023).
+// Keep visible FAQ / step HTML for users and AI citation; do not reintroduce these types.
