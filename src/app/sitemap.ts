@@ -14,7 +14,6 @@ const BASE_URL = SITE_URL;
 const LOCALIZED_PAGES = [
   '',
   '/markdown-to-pdf',
-  '/md-to-pdf',
   '/markdown-to-html',
   '/markdown-to-txt',
   '/markdown-to-docx',

@@ -278,7 +278,7 @@ export default function MarkdownToPdfContent({ locale, path }: MarkdownToPdfCont
         </div>
       </section>
 
-      <RelatedBlogGuides toolKey={path === '/md-to-pdf' ? 'md-to-pdf' : 'markdown-to-pdf'} accentColor={accent} />
+      <RelatedBlogGuides toolKey="markdown-to-pdf" accentColor={accent} />
 
       <section className="section-py relative">
         <div className="page-container max-w-3xl">

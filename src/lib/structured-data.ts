@@ -20,6 +20,7 @@ const SITE_SUMMARY =
 
 /** Single @graph document — avoids duplicate/conflicting JSON-LD blocks. */
 export function buildSiteJsonLdGraph(locale: string) {
+  const localeSuffix = locale === defaultLocale ? '' : `-${locale}`;
   const webApp = buildWebApplicationJsonLd(locale);
 
   return {
@@ -27,7 +28,7 @@ export function buildSiteJsonLdGraph(locale: string) {
     '@graph': [
       {
         '@type': 'Organization',
-        '@id': `${SITE_URL}#organization`,
+        '@id': `${SITE_URL}#organization${localeSuffix}`,
         name: SITE_NAME,
         url: SITE_URL,
         email: SITE_EMAIL,
@@ -48,17 +49,17 @@ export function buildSiteJsonLdGraph(locale: string) {
       },
       {
         '@type': 'Person',
-        '@id': `${SITE_URL}#editorial-team`,
+        '@id': `${SITE_URL}#editorial-team${localeSuffix}`,
         name: BLOG_AUTHOR_NAME,
         jobTitle: BLOG_AUTHOR_ROLE,
         url: BLOG_AUTHOR_URL,
         email: SITE_EMAIL,
         sameAs: [...SITE_SAME_AS],
-        worksFor: { '@id': `${SITE_URL}#organization` },
+        worksFor: { '@id': `${SITE_URL}#organization${localeSuffix}` },
       },
       {
         '@type': 'WebSite',
-        '@id': `${SITE_URL}#website`,
+        '@id': `${SITE_URL}#website${localeSuffix}`,
         name: SITE_NAME,
         alternateName: SITE_TAGLINE,
         url: SITE_URL,
@@ -76,11 +77,11 @@ export function buildSiteJsonLdGraph(locale: string) {
           'bn',
           'ru',
         ],
-        publisher: { '@id': `${SITE_URL}#organization` },
+        publisher: { '@id': `${SITE_URL}#organization${localeSuffix}` },
       },
       {
         '@type': 'SoftwareApplication',
-        '@id': `${SITE_URL}#software`,
+        '@id': `${SITE_URL}#software${localeSuffix}`,
         name: SITE_NAME,
         applicationCategory: 'DeveloperApplication',
         applicationSubCategory: 'Markdown Converter',

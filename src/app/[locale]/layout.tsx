@@ -24,7 +24,9 @@ import { LLMS_TXT_URL } from '@/lib/ai-seo';
 import {
   SITE_URL,
 } from '@/lib/site';
+import { defaultLocale } from '@/i18n/locales';
 import { buildSiteJsonLdGraph } from '@/lib/structured-data';
+import { buildAlternateLanguages } from '@/lib/site';
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -42,9 +44,27 @@ export const viewport: Viewport = {
   themeColor: '#09090B',
 };
 
-export async function generateMetadata() {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const path = '/';
+  const localizedPath = locale === defaultLocale ? '/' : `/${locale}`;
+  const url = `${SITE_URL}${localizedPath}`;
+
   return {
     metadataBase: new URL(SITE_URL),
+    title: {
+      default: 'PDFWritter — Free Markdown to PDF Converter with Mermaid & Math',
+      template: '%s | PDFWritter',
+    },
+    description: 'Free Markdown converter with diagram support. Convert Markdown to PDF, HTML, TXT, and DOCX in your browser at pdfwritter.com.',
+    alternates: {
+      canonical: url,
+      languages: buildAlternateLanguages('/'),
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
   };
 }
 

@@ -16,6 +16,14 @@ const posthogAssetsHost = posthogHost.replace(
 
 const nextConfig: NextConfig = {
   serverExternalPackages: ['highlight.js'],
+  images: {
+    remotePatterns: [
+      { protocol: 'https', hostname: '**' },
+    ],
+    formats: ['image/avif', 'image/webp'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+    imageSizes: [16, 48, 96, 240, 360, 480, 600, 720, 960, 1080, 1200],
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },

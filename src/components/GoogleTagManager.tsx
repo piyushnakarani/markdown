@@ -1,6 +1,6 @@
 import Script from 'next/script';
 
-export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID?.trim() || 'GTM-WLR8SG4X';
+export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID?.trim() || '';
 
 export function GoogleTagManagerHead() {
   if (!GTM_ID) return null;

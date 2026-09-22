@@ -26,12 +26,6 @@ const CORE_PAGES: { path: string; title: string; description: string }[] = [
       'Free Markdown to PDF converter with live preview, Mermaid diagram support, and instant browser-side download. No sign-up required.',
   },
   {
-    path: '/md-to-pdf',
-    title: 'MD to PDF',
-    description:
-      'Free md to pdf converter with live preview, Mermaid diagrams, code blocks, and private browser-side download. No sign-up required.',
-  },
-  {
     path: '/obsidian-to-pdf',
     title: 'Obsidian to PDF',
     description:

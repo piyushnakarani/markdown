@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     path: '/markdown-live-preview',
     titleKey: 'livePreview.title',
     descriptionKey: 'livePreview.description',
-    titleSuffix: ' — Live Preview',
+    titleSuffix: ' — Markdown Reader Online Free',
     keywords: withToolBrandKeywords(previewKeywordsForLocale(locale), 'preview'),
     image: {
       url: absoluteUrl(LIVE_PREVIEW_OG_IMAGE.url),

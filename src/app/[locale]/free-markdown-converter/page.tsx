@@ -31,7 +31,6 @@ function FreeConverterContent({ locale }: { locale: string }) {
 
   const converters = [
     { href: '/markdown-to-pdf', icon: FileText, color: '#ef4444', title: t('tools.pdfTitle'), desc: t('tools.pdfDescription') },
-    { href: '/md-to-pdf', icon: FileText, color: '#ef4444', title: 'MD to PDF', desc: 'Convert Markdown (.md) to PDF with Mermaid diagrams and live preview.' },
     { href: '/chatgpt-to-pdf', icon: Sparkles, color: '#10a37f', title: t('nav.chatgptToPdf'), desc: t('tools.chatgptDescription') },
     { href: '/ai-markdown-to-pdf', icon: Sparkles, color: '#3b82f6', title: t('nav.aiToPdf'), desc: t('tools.aiDescription') },
     { href: '/mermaid-markdown-to-pdf', icon: GitBranch, color: '#8b5cf6', title: t('nav.mermaidToPdf'), desc: t('tools.mermaidDescription') },

@@ -44,12 +44,12 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     slug: "best-markdown-to-pdf-converter",
-    titleKey: "The Best Markdown to PDF Converter for Professional Docs",
+    titleKey: "Markdown to PDF Converter for Professional Docs — 2026 Comparison",
     excerptKey:
-      "Compare the best Markdown to PDF converters of 2026 — PDFWritter, Pandoc, Typora, and VS Code — on fidelity, privacy, Mermaid, and LaTeX support.",
-    metaTitle: "Best Markdown to PDF Converter (2026 Comparison) | PDFWritter",
+      "Compare Markdown to PDF converters of 2026 — PDFWritter, Pandoc, Typora, and VS Code — on fidelity, privacy, Mermaid, and LaTeX support.",
+    metaTitle: "Markdown to PDF Converter Comparison (2026) | PDFWritter",
     metaDescription:
-      "Find the best Markdown to PDF converter for professional docs. We compare fidelity, privacy, code highlighting, Mermaid diagrams, and LaTeX support.",
+      "Compare Markdown to PDF converters on fidelity, privacy, code highlighting, Mermaid diagrams, and LaTeX support.",
     keywords: blogKeywordsForSlug("best-markdown-to-pdf-converter"),
     category: "Tools",
     readTime: 11,
@@ -179,11 +179,11 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "export-chatgpt-data-to-pdf",
-    titleKey: "Why PDFWritter Is the Best Export Tool for AI Users",
+    titleKey: "Why PDFWritter Is the Top Export Tool for AI Users",
     excerptKey:
       "Export ChatGPT data to PDF properly: why JSON dumps fail, how the Markdown bridge preserves code, math, and tables, and the two-minute workflow.",
     metaTitle:
-      "Export ChatGPT Data to PDF — Best Tool for AI Users | PDFWritter",
+      "Export ChatGPT Data to PDF — Top Tool for AI Users | PDFWritter",
     metaDescription:
       "Export ChatGPT data to PDF cleanly: compare screenshots, JSON exports, copy-paste, and the Markdown bridge that keeps code, math, and tables intact.",
     keywords: blogKeywordsForSlug("export-chatgpt-data-to-pdf"),
@@ -1074,14 +1074,14 @@ Sometimes stakeholders or enterprise clients require documentation offline. You 
     content: markdownLivePreviewContent,
   },
   {
-    slug: "best-online-markdown-editor-with-preview",
+     slug: "best-online-markdown-editor-with-preview",
     titleKey:
-      "Best Online Markdown Editor with Live Preview — Free Guide for 2026",
+      "Online Markdown Editor with Live Preview — Free Guide for 2026",
     excerptKey:
-      "Compare the best free online Markdown editors with live preview, Mermaid support, and PDF/HTML/TXT export. No install, no sign-up required.",
-    metaTitle: "Best Online Markdown Editor with Preview (2026) | PDFWritter",
+      "Compare free online Markdown editors with live preview, Mermaid support, and PDF/HTML/TXT export. No install, no sign-up required.",
+    metaTitle: "Online Markdown Editor with Preview (2026) | PDFWritter",
     metaDescription:
-      "Best online markdown editor and md editor with live preview. Free markdown writer tool with PDF/HTML/TXT export. No install, no sign-up.",
+      "Compare online markdown editor and md editor with live preview. Free markdown writer tool with PDF/HTML/TXT export. No install, no sign-up.",
     keywords: blogKeywordsForSlug("best-online-markdown-editor-with-preview"),
     category: "Guide",
     readTime: 13,
