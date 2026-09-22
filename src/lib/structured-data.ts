@@ -1,19 +1,5 @@
-import {
-  absoluteUrl,
-  BLOG_AUTHOR_NAME,
-  BLOG_AUTHOR_ROLE,
-  BLOG_AUTHOR_URL,
-  buildWebApplicationJsonLd,
-  localizedPath,
-  SITE_EMAIL,
-  SITE_NAME,
-  SITE_OG_IMAGE_HEIGHT,
-  SITE_OG_IMAGE_PATH,
-  SITE_OG_IMAGE_WIDTH,
-  SITE_SAME_AS,
-  SITE_TAGLINE,
-  SITE_URL,
-} from '@/lib/site';
+import { absoluteUrl, BLOG_AUTHOR_NAME, BLOG_AUTHOR_ROLE, BLOG_AUTHOR_URL, buildWebApplicationJsonLd, localizedPath, SITE_EMAIL, SITE_NAME, SITE_OG_IMAGE_HEIGHT, SITE_OG_IMAGE_PATH, SITE_OG_IMAGE_WIDTH, SITE_SAME_AS, SITE_TAGLINE, SITE_URL } from '@/lib/site';
+import { defaultLocale } from '@/i18n/locales';
 
 const SITE_SUMMARY =
   'Free online Markdown converter with Mermaid diagram support. Convert Markdown to PDF, HTML, TXT, and DOCX in your browser at pdfwritter.com.';
