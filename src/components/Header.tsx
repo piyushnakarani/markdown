@@ -3,10 +3,9 @@
 import {
   ArrowRight,
   ChevronDown,
-  Code2,
   Eye,
+  FileCode,
   FileSpreadsheet,
-  FileText,
   FileType,
   Menu,
   Moon,
@@ -14,6 +13,7 @@ import {
   Sun,
   X,
 } from 'lucide-react';
+import { DocIcon } from '@/components/icons/CustomIcons';
 import { useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
 
@@ -72,16 +72,16 @@ export default function Header() {
     }`;
 
   const tools = [
-    { href: '/markdown-to-pdf', label: t('markdownToPdf'), icon: FileText, color: '#ef4444' },
-    { href: '/markdown-to-html', label: t('markdownToHtml'), icon: Code2, color: '#f59e0b' },
+    { href: '/markdown-to-pdf', label: t('markdownToPdf'), icon: DocIcon, color: '#ef4444' },
+    { href: '/markdown-to-html', label: t('markdownToHtml'), icon: FileCode, color: '#f59e0b' },
     { href: '/markdown-to-txt', label: t('markdownToTxt'), icon: FileType, color: '#10b981' },
     { href: '/markdown-to-docx', label: t('markdownToDocx'), icon: FileSpreadsheet, color: '#2563eb' },
     { href: '/markdown-live-preview', label: t('markdownLivePreview'), icon: Eye, color: '#8b5cf6' },
     { href: '/editor', label: t('editor'), icon: PenLine, color: 'var(--accent)' },
-    { href: '/obsidian-to-pdf', label: t('obsidianToPdf'), icon: FileText, color: '#4b3f72' },
-    { href: '/notion-to-pdf', label: t('notionToPdf'), icon: FileText, color: '#000' },
-    { href: '/github-readme-to-pdf', label: t('githubReadmeToPdf'), icon: FileText, color: '#6e5494' },
-    { href: '/markdown-to-pdf-resume', label: t('resumeToPdf'), icon: FileText, color: '#0f4c3a' },
+    { href: '/obsidian-to-pdf', label: t('obsidianToPdf'), icon: DocIcon, color: '#4b3f72' },
+    { href: '/notion-to-pdf', label: t('notionToPdf'), icon: DocIcon, color: '#0f4c3a' },
+    { href: '/github-readme-to-pdf', label: t('githubReadmeToPdf'), icon: DocIcon, color: '#6e5494' },
+    { href: '/markdown-to-pdf-resume', label: t('resumeToPdf'), icon: DocIcon, color: '#0f4c3a' },
   ];
 
   return (

@@ -6,7 +6,6 @@ import {
   Download,
   Eye,
   FileCode,
-  FileText,
   FileType,
   Heading,
   Italic,
@@ -14,6 +13,7 @@ import {
   List,
   PenLine,
 } from 'lucide-react';
+import { DocIcon } from '@/components/icons/CustomIcons';
 import { useTranslations } from 'next-intl';
 import { useEffect, useMemo, useState } from 'react';
 
@@ -181,13 +181,13 @@ export default function HeroEditorDemo() {
         <div className="flex flex-col min-h-0 bg-[var(--bg-primary)]">
           <div className="editor-pane-header">
             <div className="flex items-center gap-2">
-              <Eye className="w-4 h-4 text-[#8b5cf6]" />
+              <Eye className="w-4 h-4 text-[var(--accent)]" />
               <span className="text-xs font-bold text-[var(--text-secondary)]">{t('previewTab')}</span>
             </div>
             <div className="flex items-center gap-1">
-              <FileText className="w-3 h-3 text-red-400" />
-              <FileCode className="w-3 h-3 text-amber-400" />
-              <FileType className="w-3 h-3 text-emerald-400" />
+              <DocIcon className="w-3 h-3 text-[#ef4444]" />
+              <FileCode className="w-3 h-3 text-[#f59e0b]" />
+              <FileType className="w-3 h-3 text-[#10b981]" />
             </div>
           </div>
 

@@ -1,12 +1,12 @@
 'use client';
 
+import { DocIcon } from '@/components/icons/CustomIcons';
 import {
   Activity,
   ArrowRight,
   CheckCircle,
   Cpu,
   FileCode,
-  FileText,
   FileType,
   GitBranch,
   Globe,
@@ -28,7 +28,7 @@ export default function AboutClient() {
 
   const functionalities = [
     {
-      icon: FileText,
+icon: DocIcon,
       title: t('func1Title'),
       desc: t('func1Desc'),
       color: '#ef4444',
@@ -181,7 +181,7 @@ Markdown Source -> Parser -> Print Document`,
     color: string;
   }[] = [
     { key: 'input', icon: Terminal, label: t('tab1Label'), hint: t('tab1Hint'), color: 'var(--accent)' },
-    { key: 'pdf', icon: FileText, label: t('tab2Label'), hint: t('tab2Hint'), color: '#ef4444' },
+    { key: 'pdf', icon: DocIcon, label: t('tab2Label'), hint: t('tab2Hint'), color: '#ef4444' },
     { key: 'html', icon: FileCode, label: t('tab3Label'), hint: t('tab3Hint'), color: '#f59e0b' },
     { key: 'txt', icon: FileType, label: t('tab4Label'), hint: t('tab4Hint'), color: '#10b981' },
     { key: 'mermaid', icon: Activity, label: t('tab5Label'), hint: t('tab5Hint'), color: '#8b5cf6' },

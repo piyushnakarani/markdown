@@ -1,13 +1,12 @@
 import {
-  Code2,
   Eye,
   FileSpreadsheet,
-  FileText,
   FileType,
   GitBranch,
   PenLine,
   Sparkles,
 } from 'lucide-react';
+import { DocIcon } from '@/components/icons/CustomIcons';
 import { useTranslations } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 
@@ -47,10 +46,10 @@ function HomeContent({ locale }: { locale: string }) {
   const t = useTranslations();
   const th = useTranslations('home');
 
-    const tools = [
+const tools = [
     {
       href: '/markdown-to-pdf',
-      icon: FileText,
+      icon: DocIcon,
       color: '#ef4444',
       title: t('tools.pdfTitle'),
       desc: t('tools.pdfDescription'),
@@ -78,7 +77,7 @@ function HomeContent({ locale }: { locale: string }) {
     },
     {
       href: '/markdown-to-html',
-      icon: Code2,
+      icon: DocIcon,
       color: '#f59e0b',
       title: t('tools.htmlTitle'),
       desc: t('tools.htmlDescription'),
@@ -93,7 +92,7 @@ function HomeContent({ locale }: { locale: string }) {
     {
       href: '/markdown-to-docx',
       icon: FileSpreadsheet,
-      color: '#3b82f6',
+      color: '#2563eb',
       title: t('tools.docxTitle'),
       desc: t('tools.docxDescription'),
     },
@@ -107,34 +106,34 @@ function HomeContent({ locale }: { locale: string }) {
     {
       href: '/editor',
       icon: PenLine,
-      color: '#6366f1',
+      color: 'var(--accent)',
       title: t('tools.editorTitle'),
       desc: t('tools.editorDescription'),
     },
     {
       href: '/obsidian-to-pdf',
-      icon: FileText,
+      icon: DocIcon,
       color: '#4b3f72',
       title: t('nav.obsidianToPdf'),
       desc: t('tools.obsidianDescription'),
     },
     {
       href: '/notion-to-pdf',
-      icon: GitBranch,
-      color: '#3b82f6',
+      icon: DocIcon,
+      color: '#0f4c3a',
       title: t('nav.notionToPdf'),
       desc: t('tools.notionDescription'),
     },
     {
       href: '/github-readme-to-pdf',
-      icon: FileText,
+      icon: DocIcon,
       color: '#6e5494',
       title: t('nav.githubReadmeToPdf'),
       desc: t('tools.githubReadmeDescription'),
     },
     {
       href: '/markdown-to-pdf-resume',
-      icon: FileText,
+      icon: DocIcon,
       color: '#0f4c3a',
       title: t('nav.resumeToPdf'),
       desc: t('tools.resumeDescription'),

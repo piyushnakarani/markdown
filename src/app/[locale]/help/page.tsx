@@ -1,4 +1,5 @@
-import { BookOpen, FileText, HelpCircle, Keyboard } from 'lucide-react';
+import { BookOpen, HelpCircle, Keyboard } from 'lucide-react';
+import { DocIcon } from '@/components/icons/CustomIcons';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import FAQAccordion from '@/components/FAQAccordion';
@@ -91,7 +92,7 @@ export default async function HelpPage({ params }: { params: Promise<{ locale: s
 
         <div className="card-glass p-8">
           <div className="flex items-center gap-3 mb-6">
-            <FileText className="w-6 h-6 text-[#f59e0b]" />
+            <DocIcon className="w-6 h-6 text-[#f59e0b]" />
             <h2 className="text-xl font-bold">{t('syntaxRef')}</h2>
           </div>
           <div className="overflow-x-auto">

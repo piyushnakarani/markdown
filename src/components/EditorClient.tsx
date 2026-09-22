@@ -7,7 +7,6 @@ import {
   Copy,
   Eye,
   FileCode,
-  FileText,
   FileType,
   FileUp,
   Heading,
@@ -21,6 +20,7 @@ import {
   Trash2,
   Upload,
 } from 'lucide-react';
+import { DocIcon } from '@/components/icons/CustomIcons';
 import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useRef,useState } from 'react';
 
@@ -401,7 +401,7 @@ export default function EditorClient({
     },
     {
       id: 'export-pdf',
-      icon: FileText,
+      icon: DocIcon,
       label: t('exportPdf'),
       shortLabel: 'PDF',
       onClick: handleExportPdf,
@@ -595,7 +595,7 @@ export default function EditorClient({
           {!isHero && (
             <div className="editor-pane-header">
               <div className="flex items-center gap-2">
-                <Eye className="w-4 h-4 text-[#8b5cf6]" />
+                <Eye className="w-4 h-4 text-[var(--accent)]" />
                 <span className="text-xs font-bold text-[var(--text-secondary)]">{t('previewTab')}</span>
               </div>
             </div>

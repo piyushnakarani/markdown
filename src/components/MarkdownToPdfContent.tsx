@@ -3,7 +3,6 @@ import {
   Check,
   Download,
   Eye,
-  FileText,
   GitBranch,
   Monitor,
   MousePointerClick,
@@ -11,6 +10,7 @@ import {
   Sparkles,
   Upload,
 } from 'lucide-react';
+import { DocIcon } from '@/components/icons/CustomIcons';
 import { useTranslations } from 'next-intl';
 import type { CSSProperties } from 'react';
 import { Fragment } from 'react';
@@ -60,7 +60,7 @@ export default function MarkdownToPdfContent({ locale, path }: MarkdownToPdfCont
     { icon: GitBranch, title: t('feature2Title'), desc: t('feature2Desc') },
     { icon: Shield, title: t('feature3Title'), desc: t('feature3Desc') },
     { icon: Upload, title: t('feature4Title'), desc: t('feature4Desc') },
-    { icon: FileText, title: t('feature5Title'), desc: t('feature5Desc') },
+    { icon: DocIcon, title: t('feature5Title'), desc: t('feature5Desc') },
     { icon: Sparkles, title: t('feature6Title'), desc: t('feature6Desc') },
   ];
 

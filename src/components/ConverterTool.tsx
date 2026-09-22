@@ -2,6 +2,7 @@
 
 import type { LucideIcon } from 'lucide-react';
 import {
+  Bold,
   Check,
   Code2,
   Copy,
@@ -9,7 +10,6 @@ import {
   Eye,
   FileCode,
   FileSpreadsheet,
-  FileText,
   FileType,
   FileUp,
   PenLine,
@@ -17,6 +17,7 @@ import {
   Upload,
   X,
 } from 'lucide-react';
+import { DocIcon } from '@/components/icons/CustomIcons';
 import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -75,7 +76,7 @@ const FORMAT: Record<
   ConvertType,
   { label: string; gradient: string; icon: LucideIcon; ext: string }
 > = {
-  pdf: { label: 'PDF', gradient: 'from-red-600 to-orange-500', icon: FileText, ext: 'pdf' },
+  pdf: { label: 'PDF', gradient: 'from-red-600 to-orange-500', icon: DocIcon, ext: 'pdf' },
   html: { label: 'HTML', gradient: 'from-amber-600 to-yellow-500', icon: FileCode, ext: 'html' },
   txt: { label: 'TXT', gradient: 'from-emerald-600 to-green-500', icon: FileType, ext: 'txt' },
   docx: { label: 'DOCX', gradient: 'from-blue-600 to-indigo-500', icon: FileSpreadsheet, ext: 'docx' },
@@ -336,7 +337,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
 
           {fileName && (
             <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[var(--bg-tertiary)] border border-[var(--border-color)] text-xs text-[var(--text-secondary)]">
-              <FileText className="w-3.5 h-3.5" />
+              <DocIcon className="w-3.5 h-3.5" />
               {fileName}
               <button
                 type="button"
@@ -447,7 +448,7 @@ export default function ConverterTool({ type }: { type: ConvertType }) {
         <div className={`flex flex-col min-h-0 bg-[var(--bg-primary)] ${activeTab !== 'preview' ? 'hidden md:flex' : 'flex'}`}>
           <div className="editor-pane-header">
             <div className="flex items-center gap-2 text-xs font-bold text-[var(--text-secondary)]">
-              <ExportIcon className="w-4 h-4" style={{ color: type === 'pdf' ? '#8b5cf6' : type === 'html' ? '#f59e0b' : type === 'docx' ? '#3b82f6' : '#10b981' }} />
+              <ExportIcon className="w-4 h-4" style={{ color: type === 'pdf' ? '#ef4444' : type === 'html' ? '#f59e0b' : type === 'docx' ? '#2563eb' : '#10b981' }} />
               {type === 'txt' ? t('outputTitle') : te('previewTab')}
             </div>
 

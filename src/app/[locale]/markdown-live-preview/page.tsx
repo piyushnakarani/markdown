@@ -4,7 +4,6 @@ import {
   Copy,
   Download,
   Eye,
-  FileText,
   GitBranch,
   Monitor,
   MousePointerClick,
@@ -12,6 +11,7 @@ import {
   Shield,
   Sparkles,
 } from 'lucide-react';
+import { DocIcon } from '@/components/icons/CustomIcons';
 import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
@@ -82,7 +82,7 @@ function MarkdownLivePreviewContent({ locale }: { locale: string }) {
 
   const howSteps = [
     {
-      icon: FileText,
+      icon: DocIcon,
       num: '01',
       title: t('howStep1Title'),
       desc: t('howStep1Desc'),

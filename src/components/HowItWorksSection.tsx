@@ -6,11 +6,11 @@ import {
   ChevronRight,
   Download,
   FileCode,
-  FileText,
   FileType,
   MousePointerClick,
   Upload,
 } from 'lucide-react';
+import { DocIcon } from '@/components/icons/CustomIcons';
 import { useTranslations } from 'next-intl';
 import { Fragment } from 'react';
 
@@ -39,11 +39,11 @@ const STEPS: StepConfig[] = [
   {
     icon: MousePointerClick,
     num: '02',
-    color: '#71717a',
+    color: 'var(--text-secondary)',
     titleKey: 'step2Title',
     descKey: 'step2Desc',
     formats: [
-      { label: 'PDF', icon: FileText, color: '#ef4444' },
+      { label: 'PDF', icon: DocIcon, color: '#ef4444' },
       { label: 'HTML', icon: FileCode, color: '#f59e0b' },
       { label: 'TXT', icon: FileType, color: '#10b981' },
     ],
@@ -51,7 +51,7 @@ const STEPS: StepConfig[] = [
   {
     icon: Download,
     num: '03',
-    color: '#10b981',
+    color: 'var(--accent)',
     titleKey: 'step3Title',
     descKey: 'step3Desc',
   },
