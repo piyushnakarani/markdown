@@ -8,18 +8,11 @@ import {
   PenLine,
   Sparkles,
 } from 'lucide-react';
-import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 
 import BlogInsightsSection from '@/components/BlogInsightsSection';
-
-const EditorClient = dynamic(() => import('@/components/EditorClient'), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-[500px] rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] animate-pulse" />
-  ),
-});
+import EditorClientWrapper from '@/components/EditorClientWrapper';
 
 import FAQAccordion from '@/components/FAQAccordion';
 import HowItWorksSection from '@/components/HowItWorksSection';
@@ -174,9 +167,7 @@ function HomeContent({ locale }: { locale: string }) {
           </header>
 
           <div className="home-hero-editor">
-            <Suspense fallback={<div className="w-full h-[500px] rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] animate-pulse" />}>
-              <EditorClient variant="hero" />
-            </Suspense>
+            <EditorClientWrapper variant="hero" />
           </div>
         </div>
       </section>
