@@ -14,7 +14,12 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 
 import BlogInsightsSection from '@/components/BlogInsightsSection';
 
-const EditorClient = dynamic(() => import('@/components/EditorClient'));
+const EditorClient = dynamic(() => import('@/components/EditorClient'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-[500px] rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] animate-pulse" />
+  ),
+});
 
 import FAQAccordion from '@/components/FAQAccordion';
 import HowItWorksSection from '@/components/HowItWorksSection';
@@ -49,20 +54,13 @@ function HomeContent({ locale }: { locale: string }) {
   const t = useTranslations();
   const th = useTranslations('home');
 
-  const tools = [
+    const tools = [
     {
       href: '/markdown-to-pdf',
       icon: FileText,
       color: '#ef4444',
       title: t('tools.pdfTitle'),
       desc: t('tools.pdfDescription'),
-    },
-    {
-      href: '/md-to-pdf',
-      icon: FileText,
-      color: '#dc2626',
-      title: 'MD to PDF',
-      desc: 'Convert Markdown (.md) to PDF with Mermaid diagrams, KaTeX math, and live preview.',
     },
     {
       href: '/chatgpt-to-pdf',
@@ -176,7 +174,9 @@ function HomeContent({ locale }: { locale: string }) {
           </header>
 
           <div className="home-hero-editor">
-            <EditorClient variant="hero" />
+            <Suspense fallback={<div className="w-full h-[500px] rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] animate-pulse" />}>
+              <EditorClient variant="hero" />
+            </Suspense>
           </div>
         </div>
       </section>

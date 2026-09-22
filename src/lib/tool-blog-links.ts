@@ -7,11 +7,6 @@ export const TOOL_BLOG_LINKS: Record<string, string[]> = {
     'how-to-convert-markdown-to-pdf-without-losing-formatting',
     'make-beautiful-pdf-from-markdown',
   ],
-  'md-to-pdf': [
-    'how-to-convert-markdown-to-pdf-online',
-    'free-markdown-tools',
-    'markdown-to-pdf-no-registration',
-  ],
   'markdown-to-html': [
     'convert-markdown-to-html-online',
     'markdown-vs-html',

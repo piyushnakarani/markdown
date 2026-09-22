@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     path: '/markdown-to-pdf',
     titleKey: 'markdownToPdf.title',
     descriptionKey: 'markdownToPdf.description',
-    titleSuffix: ' — Mermaid & Math',
+    titleSuffix: ' — Markdown to PDF Converter',
     keywords: withToolBrandKeywords(pdfKeywordsForLocale(locale), 'pdf'),
     image: {
       url: absoluteUrl(PDF_OG_IMAGE.url),

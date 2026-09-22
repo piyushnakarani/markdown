@@ -27,6 +27,9 @@ const DOUBLE_EN_LOCALE_RE = new RegExp(
   `^/(${NON_DEFAULT_LOCALES})/en(?:/(.*))?$`,
 );
 
+/** Legacy /md-to-pdf — 301 redirect to /markdown-to-pdf to fix cannibalization. */
+const LEGACY_MD_RE = /^\/md-to-pdf(\/.*)?$/;
+
 export default function middleware(request: NextRequest) {
   const host = request.headers.get('host')?.split(':')[0];
 
@@ -53,6 +56,15 @@ export default function middleware(request: NextRequest) {
     const url = request.nextUrl.clone();
     const rest = doubleEn[2] ? `/${doubleEn[2]}` : '';
     url.pathname = `/${doubleEn[1]}${rest}`;
+    return NextResponse.redirect(url, 301);
+  }
+
+  /** 301 redirect /md-to-pdf → /markdown-to-pdf to fix duplicate content cannibalization. */
+  const mdMatch = request.nextUrl.pathname.match(LEGACY_MD_RE);
+  if (mdMatch) {
+    const rest = mdMatch[1] || '';
+    const url = request.nextUrl.clone();
+    url.pathname = `/markdown-to-pdf${rest}`;
     return NextResponse.redirect(url, 301);
   }
 

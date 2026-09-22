@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     path: '/editor',
     titleKey: 'editor.title',
     descriptionKey: 'editor.description',
-    titleSuffix: ' — Split-Pane Editor',
+    titleSuffix: ' — Free Online Markdown Editor',
     keywords: withToolBrandKeywords(editorKeywordsForLocale(locale), 'editor'),
   });
 }

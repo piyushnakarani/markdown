@@ -6,7 +6,10 @@ import { useTranslations } from 'next-intl';
 
 import { Link } from '@/i18n/navigation';
 
-const EditorClient = dynamic(() => import('./EditorClient'));
+const EditorClient = dynamic(() => import('./EditorClient'), {
+  ssr: false,
+  loading: () => <div className="w-full h-[400px] rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] animate-pulse" />,
+});
 import ScrollReveal from './ScrollReveal';
 
 export default function EditorShowcase() {
