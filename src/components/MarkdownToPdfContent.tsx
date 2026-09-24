@@ -10,13 +10,13 @@ import {
   Sparkles,
   Upload,
 } from 'lucide-react';
-import { DocIcon } from '@/components/icons/CustomIcons';
 import { useTranslations } from 'next-intl';
 import type { CSSProperties } from 'react';
 import { Fragment } from 'react';
 
 import ConverterTool from '@/components/ConverterTool';
 import FAQAccordion from '@/components/FAQAccordion';
+import { DocIcon } from '@/components/icons/CustomIcons';
 import PageHero from '@/components/PageHero';
 import RelatedBlogGuides from '@/components/RelatedBlogGuides';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -89,6 +89,7 @@ export default function MarkdownToPdfContent({ locale, path }: MarkdownToPdfCont
       <PageHero
         badge={t('badge')}
         badgeIcon={Sparkles}
+        crumb={t('badge')}
         title={
           <>
             {t('heroBefore')}

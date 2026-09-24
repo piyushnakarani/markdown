@@ -10,10 +10,10 @@ import {
   MousePointerClick,
   Upload,
 } from 'lucide-react';
-import { DocIcon } from '@/components/icons/CustomIcons';
 import { useTranslations } from 'next-intl';
 import { Fragment } from 'react';
 
+import { DocIcon } from '@/components/icons/CustomIcons';
 import { Link } from '@/i18n/navigation';
 
 import ScrollReveal from './ScrollReveal';

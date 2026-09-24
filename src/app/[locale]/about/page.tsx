@@ -30,6 +30,7 @@ function AboutContent() {
       <PageHero
         badge={t('badge')}
         badgeIcon={Sparkles}
+        crumb={t('title')}
         title={t('title')}
         subtitle={t('subtitle')}
         accentColor="var(--accent)"

@@ -1,8 +1,9 @@
 import { ArrowRight, Check, Code2, Eye, FileSpreadsheet, FileType, GitBranch, PenLine, Sparkles } from 'lucide-react';
-import { DocIcon } from '@/components/icons/CustomIcons';
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 
+import Breadcrumbs from '@/components/Breadcrumbs';
+import { DocIcon } from '@/components/icons/CustomIcons';
 import RelatedBlogGuides from '@/components/RelatedBlogGuides';
 import { Link } from '@/i18n/navigation';
 import { converterKeywordsForLocale } from '@/lib/keywords';
@@ -59,7 +60,8 @@ function FreeConverterContent({ locale }: { locale: string }) {
 
   return (
     <>
-      <section className="relative border-b border-[var(--border-color)] py-10 sm:py-14">
+      <section className="relative border-b border-[var(--border-color)] pt-6 pb-10 sm:pb-14">
+        <Breadcrumbs items={[{ label: t('freeConverter.title') }]} className="max-w-3xl mb-4" />
         <div className="relative page-container max-w-3xl text-center">
           <div className="inline-flex items-center justify-center w-10 h-10 rounded-md border border-[var(--border-color)] bg-[var(--accent-muted)] mb-4">
             <Sparkles className="w-5 h-5 text-[var(--accent)]" />

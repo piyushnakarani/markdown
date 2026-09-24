@@ -44,6 +44,7 @@ function MarkdownToDocxContent({ locale }: { locale: string }) {
       <PageHero
         badge={tools('docxBadge')}
         badgeIcon={Sparkles}
+        crumb={tools('docxTitle')}
         title={
           <>
             {t('heroBefore')}

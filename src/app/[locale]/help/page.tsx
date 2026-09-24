@@ -1,8 +1,9 @@
 import { BookOpen, HelpCircle, Keyboard } from 'lucide-react';
-import { DocIcon } from '@/components/icons/CustomIcons';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
+import Breadcrumbs from '@/components/Breadcrumbs';
 import FAQAccordion from '@/components/FAQAccordion';
+import { DocIcon } from '@/components/icons/CustomIcons';
 import SectionHeading from '@/components/SectionHeading';
 import { buildLocalizedPageMetadata } from '@/lib/site';
 
@@ -58,7 +59,8 @@ export default async function HelpPage({ params }: { params: Promise<{ locale: s
 
   return (
     <>
-      <section className="relative overflow-hidden py-16 sm:py-20">
+      <section className="relative overflow-hidden pt-6 pb-16 sm:pb-20">
+        <Breadcrumbs items={[{ label: t('title') }]} className="max-w-4xl mb-4" />
         <div className="absolute inset-0 bg-gradient-to-br from-[#6366f1]/5 via-transparent to-[#ec4899]/5" />
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[#6366f1]/10 to-[#8b5cf6]/5 mb-6">

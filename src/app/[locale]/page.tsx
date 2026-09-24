@@ -6,15 +6,14 @@ import {
   PenLine,
   Sparkles,
 } from 'lucide-react';
-import { DocIcon } from '@/components/icons/CustomIcons';
 import { useTranslations } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 
 import BlogInsightsSection from '@/components/BlogInsightsSection';
 import EditorClientWrapper from '@/components/EditorClientWrapper';
-
 import FAQAccordion from '@/components/FAQAccordion';
 import HowItWorksSection from '@/components/HowItWorksSection';
+import { DocIcon } from '@/components/icons/CustomIcons';
 import ScrollReveal from '@/components/ScrollReveal';
 import SectionHeading from '@/components/SectionHeading';
 import { Link } from '@/i18n/navigation';

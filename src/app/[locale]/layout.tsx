@@ -19,14 +19,14 @@ import PostHogProvider from '@/components/PostHogProvider';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import TransitionLoader from '@/components/TransitionLoader';
 import { isRtl, Locale, locales } from '@/i18n/locales';
+import { defaultLocale } from '@/i18n/locales';
 import { routing } from '@/i18n/routing';
 import { LLMS_TXT_URL } from '@/lib/ai-seo';
 import {
   SITE_URL,
 } from '@/lib/site';
-import { defaultLocale } from '@/i18n/locales';
-import { buildSiteJsonLdGraph } from '@/lib/structured-data';
 import { buildAlternateLanguages } from '@/lib/site';
+import { buildSiteJsonLdGraph } from '@/lib/structured-data';
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],

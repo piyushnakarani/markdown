@@ -15,8 +15,8 @@ export {
   DEFAULT_KEYWORDS,
   META_KEYWORDS_MAX,
   TOOL_BRAND_KEYWORDS,
-  withToolBrandKeywords,
   type ToolBrandKey,
+  withToolBrandKeywords,
 } from '@/lib/keywords';
 
 export const SITE_URL =

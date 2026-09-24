@@ -1,5 +1,5 @@
 import { AlertTriangle, CheckCircle2, Scale } from 'lucide-react';
-import { setRequestLocale, getTranslations } from 'next-intl/server';
+import { getTranslations,setRequestLocale } from 'next-intl/server';
 
 import PageHero from '@/components/PageHero';
 import { Link } from '@/i18n/navigation';
@@ -25,6 +25,7 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
       <PageHero
         badge={t("heroBadge")}
         badgeIcon={Scale}
+        crumb={t("heroTitle")}
         title={t("heroTitle")}
         subtitle={t("heroSubtitle")}
         accentColor="var(--accent)"

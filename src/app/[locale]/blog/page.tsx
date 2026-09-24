@@ -27,6 +27,7 @@ function BlogContent({ locale }: { locale: string }) {
       <PageHero
         badge={t('badge')}
         badgeIcon={BookOpen}
+        crumb={t('title')}
         title={t('title')}
         subtitle={t('subtitle')}
         accentColor="#8b5cf6"

@@ -17,7 +17,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     path: '/editor',
     titleKey: 'editor.title',
     descriptionKey: 'editor.description',
-    titleSuffix: ' — Free Online Markdown Editor',
     keywords: withToolBrandKeywords(editorKeywordsForLocale(locale), 'editor'),
   });
 }
@@ -44,6 +43,7 @@ function EditorPageContent({ locale }: { locale: string }) {
       <PageHero
         badge={t('badge')}
         badgeIcon={PenLine}
+        crumb={t('title')}
         title={<span className="gradient-text">{t('title')}</span>}
         subtitle={t('description')}
         accentColor="var(--accent)"

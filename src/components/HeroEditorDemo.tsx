@@ -13,10 +13,10 @@ import {
   List,
   PenLine,
 } from 'lucide-react';
-import { DocIcon } from '@/components/icons/CustomIcons';
 import { useTranslations } from 'next-intl';
 import { useEffect, useMemo, useState } from 'react';
 
+import { DocIcon } from '@/components/icons/CustomIcons';
 import MarkdownPreview from '@/components/MarkdownPreview';
 import { convertMarkdownToHtml } from '@/lib/markdown';
 

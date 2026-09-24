@@ -3,7 +3,7 @@ import { getRequestConfig } from 'next-intl/server';
 import { Locale } from './locales';
 import { routing } from './routing';
 
-type MessageValue = string | MessageTree;
+type MessageValue = string | string[] | MessageTree;
 type MessageTree = { [key: string]: MessageValue };
 
 function isMessageTree(item: unknown): item is MessageTree {

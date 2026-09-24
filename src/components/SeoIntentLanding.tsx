@@ -23,6 +23,7 @@ export default function SeoIntentLanding({ content }: Props) {
       <PageHero
         badge={content.badge}
         badgeIcon={Sparkles}
+        crumb={content.badge}
         title={
           <>
             {content.h1Before}

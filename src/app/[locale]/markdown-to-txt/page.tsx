@@ -43,6 +43,7 @@ function MarkdownToTxtContent({ locale }: { locale: string }) {
       <PageHero
         badge={tools('txtBadge')}
         badgeIcon={Sparkles}
+        crumb={tools('txtTitle')}
         title={
           <>
             {t('heroBefore')}

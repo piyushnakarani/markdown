@@ -1,5 +1,7 @@
 import { type LucideIcon } from 'lucide-react';
 
+import Breadcrumbs, { type BreadcrumbItem } from '@/components/Breadcrumbs';
+
 interface PageHeroProps {
   badge: string;
   badgeIcon?: LucideIcon;
@@ -7,6 +9,10 @@ interface PageHeroProps {
   subtitle: string;
   accentColor?: string;
   glowColor?: string;
+  /** Current-page crumb; Home is prepended automatically. Omit to hide breadcrumbs. */
+  crumb?: string;
+  /** Extra crumbs between Home and the current page (e.g. Tools). */
+  parentCrumbs?: BreadcrumbItem[];
 }
 
 export default function PageHero({
@@ -15,9 +21,17 @@ export default function PageHero({
   title,
   subtitle,
   accentColor = 'var(--accent)',
+  crumb,
+  parentCrumbs = [],
 }: PageHeroProps) {
   return (
     <section className="tool-hero relative overflow-hidden pt-10 pb-8 sm:pt-12 sm:pb-10">
+      {crumb ? (
+        <Breadcrumbs
+          items={[...parentCrumbs, { label: crumb }]}
+          className="max-w-3xl mb-4 !px-0"
+        />
+      ) : null}
       <div className="relative page-container max-w-3xl text-center">
         <div
           className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium mb-4 border"

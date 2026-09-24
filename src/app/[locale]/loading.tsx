@@ -1,8 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-
 import { useTranslations } from 'next-intl';
+
 import { useTheme } from '@/components/ThemeProvider';
 
 export default function Loading() {

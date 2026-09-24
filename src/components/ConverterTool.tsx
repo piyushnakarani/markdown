@@ -17,7 +17,6 @@ import {
   Upload,
   X,
 } from 'lucide-react';
-import { DocIcon } from '@/components/icons/CustomIcons';
 import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -30,6 +29,7 @@ import {
   EditorToolbarStart,
 } from '@/components/EditorToolbar';
 import ExportOverlay from '@/components/ExportOverlay';
+import { DocIcon } from '@/components/icons/CustomIcons';
 import MarkdownPreview from '@/components/MarkdownPreview';
 import { event } from '@/lib/analytics';
 import {

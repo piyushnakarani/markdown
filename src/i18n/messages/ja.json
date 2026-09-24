@@ -1183,5 +1183,18 @@
     "related2Label": "Markdownライブプレビュー",
     "related3Label": "MarkdownからHTML",
     "related4Label": "Markdownエディタ"
+  },
+  "notFound": {
+    "code": "404",
+    "title": "ページが見つかりません",
+    "description": "お探しのページは存在するか、移動された可能性があります。下のツールをお試しいただくか、ホームページに戻ってください。",
+    "home": "ホームページへ戻る",
+    "tools": "ツールを見る"
+  },
+  "error": {
+    "title": "エラーが発生しました",
+    "description": "予期しないエラーが発生しました。もう一度お試しいただくか、ホームページに戻してください。",
+    "retry": "再試行",
+    "home": "ホームページへ戻る"
   }
 }

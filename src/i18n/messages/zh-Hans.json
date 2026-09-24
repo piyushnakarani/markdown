@@ -1183,5 +1183,18 @@
     "related2Label": "Markdown 实时预览",
     "related3Label": "Markdown 转 HTML",
     "related4Label": "Markdown 编辑器"
+  },
+  "notFound": {
+    "code": "404",
+    "title": "页面未找到",
+    "description": "您查找的页面不存在或已被移动。请尝试下面的工具，或返回首页。",
+    "home": "返回首页",
+    "tools": "浏览工具"
+  },
+  "error": {
+    "title": "出现错误",
+    "description": "发生了意外错误。请重试或返回首页。",
+    "retry": "重试",
+    "home": "返回首页"
   }
 }

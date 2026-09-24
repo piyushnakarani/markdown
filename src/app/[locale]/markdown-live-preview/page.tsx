@@ -11,12 +11,13 @@ import {
   Shield,
   Sparkles,
 } from 'lucide-react';
-import { DocIcon } from '@/components/icons/CustomIcons';
 import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import type { CSSProperties } from 'react';
 import { Fragment } from 'react';
+
+import { DocIcon } from '@/components/icons/CustomIcons';
 
 const EditorClient = dynamic(() => import('@/components/EditorClient'));
 import FAQAccordion from '@/components/FAQAccordion';
@@ -54,7 +55,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     path: '/markdown-live-preview',
     titleKey: 'livePreview.title',
     descriptionKey: 'livePreview.description',
-    titleSuffix: ' — Markdown Reader Online Free',
     keywords: withToolBrandKeywords(previewKeywordsForLocale(locale), 'preview'),
     image: {
       url: absoluteUrl(LIVE_PREVIEW_OG_IMAGE.url),
@@ -134,6 +134,7 @@ function MarkdownLivePreviewContent({ locale }: { locale: string }) {
       <PageHero
         badge={t('badge')}
         badgeIcon={Eye}
+        crumb={t('badge')}
         title={
           <>
             {t('heroBefore')}

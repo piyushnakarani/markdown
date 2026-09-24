@@ -47,13 +47,13 @@
     "pdfDescription": "Convert Markdown to PDF online free with Mermaid diagrams, KaTeX math, and live preview. Private browser export.",
     "pdfBadge": "Instant Browser Compiler",
     "htmlTitle": "Markdown to HTML Free",
-    "htmlDescription": "Convert Markdown to HTML online free — clean GFM HTML with Mermaid. No signup, private browser export.",
+    "htmlDescription": "Convert Markdown to HTML online free — clean semantic GFM HTML with Mermaid diagrams. No signup, private browser export.",
     "htmlBadge": "Semantic Engine Compiler",
     "txtTitle": "Markdown to Plain Text",
-    "txtDescription": "Convert Markdown to plain text free — strip Markdown formatting online. MD to TXT for prompts and clean copy.",
+    "txtDescription": "Convert Markdown to plain text free — strip Markdown formatting online. MD to TXT for emails, prompts LLMs, and clean copy.",
     "txtBadge": "Plain Text Stripper",
     "docxTitle": "Markdown to Word (DOCX)",
-    "docxDescription": "Convert Markdown to Word online free — Markdown to DOCX with headings, tables, and Mermaid. No signup.",
+    "docxDescription": "Convert Markdown to Word online free — Markdown to DOCX with headings, tables, and Mermaid diagrams. No signup required.",
     "docxBadge": "Word Document Export",
     "editorTitle": "Online Markdown Editor",
     "editorDescription": "Free online Markdown editor with live preview, Mermaid diagrams, and PDF export. No signup.",
@@ -99,8 +99,8 @@
   },
   "editor": {
     "badge": "Free Online Editor",
-    "title": "Free Online Markdown Editor",
-    "description": "Free online Markdown editor — write, preview, and export with Mermaid diagrams and KaTeX math. Split-pane markdown text editor, sync scroll, no signup. Best free markdown editor online.",
+    "title": "Free Markdown Editor — Mermaid & Math",
+    "description": "Free online Markdown editor with split-pane live preview, Mermaid diagrams, and KaTeX math. Sync scroll and export to PDF, HTML, or TXT — no signup.",
     "placeholder": "# Premium Markdown\n\nConvert markdown to **PDF**, **HTML**, and **TXT** instantly.\n\n- Client-side processing\n- Fast & secure browser engine\n- Live preview as you type\n\n## Quick Start\n\n1. Type or paste Markdown here\n2. Pick an export format\n3. Click **Download PDF** \n\n### Checklist\n\n- [x] Headings, lists, and tables\n- [x] Syntax-highlighted code\n- [x] Mermaid diagrams\n- [x] LaTeX / KaTeX math\n\n## Code Example\n\n```javascript\nfunction hello(name) {\n  return `Hello, ${name}!`;\n}\n```\n\n## Tables\n\n| Use case | Why Markdown |\n|----------|--------------|\n| AI chats | Copy → paste → PDF |\n| Resumes | Plain text you can version |\n| Reports | Fast structure, clean export |\n\n## Diagram (Mermaid)\n\n```mermaid\nflowchart LR\n  A[Paste Markdown] --> B[Live preview]\n  B --> C[Download PDF]\n  C --> D[Share]\n```\n\n## Math (LaTeX / KaTeX)\n\nInline math looks like this: $E = mc^2$\n\nBlock math equations:\n\n$\n\\int_0^1 x^2 \\, dx = \\frac{1}{3}\n$$\n\n## Nested list\n\n- Structure\n  - Headings and paragraphs\n  - Bullet, numbered, and task lists\n- Media\n  - Images and links\n  - Blockquotes\n\n> Tip: This editor supports full GitHub Flavored Markdown and renders instantly in your browser!",
     "editorTab": "Editor",
     "previewTab": "Preview",
@@ -140,8 +140,8 @@
   },
   "livePreview": {
     "badge": "Free Online Editor",
-    "title": "Markdown Live Preview Online Free",
-    "description": "Markdown live preview online free — write on the left, see rendered output on the right. Sync scroll, Mermaid, syntax highlighting, PDF export. No login. Read and preview Markdown documents instantly.",
+    "title": "Markdown Live Preview — Free Online",
+    "description": "Free Markdown live preview — write on the left, rendered output on the right. Sync scroll, Mermaid, syntax highlighting, and PDF export. No login.",
     "heroBefore": "Markdown ",
     "heroHighlight": "Live Preview",
     "heroAfter": "",
@@ -242,10 +242,10 @@
     "chars": "chars",
     "editorAria": "Markdown editor"
   },
-"markdownToPdf": {
+  "markdownToPdf": {
     "badge": "Free Online Converter",
-    "title": "Markdown to PDF Converter — Free & Instant",
-    "description": "Convert Markdown to PDF online free — Mermaid diagrams, KaTeX math, and live preview. Private browser export, no sign-up. Markdown to PDF converter.",
+    "title": "Markdown to PDF — Free, Mermaid & Math",
+    "description": "Convert Markdown to PDF online free with Mermaid diagrams, KaTeX math, and live preview. Private browser export — no upload or sign-up.",
     "heroBefore": "Convert ",
     "heroHighlight": "Markdown to PDF",
     "heroAfter": " (.md to pdf)",
@@ -339,7 +339,7 @@
   "blog": {
     "badge": "Developer Blog",
     "title": "Developer Blog",
-    "subtitle": "Tips, tutorials, and guides for Markdown and developer productivity",
+    "subtitle": "Tips, tutorials, and guides for Markdown conversion, Mermaid diagrams, PDF export, and developer productivity workflows.",
     "readMore": "Read More →",
     "readTime": "min read",
     "backToBlog": "Back to Blog",
@@ -447,7 +447,7 @@
   "help": {
     "badge": "Help & Support",
     "title": "Help & Documentation",
-    "subtitle": "Everything you need to know about using PDFWritter",
+    "subtitle": "Everything you need to know about using PDFWritter — getting started, Markdown syntax reference, keyboard shortcuts, and FAQ.",
     "metaDescription": "PDFWritter help: convert Markdown to PDF, HTML, TXT, and DOCX in your browser. Syntax reference, shortcuts, Mermaid, and FAQs.",
     "gettingStarted": "Getting Started",
     "faq": "Frequently Asked Questions",
@@ -630,7 +630,7 @@
   },
   "terms": {
     "title": "Terms of Service",
-    "subtitle": "PDFWritter terms of service: free use rules, content ownership, disclaimers, and guidelines for the Markdown converter.",
+    "subtitle": "PDFWritter terms of service: free use rules, content ownership, disclaimers, and guidelines for using the Markdown converter online.",
     "heroBadge": "Terms of Service",
     "heroTitle": "Simple, Developer-Friendly Terms",
     "heroSubtitle": "PDFWritter is a free web utility. Read our usage guidelines and disclaimer rules below.",
@@ -1181,5 +1181,18 @@
     "ctaTitle": "Start with ChatGPT → PDF",
     "ctaDescription": "Most people paste ChatGPT answers first. Use the dedicated guide if that is your flow.",
     "ctaLabel": "Open ChatGPT to PDF"
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Page Not Found",
+    "description": "The page you are looking for does not exist or has been moved. Try one of the tools below or return to the homepage.",
+    "home": "Back to Home",
+    "tools": "Browse Tools"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "description": "An unexpected error occurred. Please try again or return to the homepage.",
+    "retry": "Try again",
+    "home": "Back to Home"
   }
 }

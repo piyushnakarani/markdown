@@ -1,6 +1,5 @@
 'use client';
 
-import { DocIcon } from '@/components/icons/CustomIcons';
 import {
   Activity,
   ArrowRight,
@@ -19,6 +18,7 @@ import {
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
+import { DocIcon } from '@/components/icons/CustomIcons';
 import MermaidFlowchartPreview from '@/components/MermaidFlowchartPreview';
 import { Link } from '@/i18n/navigation';
 

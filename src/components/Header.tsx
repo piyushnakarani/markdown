@@ -13,10 +13,10 @@ import {
   Sun,
   X,
 } from 'lucide-react';
-import { DocIcon } from '@/components/icons/CustomIcons';
 import { useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
 
+import { DocIcon } from '@/components/icons/CustomIcons';
 import { Link, usePathname } from '@/i18n/navigation';
 
 import LanguageSwitcher from './LanguageSwitcher';
@@ -140,6 +140,9 @@ export default function Header() {
 
             <Link href="/blog" locale="en" className={navLinkClass('/blog')}>
               {t('blog')}
+            </Link>
+            <Link href="/help" className={navLinkClass('/help')}>
+              {t('help')}
             </Link>
             <Link href="/about" className={navLinkClass('/about')}>
               {t('about')}

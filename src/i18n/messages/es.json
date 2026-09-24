@@ -1183,5 +1183,18 @@
     "related2Label": "Vista previa en vivo de Markdown",
     "related3Label": "Markdown a HTML",
     "related4Label": "Editor de Markdown"
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Página no encontrada",
+    "description": "La página que buscas no existe o se ha movido. Prueba una de las herramientas a continuación o vuelve a la página de inicio.",
+    "home": "Volver al inicio",
+    "tools": "Explorar herramientas"
+  },
+  "error": {
+    "title": "Algo salió mal",
+    "description": "Ocurrió un error inesperado. Intenta de nuevo o vuelve a la página de inicio.",
+    "retry": "Reintentar",
+    "home": "Volver al inicio"
   }
 }

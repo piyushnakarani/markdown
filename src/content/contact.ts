@@ -19,5 +19,5 @@ export const CONTACT_COPY = {
 export const CONTACT_PAGE_META = {
   title: 'Contact PDFWritter',
   description:
-    'Contact PDFWritter at pdfwritter@gmail.com, on Reddit u/pdfwritter, or via the on-site form.',
+    'Contact the PDFWritter team via our on-site form, email pdfwritter@gmail.com, or find us on Reddit u/pdfwritter for support and feedback.',
 } as const;
