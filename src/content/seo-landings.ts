@@ -385,8 +385,8 @@ export const NOTION_TO_PDF: SeoLandingContent = {
   h1Before: 'Notion to ',
   h1Highlight: 'PDF',
   h1After: ' Export',
-  accentColor: '#000000',
-  glowColor: 'rgba(0,0,0,0.06)',
+  accentColor: 'var(--accent)',
+  glowColor: 'var(--accent-muted)',
   intro: [
     'Notion does not export great PDFs. The cleanest path is Export → Markdown, then PDFWritter converts that Markdown into a real document.',
     'Tables, toggle lists, callouts, code blocks, and Mermaid diagrams render in a live preview before export. No API keys and no uploads for private pages.',
@@ -555,8 +555,8 @@ export const RESUME_MARKDOWN_TO_PDF: SeoLandingContent = {
   h1Before: 'Markdown Resume to ',
   h1Highlight: 'PDF',
   h1After: '',
-  accentColor: '#0f4c3a',
-  glowColor: 'rgba(15,76,58,0.12)',
+  accentColor: 'var(--accent)',
+  glowColor: 'var(--accent-muted)',
   intro: [
     'A Markdown resume gives you version control and clean diffs. PDFWritter converts it to a professional, ATS-friendly PDF without LaTeX, Word, or a design tool.',
     'Headings, bullet lists, links, and horizontal rules render in a live preview before export. Your resume never leaves your browser.',
