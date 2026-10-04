@@ -62,6 +62,8 @@
     "chatgptDescription": "ChatGPT उत्तर पेस्ट करें और साफ़ PDF डाउनलोड करें — मुफ़्त और निजी।",
     "mermaidDescription": "Mermaid फ़्लोचार्ट और डायग्राम वाला Markdown PDF में निर्यात करें।",
     "aiDescription": "ब्राउज़र में ChatGPT, Claude या Gemini Markdown को PDF में बदलें।",
+    "pandocTitle": "Pandoc Alternative",
+    "pandocDescription": "Convert Markdown to PDF in the browser — no TeX, no CLI. Mermaid and KaTeX included.",
     "tryNow": "अभी आज़माएं",
     "obsidianDescription": "Export Obsidian Markdown notes to PDF with Mermaid diagrams and math.",
     "notionDescription": "Convert Notion pages (Markdown export) to clean PDF.",

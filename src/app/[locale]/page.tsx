@@ -137,6 +137,13 @@ const tools = [
       title: t('nav.resumeToPdf'),
       desc: t('tools.resumeDescription'),
     },
+    {
+      href: '/pandoc-alternative',
+      icon: Sparkles,
+      color: '#0ea5e9',
+      title: t('tools.pandocTitle'),
+      desc: t('tools.pandocDescription'),
+    },
   ];
 
   const faqs = [
@@ -342,6 +349,44 @@ const tools = [
           </ScrollReveal>
         </div>
       </section>
+
+      {locale === 'en' && (
+        <section className="section-py section-divider relative" aria-labelledby="popular-workflows-heading">
+          <div className="page-container max-w-4xl">
+            <ScrollReveal>
+              <SectionHeading
+                size="compact"
+                title="Popular Markdown workflows"
+                subtitle="Tools and guides aligned with what developers search for — from online editors to PDF export and documentation."
+              />
+            </ScrollReveal>
+            <ScrollReveal delay={60}>
+              <ul className="grid gap-2 sm:grid-cols-2 text-sm text-[var(--text-secondary)]">
+                {[
+                  { href: '/editor', label: 'Markdown editor online' },
+                  { href: '/markdown-to-pdf', label: 'Markdown to PDF' },
+                  { href: '/md-to-pdf', label: 'Convert md to PDF' },
+                  { href: '/markdown-live-preview', label: 'Markdown renderer online' },
+                  { href: '/mermaid-markdown-to-pdf', label: 'Markdown to PDF with Mermaid' },
+                  { href: '/pandoc-alternative', label: 'Pandoc alternative' },
+                  { href: '/free-markdown-converter', label: 'Markdown converter online' },
+                  { href: '/blog/best-markdown-editors', label: 'Best markdown apps' },
+                  { href: '/blog/free-markdown-tools', label: 'Best free markdown apps' },
+                  { href: '/blog/documentation-tools-developers', label: 'Software documentation tools' },
+                  { href: '/blog/render-mermaid-diagrams-markdown', label: 'Markdown flowchart (Mermaid)' },
+                  { href: '/blog/markdown-tutorial-beginners', label: 'Markdown tutorial' },
+                ].map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href} className="text-[var(--accent)] hover:underline">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
 
       <BlogInsightsSection />
 

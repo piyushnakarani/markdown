@@ -7,6 +7,11 @@ export const TOOL_BLOG_LINKS: Record<string, string[]> = {
     'how-to-convert-markdown-to-pdf-without-losing-formatting',
     'make-beautiful-pdf-from-markdown',
   ],
+  'pandoc-alternative': [
+    'batch-convert-markdown-to-pdf-online',
+    'best-markdown-to-pdf-converter',
+    'technical-documentation-markdown-to-pdf',
+  ],
   'markdown-to-html': [
     'convert-markdown-to-html-online',
     'markdown-vs-html',

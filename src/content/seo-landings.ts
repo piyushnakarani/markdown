@@ -7,6 +7,7 @@ import {
   MERMAID_TO_PDF_KEYWORDS,
   NOTION_TO_PDF_KEYWORDS,
   OBSIDIAN_TO_PDF_KEYWORDS,
+  PANDOC_ALTERNATIVE_KEYWORDS,
   RESUME_TO_PDF_KEYWORDS,
 } from '@/lib/keywords';
 
@@ -199,9 +200,95 @@ export const MERMAID_TO_PDF: SeoLandingContent = {
   ctaLabel: 'Open Markdown to PDF',
   related: [
     { href: '/markdown-to-pdf', label: 'Markdown to PDF converter' },
+    { href: '/pandoc-alternative', label: 'Pandoc alternative (browser)' },
     { href: '/blog/render-mermaid-diagrams-markdown', label: 'Mermaid in Markdown guide' },
     { href: '/chatgpt-to-pdf', label: 'ChatGPT to PDF' },
     { href: '/editor', label: 'Online Markdown editor' },
+  ],
+};
+
+export const PANDOC_ALTERNATIVE: SeoLandingContent = {
+  path: '/pandoc-alternative',
+  title: 'Pandoc Alternative — Markdown to PDF in Browser',
+  description:
+    'Pandoc alternative online: convert Markdown to PDF with Mermaid diagrams and KaTeX math in your browser. No TeX install, no CLI, private export — free.',
+  keywords: [...PANDOC_ALTERNATIVE_KEYWORDS],
+  badge: 'No CLI · No TeX',
+  h1Before: 'Pandoc ',
+  h1Highlight: 'Alternative',
+  h1After: ' for Markdown PDF',
+  accentColor: '#0ea5e9',
+  glowColor: 'rgba(14,165,233,0.10)',
+  intro: [
+    'Pandoc is powerful for scripted pipelines, but many developers only need one clean PDF from a README or report — without installing TeX, Mermaid filters, or debugging YAML defaults.',
+    'PDFWritter is a browser-based Pandoc alternative for Markdown → PDF: live preview, native Mermaid rendering, KaTeX math, and client-side export. Paste, proof, download — no account.',
+  ],
+  howTitle: 'Convert Markdown to PDF without Pandoc',
+  howSubtitle: 'Same outcome for single documents — fewer moving parts',
+  steps: [
+    {
+      title: 'Paste or upload your .md file',
+      desc: 'Drop GitHub README content, internal docs, or notes with ```mermaid and math fences.',
+    },
+    {
+      title: 'Preview diagrams and formatting',
+      desc: 'Confirm flowcharts, tables, code blocks, and equations render before export — no Pandoc filter chain.',
+    },
+    {
+      title: 'Download PDF in the browser',
+      desc: 'Export instantly. Your content stays on-device for normal conversion — no upload gate.',
+    },
+  ],
+  featuresTitle: 'Why teams pick PDFWritter over Pandoc for quick PDFs',
+  features: [
+    {
+      title: 'Zero local toolchain',
+      desc: 'Skip pandoc, texlive, mermaid-filter, and Chromium print scripts when you need one shareable PDF now.',
+    },
+    {
+      title: 'Mermaid in PDF by default',
+      desc: 'Flowcharts and sequence diagrams render in preview and export — a common pain point with plain Pandoc setups.',
+    },
+    {
+      title: 'Live preview first',
+      desc: 'See the PDF layout before download instead of compile-fix-recompile loops.',
+    },
+    {
+      title: 'Still pairs with Pandoc',
+      desc: 'Use PDFWritter for drafts and stakeholder PDFs; keep Pandoc in CI for automated doc builds at scale.',
+    },
+  ],
+  faqs: [
+    {
+      q: 'What is the best Pandoc alternative for Markdown to PDF?',
+      a: 'For one-off or privacy-sensitive documents, PDFWritter converts Markdown to PDF in the browser with Mermaid and KaTeX support. For large automated pipelines, Pandoc in CI may still be the right tool.',
+    },
+    {
+      q: 'Can I convert Markdown with Mermaid to PDF without Pandoc?',
+      a: 'Yes. Paste Markdown with ```mermaid fences into PDFWritter, wait for diagrams in live preview, then export PDF.',
+    },
+    {
+      q: 'Does this replace Pandoc for batch builds?',
+      a: 'Not always. Browser export is ideal for single files and quick shares. Batch or templated builds often still use Pandoc scripts — see our batch conversion guide.',
+    },
+    {
+      q: 'Is LaTeX math supported without a Pandoc + TeX install?',
+      a: 'Yes. KaTeX-style math in Markdown renders in preview and exports to PDF alongside your text.',
+    },
+    {
+      q: 'Is my document uploaded to a server?',
+      a: 'For normal use, conversion runs client-side in your browser. Nothing requires a PDFWritter account.',
+    },
+  ],
+  ctaTitle: 'Need Mermaid-heavy docs?',
+  ctaDescription: 'Dedicated workflow for diagrams in Markdown PDF export.',
+  ctaHref: '/mermaid-markdown-to-pdf',
+  ctaLabel: 'Open Mermaid Markdown to PDF',
+  related: [
+    { href: '/markdown-to-pdf', label: 'Markdown to PDF converter' },
+    { href: '/mermaid-markdown-to-pdf', label: 'Mermaid Markdown to PDF' },
+    { href: '/editor', label: 'Online Markdown editor' },
+    { href: '/blog/batch-convert-markdown-to-pdf-online', label: 'Batch PDF with Pandoc (guide)' },
   ],
 };
 
@@ -633,6 +720,7 @@ export const RESUME_MARKDOWN_TO_PDF: SeoLandingContent = {
 export const SECTIONS_LANDINGS = [
   CHATGPT_TO_PDF,
   MERMAID_TO_PDF,
+  PANDOC_ALTERNATIVE,
   AI_MARKDOWN_TO_PDF,
   OBSIDIAN_TO_PDF,
   NOTION_TO_PDF,

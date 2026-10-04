@@ -36,6 +36,7 @@ function FreeConverterContent({ locale }: { locale: string }) {
     { href: '/chatgpt-to-pdf', icon: Sparkles, color: '#10a37f', title: t('nav.chatgptToPdf'), desc: t('tools.chatgptDescription') },
     { href: '/ai-markdown-to-pdf', icon: Sparkles, color: '#3b82f6', title: t('nav.aiToPdf'), desc: t('tools.aiDescription') },
     { href: '/mermaid-markdown-to-pdf', icon: GitBranch, color: '#8b5cf6', title: t('nav.mermaidToPdf'), desc: t('tools.mermaidDescription') },
+    { href: '/pandoc-alternative', icon: Sparkles, color: '#0ea5e9', title: t('tools.pandocTitle'), desc: t('tools.pandocDescription') },
     { href: '/obsidian-to-pdf', icon: GitBranch, color: '#4b3f72', title: 'Obsidian to PDF', desc: 'Export Obsidian Markdown notes to PDF with Mermaid diagrams.' },
     { href: '/notion-to-pdf', icon: GitBranch, color: '#000', title: 'Notion to PDF', desc: 'Convert Notion pages (Markdown export) to clean PDF.' },
     { href: '/github-readme-to-pdf', icon: DocIcon, color: '#6e5494', title: 'GitHub README to PDF', desc: 'Convert README.md to PDF with badges and code blocks.' },

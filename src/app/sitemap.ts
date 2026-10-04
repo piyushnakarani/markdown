@@ -30,6 +30,7 @@ const LOCALIZED_PAGES = [
   '/chatgpt-to-pdf',
   '/ai-markdown-to-pdf',
   '/mermaid-markdown-to-pdf',
+  '/pandoc-alternative',
   '/privacy',
   '/terms',
 ];

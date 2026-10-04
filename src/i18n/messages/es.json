@@ -62,6 +62,8 @@
     "chatgptDescription": "Pega respuestas de ChatGPT y descarga un PDF limpio — gratis y privado.",
     "mermaidDescription": "Exporta Markdown con diagramas Mermaid a PDF.",
     "aiDescription": "Convierte Markdown de ChatGPT, Claude o Gemini a PDF en tu navegador.",
+    "pandocTitle": "Pandoc Alternative",
+    "pandocDescription": "Convert Markdown to PDF in the browser — no TeX, no CLI. Mermaid and KaTeX included.",
     "tryNow": "Probar Ahora",
     "obsidianDescription": "Export Obsidian Markdown notes to PDF with Mermaid diagrams and math.",
     "notionDescription": "Convert Notion pages (Markdown export) to clean PDF.",

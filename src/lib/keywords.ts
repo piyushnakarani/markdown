@@ -37,6 +37,11 @@ function unique(keywords: readonly string[]): string[] {
 export const PDF_KEYWORD_BANK = unique([
    'markdown to pdf online free',
    'markdown to pdf',
+   'markdown pdf',
+   'markup to pdf',
+   'generate pdf from markdown',
+   'markdown to pdf converter online',
+   'convert markdown to pdf',
    'free markdown to pdf converter',
    'convert markdown to pdf free',
    'markdown to pdf online',
@@ -147,6 +152,13 @@ export const MD_TO_PDF_KEYWORD_BANK = unique([
 /** /editor — owns "online markdown editor free" (not live-preview head) */
 export const EDITOR_KEYWORD_BANK = unique([
    'online markdown editor free',
+   'markdown editor',
+   'markdown editor online',
+   'markdown online',
+   'online markdown',
+   'md editor',
+   'md editor online',
+   'free markdown editor',
    'free markdown editor online',
    'markdown editor no signup',
    'markdown editor with preview',
@@ -206,6 +218,9 @@ export const EDITOR_KEYWORD_BANK = unique([
 /** /markdown-live-preview — owns live preview / sync scroll cluster */
 export const PREVIEW_KEYWORD_BANK = unique([
    'markdown live preview',
+   'markdown renderer',
+   'markdown renderer online',
+   'online markdown renderer',
    'markdown live preview online free',
    'md live preview',
    'live markdown preview online',
@@ -434,6 +449,8 @@ export const DOCX_KEYWORD_BANK = unique([
 /** /free-markdown-converter hub */
 export const CONVERTER_KEYWORD_BANK = unique([
   'free markdown converter online',
+  'markdown converter',
+  'markdown converter online',
   'online markdown converter',
   'markdown converter no signup',
   'free markdown tools online',
@@ -2522,6 +2539,183 @@ export function mermaidToPdfKeywordsForLocale(locale: string): string[] {
   return keywordsForLocale(locale, LOCALE_MERMAID_TO_PDF_KEYWORDS, MERMAID_TO_PDF_KEYWORD_BANK);
 }
 
+/** /pandoc-alternative — owns pandoc alternative / no-CLI markdown pdf cluster */
+export const PANDOC_ALTERNATIVE_KEYWORD_BANK = unique([
+  'pandoc alternative',
+  'pandoc alternatives',
+  'alternative to pandoc',
+  'pandoc alternative markdown pdf',
+  'pandoc alternative online',
+  'browser pandoc alternative',
+  'free pandoc alternative',
+  'pandoc alternative no install',
+  'markdown to pdf without pandoc',
+  'convert markdown to pdf without pandoc',
+  'mermaid to pdf without pandoc',
+  'pandoc mermaid alternative',
+  'pandoc latex alternative online',
+  'pandoc vs online markdown pdf',
+  'markdown alternatives',
+  'markdown alternative to pandoc',
+  'typora alternative open source',
+  'mkdocs alternative',
+  'online markdown to pdf converter',
+  'md to pdf without pandoc',
+  'pandoc replacement online',
+  'pandoc online alternative',
+  'skip pandoc markdown pdf',
+  'no pandoc markdown pdf',
+  'pandoc alternative 2026',
+  'pandoc alternative for developers',
+  'pandoc alternative mermaid diagrams',
+  'pandoc alternative katex',
+  'pandoc alternative live preview',
+  'pandoc alternative client side',
+  'pandoc alternative private',
+  'pandoc alternative no signup',
+  'pandoc alternative free',
+  'pandoc markdown converter alternative',
+  'pandoc pdf converter alternative',
+  'pandoc html alternative online',
+  'pandoc workflow alternative',
+  'documentation pandoc alternative',
+  'readme pandoc alternative',
+  'github readme pandoc alternative',
+  'pandoc batch alternative browser',
+  'pandoc cli alternative web',
+  'pandoc texlive alternative',
+  'pandoc chromium alternative',
+  'pandoc filter alternative mermaid',
+  'pdfwritter pandoc alternative',
+  'pdfwritter',
+]);
+
+export const LOCALE_PANDOC_ALTERNATIVE_KEYWORDS: LocaleKeywordMap = {
+  en: ['pandoc alternative', 'pandoc alternatives', 'markdown alternatives', 'pandoc alternative online'],
+  es: [
+    'alternativa a pandoc',
+    'pandoc alternativa',
+    'markdown a pdf sin pandoc',
+    'alternativa pandoc online',
+    'convertir markdown sin pandoc',
+    'alternativa pandoc mermaid',
+    'alternativa pandoc gratis',
+    'alternativa pandoc pdf',
+    'alternativa a pandoc markdown',
+    'pandoc alternativa 2026',
+  ],
+  fr: [
+    'alternative à pandoc',
+    'pandoc alternative',
+    'markdown en pdf sans pandoc',
+    'alternative pandoc en ligne',
+    'convertir markdown sans pandoc',
+    'alternative pandoc mermaid',
+    'alternative pandoc gratuite',
+    'alternative pandoc pdf',
+    'alternative pandoc markdown',
+    'pandoc alternative 2026',
+  ],
+  de: [
+    'pandoc alternative',
+    'alternative zu pandoc',
+    'markdown zu pdf ohne pandoc',
+    'pandoc alternative online',
+    'markdown konvertieren ohne pandoc',
+    'pandoc alternative mermaid',
+    'pandoc alternative kostenlos',
+    'pandoc alternative pdf',
+    'pandoc markdown alternative',
+    'pandoc alternative 2026',
+  ],
+  pt: [
+    'alternativa ao pandoc',
+    'pandoc alternativa',
+    'markdown para pdf sem pandoc',
+    'alternativa pandoc online',
+    'converter markdown sem pandoc',
+    'alternativa pandoc mermaid',
+    'alternativa pandoc grátis',
+    'alternativa pandoc pdf',
+    'alternativa pandoc markdown',
+    'pandoc alternativa 2026',
+  ],
+  ar: [
+    'بديل pandoc',
+    'pandoc alternative',
+    'markdown إلى pdf بدون pandoc',
+    'بديل pandoc أونلاين',
+    'تحويل markdown بدون pandoc',
+    'بديل pandoc mermaid',
+    'بديل pandoc مجاني',
+    'بديل pandoc pdf',
+    'بديل pandoc markdown',
+    'pandoc alternative 2026',
+  ],
+  'zh-Hans': [
+    'pandoc 替代',
+    'pandoc alternative',
+    'markdown 转 pdf 无需 pandoc',
+    '在线 pandoc 替代',
+    '不用 pandoc 转换 markdown',
+    'pandoc mermaid 替代',
+    '免费 pandoc 替代',
+    'pandoc pdf 替代',
+    'pandoc markdown 替代',
+    'pandoc 替代 2026',
+  ],
+  ja: [
+    'pandoc 代替',
+    'pandoc alternative',
+    'pandoc なし markdown pdf',
+    'オンライン pandoc 代替',
+    'pandoc 不要 markdown 変換',
+    'pandoc mermaid 代替',
+    '無料 pandoc 代替',
+    'pandoc pdf 代替',
+    'pandoc markdown 代替',
+    'pandoc 代替 2026',
+  ],
+  ko: [
+    'pandoc 대안',
+    'pandoc alternative',
+    'pandoc 없이 markdown pdf',
+    '온라인 pandoc 대안',
+    'pandoc 없이 markdown 변환',
+    'pandoc mermaid 대안',
+    '무료 pandoc 대안',
+    'pandoc pdf 대안',
+    'pandoc markdown 대안',
+    'pandoc 대안 2026',
+  ],
+  bn: [
+    'pandoc alternative',
+    'pandoc alternatives',
+    'markdown to pdf without pandoc',
+    'pandoc alternative online',
+    'free pandoc alternative',
+    'pandoc mermaid alternative',
+    'pandoc alternative pdf',
+    'pandoc markdown alternative',
+  ],
+  ru: [
+    'альтернатива pandoc',
+    'pandoc alternative',
+    'markdown в pdf без pandoc',
+    'альтернатива pandoc онлайн',
+    'конвертировать markdown без pandoc',
+    'альтернатива pandoc mermaid',
+    'бесплатная альтернатива pandoc',
+    'альтернатива pandoc pdf',
+    'альтернатива pandoc markdown',
+    'pandoc alternative 2026',
+  ],
+};
+
+export function pandocAlternativeKeywordsForLocale(locale: string): string[] {
+  return keywordsForLocale(locale, LOCALE_PANDOC_ALTERNATIVE_KEYWORDS, PANDOC_ALTERNATIVE_KEYWORD_BANK);
+}
+
 export const LOCALE_OBSIDIAN_TO_PDF_KEYWORDS: LocaleKeywordMap = {
   en: [
     'obsidian to pdf',
@@ -3058,6 +3252,9 @@ export const GITHUB_README_TO_PDF_KEYWORDS = GITHUB_README_TO_PDF_KEYWORD_BANK;
 /** /markdown-to-pdf-resume — primary: markdown resume to pdf */
 export const RESUME_TO_PDF_KEYWORDS = RESUME_TO_PDF_KEYWORD_BANK;
 
+/** /pandoc-alternative — primary: pandoc alternative */
+export const PANDOC_ALTERNATIVE_KEYWORDS = PANDOC_ALTERNATIVE_KEYWORD_BANK;
+
 assertAllLocales(LOCALE_PDF_KEYWORDS, 'LOCALE_PDF_KEYWORDS');
 assertAllLocales(LOCALE_MD_TO_PDF_KEYWORDS, 'LOCALE_MD_TO_PDF_KEYWORDS');
 assertAllLocales(LOCALE_EDITOR_KEYWORDS, 'LOCALE_EDITOR_KEYWORDS');
@@ -3069,6 +3266,7 @@ assertAllLocales(LOCALE_CONVERTER_KEYWORDS, 'LOCALE_CONVERTER_KEYWORDS');
 assertAllLocales(LOCALE_CHATGPT_TO_PDF_KEYWORDS, 'LOCALE_CHATGPT_TO_PDF_KEYWORDS');
 assertAllLocales(LOCALE_AI_MARKDOWN_TO_PDF_KEYWORDS, 'LOCALE_AI_MARKDOWN_TO_PDF_KEYWORDS');
 assertAllLocales(LOCALE_MERMAID_TO_PDF_KEYWORDS, 'LOCALE_MERMAID_TO_PDF_KEYWORDS');
+assertAllLocales(LOCALE_PANDOC_ALTERNATIVE_KEYWORDS, 'LOCALE_PANDOC_ALTERNATIVE_KEYWORDS');
 assertAllLocales(LOCALE_OBSIDIAN_TO_PDF_KEYWORDS, 'LOCALE_OBSIDIAN_TO_PDF_KEYWORDS');
 assertAllLocales(LOCALE_NOTION_TO_PDF_KEYWORDS, 'LOCALE_NOTION_TO_PDF_KEYWORDS');
 assertAllLocales(LOCALE_GITHUB_README_TO_PDF_KEYWORDS, 'LOCALE_GITHUB_README_TO_PDF_KEYWORDS');
@@ -3168,9 +3366,13 @@ export const BLOG_KEYWORDS: Record<string, readonly string[]> = {
   "best-markdown-editors": [
     "markdown editor",
     "best markdown editor",
+    "best markdown editors",
     "best editor for markdown",
     "best markdown apps",
+    "best free markdown apps",
     "md editor",
+    "md editor online",
+    "online markdown editor",
     "markdown editor guide",
     "markdown editor tutorial",
     "markdown editor free",
@@ -3301,6 +3503,10 @@ export const BLOG_KEYWORDS: Record<string, readonly string[]> = {
   ],
   "documentation-tools-developers": [
     "documentation tools",
+    "software documentation tools",
+    "tool for writing documentation",
+    "documentation tools for developers",
+    "source code documentation tools",
     "developer documentation",
     "mkdocs alternative",
     "technical writing",
@@ -3351,6 +3557,9 @@ export const BLOG_KEYWORDS: Record<string, readonly string[]> = {
   "free-markdown-tools": [
     "free markdown tools",
     "best markdown apps",
+    "best free markdown apps",
+    "best free markdown apps for small business",
+    "markdown apps",
     "online markdown converter",
     "mkdocs alternative",
     "markdown tools online",
