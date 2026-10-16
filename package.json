@@ -9,6 +9,7 @@
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "typecheck": "tsc --noEmit",
+    "validate:seo": "node seo/validate-seo-graph.mjs",
     "prepare": "husky"
   },
   "dependencies": {

@@ -1,25 +1,13 @@
 'use client';
 
-import {
-  ArrowRight,
-  ChevronDown,
-  Eye,
-  FileCode,
-  FileSpreadsheet,
-  FileType,
-  Menu,
-  Moon,
-  PenLine,
-  Sun,
-  X,
-} from 'lucide-react';
+import { ChevronDown, Menu, Moon, PenLine, Sun, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
 
-import { DocIcon } from '@/components/icons/CustomIcons';
 import { Link, usePathname } from '@/i18n/navigation';
 
 import LanguageSwitcher from './LanguageSwitcher';
+import NavToolsMenu from './NavToolsMenu';
 import SiteLogo from './SiteLogo';
 import { useTheme } from './ThemeProvider';
 
@@ -55,6 +43,15 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
+    if (!toolsOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setToolsOpen(false);
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [toolsOpen]);
+
+  useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [mobileOpen]);
@@ -70,19 +67,6 @@ export default function Header() {
         ? 'text-[var(--accent)] bg-[var(--accent-muted)]'
         : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)]'
     }`;
-
-  const tools = [
-    { href: '/markdown-to-pdf', label: t('markdownToPdf'), icon: DocIcon, color: '#ef4444' },
-    { href: '/markdown-to-html', label: t('markdownToHtml'), icon: FileCode, color: '#f59e0b' },
-    { href: '/markdown-to-txt', label: t('markdownToTxt'), icon: FileType, color: '#10b981' },
-    { href: '/markdown-to-docx', label: t('markdownToDocx'), icon: FileSpreadsheet, color: '#2563eb' },
-    { href: '/markdown-live-preview', label: t('markdownLivePreview'), icon: Eye, color: '#8b5cf6' },
-    { href: '/editor', label: t('editor'), icon: PenLine, color: 'var(--accent)' },
-    { href: '/obsidian-to-pdf', label: t('obsidianToPdf'), icon: DocIcon, color: '#4b3f72' },
-    { href: '/notion-to-pdf', label: t('notionToPdf'), icon: DocIcon, color: '#0f4c3a' },
-    { href: '/github-readme-to-pdf', label: t('githubReadmeToPdf'), icon: DocIcon, color: '#6e5494' },
-    { href: '/markdown-to-pdf-resume', label: t('resumeToPdf'), icon: DocIcon, color: '#0f4c3a' },
-  ];
 
   return (
     <>
@@ -101,39 +85,36 @@ export default function Header() {
 
             <div ref={toolsRef} className="relative">
               <button
+                type="button"
+                id="tools-menu-button"
                 onClick={() => setToolsOpen(!toolsOpen)}
-                className={`flex items-center gap-1 px-3 py-1.5 text-sm font-medium rounded-md transition-colors duration-150 cursor-pointer ${
+                className={`flex items-center gap-1.5 px-3 py-2 text-sm font-semibold rounded-md transition-colors duration-150 cursor-pointer min-h-[44px] ${
                   toolsOpen
-                    ? 'bg-[var(--bg-tertiary)] text-[var(--text-primary)]'
-                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)]'
+                    ? 'bg-[var(--bg-tertiary)] text-[var(--text-primary)] ring-1 ring-[var(--border-hover)]'
+                    : 'text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)]'
                 }`}
                 aria-expanded={toolsOpen}
-                aria-haspopup="true"
+                aria-haspopup="menu"
+                aria-controls="tools-mega-menu"
               >
                 {t('tools')}
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${toolsOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown
+                  className={`w-4 h-4 text-[var(--text-secondary)] transition-transform duration-200 ${toolsOpen ? 'rotate-180' : ''}`}
+                  aria-hidden
+                />
               </button>
 
               {toolsOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 rounded-lg border border-[var(--border-color)] bg-[var(--bg-primary)] shadow-[var(--shadow-md)] p-1.5 animate-fade-in z-50">
-                  <div className="grid gap-0.5">
-                    {tools.map((tool) => (
-                      <Link
-                        key={tool.href}
-                        href={tool.href}
-                        onClick={() => setToolsOpen(false)}
-                        className="flex items-center gap-3 px-3 py-2 rounded-md transition-colors hover:bg-[var(--bg-tertiary)] group cursor-pointer"
-                      >
-                        <div
-                          className="w-8 h-8 rounded-md flex items-center justify-center shrink-0 border border-[var(--border-color)] bg-[var(--bg-secondary)]"
-                        >
-                          <tool.icon className="w-4 h-4" style={{ color: tool.color }} />
-                        </div>
-                        <span className="font-medium text-sm text-[var(--text-primary)] flex-1">{tool.label}</span>
-                        <ArrowRight className="w-3.5 h-3.5 text-[var(--text-tertiary)] opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </Link>
-                    ))}
-                  </div>
+                <div
+                  id="tools-mega-menu"
+                  className="tools-mega-wrap animate-fade-in z-50"
+                  role="presentation"
+                >
+                  <NavToolsMenu
+                    variant="mega"
+                    activePath={pathname}
+                    onNavigate={() => setToolsOpen(false)}
+                  />
                 </div>
               )}
             </div>
@@ -187,7 +168,7 @@ export default function Header() {
             onClick={() => setMobileOpen(false)}
           />
           <nav
-            className="absolute top-0 right-0 h-full w-[min(300px,88vw)] bg-[var(--bg-primary)] shadow-[var(--shadow-md)] border-l border-[var(--border-color)] p-4 pt-[calc(var(--header-height)+1rem)] overflow-y-auto"
+            className="absolute top-0 right-0 h-full w-[min(360px,92vw)] bg-[var(--bg-primary)] shadow-[var(--shadow-md)] border-l border-[var(--border-color)] p-4 pt-[calc(var(--header-height)+1rem)] overflow-y-auto"
             style={{ animation: 'slideInRight 0.25s ease forwards' }}
             aria-label={t('mobileNavAria')}
           >
@@ -200,42 +181,30 @@ export default function Header() {
                 {t('home')}
               </Link>
 
-              <div className="px-3 py-2 text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-wider">
-                {t('tools')}
-              </div>
-              <div className="grid gap-0.5">
-                {tools.map((tool) => (
-                  <Link
-                    key={tool.href}
-                    href={tool.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-[var(--bg-tertiary)] transition-colors cursor-pointer"
-                  >
-                    <div
-                      className="w-7 h-7 rounded-md flex items-center justify-center border border-[var(--border-color)] bg-[var(--bg-secondary)]"
-                    >
-                      <tool.icon className="w-3.5 h-3.5" style={{ color: tool.color }} />
-                    </div>
-                    <span className="text-sm font-medium text-[var(--text-primary)]">{tool.label}</span>
-                  </Link>
-                ))}
-              </div>
+              <NavToolsMenu
+                variant="mobile"
+                activePath={pathname}
+                onNavigate={() => setMobileOpen(false)}
+              />
 
               <div className="border-t border-[var(--border-color)] my-3" />
 
-              {['/blog', '/about', '/contact', '/help'].map((href) => {
-                const key = href.slice(1) as 'blog' | 'about' | 'contact' | 'help';
-                return (
-                  <Link
-                    key={href}
-                    href={href}
-                    onClick={() => setMobileOpen(false)}
-                    className="flex items-center gap-3 px-3 py-2.5 rounded-md text-[var(--text-primary)] font-medium hover:bg-[var(--bg-tertiary)] transition-colors cursor-pointer"
-                  >
-                    {t(key)}
-                  </Link>
-                );
-              })}
+              {[
+                { href: '/blog', key: 'blog' as const, locale: 'en' as const },
+                { href: '/about', key: 'about' as const },
+                { href: '/contact', key: 'contact' as const },
+                { href: '/help', key: 'help' as const },
+              ].map(({ href, key, locale }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  locale={locale}
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center gap-3 px-3 py-2.5 rounded-md text-[var(--text-primary)] font-medium hover:bg-[var(--bg-tertiary)] transition-colors cursor-pointer"
+                >
+                  {t(key)}
+                </Link>
+              ))}
             </div>
 
             <div className="mt-6">

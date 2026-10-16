@@ -2,8 +2,8 @@
 
 import { PostHogProvider as PHProvider, usePostHog } from '@posthog/react';
 import { usePathname, useSearchParams } from 'next/navigation';
-import posthog from 'posthog-js';
-import { Suspense, useEffect } from 'react';
+import type { PostHog } from 'posthog-js';
+import { Suspense, useEffect, useState } from 'react';
 
 import { capturePostHogPageview, isPostHogEnabled } from '@/lib/posthog';
 
@@ -23,13 +23,27 @@ function PostHogPageViewTracker() {
 }
 
 export default function PostHogProvider({ children }: { children: React.ReactNode }) {
-  useEffect(() => {
-    if (!isPostHogEnabled() || posthog.__loaded) return;
+  const [client, setClient] = useState<PostHog | null>(null);
 
-    posthog.init(process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN as string, {
-      api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
-      defaults: '2026-05-30',
+  useEffect(() => {
+    if (!isPostHogEnabled()) return;
+
+    let cancelled = false;
+    void import('posthog-js').then(({ default: posthog }) => {
+      if (cancelled || posthog.__loaded) {
+        setClient(posthog);
+        return;
+      }
+      posthog.init(process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN as string, {
+        api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+        defaults: '2026-05-30',
+      });
+      setClient(posthog);
     });
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   if (!isPostHogEnabled()) {
@@ -41,8 +55,12 @@ export default function PostHogProvider({ children }: { children: React.ReactNod
     return <>{children}</>;
   }
 
+  if (!client) {
+    return <>{children}</>;
+  }
+
   return (
-    <PHProvider client={posthog}>
+    <PHProvider client={client}>
       <Suspense fallback={null}>
         <PostHogPageViewTracker />
       </Suspense>

@@ -1876,6 +1876,65 @@ export function txtKeywordsForLocale(locale: string): string[] {
 }
 
 /* -------------------------------------------------------------------------- */
+/* Broken Markdown fixer                                                        */
+/* -------------------------------------------------------------------------- */
+
+export const SHARED_FIXER_KEYWORDS = [
+  'fix broken markdown',
+  'markdown fixer',
+  'repair markdown online',
+  'fix markdown syntax',
+  'broken markdown formatter',
+  'markdown linter online free',
+  'fix markdown headings',
+  'fix markdown lists',
+  'close markdown code fence',
+  'pdfwritter',
+];
+
+export const LOCALE_FIXER_KEYWORDS: LocaleKeywordMap = {
+  en: SHARED_FIXER_KEYWORDS,
+  es: [
+    'arreglar markdown roto',
+    'corrector markdown online',
+    'reparar sintaxis markdown',
+    'markdown fixer gratis',
+    'pdfwritter',
+  ],
+  fr: [
+    'réparer markdown cassé',
+    'correcteur markdown en ligne',
+    'réparer syntaxe markdown',
+    'markdown fixer gratuit',
+    'pdfwritter',
+  ],
+  de: [
+    'kaputtes markdown reparieren',
+    'markdown reparatur online',
+    'markdown syntax reparieren',
+    'markdown fixer kostenlos',
+    'pdfwritter',
+  ],
+  pt: [
+    'corrigir markdown quebrado',
+    'corretor markdown online',
+    'reparar sintaxe markdown',
+    'markdown fixer grátis',
+    'pdfwritter',
+  ],
+  ar: ['إصلاح markdown', 'markdown fixer', 'إصلاح markdown معطوب', 'pdfwritter'],
+  'zh-Hans': ['修复 markdown', 'markdown 修复器', '损坏 markdown 修复', 'pdfwritter'],
+  ja: ['markdown 修復', '壊れた markdown 修正', 'markdown fixer', 'pdfwritter'],
+  ko: ['markdown 수정', '깨진 markdown', 'markdown fixer', 'pdfwritter'],
+  bn: ['markdown ফিক্সার', 'ভাঙা markdown', 'pdfwritter'],
+  ru: ['исправить markdown', 'починка markdown', 'markdown fixer', 'pdfwritter'],
+};
+
+export function fixerKeywordsForLocale(locale: string): string[] {
+  return keywordsForLocale(locale, LOCALE_FIXER_KEYWORDS, SHARED_FIXER_KEYWORDS);
+}
+
+/* -------------------------------------------------------------------------- */
 /* Markdown → DOCX / Word                                                       */
 /* Primary: "markdown to word" + "markdown to docx online free"                */
 /* -------------------------------------------------------------------------- */
@@ -3858,6 +3917,16 @@ export const BLOG_KEYWORDS: Record<string, readonly string[]> = {
     "technical documentation markdown to pdf 2026",
     "how to technical documentation markdown to pdf",
     "pdfwritter",
+  ],
+  'fix-broken-markdown-online': [
+    'fix broken markdown',
+    'markdown fixer online',
+    'repair markdown syntax',
+    'fix markdown headings lists',
+    'broken markdown from chatgpt',
+    'markdown code fence fix',
+    'free markdown linter',
+    'pdfwritter',
   ],
 };
 

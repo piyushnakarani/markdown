@@ -1,5 +1,7 @@
 'use client';
 
+import 'highlight.js/styles/github-dark.css';
+
 import type { LucideIcon } from 'lucide-react';
 import {
   Bold,

@@ -8,6 +8,7 @@ import { content as convertMarkdownReportContent } from "./blog-posts/convert-ma
 import { content as convertMarkdownToHtmlContent } from "./blog-posts/convert-markdown-to-html-online";
 import { content as preserveMarkdownFormattingContent } from "./blog-posts/convert-markdown-to-pdf-without-losing-formatting";
 import { content as exportChatgptDataContent } from "./blog-posts/export-chatgpt-data-to-pdf";
+import { content as fixBrokenMarkdownOnlineContent } from "./blog-posts/fix-broken-markdown-online";
 import { content as freeMarkdownConverterContent } from "./blog-posts/free-markdown-converter-online-complete-guide";
 import { content as githubMathContent } from "./blog-posts/github-markdown-math-latex-support";
 import { content as howToConvertMarkdownToTxtContent } from "./blog-posts/how-to-convert-markdown-to-txt-online";
@@ -43,6 +44,21 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "fix-broken-markdown-online",
+    titleKey: "How to Fix Broken Markdown Online (Free Markdown Fixer)",
+    excerptKey:
+      "Repair broken Markdown from ChatGPT, Notion, and email — fix headings, lists, code fences, and tables free in your browser.",
+    metaTitle: "Fix Broken Markdown Online — Free Markdown Fixer | PDFWritter",
+    metaDescription:
+      "Free broken Markdown fixer: repair headings, lists, unclosed code fences, smart quotes, and tables. Preview and download clean .md in your browser.",
+    keywords: blogKeywordsForSlug("fix-broken-markdown-online"),
+    category: "Tutorial",
+    readTime: 8,
+    date: "2026-10-16",
+    dateModified: "2026-10-16",
+    content: fixBrokenMarkdownOnlineContent,
+  },
   {
     slug: "best-markdown-to-pdf-converter",
     titleKey: "Markdown to PDF Converter for Professional Docs — 2026 Comparison",

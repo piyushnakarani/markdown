@@ -1,11 +1,3 @@
-import {
-  Eye,
-  FileSpreadsheet,
-  FileType,
-  GitBranch,
-  PenLine,
-  Sparkles,
-} from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 
@@ -13,12 +5,31 @@ import BlogInsightsSection from '@/components/BlogInsightsSection';
 import EditorClientWrapper from '@/components/EditorClientWrapper';
 import FAQAccordion from '@/components/FAQAccordion';
 import HowItWorksSection from '@/components/HowItWorksSection';
-import { DocIcon } from '@/components/icons/CustomIcons';
 import ScrollReveal from '@/components/ScrollReveal';
 import SectionHeading from '@/components/SectionHeading';
+import ToolNavIcon from '@/components/ToolNavIcon';
 import { Link } from '@/i18n/navigation';
+import { getNavTool, type NavToolHref } from '@/lib/nav-tool-links';
 import { buildPageMetadata } from '@/lib/site';
 import { buildSpeakableJsonLd } from '@/lib/structured-data';
+
+const HOME_TOOL_CARDS: { href: NavToolHref; title: string; desc: string }[] = [
+  { href: '/markdown-to-pdf', title: 'tools.pdfTitle', desc: 'tools.pdfDescription' },
+  { href: '/chatgpt-to-pdf', title: 'nav.chatgptToPdf', desc: 'tools.chatgptDescription' },
+  { href: '/mermaid-markdown-to-pdf', title: 'nav.mermaidToPdf', desc: 'tools.mermaidDescription' },
+  { href: '/ai-markdown-to-pdf', title: 'nav.aiToPdf', desc: 'tools.aiDescription' },
+  { href: '/markdown-to-html', title: 'tools.htmlTitle', desc: 'tools.htmlDescription' },
+  { href: '/markdown-to-txt', title: 'tools.txtTitle', desc: 'tools.txtDescription' },
+  { href: '/markdown-to-docx', title: 'tools.docxTitle', desc: 'tools.docxDescription' },
+  { href: '/markdown-live-preview', title: 'tools.livePreviewTitle', desc: 'tools.livePreviewDescription' },
+  { href: '/editor', title: 'tools.editorTitle', desc: 'tools.editorDescription' },
+  { href: '/obsidian-to-pdf', title: 'nav.obsidianToPdf', desc: 'tools.obsidianDescription' },
+  { href: '/notion-to-pdf', title: 'nav.notionToPdf', desc: 'tools.notionDescription' },
+  { href: '/github-readme-to-pdf', title: 'nav.githubReadmeToPdf', desc: 'tools.githubReadmeDescription' },
+  { href: '/markdown-to-pdf-resume', title: 'nav.resumeToPdf', desc: 'tools.resumeDescription' },
+  { href: '/pandoc-alternative', title: 'tools.pandocTitle', desc: 'tools.pandocDescription' },
+  { href: '/markdown-fixer', title: 'tools.fixerTitle', desc: 'tools.fixerDescription' },
+];
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -45,106 +56,16 @@ function HomeContent({ locale }: { locale: string }) {
   const t = useTranslations();
   const th = useTranslations('home');
 
-const tools = [
-    {
-      href: '/markdown-to-pdf',
-      icon: DocIcon,
-      color: '#ef4444',
-      title: t('tools.pdfTitle'),
-      desc: t('tools.pdfDescription'),
-    },
-    {
-      href: '/chatgpt-to-pdf',
-      icon: Sparkles,
-      color: '#10a37f',
-      title: t('nav.chatgptToPdf'),
-      desc: t('tools.chatgptDescription'),
-    },
-    {
-      href: '/mermaid-markdown-to-pdf',
-      icon: GitBranch,
-      color: '#8b5cf6',
-      title: t('nav.mermaidToPdf'),
-      desc: t('tools.mermaidDescription'),
-    },
-    {
-      href: '/ai-markdown-to-pdf',
-      icon: Sparkles,
-      color: '#3b82f6',
-      title: t('nav.aiToPdf'),
-      desc: t('tools.aiDescription'),
-    },
-    {
-      href: '/markdown-to-html',
-      icon: DocIcon,
-      color: '#f59e0b',
-      title: t('tools.htmlTitle'),
-      desc: t('tools.htmlDescription'),
-    },
-    {
-      href: '/markdown-to-txt',
-      icon: FileType,
-      color: '#10b981',
-      title: t('tools.txtTitle'),
-      desc: t('tools.txtDescription'),
-    },
-    {
-      href: '/markdown-to-docx',
-      icon: FileSpreadsheet,
-      color: '#2563eb',
-      title: t('tools.docxTitle'),
-      desc: t('tools.docxDescription'),
-    },
-    {
-      href: '/markdown-live-preview',
-      icon: Eye,
-      color: '#8b5cf6',
-      title: t('tools.livePreviewTitle'),
-      desc: t('tools.livePreviewDescription'),
-    },
-    {
-      href: '/editor',
-      icon: PenLine,
-      color: 'var(--accent)',
-      title: t('tools.editorTitle'),
-      desc: t('tools.editorDescription'),
-    },
-    {
-      href: '/obsidian-to-pdf',
-      icon: DocIcon,
-      color: '#4b3f72',
-      title: t('nav.obsidianToPdf'),
-      desc: t('tools.obsidianDescription'),
-    },
-    {
-      href: '/notion-to-pdf',
-      icon: DocIcon,
-      color: '#0f4c3a',
-      title: t('nav.notionToPdf'),
-      desc: t('tools.notionDescription'),
-    },
-    {
-      href: '/github-readme-to-pdf',
-      icon: DocIcon,
-      color: '#6e5494',
-      title: t('nav.githubReadmeToPdf'),
-      desc: t('tools.githubReadmeDescription'),
-    },
-    {
-      href: '/markdown-to-pdf-resume',
-      icon: DocIcon,
-      color: '#0f4c3a',
-      title: t('nav.resumeToPdf'),
-      desc: t('tools.resumeDescription'),
-    },
-    {
-      href: '/pandoc-alternative',
-      icon: Sparkles,
-      color: '#0ea5e9',
-      title: t('tools.pandocTitle'),
-      desc: t('tools.pandocDescription'),
-    },
-  ];
+  const tools = HOME_TOOL_CARDS.map((card) => {
+    const nav = getNavTool(card.href);
+    return {
+      href: card.href,
+      icon: nav.icon,
+      variant: nav.variant,
+      title: t(card.title),
+      desc: t(card.desc),
+    };
+  });
 
   const faqs = [
     { q: t('faq.q1'), a: t('faq.a1') },
@@ -192,11 +113,9 @@ const tools = [
             {tools.map((tool, i) => (
               <ScrollReveal key={tool.href} delay={i * 60}>
                 <Link href={tool.href} className="tool-card group block h-full cursor-pointer">
-                  <div className="flex items-center justify-start gap-2.5 mb-3">
-                    <div className="w-9 h-9 rounded-md flex items-center justify-center shrink-0 border border-[var(--border-color)] bg-[var(--bg-secondary)]">
-                      <tool.icon className="w-4 h-4" style={{ color: tool.color }} />
-                    </div>
-                    <h3 className="text-sm font-semibold group-hover:text-[var(--accent)] transition-colors">
+                  <div className="flex items-center justify-start gap-3 mb-3">
+                    <ToolNavIcon icon={tool.icon} variant={tool.variant} />
+                    <h3 className="text-sm font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors leading-snug">
                       {tool.title}
                     </h3>
                   </div>
