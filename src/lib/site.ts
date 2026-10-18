@@ -301,6 +301,7 @@ export async function buildLocalizedPageMetadata({
     else if (titleKey === 'tools.pdfTitle') title = 'Markdown to PDF';
     else if (titleKey === 'tools.htmlTitle') title = 'Markdown to HTML';
     else if (titleKey === 'tools.txtTitle') title = 'Markdown to TXT';
+    else if (titleKey === 'markdownFixer.title') title = 'Broken Markdown Fixer';
     else if (titleKey === 'privacy.title') title = 'Privacy Policy';
     else if (titleKey === 'terms.title') title = 'Terms of Service';
     else title = 'MarkdownTools';

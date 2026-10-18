@@ -3,6 +3,7 @@ import katex from 'katex';
 import { marked } from 'marked';
 import markedKatex from 'marked-katex-extension';
 
+import { enhanceAccessibleTaskLists } from './markdown-a11y';
 import { normalizeMermaidInMarkdown } from './mermaid-normalize';
 import { mermaidCodeToHtml } from './mermaid-render';
 
@@ -47,6 +48,13 @@ function ensureMarkedConfigured() {
     }),
   );
   marked.use({ renderer });
+  marked.use({
+    hooks: {
+      postprocess(html) {
+        return enhanceAccessibleTaskLists(html);
+      },
+    },
+  });
   markedReady = true;
 }
 

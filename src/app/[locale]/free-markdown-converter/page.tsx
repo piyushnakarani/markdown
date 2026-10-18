@@ -1,12 +1,13 @@
-import { ArrowRight, Check, Code2, Eye, FileSpreadsheet, FileType, GitBranch, PenLine, Sparkles } from 'lucide-react';
+import { ArrowRight, Check, Sparkles } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 
 import Breadcrumbs from '@/components/Breadcrumbs';
-import { DocIcon } from '@/components/icons/CustomIcons';
 import RelatedBlogGuides from '@/components/RelatedBlogGuides';
+import ToolNavIcon from '@/components/ToolNavIcon';
 import { Link } from '@/i18n/navigation';
 import { converterKeywordsForLocale } from '@/lib/keywords';
+import { NAV_TOOL_LINKS } from '@/lib/nav-tool-links';
 import { buildLocalizedPageMetadata, withToolBrandKeywords } from '@/lib/site';
 import { buildToolPageJsonLd } from '@/lib/structured-data';
 
@@ -30,23 +31,15 @@ export default async function FreeConverterPage({ params }: { params: Promise<{ 
 
 function FreeConverterContent({ locale }: { locale: string }) {
   const t = useTranslations();
+  const tNav = useTranslations('nav');
 
-  const converters = [
-    { href: '/markdown-to-pdf', icon: DocIcon, color: '#ef4444', title: t('tools.pdfTitle'), desc: t('tools.pdfDescription') },
-    { href: '/chatgpt-to-pdf', icon: Sparkles, color: '#10a37f', title: t('nav.chatgptToPdf'), desc: t('tools.chatgptDescription') },
-    { href: '/ai-markdown-to-pdf', icon: Sparkles, color: '#3b82f6', title: t('nav.aiToPdf'), desc: t('tools.aiDescription') },
-    { href: '/mermaid-markdown-to-pdf', icon: GitBranch, color: '#8b5cf6', title: t('nav.mermaidToPdf'), desc: t('tools.mermaidDescription') },
-    { href: '/pandoc-alternative', icon: Sparkles, color: '#0ea5e9', title: t('tools.pandocTitle'), desc: t('tools.pandocDescription') },
-    { href: '/obsidian-to-pdf', icon: GitBranch, color: '#4b3f72', title: 'Obsidian to PDF', desc: 'Export Obsidian Markdown notes to PDF with Mermaid diagrams.' },
-    { href: '/notion-to-pdf', icon: GitBranch, color: '#000', title: 'Notion to PDF', desc: 'Convert Notion pages (Markdown export) to clean PDF.' },
-    { href: '/github-readme-to-pdf', icon: DocIcon, color: '#6e5494', title: 'GitHub README to PDF', desc: 'Convert README.md to PDF with badges and code blocks.' },
-    { href: '/markdown-to-pdf-resume', icon: DocIcon, color: '#0f4c3a', title: 'Markdown Resume to PDF', desc: 'Turn a Markdown CV into a clean, ATS-friendly PDF.' },
-    { href: '/markdown-to-html', icon: Code2, color: '#f59e0b', title: t('tools.htmlTitle'), desc: t('tools.htmlDescription') },
-    { href: '/markdown-to-txt', icon: FileType, color: '#10b981', title: t('tools.txtTitle'), desc: t('tools.txtDescription') },
-    { href: '/markdown-to-docx', icon: FileSpreadsheet, color: '#3b82f6', title: t('tools.docxTitle'), desc: t('tools.docxDescription') },
-    { href: '/markdown-live-preview', icon: Eye, color: '#8b5cf6', title: t('tools.livePreviewTitle'), desc: t('tools.livePreviewDescription') },
-    { href: '/editor', icon: PenLine, color: '#6366f1', title: t('tools.editorTitle'), desc: t('tools.editorDescription') },
-  ];
+  const converters = NAV_TOOL_LINKS.map((tool) => ({
+    href: tool.href,
+    icon: tool.icon,
+    variant: tool.variant,
+    title: tNav(tool.labelKey),
+    desc: tool.descKey ? tNav(tool.descKey as Parameters<typeof tNav>[0]) : '',
+  }));
 
   const benefits = [
     t('freeConverter.benefit1'),
@@ -83,9 +76,7 @@ function FreeConverterContent({ locale }: { locale: string }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {converters.map((c) => (
             <Link key={c.href} href={c.href} className="group card-glass flex items-start gap-3.5 cursor-pointer">
-              <div className="w-9 h-9 shrink-0 rounded-md flex items-center justify-center border border-[var(--border-color)] bg-[var(--bg-secondary)]">
-                <c.icon className="w-4 h-4" style={{ color: c.color }} />
-              </div>
+              <ToolNavIcon icon={c.icon} variant={c.variant} className="shrink-0" />
               <div>
                 <h3 className="text-sm font-semibold mb-1 group-hover:text-[var(--accent)] transition-colors">{c.title}</h3>
                 <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{c.desc}</p>

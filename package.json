@@ -9,6 +9,9 @@
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "typecheck": "tsc --noEmit",
+    "validate:seo": "node seo/validate-seo-graph.mjs",
+    "translate:i18n": "node scripts/translate-i18n-from-en.mjs",
+    "translate:i18n:dry": "node scripts/translate-i18n-from-en.mjs --dry-run",
     "prepare": "husky"
   },
   "dependencies": {

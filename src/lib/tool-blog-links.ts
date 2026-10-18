@@ -37,6 +37,11 @@ export const TOOL_BLOG_LINKS: Record<string, string[]> = {
     'render-flowcharts-from-markdown-to-pdf',
     'print-markdown-with-diagrams',
   ],
+  'markdown-fixer': [
+    'fix-broken-markdown-online',
+    'beginner-guide-markdown',
+    'best-online-markdown-editor-with-preview',
+  ],
   editor: [
     'best-online-markdown-editor-with-preview',
     'mermaid-diagrams-in-markdown-preview',

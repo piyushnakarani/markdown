@@ -7,33 +7,13 @@ import {
   localizedPath,
   SITE_URL,
 } from '@/lib/site';
+import {
+  INDEXABLE_PRODUCT_PATHS,
+  lastModifiedForProductPath,
+  type ProductPath,
+} from '@/lib/site-routes';
 
 const BASE_URL = SITE_URL;
-
-/** Product/static pages — all indexable locales with hreflang alternates. */
-const LOCALIZED_PAGES = [
-  '',
-  '/markdown-to-pdf',
-  '/markdown-to-html',
-  '/markdown-to-txt',
-  '/markdown-to-docx',
-  '/obsidian-to-pdf',
-  '/notion-to-pdf',
-  '/github-readme-to-pdf',
-  '/markdown-to-pdf-resume',
-  '/markdown-live-preview',
-  '/editor',
-  '/about',
-  '/contact',
-  '/help',
-  '/free-markdown-converter',
-  '/chatgpt-to-pdf',
-  '/ai-markdown-to-pdf',
-  '/mermaid-markdown-to-pdf',
-  '/pandoc-alternative',
-  '/privacy',
-  '/terms',
-];
 
 /**
  * Blog has no per-locale content. Index only English paths:
@@ -42,13 +22,18 @@ const LOCALIZED_PAGES = [
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
+  const seen = new Set<string>();
 
-  for (const page of LOCALIZED_PAGES) {
+  for (const page of INDEXABLE_PRODUCT_PATHS) {
     for (const locale of INDEXABLE_LOCALES) {
       const path = localizedPath(locale, page);
+      const url = `${BASE_URL}${path}`;
+      if (seen.has(url)) continue;
+      seen.add(url);
+
       entries.push({
-        url: `${BASE_URL}${path}`,
-        lastModified: new Date(),
+        url,
+        lastModified: lastModifiedForProductPath(page as ProductPath),
         changeFrequency: page === '' ? 'daily' : 'weekly',
         priority: page === '' ? 1.0 : page.includes('markdown') ? 0.9 : 0.7,
         alternates: {
@@ -58,16 +43,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
-  entries.push({
-    url: `${BASE_URL}/blog`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: 0.8,
-  });
+  const blogIndexUrl = `${BASE_URL}/blog`;
+  if (!seen.has(blogIndexUrl)) {
+    seen.add(blogIndexUrl);
+    entries.push({
+      url: blogIndexUrl,
+      lastModified: new Date(
+        blogPosts.reduce(
+          (max, p) => (p.dateModified > max ? p.dateModified : max),
+          '2026-01-01',
+        ),
+      ),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    });
+  }
 
   for (const post of blogPosts) {
+    const url = `${BASE_URL}/blog/${post.slug}`;
+    if (seen.has(url)) continue;
+    seen.add(url);
     entries.push({
-      url: `${BASE_URL}/blog/${post.slug}`,
+      url,
       lastModified: new Date(post.dateModified),
       changeFrequency: 'monthly',
       priority: 0.7,
